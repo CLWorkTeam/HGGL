@@ -30,7 +30,7 @@
 #else // 发布阶段
 #define HGLog(...)
 #endif
-#define HGColor(r,g,b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0  blue:(b)/255.0  alpha:1]
+#define HGColor(r,g,b,a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0  blue:(b)/255.0  alpha:a]
 #define HGURL @"http://192.168.201.53:8089/sydx1204/"
 #define HGUserDefaults [NSUserDefaults standardUserDefaults]
 #endif
