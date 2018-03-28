@@ -11,6 +11,19 @@
 		AD6BE231206B6B1800028673 /* HGLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD6BE230206B6B1800028673 /* HGLoginController.m */; };
 		AD6BE233206B777200028673 /* WechatIMG8.png in Resources */ = {isa = PBXBuildFile; fileRef = AD6BE232206B777200028673 /* WechatIMG8.png */; };
 		AD6BE23A206B7CBB00028673 /* HGTeacherHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD6BE239206B7CBB00028673 /* HGTeacherHomeController.m */; };
+		AD804BFE206B8F7B00299A08 /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = AD804BFD206B8F7B00299A08 /* UIColor+Hex.m */; };
+		AD804C08206B8FBF00299A08 /* icon_new_menu.png in Resources */ = {isa = PBXBuildFile; fileRef = AD804BFF206B8FBE00299A08 /* icon_new_menu.png */; };
+		AD804C09206B8FBF00299A08 /* icon_administration.png in Resources */ = {isa = PBXBuildFile; fileRef = AD804C00206B8FBE00299A08 /* icon_administration.png */; };
+		AD804C0A206B8FBF00299A08 /* icon_new_student.png in Resources */ = {isa = PBXBuildFile; fileRef = AD804C01206B8FBE00299A08 /* icon_new_student.png */; };
+		AD804C0B206B8FBF00299A08 /* icon_new_active.png in Resources */ = {isa = PBXBuildFile; fileRef = AD804C02206B8FBE00299A08 /* icon_new_active.png */; };
+		AD804C0C206B8FBF00299A08 /* icon_new_project.png in Resources */ = {isa = PBXBuildFile; fileRef = AD804C03206B8FBE00299A08 /* icon_new_project.png */; };
+		AD804C0D206B8FBF00299A08 /* icon_new_share.png in Resources */ = {isa = PBXBuildFile; fileRef = AD804C04206B8FBE00299A08 /* icon_new_share.png */; };
+		AD804C0E206B8FBF00299A08 /* icon_new_keyan.png in Resources */ = {isa = PBXBuildFile; fileRef = AD804C05206B8FBF00299A08 /* icon_new_keyan.png */; };
+		AD804C0F206B8FBF00299A08 /* icon_new_plan.png in Resources */ = {isa = PBXBuildFile; fileRef = AD804C06206B8FBF00299A08 /* icon_new_plan.png */; };
+		AD804C10206B8FBF00299A08 /* icon_new_teacher.png in Resources */ = {isa = PBXBuildFile; fileRef = AD804C07206B8FBF00299A08 /* icon_new_teacher.png */; };
+		AD804C12206B941000299A08 /* WechatIMG79.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = AD804C11206B941000299A08 /* WechatIMG79.jpeg */; };
+		AD804C15206B958100299A08 /* TKUpDownButton.m in Sources */ = {isa = PBXBuildFile; fileRef = AD804C13206B958000299A08 /* TKUpDownButton.m */; };
+		AD804C18206B95D500299A08 /* TKButton.m in Sources */ = {isa = PBXBuildFile; fileRef = AD804C17206B95D400299A08 /* TKButton.m */; };
 		CE769DAB206A343E000F931F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE769DAA206A343E000F931F /* Assets.xcassets */; };
 		CE769DAE206A343E000F931F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE769DAC206A343E000F931F /* LaunchScreen.storyboard */; };
 		CE769DBB206A343E000F931F /* HGGLTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CE769DBA206A343E000F931F /* HGGLTests.m */; };
@@ -130,6 +143,22 @@
 		AD6BE232206B777200028673 /* WechatIMG8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WechatIMG8.png; sourceTree = "<group>"; };
 		AD6BE238206B7CBB00028673 /* HGTeacherHomeController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGTeacherHomeController.h; sourceTree = "<group>"; };
 		AD6BE239206B7CBB00028673 /* HGTeacherHomeController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGTeacherHomeController.m; sourceTree = "<group>"; };
+		AD804BFC206B8F7B00299A08 /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
+		AD804BFD206B8F7B00299A08 /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
+		AD804BFF206B8FBE00299A08 /* icon_new_menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_new_menu.png; sourceTree = "<group>"; };
+		AD804C00206B8FBE00299A08 /* icon_administration.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_administration.png; sourceTree = "<group>"; };
+		AD804C01206B8FBE00299A08 /* icon_new_student.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_new_student.png; sourceTree = "<group>"; };
+		AD804C02206B8FBE00299A08 /* icon_new_active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_new_active.png; sourceTree = "<group>"; };
+		AD804C03206B8FBE00299A08 /* icon_new_project.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_new_project.png; sourceTree = "<group>"; };
+		AD804C04206B8FBE00299A08 /* icon_new_share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_new_share.png; sourceTree = "<group>"; };
+		AD804C05206B8FBF00299A08 /* icon_new_keyan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_new_keyan.png; sourceTree = "<group>"; };
+		AD804C06206B8FBF00299A08 /* icon_new_plan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_new_plan.png; sourceTree = "<group>"; };
+		AD804C07206B8FBF00299A08 /* icon_new_teacher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_new_teacher.png; sourceTree = "<group>"; };
+		AD804C11206B941000299A08 /* WechatIMG79.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = WechatIMG79.jpeg; sourceTree = "<group>"; };
+		AD804C13206B958000299A08 /* TKUpDownButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKUpDownButton.m; sourceTree = "<group>"; };
+		AD804C14206B958100299A08 /* TKUpDownButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKUpDownButton.h; sourceTree = "<group>"; };
+		AD804C16206B95D400299A08 /* TKButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKButton.h; sourceTree = "<group>"; };
+		AD804C17206B95D400299A08 /* TKButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKButton.m; sourceTree = "<group>"; };
 		CE769D9E206A343E000F931F /* HGGL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HGGL.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE769DAA206A343E000F931F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE769DAD206A343E000F931F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -424,6 +453,12 @@
 				CE769DEF206A56EF000F931F /* UIImage+image.m */,
 				CE769DF2206A56EF000F931F /* UIView+Frame.h */,
 				CE769DF4206A56EF000F931F /* UIView+Frame.m */,
+				AD804BFC206B8F7B00299A08 /* UIColor+Hex.h */,
+				AD804BFD206B8F7B00299A08 /* UIColor+Hex.m */,
+				AD804C14206B958100299A08 /* TKUpDownButton.h */,
+				AD804C13206B958000299A08 /* TKUpDownButton.m */,
+				AD804C16206B95D400299A08 /* TKButton.h */,
+				AD804C17206B95D400299A08 /* TKButton.m */,
 				CE769DE9206A56A4000F931F /* Tools */,
 			);
 			path = Libs;
@@ -499,6 +534,7 @@
 		CE769DFF206A5797000F931F /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				AD804C11206B941000299A08 /* WechatIMG79.jpeg */,
 				CE769E06206A57B1000F931F /* bg_date.png */,
 				CE769E3B206A57B8000F931F /* bg_pop_bottom.png */,
 				CE769E0D206A57B1000F931F /* bg_pop_middle.png */,
@@ -572,6 +608,15 @@
 				CE769E0E206A57B2000F931F /* icon_xuanze_check.png */,
 				CE769E36206A57B7000F931F /* icon_xuanze.png */,
 				AD6BE232206B777200028673 /* WechatIMG8.png */,
+				AD804C00206B8FBE00299A08 /* icon_administration.png */,
+				AD804C02206B8FBE00299A08 /* icon_new_active.png */,
+				AD804C05206B8FBF00299A08 /* icon_new_keyan.png */,
+				AD804BFF206B8FBE00299A08 /* icon_new_menu.png */,
+				AD804C06206B8FBF00299A08 /* icon_new_plan.png */,
+				AD804C03206B8FBE00299A08 /* icon_new_project.png */,
+				AD804C04206B8FBE00299A08 /* icon_new_share.png */,
+				AD804C01206B8FBE00299A08 /* icon_new_student.png */,
+				AD804C07206B8FBF00299A08 /* icon_new_teacher.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -695,6 +740,7 @@
 				CE769E55206A57BA000F931F /* icon_video.png in Resources */,
 				CE769E8B206A57BA000F931F /* icon_small_manual.png in Resources */,
 				CE769E53206A57BA000F931F /* icon_search.png in Resources */,
+				AD804C0F206B8FBF00299A08 /* icon_new_plan.png in Resources */,
 				CE769E6C206A57BA000F931F /* icon_minus.png in Resources */,
 				CE769E4B206A57BA000F931F /* icon_courseware.png in Resources */,
 				CE769E54206A57BA000F931F /* icon_teachers.png in Resources */,
@@ -724,9 +770,12 @@
 				CE769E74206A57BA000F931F /* icon_top_personal.png in Resources */,
 				CE769E56206A57BA000F931F /* bg_pop_middle.png in Resources */,
 				CE769DAE206A343E000F931F /* LaunchScreen.storyboard in Resources */,
+				AD804C10206B8FBF00299A08 /* icon_new_teacher.png in Resources */,
 				CE769E73206A57BA000F931F /* icon_contact_us.png in Resources */,
 				CE769E82206A57BA000F931F /* icon_tab_class.png in Resources */,
+				AD804C0B206B8FBF00299A08 /* icon_new_active.png in Resources */,
 				CE769E4C206A57BA000F931F /* icon_default.png in Resources */,
+				AD804C0E206B8FBF00299A08 /* icon_new_keyan.png in Resources */,
 				CE769E5B206A57BA000F931F /* icon_my_borrow.png in Resources */,
 				CE769E6F206A57BA000F931F /* icon_exit.png in Resources */,
 				CE769E68206A57BA000F931F /* icon_notification.png in Resources */,
@@ -739,11 +788,14 @@
 				CE769E85206A57BA000F931F /* icon_pause.png in Resources */,
 				CE769E80206A57BA000F931F /* default_photo.png in Resources */,
 				CE769E4D206A57BA000F931F /* icon_my_history.png in Resources */,
+				AD804C0A206B8FBF00299A08 /* icon_new_student.png in Resources */,
 				CE769E6A206A57BA000F931F /* icon_tab_active_unpress.png in Resources */,
 				CE769E90206A57BA000F931F /* icon_btn_down.png in Resources */,
 				CE769E7A206A57BA000F931F /* icon_delete.png in Resources */,
+				AD804C0D206B8FBF00299A08 /* icon_new_share.png in Resources */,
 				CE769E84206A57BA000F931F /* bg_pop_bottom.png in Resources */,
 				CE769E71206A57BA000F931F /* bg_tab_box.9.png in Resources */,
+				AD804C08206B8FBF00299A08 /* icon_new_menu.png in Resources */,
 				CE769E75206A57BA000F931F /* icon_my_schedule.png in Resources */,
 				CE769E61206A57BA000F931F /* icon_reception.png in Resources */,
 				CE769E64206A57BA000F931F /* icon_tab_personal_unpress.png in Resources */,
@@ -751,9 +803,11 @@
 				CE769E51206A57BA000F931F /* icon_notification_send.png in Resources */,
 				CE769E5C206A57BA000F931F /* icon_return.png in Resources */,
 				CE769E5F206A57BA000F931F /* icon_tab_active.png in Resources */,
+				AD804C0C206B8FBF00299A08 /* icon_new_project.png in Resources */,
 				CE769E6D206A57BA000F931F /* icon_project.png in Resources */,
 				CE769E58206A57BA000F931F /* icon_s_person.png in Resources */,
 				CE769E5E206A57BA000F931F /* icon_password.png in Resources */,
+				AD804C12206B941000299A08 /* WechatIMG79.jpeg in Resources */,
 				CE769E70206A57BA000F931F /* icon_message.png in Resources */,
 				CE769E49206A57BA000F931F /* icon_report.png in Resources */,
 				CE769E5A206A57BA000F931F /* icon_add.png in Resources */,
@@ -762,6 +816,7 @@
 				CE769E8F206A57BA000F931F /* icon_my_certificate.png in Resources */,
 				CE769E8A206A57BA000F931F /* bg_time.9.png in Resources */,
 				CE769E7E206A57BA000F931F /* icon_tab_class_unpress.png in Resources */,
+				AD804C09206B8FBF00299A08 /* icon_administration.png in Resources */,
 				CE769E6E206A57BA000F931F /* icon_select.png in Resources */,
 				CE769E8E206A57BA000F931F /* icon_book_address_unpress.png in Resources */,
 				CE769E86206A57BA000F931F /* icon_avator.png in Resources */,
@@ -840,13 +895,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE769EA0206A5DAC000F931F /* HGNavigationController.m in Sources */,
+				AD804BFE206B8F7B00299A08 /* UIColor+Hex.m in Sources */,
 				CE769EA9206A6033000F931F /* TextFrame.m in Sources */,
 				CE769E9D206A5BD1000F931F /* HGBadgeView.m in Sources */,
 				CE769DF9206A56F0000F931F /* anyButton.m in Sources */,
 				CE769E94206A598A000F931F /* HGTabBarViewController.m in Sources */,
 				CE769E97206A5AF4000F931F /* HGTabbar.m in Sources */,
+				AD804C18206B95D500299A08 /* TKButton.m in Sources */,
 				CE769DE3206A3559000F931F /* AppDelegate.m in Sources */,
 				CE769DFE206A5702000F931F /* TimerTransform.m in Sources */,
+				AD804C15206B958100299A08 /* TKUpDownButton.m in Sources */,
 				CE769E9A206A5B68000F931F /* HGTabBarButton.m in Sources */,
 				CE769DFA206A56F0000F931F /* UIView+Frame.m in Sources */,
 				CE769DF7206A56F0000F931F /* UIImage+image.m in Sources */,
