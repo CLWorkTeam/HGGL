@@ -53,4 +53,53 @@
 {
     return self.frame.size.height;
 }
+- (CGFloat)centerX
+{
+    return self.center.x;
+}
+
+- (void)setCenterX:(CGFloat)centerX
+{
+    CGPoint point = self.center;
+    
+    point.x = centerX;
+    
+    self.center = point;
+}
+
+- (CGFloat)centerY
+{
+    return self.center.y;
+}
+
+- (void)setCenterY:(CGFloat)centerY
+{
+    CGPoint point = self.center;
+    
+    point.y = centerY;
+    
+    self.center = point;
+}
+-(CGFloat)maxX
+{
+    return self.frame.origin.x + self.frame.size.width;
+}
+-(CGFloat)maxY
+{
+    return self.frame.origin.y + self.frame.size.height;
+}
+
+-(void)setMaxX:(CGFloat)maxX
+{
+    CGRect frame = self.frame;
+    frame.origin.x = maxX - frame.size.width;
+    self.frame = frame;
+}
+-(void)setMaxY:(CGFloat)maxY
+{
+    CGRect frame = self.frame;
+    frame.origin.y = maxY - frame.size.height;
+    self.frame = frame;
+}
+
 @end
