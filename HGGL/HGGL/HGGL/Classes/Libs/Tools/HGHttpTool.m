@@ -18,7 +18,7 @@
     }
     NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
     
-    config.timeoutIntervalForRequest = 15;
+    config.timeoutIntervalForRequest = 20;
     AFHTTPSessionManager *mgr = [[AFHTTPSessionManager alloc]initWithSessionConfiguration:config];
     NSString *url = [URLString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     [mgr POST:url parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
