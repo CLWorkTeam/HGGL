@@ -34,3 +34,15 @@
 #define HGURL @"http://192.168.201.53:8089/sydx1204/"
 #define HGUserDefaults [NSUserDefaults standardUserDefaults]
 #endif
+
+#ifdef __OBJC__
+#import "UIView+Frame.h"
+#import "UIButton+WebCache.h"
+#import "TextFrame.h"
+#import "UIImage+image.h"
+#import "HGHttpTool.h"
+#import "anyButton.h"
+#import "TimerTransform.h"
+#endif /* PrefixHeader_pch */
+
+
