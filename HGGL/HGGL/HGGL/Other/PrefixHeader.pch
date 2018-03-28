@@ -32,8 +32,11 @@
 #endif
 #define HGColor(r,g,b,a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0  blue:(b)/255.0  alpha:a]
 #define HGMainColor HGColor(87,117,213,1)
+#define HGGrayColor HGColor(243,243,243,1)
 #define HGURL @"http://192.168.201.53:8089/sydx1204/"
 #define HGUserDefaults [NSUserDefaults standardUserDefaults]
+#define WeakSelf __weak typeof(self) weakSelf = self;
+
 #endif
 
 #ifdef __OBJC__
@@ -49,6 +52,7 @@
 #import "MJExtension.h"
 #import "UIColor+Hex.h"
 #import "TKUpDownButton.h"
+#import "HGRefresh.h"
 #endif /* PrefixHeader_pch */
 
 

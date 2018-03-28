@@ -7,6 +7,8 @@
 //
 
 #import "HGTeacherHomeController.h"
+#import "HGItemPlanController.h"
+#import "HGWebController.h"
 #import "TKButton.h"
 
 @interface HGTeacherHomeController ()
@@ -102,7 +104,18 @@
 }
 
 - (void)clickMenu:(TKButton *)sender{
-    NSLog(@"%@",sender.titleLab.text);
+    
+    NSString *title = sender.titleLab.text;
+    if ([title isEqualToString:@"项目计划"]) {
+        HGItemPlanController *vc = [[HGItemPlanController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if ([title isEqualToString:@"行政办公"]){
+        HGWebController *vc = [[HGWebController alloc]init];
+        vc.titleStr = @"行政办公";
+        vc.url = @"https://www.baidu.com";
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+
 }
 
 - (void)didReceiveMemoryWarning {

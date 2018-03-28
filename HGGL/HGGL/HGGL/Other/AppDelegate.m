@@ -22,6 +22,7 @@
     HGLoginController *vc = [[HGLoginController alloc]init];
     self.window.rootViewController = vc;
     [self.window makeKeyAndVisible];
+    [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleLightContent];
     return YES;
 }
 

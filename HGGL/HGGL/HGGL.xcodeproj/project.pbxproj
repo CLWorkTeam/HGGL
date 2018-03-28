@@ -24,6 +24,13 @@
 		AD804C12206B941000299A08 /* WechatIMG79.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = AD804C11206B941000299A08 /* WechatIMG79.jpeg */; };
 		AD804C15206B958100299A08 /* TKUpDownButton.m in Sources */ = {isa = PBXBuildFile; fileRef = AD804C13206B958000299A08 /* TKUpDownButton.m */; };
 		AD804C18206B95D500299A08 /* TKButton.m in Sources */ = {isa = PBXBuildFile; fileRef = AD804C17206B95D400299A08 /* TKButton.m */; };
+		AD804C1C206BA7B800299A08 /* HGRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = AD804C1B206BA7B800299A08 /* HGRefresh.m */; };
+		ADBDC789206BC72500D32390 /* HGBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBDC788206BC72500D32390 /* HGBaseController.m */; };
+		ADBDC78C206BC7B200D32390 /* HGItemPlanController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBDC78B206BC7B200D32390 /* HGItemPlanController.m */; };
+		ADBDC78F206BCBAB00D32390 /* HGWebController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBDC78E206BCBAB00D32390 /* HGWebController.m */; };
+		ADBDC792206BCC0000D32390 /* TKWebProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBDC791206BCC0000D32390 /* TKWebProgressView.m */; };
+		ADBDC795206BD01E00D32390 /* HGItemPlanCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBDC794206BD01E00D32390 /* HGItemPlanCell.m */; };
+		ADBDC798206BD29400D32390 /* HGItemPlanModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBDC797206BD29400D32390 /* HGItemPlanModel.m */; };
 		CE769DAB206A343E000F931F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE769DAA206A343E000F931F /* Assets.xcassets */; };
 		CE769DAE206A343E000F931F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE769DAC206A343E000F931F /* LaunchScreen.storyboard */; };
 		CE769DBB206A343E000F931F /* HGGLTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CE769DBA206A343E000F931F /* HGGLTests.m */; };
@@ -159,6 +166,20 @@
 		AD804C14206B958100299A08 /* TKUpDownButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKUpDownButton.h; sourceTree = "<group>"; };
 		AD804C16206B95D400299A08 /* TKButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKButton.h; sourceTree = "<group>"; };
 		AD804C17206B95D400299A08 /* TKButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKButton.m; sourceTree = "<group>"; };
+		AD804C1A206BA7B800299A08 /* HGRefresh.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGRefresh.h; sourceTree = "<group>"; };
+		AD804C1B206BA7B800299A08 /* HGRefresh.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGRefresh.m; sourceTree = "<group>"; };
+		ADBDC787206BC72500D32390 /* HGBaseController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGBaseController.h; sourceTree = "<group>"; };
+		ADBDC788206BC72500D32390 /* HGBaseController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGBaseController.m; sourceTree = "<group>"; };
+		ADBDC78A206BC7B200D32390 /* HGItemPlanController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGItemPlanController.h; sourceTree = "<group>"; };
+		ADBDC78B206BC7B200D32390 /* HGItemPlanController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGItemPlanController.m; sourceTree = "<group>"; };
+		ADBDC78D206BCBAB00D32390 /* HGWebController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGWebController.h; sourceTree = "<group>"; };
+		ADBDC78E206BCBAB00D32390 /* HGWebController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGWebController.m; sourceTree = "<group>"; };
+		ADBDC790206BCBFF00D32390 /* TKWebProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKWebProgressView.h; sourceTree = "<group>"; };
+		ADBDC791206BCC0000D32390 /* TKWebProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKWebProgressView.m; sourceTree = "<group>"; };
+		ADBDC793206BD01E00D32390 /* HGItemPlanCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGItemPlanCell.h; sourceTree = "<group>"; };
+		ADBDC794206BD01E00D32390 /* HGItemPlanCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGItemPlanCell.m; sourceTree = "<group>"; };
+		ADBDC796206BD29400D32390 /* HGItemPlanModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGItemPlanModel.h; sourceTree = "<group>"; };
+		ADBDC797206BD29400D32390 /* HGItemPlanModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGItemPlanModel.m; sourceTree = "<group>"; };
 		CE769D9E206A343E000F931F /* HGGL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HGGL.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE769DAA206A343E000F931F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE769DAD206A343E000F931F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -362,6 +383,10 @@
 			children = (
 				AD6BE238206B7CBB00028673 /* HGTeacherHomeController.h */,
 				AD6BE239206B7CBB00028673 /* HGTeacherHomeController.m */,
+				ADBDC787206BC72500D32390 /* HGBaseController.h */,
+				ADBDC788206BC72500D32390 /* HGBaseController.m */,
+				ADBDC78D206BCBAB00D32390 /* HGWebController.h */,
+				ADBDC78E206BCBAB00D32390 /* HGWebController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -376,6 +401,43 @@
 		AD6BE237206B7CA500028673 /* model */ = {
 			isa = PBXGroup;
 			children = (
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		ADBDC783206BC6E200D32390 /* 项目计划 */ = {
+			isa = PBXGroup;
+			children = (
+				ADBDC786206BC70000D32390 /* model */,
+				ADBDC785206BC6FB00D32390 /* view */,
+				ADBDC784206BC6F200D32390 /* controller */,
+			);
+			path = "项目计划";
+			sourceTree = "<group>";
+		};
+		ADBDC784206BC6F200D32390 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				ADBDC78A206BC7B200D32390 /* HGItemPlanController.h */,
+				ADBDC78B206BC7B200D32390 /* HGItemPlanController.m */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		ADBDC785206BC6FB00D32390 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				ADBDC793206BD01E00D32390 /* HGItemPlanCell.h */,
+				ADBDC794206BD01E00D32390 /* HGItemPlanCell.m */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		ADBDC786206BC70000D32390 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				ADBDC796206BD29400D32390 /* HGItemPlanModel.h */,
+				ADBDC797206BD29400D32390 /* HGItemPlanModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -434,6 +496,7 @@
 		CE769DD3206A354F000F931F /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				ADBDC783206BC6E200D32390 /* 项目计划 */,
 				AD6BE234206B7C8100028673 /* 教职工首页 */,
 				AD6BE22B206B6ADC00028673 /* 登录 */,
 				CE769DD8206A354F000F931F /* Libs */,
@@ -459,6 +522,8 @@
 				AD804C13206B958000299A08 /* TKUpDownButton.m */,
 				AD804C16206B95D400299A08 /* TKButton.h */,
 				AD804C17206B95D400299A08 /* TKButton.m */,
+				ADBDC790206BCBFF00D32390 /* TKWebProgressView.h */,
+				ADBDC791206BCC0000D32390 /* TKWebProgressView.m */,
 				CE769DE9206A56A4000F931F /* Tools */,
 			);
 			path = Libs;
@@ -527,6 +592,8 @@
 				CE769DFD206A5702000F931F /* TimerTransform.m */,
 				CE769DEB206A56C5000F931F /* HGHttpTool.h */,
 				CE769DEA206A56C5000F931F /* HGHttpTool.m */,
+				AD804C1A206BA7B800299A08 /* HGRefresh.h */,
+				AD804C1B206BA7B800299A08 /* HGRefresh.m */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -894,24 +961,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADBDC78C206BC7B200D32390 /* HGItemPlanController.m in Sources */,
 				CE769EA0206A5DAC000F931F /* HGNavigationController.m in Sources */,
 				AD804BFE206B8F7B00299A08 /* UIColor+Hex.m in Sources */,
 				CE769EA9206A6033000F931F /* TextFrame.m in Sources */,
+				ADBDC798206BD29400D32390 /* HGItemPlanModel.m in Sources */,
 				CE769E9D206A5BD1000F931F /* HGBadgeView.m in Sources */,
 				CE769DF9206A56F0000F931F /* anyButton.m in Sources */,
 				CE769E94206A598A000F931F /* HGTabBarViewController.m in Sources */,
 				CE769E97206A5AF4000F931F /* HGTabbar.m in Sources */,
 				AD804C18206B95D500299A08 /* TKButton.m in Sources */,
+				ADBDC789206BC72500D32390 /* HGBaseController.m in Sources */,
 				CE769DE3206A3559000F931F /* AppDelegate.m in Sources */,
+				ADBDC792206BCC0000D32390 /* TKWebProgressView.m in Sources */,
 				CE769DFE206A5702000F931F /* TimerTransform.m in Sources */,
 				AD804C15206B958100299A08 /* TKUpDownButton.m in Sources */,
+				ADBDC78F206BCBAB00D32390 /* HGWebController.m in Sources */,
 				CE769E9A206A5B68000F931F /* HGTabBarButton.m in Sources */,
 				CE769DFA206A56F0000F931F /* UIView+Frame.m in Sources */,
 				CE769DF7206A56F0000F931F /* UIImage+image.m in Sources */,
 				CE769DE2206A3559000F931F /* main.m in Sources */,
 				AD6BE23A206B7CBB00028673 /* HGTeacherHomeController.m in Sources */,
+				AD804C1C206BA7B800299A08 /* HGRefresh.m in Sources */,
 				AD6BE231206B6B1800028673 /* HGLoginController.m in Sources */,
 				CE769DEC206A56C5000F931F /* HGHttpTool.m in Sources */,
+				ADBDC795206BD01E00D32390 /* HGItemPlanCell.m in Sources */,
 				CE769EA6206A5F1D000F931F /* HGBarBut.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

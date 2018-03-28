@@ -16,4 +16,5 @@
 + (UIImage *)resizableImageWithName:(NSString *)imageName;
 +(UIImage *)resizableLeftImageWithName:(NSString *)imageName;
 +(UIImage *)resizableRightImageWithName:(NSString *)imageName;
++ (UIImage *)imageWithColor:(UIColor *)color;
 @end
