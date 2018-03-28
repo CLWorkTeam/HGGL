@@ -1,0 +1,36 @@
+//
+//  PrefixHeader.pch
+//  HGGL
+//
+//  Created by 陈磊 on 2018/3/27.
+//  Copyright © 2018年 HGGL. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+#define HGScreenSize [UIScreen mainScreen].bounds
+#define HGScreenScale [UIScreen mainScreen].scale
+#define HGScreenWidth [UIScreen mainScreen].bounds.size.width
+#define HGScreenHeight [UIScreen mainScreen].bounds.size.height
+#define HGKeywindow [UIApplication sharedApplication].keyWindow
+#define iOS10 ([[UIDevice currentDevice].systemVersion floatValue] >= 10.0)
+//iPhoneX 适配相关
+#define HGStautsBarH (isIPhoneX?44:20)//状态栏 高度
+#define HGNavgationBarH 44//导航条 高度
+#define HGTabbarH 49// tabbarController的 tabbar高度
+#define HGSafeBottom (isIPhoneX?34:0)//下方安全区域高度
+#define HGHeaderH (HGNavgationBarH+HGStautsBarH)//导航条高度加上状态栏高度
+#define isIPhoneX (HGScreenHeight == 812)//判定是否是iPhoneX
+
+//获取userdefaults
+#define HGUserDefaults [NSUserDefaults standardUserDefaults]
+//NSLog 调试阶段设置
+#ifdef DEBUG /// 调试阶段
+#define HGLog(...) NSLog(__VA_ARGS__)
+#else // 发布阶段
+#define HGLog(...)
+#endif
+#define HGColor(r,g,b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0  blue:(b)/255.0  alpha:1]
+#define HGURL @"http://192.168.201.53:8089/sydx1204/"
+#define HGUserDefaults [NSUserDefaults standardUserDefaults]
+#endif

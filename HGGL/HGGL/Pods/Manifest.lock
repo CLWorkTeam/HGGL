@@ -1,0 +1,49 @@
+PODS:
+  - AFNetworking (3.1.0):
+    - AFNetworking/NSURLSession (= 3.1.0)
+    - AFNetworking/Reachability (= 3.1.0)
+    - AFNetworking/Security (= 3.1.0)
+    - AFNetworking/Serialization (= 3.1.0)
+    - AFNetworking/UIKit (= 3.1.0)
+  - AFNetworking/NSURLSession (3.1.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.1.0)
+  - AFNetworking/Security (3.1.0)
+  - AFNetworking/Serialization (3.1.0)
+  - AFNetworking/UIKit (3.1.0):
+    - AFNetworking/NSURLSession
+  - MJExtension (3.0.13)
+  - MJRefresh (3.1.15.3)
+  - Reachability (3.2)
+  - SDWebImage (4.1.2):
+    - SDWebImage/Core (= 4.1.2)
+  - SDWebImage/Core (4.1.2)
+  - SVProgressHUD (2.2.5)
+  - UMCCommon (1.4.3)
+  - UMCPush (3.1.0):
+    - UMCCommon
+
+DEPENDENCIES:
+  - AFNetworking (~> 3.1.0)
+  - MJExtension (~> 3.0.13)
+  - MJRefresh (~> 3.1.14)
+  - Reachability (~> 3.2)
+  - SDWebImage (~> 4.1.2)
+  - SVProgressHUD (~> 2.2.2)
+  - UMCPush (~> 3.1.0)
+
+SPEC CHECKSUMS:
+  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  MJExtension: 5932755f451458eefa24239358817f8d291240c7
+  MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
+  Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
+  SDWebImage: cb6f9f266a9977741efcbc21e618e8be3734c774
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  UMCCommon: ac0bc01a46a5640bbd58646448f455b4c5404bf0
+  UMCPush: 6d67ff5ca853857e2690abbdaecb86b254b1f823
+
+PODFILE CHECKSUM: 436f599eedef130acdb902ec4d019ef79a29e6ea
+
+COCOAPODS: 1.2.1
