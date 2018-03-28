@@ -46,7 +46,7 @@
         //self.backgroundColor = ZKRColor(205, 0, 36);
     }else
     {
-        self.backgroundColor = HGColor(190, 31, 25);
+        self.backgroundColor = HGColor(190, 31, 25,1);
     }
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
     

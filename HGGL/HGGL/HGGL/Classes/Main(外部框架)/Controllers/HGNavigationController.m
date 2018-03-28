@@ -94,7 +94,7 @@
 }
 -(void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
-    self.navigationBar.barTintColor = HGColor(174,12,20);
+    self.navigationBar.barTintColor = HGColor(174,12,20,1);
     // self.navigationBar.tintColor = [UIColor clearColor];
     //[self.navigationBar setBackgroundColor:[UIColor redColor]];
     if (!self.viewControllers.count) {
@@ -109,7 +109,7 @@
         //[self.navigationBar addSubview:left];
         UIBarButtonItem *letfBut = [[UIBarButtonItem alloc]initWithCustomView:left];
         
-        HGBarBut *right = [HGBarBut initWithColor:HGColor(205,0,36) andSelColor:HGColor(190, 31, 25) andTColor:[UIColor whiteColor] andFont:[UIFont systemFontOfSize:10]];
+        HGBarBut *right = [HGBarBut initWithColor:HGColor(205,0,36,1) andSelColor:HGColor(190, 31, 25,1) andTColor:[UIColor whiteColor] andFont:[UIFont systemFontOfSize:10]];
         [right setImage:[UIImage imageNamed:@"notice"] forState:UIControlStateNormal];
         //self.but = left;
         [right setTitle:@"消息通知" forState:UIControlStateNormal];

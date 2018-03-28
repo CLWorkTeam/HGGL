@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		A8E882BBE0F209897439D916 /* libPods-HGGL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A6879AA8A95174D1B2D03C4 /* libPods-HGGL.a */; };
+		AD6BE231206B6B1800028673 /* HGLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD6BE230206B6B1800028673 /* HGLoginController.m */; };
+		AD6BE233206B777200028673 /* WechatIMG8.png in Resources */ = {isa = PBXBuildFile; fileRef = AD6BE232206B777200028673 /* WechatIMG8.png */; };
+		AD6BE23A206B7CBB00028673 /* HGTeacherHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD6BE239206B7CBB00028673 /* HGTeacherHomeController.m */; };
 		CE769DAB206A343E000F931F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE769DAA206A343E000F931F /* Assets.xcassets */; };
 		CE769DAE206A343E000F931F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE769DAC206A343E000F931F /* LaunchScreen.storyboard */; };
 		CE769DBB206A343E000F931F /* HGGLTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CE769DBA206A343E000F931F /* HGGLTests.m */; };
@@ -122,6 +125,11 @@
 		0419CBCD7E29F89AEC25E965 /* Pods-HGGL.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HGGL.release.xcconfig"; path = "Pods/Target Support Files/Pods-HGGL/Pods-HGGL.release.xcconfig"; sourceTree = "<group>"; };
 		05664ABAC06DC837ACFBE292 /* Pods-HGGL.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HGGL.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HGGL/Pods-HGGL.debug.xcconfig"; sourceTree = "<group>"; };
 		2A6879AA8A95174D1B2D03C4 /* libPods-HGGL.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HGGL.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD6BE22F206B6B1800028673 /* HGLoginController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGLoginController.h; sourceTree = "<group>"; };
+		AD6BE230206B6B1800028673 /* HGLoginController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGLoginController.m; sourceTree = "<group>"; };
+		AD6BE232206B777200028673 /* WechatIMG8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WechatIMG8.png; sourceTree = "<group>"; };
+		AD6BE238206B7CBB00028673 /* HGTeacherHomeController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGTeacherHomeController.h; sourceTree = "<group>"; };
+		AD6BE239206B7CBB00028673 /* HGTeacherHomeController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGTeacherHomeController.m; sourceTree = "<group>"; };
 		CE769D9E206A343E000F931F /* HGGL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HGGL.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE769DAA206A343E000F931F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE769DAD206A343E000F931F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -277,6 +285,72 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		AD6BE22B206B6ADC00028673 /* 登录 */ = {
+			isa = PBXGroup;
+			children = (
+				AD6BE22E206B6AF600028673 /* controller */,
+				AD6BE22D206B6AED00028673 /* views */,
+				AD6BE22C206B6AE600028673 /* model */,
+			);
+			path = "登录";
+			sourceTree = "<group>";
+		};
+		AD6BE22C206B6AE600028673 /* model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		AD6BE22D206B6AED00028673 /* views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		AD6BE22E206B6AF600028673 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				AD6BE22F206B6B1800028673 /* HGLoginController.h */,
+				AD6BE230206B6B1800028673 /* HGLoginController.m */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		AD6BE234206B7C8100028673 /* 教职工首页 */ = {
+			isa = PBXGroup;
+			children = (
+				AD6BE237206B7CA500028673 /* model */,
+				AD6BE236206B7CA100028673 /* view */,
+				AD6BE235206B7C9300028673 /* controller */,
+			);
+			path = "教职工首页";
+			sourceTree = "<group>";
+		};
+		AD6BE235206B7C9300028673 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				AD6BE238206B7CBB00028673 /* HGTeacherHomeController.h */,
+				AD6BE239206B7CBB00028673 /* HGTeacherHomeController.m */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		AD6BE236206B7CA100028673 /* view */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		AD6BE237206B7CA500028673 /* model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
 		CE769D95206A343E000F931F = {
 			isa = PBXGroup;
 			children = (
@@ -331,42 +405,12 @@
 		CE769DD3206A354F000F931F /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				CE769DD4206A354F000F931F /* Login(登录) */,
+				AD6BE234206B7C8100028673 /* 教职工首页 */,
+				AD6BE22B206B6ADC00028673 /* 登录 */,
 				CE769DD8206A354F000F931F /* Libs */,
 				CE769DD9206A354F000F931F /* Main(外部框架) */,
 			);
 			path = Classes;
-			sourceTree = "<group>";
-		};
-		CE769DD4206A354F000F931F /* Login(登录) */ = {
-			isa = PBXGroup;
-			children = (
-				CE769DD5206A354F000F931F /* Models */,
-				CE769DD6206A354F000F931F /* Controllers */,
-				CE769DD7206A354F000F931F /* Views */,
-			);
-			path = "Login(登录)";
-			sourceTree = "<group>";
-		};
-		CE769DD5206A354F000F931F /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		CE769DD6206A354F000F931F /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
-		CE769DD7206A354F000F931F /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		CE769DD8206A354F000F931F /* Libs */ = {
@@ -527,6 +571,7 @@
 				CE769E0C206A57B1000F931F /* icon_video.png */,
 				CE769E0E206A57B2000F931F /* icon_xuanze_check.png */,
 				CE769E36206A57B7000F931F /* icon_xuanze.png */,
+				AD6BE232206B777200028673 /* WechatIMG8.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -688,6 +733,7 @@
 				CE769E91206A57BA000F931F /* icon_manual.png in Resources */,
 				CE769E63206A57BA000F931F /* icon_download.png in Resources */,
 				CE769E8D206A57BA000F931F /* btn_next.png in Resources */,
+				AD6BE233206B777200028673 /* WechatIMG8.png in Resources */,
 				CE769E6B206A57BA000F931F /* icon_version.png in Resources */,
 				CE769E67206A57BA000F931F /* icon_unselect.png in Resources */,
 				CE769E85206A57BA000F931F /* icon_pause.png in Resources */,
@@ -805,6 +851,8 @@
 				CE769DFA206A56F0000F931F /* UIView+Frame.m in Sources */,
 				CE769DF7206A56F0000F931F /* UIImage+image.m in Sources */,
 				CE769DE2206A3559000F931F /* main.m in Sources */,
+				AD6BE23A206B7CBB00028673 /* HGTeacherHomeController.m in Sources */,
+				AD6BE231206B6B1800028673 /* HGLoginController.m in Sources */,
 				CE769DEC206A56C5000F931F /* HGHttpTool.m in Sources */,
 				CE769EA6206A5F1D000F931F /* HGBarBut.m in Sources */,
 			);

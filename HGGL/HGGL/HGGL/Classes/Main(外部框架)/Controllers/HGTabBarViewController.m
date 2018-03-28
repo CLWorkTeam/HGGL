@@ -20,7 +20,7 @@
     // Do any additional setup after loading the view.
     HGTabbar *tabBar = [[HGTabbar alloc]initWithFrame:self.tabBar.bounds];
     
-    tabBar.backgroundColor = HGColor(244, 244, 244);
+    tabBar.backgroundColor = HGColor(244, 244, 244,1);
     
     __weak typeof (self) weakSelf = self;
     tabBar.tabBarBlock = ^(NSInteger selectedIndex){
