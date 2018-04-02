@@ -122,6 +122,13 @@
 		CE769EA0206A5DAC000F931F /* HGNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE769E9F206A5DAC000F931F /* HGNavigationController.m */; };
 		CE769EA6206A5F1D000F931F /* HGBarBut.m in Sources */ = {isa = PBXBuildFile; fileRef = CE769EA5206A5F1D000F931F /* HGBarBut.m */; };
 		CE769EA9206A6033000F931F /* TextFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = CE769EA8206A6033000F931F /* TextFrame.m */; };
+		CE864447206F9675002FE9E7 /* MessageListController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE86443B206F9675002FE9E7 /* MessageListController.m */; };
+		CE864448206F9675002FE9E7 /* MessageInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE86443C206F9675002FE9E7 /* MessageInfoController.m */; };
+		CE864449206F9675002FE9E7 /* MessageParama.m in Sources */ = {isa = PBXBuildFile; fileRef = CE864440206F9675002FE9E7 /* MessageParama.m */; };
+		CE86444A206F9675002FE9E7 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = CE864443206F9675002FE9E7 /* Message.m */; };
+		CE86444B206F9675002FE9E7 /* MessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE864446206F9675002FE9E7 /* MessageTableViewCell.m */; };
+		CE86444E206FA2EA002FE9E7 /* HGLable.m in Sources */ = {isa = PBXBuildFile; fileRef = CE86444D206FA2EA002FE9E7 /* HGLable.m */; };
+		CE864455206FA992002FE9E7 /* HGCPWViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE864454206FA992002FE9E7 /* HGCPWViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -290,6 +297,21 @@
 		CE769EA5206A5F1D000F931F /* HGBarBut.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGBarBut.m; sourceTree = "<group>"; };
 		CE769EA7206A6033000F931F /* TextFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFrame.h; sourceTree = "<group>"; };
 		CE769EA8206A6033000F931F /* TextFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFrame.m; sourceTree = "<group>"; };
+		CE86443A206F9675002FE9E7 /* MessageInfoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageInfoController.h; sourceTree = "<group>"; };
+		CE86443B206F9675002FE9E7 /* MessageListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageListController.m; sourceTree = "<group>"; };
+		CE86443C206F9675002FE9E7 /* MessageInfoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageInfoController.m; sourceTree = "<group>"; };
+		CE86443D206F9675002FE9E7 /* MessageListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageListController.h; sourceTree = "<group>"; };
+		CE86443E206F9675002FE9E7 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
+		CE864440206F9675002FE9E7 /* MessageParama.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageParama.m; sourceTree = "<group>"; };
+		CE864441206F9675002FE9E7 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
+		CE864442206F9675002FE9E7 /* MessageParama.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageParama.h; sourceTree = "<group>"; };
+		CE864443206F9675002FE9E7 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
+		CE864445206F9675002FE9E7 /* MessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageTableViewCell.h; sourceTree = "<group>"; };
+		CE864446206F9675002FE9E7 /* MessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageTableViewCell.m; sourceTree = "<group>"; };
+		CE86444C206FA2EA002FE9E7 /* HGLable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGLable.h; sourceTree = "<group>"; };
+		CE86444D206FA2EA002FE9E7 /* HGLable.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGLable.m; sourceTree = "<group>"; };
+		CE864453206FA992002FE9E7 /* HGCPWViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGCPWViewController.h; sourceTree = "<group>"; };
+		CE864454206FA992002FE9E7 /* HGCPWViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGCPWViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -496,6 +518,8 @@
 		CE769DD3206A354F000F931F /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				CE86444F206FA8BF002FE9E7 /* Mine(我) */,
+				CE864438206F9675002FE9E7 /* Message(消息通知) */,
 				ADBDC783206BC6E200D32390 /* 项目计划 */,
 				AD6BE234206B7C8100028673 /* 教职工首页 */,
 				AD6BE22B206B6ADC00028673 /* 登录 */,
@@ -686,6 +710,83 @@
 				AD804C07206B8FBF00299A08 /* icon_new_teacher.png */,
 			);
 			path = Images;
+			sourceTree = "<group>";
+		};
+		CE864438206F9675002FE9E7 /* Message(消息通知) */ = {
+			isa = PBXGroup;
+			children = (
+				CE86443E206F9675002FE9E7 /* Common.h */,
+				CE864439206F9675002FE9E7 /* Controller */,
+				CE86443F206F9675002FE9E7 /* Model */,
+				CE864444206F9675002FE9E7 /* View */,
+			);
+			path = "Message(消息通知)";
+			sourceTree = "<group>";
+		};
+		CE864439206F9675002FE9E7 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CE86443A206F9675002FE9E7 /* MessageInfoController.h */,
+				CE86443B206F9675002FE9E7 /* MessageListController.m */,
+				CE86443D206F9675002FE9E7 /* MessageListController.h */,
+				CE86443C206F9675002FE9E7 /* MessageInfoController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		CE86443F206F9675002FE9E7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CE864440206F9675002FE9E7 /* MessageParama.m */,
+				CE864441206F9675002FE9E7 /* Message.h */,
+				CE864442206F9675002FE9E7 /* MessageParama.h */,
+				CE864443206F9675002FE9E7 /* Message.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CE864444206F9675002FE9E7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CE864445206F9675002FE9E7 /* MessageTableViewCell.h */,
+				CE864446206F9675002FE9E7 /* MessageTableViewCell.m */,
+				CE86444C206FA2EA002FE9E7 /* HGLable.h */,
+				CE86444D206FA2EA002FE9E7 /* HGLable.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CE86444F206FA8BF002FE9E7 /* Mine(我) */ = {
+			isa = PBXGroup;
+			children = (
+				CE864452206FA8EF002FE9E7 /* Views */,
+				CE864451206FA8E8002FE9E7 /* Models */,
+				CE864450206FA8D0002FE9E7 /* Controllers */,
+			);
+			path = "Mine(我)";
+			sourceTree = "<group>";
+		};
+		CE864450206FA8D0002FE9E7 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				CE864453206FA992002FE9E7 /* HGCPWViewController.h */,
+				CE864454206FA992002FE9E7 /* HGCPWViewController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		CE864451206FA8E8002FE9E7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		CE864452206FA8EF002FE9E7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -968,22 +1069,29 @@
 				ADBDC798206BD29400D32390 /* HGItemPlanModel.m in Sources */,
 				CE769E9D206A5BD1000F931F /* HGBadgeView.m in Sources */,
 				CE769DF9206A56F0000F931F /* anyButton.m in Sources */,
+				CE86444A206F9675002FE9E7 /* Message.m in Sources */,
 				CE769E94206A598A000F931F /* HGTabBarViewController.m in Sources */,
+				CE864455206FA992002FE9E7 /* HGCPWViewController.m in Sources */,
 				CE769E97206A5AF4000F931F /* HGTabbar.m in Sources */,
 				AD804C18206B95D500299A08 /* TKButton.m in Sources */,
 				ADBDC789206BC72500D32390 /* HGBaseController.m in Sources */,
+				CE864448206F9675002FE9E7 /* MessageInfoController.m in Sources */,
 				CE769DE3206A3559000F931F /* AppDelegate.m in Sources */,
 				ADBDC792206BCC0000D32390 /* TKWebProgressView.m in Sources */,
 				CE769DFE206A5702000F931F /* TimerTransform.m in Sources */,
 				AD804C15206B958100299A08 /* TKUpDownButton.m in Sources */,
 				ADBDC78F206BCBAB00D32390 /* HGWebController.m in Sources */,
 				CE769E9A206A5B68000F931F /* HGTabBarButton.m in Sources */,
+				CE86444E206FA2EA002FE9E7 /* HGLable.m in Sources */,
 				CE769DFA206A56F0000F931F /* UIView+Frame.m in Sources */,
+				CE86444B206F9675002FE9E7 /* MessageTableViewCell.m in Sources */,
 				CE769DF7206A56F0000F931F /* UIImage+image.m in Sources */,
 				CE769DE2206A3559000F931F /* main.m in Sources */,
 				AD6BE23A206B7CBB00028673 /* HGTeacherHomeController.m in Sources */,
 				AD804C1C206BA7B800299A08 /* HGRefresh.m in Sources */,
 				AD6BE231206B6B1800028673 /* HGLoginController.m in Sources */,
+				CE864447206F9675002FE9E7 /* MessageListController.m in Sources */,
+				CE864449206F9675002FE9E7 /* MessageParama.m in Sources */,
 				CE769DEC206A56C5000F931F /* HGHttpTool.m in Sources */,
 				ADBDC795206BD01E00D32390 /* HGItemPlanCell.m in Sources */,
 				CE769EA6206A5F1D000F931F /* HGBarBut.m in Sources */,

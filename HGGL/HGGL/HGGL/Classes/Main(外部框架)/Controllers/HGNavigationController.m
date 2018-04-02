@@ -62,7 +62,7 @@
 -(void)loadUnreade
 {
     NSString *url = [HGURL stringByAppendingString:@"MsgPush/getMessage.do"];
-    //ZKRLog(@"timer");
+    //HGLog(@"timer");
     if ([HGUserDefaults stringForKey:@"userID"]) {
         [HGHttpTool POSTWithURL:url parameters:@{@"user_id":[HGUserDefaults stringForKey:@"userID"]} success:^(id responseObject) {
             NSString *status = [responseObject objectForKey:@"status"];

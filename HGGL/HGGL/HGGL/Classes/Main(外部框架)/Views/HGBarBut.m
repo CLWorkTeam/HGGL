@@ -43,7 +43,7 @@
     CGFloat titleH = self.bounds.size.height*(1 - HGImageRadio);
     self.titleLabel.frame = CGRectMake(titleX, titleY, titleW, titleH);
     if (!self.highlighted) {
-        //self.backgroundColor = ZKRColor(205, 0, 36);
+        //self.backgroundColor = HGColor(205, 0, 36);
     }else
     {
         self.backgroundColor = HGColor(190, 31, 25,1);
