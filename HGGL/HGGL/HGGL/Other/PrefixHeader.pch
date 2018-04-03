@@ -36,9 +36,16 @@
 #define HGURL @"http://192.168.201.53:8089/sydx1204/"
 #define HGUserDefaults [NSUserDefaults standardUserDefaults]
 #define WeakSelf __weak typeof(self) weakSelf = self;
-
+//全局userdefaut宏定义相关
+#define HGUserID  @"user_id"
+#define HGUserType @"user_ type"
+#define HGUserName @"user_name"
+#define HGUserTel @"user_tel"
+#define HGUserAccount @"account"
+#define HGUserPassWord @"passWord"
 #endif
 
+//公用类引用相关
 #ifdef __OBJC__
 #import "UIView+Frame.h"
 #import "UIButton+WebCache.h"

@@ -72,7 +72,7 @@
     if (_tabBarBlock) {
         _tabBarBlock(but.tag);
     }
-    //ZKRLog(@"%ld",but.tag);
+    //HGLog(@"%ld",but.tag);
     
 }
 
