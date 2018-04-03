@@ -20,6 +20,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self setNav];
+//    self.tabBarController.tabBar.hidden = YES;
     self.view.backgroundColor = [UIColor whiteColor];
 }
 
@@ -35,7 +36,6 @@
     titleLab.font = [UIFont systemFontOfSize:18];
     titleLab.textAlignment = NSTextAlignmentCenter;
     titleLab.textColor = [UIColor whiteColor];
-    titleLab.text = @"产品资料库";
     self.titleLab = titleLab;
     [self.bar addSubview:titleLab];
     
@@ -51,6 +51,15 @@
     leftBtn.imageView.contentMode = UIViewContentModeScaleAspectFit;
     self.leftBtn = leftBtn;
     [self.bar addSubview:leftBtn];
+    
+    UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [rightBtn setImage:[UIImage imageNamed:@"icon_message"] forState:UIControlStateNormal];
+    [rightBtn addTarget:self action:@selector(backTo) forControlEvents:UIControlEventTouchUpInside];
+    rightBtn.frame = CGRectMake(HGScreenWidth - 50, HGStautsBarH, 35 , 44);
+    rightBtn.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    self.rightBtn = rightBtn;
+    [self.bar addSubview:rightBtn];
+
     
 }
 

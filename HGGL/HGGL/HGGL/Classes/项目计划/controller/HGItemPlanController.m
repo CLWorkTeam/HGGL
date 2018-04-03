@@ -27,6 +27,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.name = @"项目计划";
+    self.rightBtn.hidden = YES;
     NSDictionary *dict = @{@"title":@"测试小孩",@"money":@"1212",@"days":@"11",@"number":@"12",@"time":@"2018-12-12 - 2018-12-31"};
     HGItemPlanModel *model = [HGItemPlanModel mj_objectWithKeyValues:dict];
     self.dataAry = @[model,model,model,model,model,model];
@@ -48,7 +49,7 @@
     [btn1 setTitleColor:HGMainColor forState:UIControlStateNormal];
     [btn1 setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
     btn1.titleLabel.font = [UIFont systemFontOfSize:16];
-    btn1.frame = CGRectMake(10, 15, 80, 30);
+    btn1.frame = CGRectMake(10, 10, 80, 40);
     btn1.layer.cornerRadius = 5;
     btn1.layer.masksToBounds = YES;
     btn1.selected = YES;

@@ -9,6 +9,12 @@
 #import "HGTabBarViewController.h"
 #import "HGNavigationController.h"
 #import "HGTabbar.h"
+
+#import "HGStudentHomeController.h"
+#import "HGClassController.h"
+#import "HGContactController.h"
+#import "HGPersonalController.h"
+
 @interface HGTabBarViewController ()
 @property (nonatomic, weak) HGTabbar *tab;
 @end
@@ -20,7 +26,7 @@
     // Do any additional setup after loading the view.
     HGTabbar *tabBar = [[HGTabbar alloc]initWithFrame:self.tabBar.bounds];
     
-    tabBar.backgroundColor = HGColor(244, 244, 244,1);
+    tabBar.backgroundColor = HGMainColor;
     
     __weak typeof (self) weakSelf = self;
     tabBar.tabBarBlock = ^(NSInteger selectedIndex){
@@ -39,27 +45,28 @@
 -(void)setUpAllChildrenController
 {
     
-//    MainViewController *main = [[MainViewController alloc]init];
-//    
-//    [self setUpOneChildrenController:main withTitle:@"主页" image:[UIImage imageNamed:@"home_normal"] selImage:[UIImage imageNamed:@"home_pressed"]];
-//    BlackLogViewController *or = [[BlackLogViewController alloc] init];
-//    [self setUpOneChildrenController:or withTitle:@"待办事项" image:[UIImage imageNamed:@"todo_normal"] selImage:[UIImage imageNamed:@"todo_pressed"]];
-//    
-//    RecViewController*info = [[RecViewController alloc]init];
-//    [self setUpOneChildrenController:info withTitle:@"任务查询" image:[UIImage imageNamed:@"task_search_normal"] selImage:[UIImage imageNamed:@"task_search_pressed"]];
-//    MoreTableViewController *more = [[MoreTableViewController alloc]init];
-//    [self setUpOneChildrenController:more withTitle:@"更多..." image:[UIImage imageNamed:@"more_normal"] selImage:[UIImage imageNamed:@"more_pressed"]];
+    HGStudentHomeController *main = [[HGStudentHomeController alloc]init];
+    [self setUpOneChildrenController:main withTitle:@"我的班级" image:[UIImage imageNamed:@"icon_tab_class_unpress"] selImage:[UIImage imageNamed:@"icon_tab_class"]];
+    
+    HGContactController *or = [[HGContactController alloc] init];
+    [self setUpOneChildrenController:or withTitle:@"学员通讯录" image:[UIImage imageNamed:@"icon_book_address_unpress"] selImage:[UIImage imageNamed:@"icon_book_address"]];
+    
+    HGClassController*info = [[HGClassController alloc]init];
+    [self setUpOneChildrenController:info withTitle:@"班级风采" image:[UIImage imageNamed:@"icon_tab_active_unpress"] selImage:[UIImage imageNamed:@"icon_tab_active"]];
+    
+    HGPersonalController *more = [[HGPersonalController alloc]init];
+    [self setUpOneChildrenController:more withTitle:@"个人中心" image:[UIImage imageNamed:@"icon_tab_personal_unpress"] selImage:[UIImage imageNamed:@"icon_tab_personal"]];
     
 }
 -(void)setUpOneChildrenController:(UIViewController *)vc withTitle:(NSString *)title image:(UIImage *)image selImage:(UIImage *)selImage
 {
     vc.title = title;
-    //image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+//    image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     vc.tabBarItem.image = image;
     selImage = [selImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     vc.tabBarItem.selectedImage = selImage;
     //vc.tabBarItem.badgeValue = @"100";
-    UINavigationController *nav = [[HGNavigationController alloc]initWithRootViewController:vc];
+    HGNavigationController *nav = [[HGNavigationController alloc]initWithRootViewController:vc];
     [self  addChildViewController:nav];
     [_tab addButtonWith:vc.tabBarItem];
     
@@ -71,7 +78,18 @@
         if (![view isKindOfClass:[HGTabbar class]]) {
             [view removeFromSuperview];
         }
-    }}
+    }
+}
+
+-(void)viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
+    for (UIView *view in self.tabBar.subviews) {
+        if (![view isKindOfClass:[HGTabbar class]]) {
+            [view removeFromSuperview];
+        }
+    }
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

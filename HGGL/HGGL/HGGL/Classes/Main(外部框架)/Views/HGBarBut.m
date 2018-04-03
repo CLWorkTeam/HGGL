@@ -14,7 +14,7 @@
 {
     HGBarBut *but = [HGBarBut buttonWithType:UIButtonTypeCustom];
     [but setTitleColor:TColor forState:UIControlStateNormal];
-    but.imageView.contentMode = UIViewContentModeCenter;
+    but.imageView.contentMode = UIViewContentModeScaleAspectFit;
     but.titleLabel.font = font;
     
     return but;
@@ -36,6 +36,7 @@
     //    }
     
     self.imageView.center =CGPointMake(imageW/2, imageH/2);
+    self.imageView.contentMode = UIViewContentModeScaleAspectFit;
     //设置按钮title的frame
     CGFloat titleX = 0;
     CGFloat titleY = imageH;
@@ -46,7 +47,7 @@
         //self.backgroundColor = ZKRColor(205, 0, 36);
     }else
     {
-        self.backgroundColor = HGColor(190, 31, 25,1);
+        self.backgroundColor = HGMainColor;
     }
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
     

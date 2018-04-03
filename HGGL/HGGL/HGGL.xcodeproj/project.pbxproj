@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		A8E882BBE0F209897439D916 /* libPods-HGGL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A6879AA8A95174D1B2D03C4 /* libPods-HGGL.a */; };
+		AD0396C220731D480082C817 /* HGStudentHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD0396C120731D480082C817 /* HGStudentHomeController.m */; };
+		AD0396CE20731DD40082C817 /* HGContactController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD0396CD20731DD40082C817 /* HGContactController.m */; };
+		AD0396D220731DEB0082C817 /* HGClassController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD0396D120731DEB0082C817 /* HGClassController.m */; };
+		AD0396D520731E400082C817 /* HGPersonalController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD0396D420731E400082C817 /* HGPersonalController.m */; };
+		AD472FEF206CB26A0024BDBB /* HGWeekMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD472FEE206CB26A0024BDBB /* HGWeekMenuController.m */; };
 		AD6BE231206B6B1800028673 /* HGLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD6BE230206B6B1800028673 /* HGLoginController.m */; };
 		AD6BE233206B777200028673 /* WechatIMG8.png in Resources */ = {isa = PBXBuildFile; fileRef = AD6BE232206B777200028673 /* WechatIMG8.png */; };
 		AD6BE23A206B7CBB00028673 /* HGTeacherHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD6BE239206B7CBB00028673 /* HGTeacherHomeController.m */; };
@@ -145,6 +150,16 @@
 		0419CBCD7E29F89AEC25E965 /* Pods-HGGL.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HGGL.release.xcconfig"; path = "Pods/Target Support Files/Pods-HGGL/Pods-HGGL.release.xcconfig"; sourceTree = "<group>"; };
 		05664ABAC06DC837ACFBE292 /* Pods-HGGL.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HGGL.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HGGL/Pods-HGGL.debug.xcconfig"; sourceTree = "<group>"; };
 		2A6879AA8A95174D1B2D03C4 /* libPods-HGGL.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HGGL.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD0396C020731D480082C817 /* HGStudentHomeController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGStudentHomeController.h; sourceTree = "<group>"; };
+		AD0396C120731D480082C817 /* HGStudentHomeController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGStudentHomeController.m; sourceTree = "<group>"; };
+		AD0396CC20731DD40082C817 /* HGContactController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGContactController.h; sourceTree = "<group>"; };
+		AD0396CD20731DD40082C817 /* HGContactController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGContactController.m; sourceTree = "<group>"; };
+		AD0396D020731DEB0082C817 /* HGClassController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGClassController.h; sourceTree = "<group>"; };
+		AD0396D120731DEB0082C817 /* HGClassController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGClassController.m; sourceTree = "<group>"; };
+		AD0396D320731E400082C817 /* HGPersonalController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGPersonalController.h; sourceTree = "<group>"; };
+		AD0396D420731E400082C817 /* HGPersonalController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGPersonalController.m; sourceTree = "<group>"; };
+		AD472FED206CB26A0024BDBB /* HGWeekMenuController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGWeekMenuController.h; sourceTree = "<group>"; };
+		AD472FEE206CB26A0024BDBB /* HGWeekMenuController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGWeekMenuController.m; sourceTree = "<group>"; };
 		AD6BE22F206B6B1800028673 /* HGLoginController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGLoginController.h; sourceTree = "<group>"; };
 		AD6BE230206B6B1800028673 /* HGLoginController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGLoginController.m; sourceTree = "<group>"; };
 		AD6BE232206B777200028673 /* WechatIMG8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WechatIMG8.png; sourceTree = "<group>"; };
@@ -335,6 +350,182 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		AD0396B820731B800082C817 /* 学员首页 */ = {
+			isa = PBXGroup;
+			children = (
+				AD0396BF20731CF70082C817 /* 个人中心 */,
+				AD0396BE20731CF00082C817 /* 班级风采 */,
+				AD0396BD20731C900082C817 /* 学员通讯录 */,
+				AD0396BC20731C860082C817 /* 我的班级 */,
+			);
+			path = "学员首页";
+			sourceTree = "<group>";
+		};
+		AD0396B920731B8E0082C817 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				AD0396C020731D480082C817 /* HGStudentHomeController.h */,
+				AD0396C120731D480082C817 /* HGStudentHomeController.m */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		AD0396BA20731B980082C817 /* view */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		AD0396BB20731B9C0082C817 /* model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		AD0396BC20731C860082C817 /* 我的班级 */ = {
+			isa = PBXGroup;
+			children = (
+				AD0396BB20731B9C0082C817 /* model */,
+				AD0396BA20731B980082C817 /* view */,
+				AD0396B920731B8E0082C817 /* controller */,
+			);
+			path = "我的班级";
+			sourceTree = "<group>";
+		};
+		AD0396BD20731C900082C817 /* 学员通讯录 */ = {
+			isa = PBXGroup;
+			children = (
+				AD0396C520731D6A0082C817 /* model */,
+				AD0396C420731D660082C817 /* view */,
+				AD0396C320731D5C0082C817 /* controller */,
+			);
+			path = "学员通讯录";
+			sourceTree = "<group>";
+		};
+		AD0396BE20731CF00082C817 /* 班级风采 */ = {
+			isa = PBXGroup;
+			children = (
+				AD0396C820731D7B0082C817 /* model */,
+				AD0396C720731D770082C817 /* view */,
+				AD0396C620731D740082C817 /* controller */,
+			);
+			path = "班级风采";
+			sourceTree = "<group>";
+		};
+		AD0396BF20731CF70082C817 /* 个人中心 */ = {
+			isa = PBXGroup;
+			children = (
+				AD0396CB20731D8C0082C817 /* model */,
+				AD0396CA20731D870082C817 /* view */,
+				AD0396C920731D820082C817 /* controller */,
+			);
+			path = "个人中心";
+			sourceTree = "<group>";
+		};
+		AD0396C320731D5C0082C817 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				AD0396CC20731DD40082C817 /* HGContactController.h */,
+				AD0396CD20731DD40082C817 /* HGContactController.m */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		AD0396C420731D660082C817 /* view */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		AD0396C520731D6A0082C817 /* model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		AD0396C620731D740082C817 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				AD0396D020731DEB0082C817 /* HGClassController.h */,
+				AD0396D120731DEB0082C817 /* HGClassController.m */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		AD0396C720731D770082C817 /* view */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		AD0396C820731D7B0082C817 /* model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		AD0396C920731D820082C817 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				AD0396D320731E400082C817 /* HGPersonalController.h */,
+				AD0396D420731E400082C817 /* HGPersonalController.m */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		AD0396CA20731D870082C817 /* view */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		AD0396CB20731D8C0082C817 /* model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		AD472FE9206CB22A0024BDBB /* 每周菜谱 */ = {
+			isa = PBXGroup;
+			children = (
+				AD472FEC206CB2400024BDBB /* model */,
+				AD472FEB206CB23B0024BDBB /* view */,
+				AD472FEA206CB2340024BDBB /* controller */,
+			);
+			path = "每周菜谱";
+			sourceTree = "<group>";
+		};
+		AD472FEA206CB2340024BDBB /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				AD472FED206CB26A0024BDBB /* HGWeekMenuController.h */,
+				AD472FEE206CB26A0024BDBB /* HGWeekMenuController.m */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		AD472FEB206CB23B0024BDBB /* view */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		AD472FEC206CB2400024BDBB /* model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
 		AD6BE22B206B6ADC00028673 /* 登录 */ = {
 			isa = PBXGroup;
 			children = (
@@ -496,6 +687,8 @@
 		CE769DD3206A354F000F931F /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				AD0396B820731B800082C817 /* 学员首页 */,
+				AD472FE9206CB22A0024BDBB /* 每周菜谱 */,
 				ADBDC783206BC6E200D32390 /* 项目计划 */,
 				AD6BE234206B7C8100028673 /* 教职工首页 */,
 				AD6BE22B206B6ADC00028673 /* 登录 */,
@@ -970,10 +1163,13 @@
 				CE769DF9206A56F0000F931F /* anyButton.m in Sources */,
 				CE769E94206A598A000F931F /* HGTabBarViewController.m in Sources */,
 				CE769E97206A5AF4000F931F /* HGTabbar.m in Sources */,
+				AD472FEF206CB26A0024BDBB /* HGWeekMenuController.m in Sources */,
 				AD804C18206B95D500299A08 /* TKButton.m in Sources */,
+				AD0396C220731D480082C817 /* HGStudentHomeController.m in Sources */,
 				ADBDC789206BC72500D32390 /* HGBaseController.m in Sources */,
 				CE769DE3206A3559000F931F /* AppDelegate.m in Sources */,
 				ADBDC792206BCC0000D32390 /* TKWebProgressView.m in Sources */,
+				AD0396D520731E400082C817 /* HGPersonalController.m in Sources */,
 				CE769DFE206A5702000F931F /* TimerTransform.m in Sources */,
 				AD804C15206B958100299A08 /* TKUpDownButton.m in Sources */,
 				ADBDC78F206BCBAB00D32390 /* HGWebController.m in Sources */,
@@ -984,7 +1180,9 @@
 				AD6BE23A206B7CBB00028673 /* HGTeacherHomeController.m in Sources */,
 				AD804C1C206BA7B800299A08 /* HGRefresh.m in Sources */,
 				AD6BE231206B6B1800028673 /* HGLoginController.m in Sources */,
+				AD0396D220731DEB0082C817 /* HGClassController.m in Sources */,
 				CE769DEC206A56C5000F931F /* HGHttpTool.m in Sources */,
+				AD0396CE20731DD40082C817 /* HGContactController.m in Sources */,
 				ADBDC795206BD01E00D32390 /* HGItemPlanCell.m in Sources */,
 				CE769EA6206A5F1D000F931F /* HGBarBut.m in Sources */,
 			);
