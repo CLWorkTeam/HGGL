@@ -17,6 +17,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.name = @"班级风采";
+    self.leftBtn.hidden = YES;
 }
 
 - (void)didReceiveMemoryWarning {
