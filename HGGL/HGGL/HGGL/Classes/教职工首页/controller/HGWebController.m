@@ -24,7 +24,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.name = self.titleStr;
-    
+    self.rightBtn.hidden = YES;
+
     UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, self.bar.maxY, HGScreenWidth, HGScreenHeight-self.bar.maxY)];
     webView.delegate = self;
     self.webView = webView;

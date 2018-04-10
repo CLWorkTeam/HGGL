@@ -88,7 +88,7 @@
     [super layoutSubviews];
     self.backV.frame = CGRectMake(10, 15, HGScreenWidth-20, self.height-10);
     self.titleLab.frame = CGRectMake(10, 15, self.backV.width-20, 15);
-    self.moneyLab.frame = CGRectMake(10, self.titleLab.maxY+15, self.backV.width/3 + 30, self.titleLab.height);
+    self.moneyLab.frame = CGRectMake(10, self.titleLab.maxY+20, self.backV.width/3 + 30, self.titleLab.height);
     self.daysLab.frame = CGRectMake(self.moneyLab.maxX, self.moneyLab.y, self.backV.width/3-15, self.moneyLab.height);
     self.numberLab.frame = CGRectMake(self.daysLab.maxX, self.moneyLab.y, self.backV.width/3-15-10, self.moneyLab.height);
     self.timeLab.frame = CGRectMake(10, self.moneyLab.maxY+15, self.backV.width-20, 15);

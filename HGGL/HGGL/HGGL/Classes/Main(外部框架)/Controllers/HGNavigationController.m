@@ -45,8 +45,8 @@
     _popDelegate = self.interactivePopGestureRecognizer.delegate;
     
     self.delegate = self;
-    NSTimer *timer = [NSTimer timerWithTimeInterval:30 target:self selector:@selector(loadUnreade) userInfo:nil repeats:YES];
-    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+//    NSTimer *timer = [NSTimer timerWithTimeInterval:30 target:self selector:@selector(loadUnreade) userInfo:nil repeats:YES];
+//    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
     //[self.navigationBar setBackgroundColor:[UIColor redColor]];
     //self.navigationBar setBackgroundImage: forBarMetrics:
     //CGRect rect = self.navigationBar.frame;
@@ -94,35 +94,35 @@
 }
 -(void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
-    self.navigationBar.barTintColor = HGColor(174,12,20,1);
+    self.navigationBar.barTintColor = HGMainColor;
     // self.navigationBar.tintColor = [UIColor clearColor];
     //[self.navigationBar setBackgroundColor:[UIColor redColor]];
     if (!self.viewControllers.count) {
-        HGBarBut *left = [HGBarBut initWithColor:nil andSelColor:nil andTColor:[UIColor whiteColor] andFont:[UIFont systemFontOfSize:10]];
-        [left setImage:[UIImage imageNamed:@"schedule"] forState:UIControlStateNormal];
-        //self.but = left;
-        [left setTitle:@"当日课表" forState:UIControlStateNormal];
-        [left setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        left.frame = CGRectMake(0, 0, 50, 40);
-        //left.imageView.bounds = CGRectMake(0, 0,left.height*0.86 , left.height*0.68);
-        [left addTarget:self action:@selector(leftButClick:) forControlEvents:UIControlEventTouchUpInside];
-        //[self.navigationBar addSubview:left];
-        UIBarButtonItem *letfBut = [[UIBarButtonItem alloc]initWithCustomView:left];
-        
-        HGBarBut *right = [HGBarBut initWithColor:HGColor(205,0,36,1) andSelColor:HGColor(190, 31, 25,1) andTColor:[UIColor whiteColor] andFont:[UIFont systemFontOfSize:10]];
-        [right setImage:[UIImage imageNamed:@"notice"] forState:UIControlStateNormal];
-        //self.but = left;
-        [right setTitle:@"消息通知" forState:UIControlStateNormal];
-        [right setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        right.frame = CGRectMake(0, 0, 50, 40);
-        //right.imageView.bounds = CGRectMake(0, 0,left.height*0.86 , left.height*0.68);
-        [right addTarget:self action:@selector(rightButClick) forControlEvents:UIControlEventTouchUpInside];
-        //[self.navigationBar addSubview:left];
-        UIBarButtonItem *rightBut = [[UIBarButtonItem alloc]initWithCustomView:right];
-        
-        [rightBut setImage:[UIImage imageNamed:@"notice"]];
-        viewController.navigationItem.leftBarButtonItem = letfBut;
-        viewController.navigationItem.rightBarButtonItem = rightBut;
+//        HGBarBut *left = [HGBarBut initWithColor:nil andSelColor:nil andTColor:[UIColor whiteColor] andFont:[UIFont systemFontOfSize:10]];
+//        [left setImage:[UIImage imageNamed:@"icon_schedule"] forState:UIControlStateNormal];
+//        //self.but = left;
+////        [left setTitle:@"当日课表" forState:UIControlStateNormal];
+//        [left setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//        left.frame = CGRectMake(0, 0, 50, 40);
+//        //left.imageView.bounds = CGRectMake(0, 0,left.height*0.86 , left.height*0.68);
+//        [left addTarget:self action:@selector(leftButClick:) forControlEvents:UIControlEventTouchUpInside];
+//        //[self.navigationBar addSubview:left];
+//        UIBarButtonItem *letfBut = [[UIBarButtonItem alloc]initWithCustomView:left];
+//        
+//        HGBarBut *right = [HGBarBut initWithColor:HGColor(205,0,36,1) andSelColor:HGColor(190, 31, 25,1) andTColor:[UIColor whiteColor] andFont:[UIFont systemFontOfSize:10]];
+//        [right setImage:[UIImage imageNamed:@"icon_message"] forState:UIControlStateNormal];
+//        //self.but = left;
+////        [right setTitle:@"消息通知" forState:UIControlStateNormal];
+//        [right setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//        right.frame = CGRectMake(0, 0, 50, 40);
+//        //right.imageView.bounds = CGRectMake(0, 0,left.height*0.86 , left.height*0.68);
+//        [right addTarget:self action:@selector(rightButClick) forControlEvents:UIControlEventTouchUpInside];
+//        //[self.navigationBar addSubview:left];
+//        UIBarButtonItem *rightBut = [[UIBarButtonItem alloc]initWithCustomView:right];
+//        
+//        [rightBut setImage:[UIImage imageNamed:@"notice"]];
+//        viewController.navigationItem.leftBarButtonItem = letfBut;
+//        viewController.navigationItem.rightBarButtonItem = rightBut;
     }else{
         //[self.but removeFromSuperview];
         viewController.hidesBottomBarWhenPushed = YES;

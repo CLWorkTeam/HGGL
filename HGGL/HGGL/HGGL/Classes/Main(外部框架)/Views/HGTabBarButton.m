@@ -19,13 +19,12 @@
 -(instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
-        self.imageView.contentMode = UIViewContentModeCenter;
+        self.imageView.contentMode = UIViewContentModeScaleAspectFit;
         
         self.titleLabel.textAlignment = NSTextAlignmentCenter;
         self.titleLabel.font = [UIFont systemFontOfSize:12];
-        [self setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [self setTitleColor:[UIColor orangeColor] forState:UIControlStateSelected];
-        
+        [self setTitleColor:HGColor(191, 191, 191, 1) forState:UIControlStateNormal];
+        [self setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
     }
     return self;
 }
@@ -41,6 +40,7 @@
 -(void)setItem:(UITabBarItem *)item
 {
     _item =item;
+    self.imageView.contentMode = UIViewContentModeScaleAspectFit;
     //下面这个方法是在item的badegeValue、image、selectedImage、title等有变化的时候就会调用
     [self observeValueForKeyPath:nil ofObject:nil change:nil context:nil];
     //实时监控badgeValue的变化
@@ -56,6 +56,7 @@
     [self  setImage:_item.image forState:UIControlStateNormal];
     [self setImage:_item.selectedImage forState:UIControlStateSelected];
     [self setTitle:_item.title forState:UIControlStateNormal];
+    self.imageView.contentMode = UIViewContentModeScaleAspectFit;
     
 }
 -(void)layoutSubviews
@@ -76,6 +77,8 @@
     CGFloat titleW = self.bounds.size.width;
     CGFloat titleH = self.bounds.size.height*(1 - HGImageRadio);
     self.titleLabel.frame = CGRectMake(titleX, titleY, titleW, titleH);
+    self.imageView.contentMode = UIViewContentModeScaleAspectFit;
+
     //设置badgeview的frame
     //    CGFloat x = self.bounds.size.width- self.badgeView.bounds.size.width -ZKRTabBarButtonMargin;
     //    CGRect frame = self.badgeView.frame;

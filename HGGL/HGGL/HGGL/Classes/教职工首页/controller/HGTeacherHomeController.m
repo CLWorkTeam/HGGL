@@ -8,6 +8,7 @@
 
 #import "HGTeacherHomeController.h"
 #import "HGItemPlanController.h"
+#import "HGWeekMenuController.h"
 #import "HGWebController.h"
 #import "TKButton.h"
 
@@ -113,6 +114,9 @@
         HGWebController *vc = [[HGWebController alloc]init];
         vc.titleStr = @"行政办公";
         vc.url = @"https://www.baidu.com";
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if ([title isEqualToString:@"每周菜谱"]){
+        HGWeekMenuController *vc = [[HGWeekMenuController alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
     }
 

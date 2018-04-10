@@ -23,7 +23,7 @@
         //        //ima.backgroundColor = [UIColor grayColor];
         //        self.ima.userInteractionEnabled = YES;
         //        [self addSubview:ima];
-        self.backgroundColor = HGColor(244, 244, 244,1);
+        self.backgroundColor = HGMainColor;
     }
     return self;
 }

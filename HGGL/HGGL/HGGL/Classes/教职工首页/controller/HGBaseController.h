@@ -14,5 +14,7 @@
 
 @property (nonatomic,strong) UIView *bar;
 @property (nonatomic,strong) UIButton *leftBtn;
+@property (nonatomic,strong) UIButton *rightBtn;
+
 
 @end
