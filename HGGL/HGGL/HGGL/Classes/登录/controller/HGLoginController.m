@@ -84,12 +84,11 @@
     
     [SVProgressHUD showWithStatus:@"登录中..."];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [SVProgressHUD dismiss];
         
-        HGTabBarViewController *vc = [[HGTabBarViewController alloc]init];
-//        HGTeacherHomeController *Vc = [[HGTeacherHomeController alloc]init];
-//        HGNavigationController *nav = [[HGNavigationController alloc]initWithRootViewController:Vc];
-        HGKeywindow.rootViewController = vc;
+//        HGTabBarViewController *vc = [[HGTabBarViewController alloc]init];
+        HGTeacherHomeController *Vc = [[HGTeacherHomeController alloc]init];
+        HGNavigationController *nav = [[HGNavigationController alloc]initWithRootViewController:Vc];
+        HGKeywindow.rootViewController = nav;
     });
 }
 
