@@ -33,17 +33,34 @@
 #define HGColor(r,g,b,a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0  blue:(b)/255.0  alpha:a]
 #define HGMainColor HGColor(87,117,213,1)
 #define HGGrayColor HGColor(243,243,243,1)
-#define HGURL @"http://192.168.201.53:8089/sydx1204/"
+#define HGURL @"http://118.190.203.109:8080/zghg/"
+#define HGURL2 @"http://42.202.133.196:8089/gjjl"
+#define HGURL3 @"http://42.202.133.196:8089/gjjl"
 #define HGUserDefaults [NSUserDefaults standardUserDefaults]
 #define WeakSelf __weak typeof(self) weakSelf = self;
 //全局userdefaut宏定义相关
 #define HGUserID  @"user_id"
 #define HGUserType @"user_ type"
 #define HGUserName @"user_name"
+#define HGRealName @"real_name"
 #define HGUserTel @"user_tel"
 #define HGUserAccount @"account"
 #define HGUserPassWord @"passWord"
 #endif
+//原来布局参数
+#define HGSpace 1
+#define CellWMargin 15
+#define CellHMargin 8
+#define leftCellWidth 40
+#define leftCellHeight 80
+#define HGTipFont 12
+#define HGFont 14
+#define HGTextFont1 15
+#define HGTextFont2 16
+#define HGTextFont3 17
+#define ZKRNameFont [UIFont systemFontOfSize:13]
+#define ZKRButFont [UIFont systemFontOfSize:14]
+#define minH  [TextFrame frameOfText:@"备注:" With:[UIFont systemFontOfSize:HGFont] Andwidth:60].height
 
 //公用类引用相关
 #ifdef __OBJC__

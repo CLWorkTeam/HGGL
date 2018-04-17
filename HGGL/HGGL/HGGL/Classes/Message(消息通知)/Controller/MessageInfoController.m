@@ -28,23 +28,23 @@
     UILabel *title = [HGLable lableWithAlignment:NSTextAlignmentCenter Font:14 Color:[UIColor blackColor]];
     title.font = [UIFont fontWithName:@"Helvetica-Bold" size:14];
     title.text = self.msg_name;
-    CGFloat titleH = [TextFrame frameOfText:self.msg_name With:[UIFont systemFontOfSize:14] Andwidth:HGScreenSize.size.width-2*15].height;
-    title.frame = CGRectMake(margin, 84, HGScreenSize.size.width-2*15, titleH);
+    CGFloat titleH = [TextFrame frameOfText:self.msg_name With:[UIFont systemFontOfSize:14] Andwidth:HGScreenWidth-2*15].height;
+    title.frame = CGRectMake(margin, 84, HGScreenWidth-2*15, titleH);
     [self.view addSubview:title];
     UILabel *content = [HGLable lableWithAlignment:NSTextAlignmentLeft Font:14 Color:[UIColor blackColor]];
     //content.backgroundColor = [UIColor lightGrayColor];
     content.text = self.msg_content;
-    CGFloat contentH = [TextFrame frameOfText:self.msg_content With:[UIFont systemFontOfSize:14] Andwidth:HGScreenSize.size.width-2*15].height;
-    CGFloat maxH = HGScreenSize.size.height - 4*margin - titleH;
-    content.frame = CGRectMake(margin, CGRectGetMaxY(title.frame)+margin, HGScreenSize.size.width-2*15, contentH>=maxH?maxH:contentH);
+    CGFloat contentH = [TextFrame frameOfText:self.msg_content With:[UIFont systemFontOfSize:14] Andwidth:HGScreenWidth-2*15].height;
+    CGFloat maxH = HGScreenHeight - 4*margin - titleH;
+    content.frame = CGRectMake(margin, CGRectGetMaxY(title.frame)+margin, HGScreenWidth-2*15, contentH>=maxH?maxH:contentH);
     [self.view addSubview:content];
     UILabel *publisher = [HGLable lableWithAlignment:NSTextAlignmentLeft Font:14 Color:[UIColor blackColor]];
     NSString *str = [NSString stringWithFormat:@"发布者:%@",self.msg_publisher];
     publisher.text = str;
-    publisher.frame = CGRectMake(HGScreenSize.size.width - 150-margin, CGRectGetMaxY(content.frame), 150, 40);
+    publisher.frame = CGRectMake(HGScreenWidth - 150-margin, CGRectGetMaxY(content.frame), 150, 40);
     [self.view addSubview:publisher];
     
-    //    UINavigationBar *bar = [[UINavigationBar alloc]initWithFrame:CGRectMake(0,0, HGScreenSize.size.width, 64)];
+    //    UINavigationBar *bar = [[UINavigationBar alloc]initWithFrame:CGRectMake(0,0, HGScreenWidth, 64)];
     //bar.barStyle = 0;
     UIBarButtonItem *back = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStyleDone target:self action:@selector(clickBack)];
     ////    [bar pushNavigationItem:self.navigationItem animated:YES];
@@ -56,8 +56,8 @@
 {
     if (self.navigationController.topViewController) {
         [self.navigationController popViewControllerAnimated:YES];
-        MessageListController *mes = (MessageListController *)self.navigationController.topViewController;
-        [mes setRefresh];
+//        MessageListController *mes = (MessageListController *)self.navigationController.topViewController;
+//        [mes setRefresh];
     }
     //[self dismissViewControllerAnimated:YES completion:nil];
 }

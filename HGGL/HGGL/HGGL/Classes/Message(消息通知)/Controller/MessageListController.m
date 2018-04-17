@@ -14,7 +14,8 @@
 #import "TextFrame.h"
 #import "MessageInfoController.h"
 #import "MJExtension.h"
-#import "MJRefresh.h"
+//#import "MJRefresh.h"
+#import "HGRefresh.h"
 #import "MessageParama.h"
 #import "Common.h"
 #import "HGWebController.h"
@@ -49,14 +50,20 @@
     
     self.navigationItem.leftBarButtonItem = back;
     
-    self.navigationController.navigationBar.barTintColor =HGColor(205,0,36,1);
+    self.navigationController.navigationBar.barTintColor =HGMainColor;
   //  self.navigationItem.title = @"消息通知";
     MessageParama *parama = [[MessageParama alloc]init];
     NSString *user_id = [HGUserDefaults objectForKey:HGUserID];
     parama.user_id = user_id;
     parama.type = [HGUserDefaults objectForKey:HGUserType];
+    if ([parama.type isEqualToString:@"1"]) {
+        parama.type = @"2";
+    }else
+    {
+        parama.type = @"1";
+    }
     self.parama = parama;
-    parama.pageSize = @"pageSize";
+    parama.pageSize = @"10";
     [self setRefresh];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -67,14 +74,14 @@
 -(void)setRefresh
 {
     __weak typeof(self)weakSelf = self;
-    self.tableView.mj_header = [MJRefreshHeader headerWithRefreshingBlock:^{
+    self.tableView.mj_header = [HGRefresh loadNewRefreshWithRefreshBlock :^{
         [weakSelf loadDWith:weakSelf.parama];
     }];
     
     
     [self.tableView.mj_header beginRefreshing];
     
-    self.tableView.mj_footer = [MJRefreshFooter footerWithRefreshingBlock:^{
+    self.tableView.mj_footer = [HGRefresh loadMoreRefreshWithRefreshBlock:^{
         NSInteger i = [weakSelf.parama.page integerValue ];
         weakSelf.parama.page = [NSString stringWithFormat:@"%ld",++i];
         [weakSelf loadMoreData:weakSelf.parama];
@@ -90,13 +97,13 @@
     parama.page = @"1";
     NSString *url = [HGURL stringByAppendingString:@"MsgPush/getMessageList.do"];
     _isRefreshing = YES;
-    [HGHttpTool POSTWithURL:url parameters:self.parama.keyValues success:^(id responseObject) {
+    [HGHttpTool POSTWithURL:url parameters:self.parama.mj_keyValues success:^(id responseObject) {
         _isRefreshing = NO;
         [self.tableView.mj_header endRefreshing];
         NSString *status = [responseObject objectForKey:@"status"];
         if ([status isEqualToString:@"1"]) {
             [self.arr removeAllObjects];
-            //[MBProgressHUD showSuccess:[responseObject objectForKey:@"message"]];
+            //[MBProgressHUD SVProgressHUD showSuccessWithStatusWithStatus:[responseObject objectForKey:@"message"]];
             NSArray *array = [responseObject objectForKey:@"data"];
             for (NSDictionary *dict in array) {
                 Message *mes = [Message initWithDict:dict];
@@ -128,7 +135,7 @@
         NSString *status = [responseObject objectForKey:@"status"];
         if ([status isEqualToString:@"1"]) {
             //[self.arr removeAllObjects];
-            //[MBProgressHUD showSuccess:[responseObject objectForKey:@"message"]];
+            //[MBProgressHUD SVProgressHUD showSuccessWithStatusWithStatus:[responseObject objectForKey:@"message"]];
             NSArray *array = [responseObject objectForKey:@"data"];
             for (NSDictionary *dict in array) {
                 Message *mes = [Message initWithDict:dict];
@@ -189,26 +196,28 @@
     
 
     Message *mes = [self.arr objectAtIndex:indexPath.row];
-    if ([mes.msg_type isEqualToString:@"2"]) {
-        HGWebController *web = [[HGWebController alloc]init];
-        web.url = web.url;
-        web.name = mes.msg_name;
-        [self.navigationController pushViewController:web animated:YES];
-    }else
-    {
+    if ([mes.msg_type isEqualToString:@"1"]) {
         MessageInfoController *m = [[MessageInfoController alloc]init];
         m.msg_content = mes.msg_content;
         m.msg_name = mes.msg_name;
         m.msg_publisher = mes.msg_publisher;
         [self.navigationController pushViewController:m animated:YES];
+        
+    }else
+    {
+        HGWebController *web = [[HGWebController alloc]init];
+        web.url = mes.msg_url;
+        web.name = mes.msg_name;
+        [self.navigationController pushViewController:web animated:YES];
     }
     
     
     NSString *url = [HGURL stringByAppendingString:@"/MsgPush/setRead.do"];
-    [HGHttpTool POSTWithURL:url parameters:@{@"msg_id":mes.msg_id} success:^(id responseObject) {
-        NSString *status = [responseObject objectForKey:@"status"];
-        if ([status isEqualToString:@"1"]) {
-            
+    [HGHttpTool POSTWithURL:url parameters:@{@"msg_id":mes.msg_id,@"user_id":[HGUserDefaults objectForKey:HGUserID]} success:^(id responseObject) {
+//        NSString *status = ;
+        if ([[responseObject objectForKey:@"status"] integerValue] == 1 ) {
+            mes.msg_status = @"1";
+            [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
         }else
         {
            [SVProgressHUD showErrorWithStatus:[responseObject objectForKey:@"message"]];
@@ -218,6 +227,15 @@
         HGLog(@"%@",error);
     }];
 }
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+
+{
+    return .1;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    return [[UIView alloc]init];
+}
+
 /*
  // Override to support conditional editing of the table view.
  - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

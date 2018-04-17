@@ -35,7 +35,7 @@
     [account setValue:[UIFont boldSystemFontOfSize:16] forKeyPath:@"_placeholderLabel.font"];
     //account.backgroundColor = [UIColor redColor];
     self.account = account;
-    CGFloat W = HGScreenSize.size.width - 40;
+    CGFloat W = HGScreenWidth - 40;
     account.frame = CGRectMake(20, 84,W , 40);
     [self.view addSubview:account];
     UITextField *oldPW = [[UITextField alloc]init];

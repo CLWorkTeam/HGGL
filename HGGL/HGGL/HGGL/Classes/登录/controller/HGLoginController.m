@@ -13,7 +13,8 @@
 
 
 @interface HGLoginController ()
-
+@property (nonatomic,weak) UITextField *accountTextField;
+@property (nonatomic,weak) UITextField *pwTextField;
 @end
 
 @implementation HGLoginController
@@ -45,6 +46,7 @@
     textF.borderStyle = UITextBorderStyleRoundedRect;
     textF.clearButtonMode = UITextFieldViewModeAlways;
     [self.view addSubview:textF];
+    self.accountTextField = textF;
     
     UITextField *textF1 = [[UITextField alloc]initWithFrame:CGRectMake(textF.x, textF.maxY+20, HGScreenWidth-40, 40)];
     textF1.font = [UIFont systemFontOfSize:18];
@@ -53,6 +55,7 @@
     textF1.clearButtonMode = UITextFieldViewModeAlways;
     [textF1 setSecureTextEntry:YES];
     [self.view addSubview:textF1];
+    self.pwTextField = textF1;
 
     UIButton *loginBtn =[UIButton buttonWithType:UIButtonTypeCustom];
     loginBtn.frame = CGRectMake(textF.x, textF1.maxY + 30, textF.width, 40);
@@ -83,14 +86,41 @@
     
     
     [SVProgressHUD showWithStatus:@"登录中..."];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        [SVProgressHUD dismiss];
+//
+//        HGTabBarViewController *vc = [[HGTabBarViewController alloc]init];
+////        HGTeacherHomeController *Vc = [[HGTeacherHomeController alloc]init];
+////        HGNavigationController *nav = [[HGNavigationController alloc]initWithRootViewController:Vc];
+//        HGKeywindow.rootViewController = vc;
+//    });
+    NSString *account = self.accountTextField.text;
+    NSString *passWord = self.pwTextField.text;
+    if (account==nil||account.length==0) {
+        [SVProgressHUD showErrorWithStatus:@"请输入账号"];
+        return;
+    }
+    if (passWord==nil||passWord.length==0) {
+        [SVProgressHUD showErrorWithStatus:@"请输入密码"];
+        return;
+    }
+    [HGHttpTool POSTWithURL:[HGURL stringByAppendingString:@"User/Login.do"] parameters:@{@"account":account,@"password":passWord} success:^(id responseObject) {
         [SVProgressHUD dismiss];
+        NSDictionary *dict = responseObject[@"data"];
         
+        [HGUserDefaults setObject:dict[@"user_id"] forKey:HGUserID];
+        [HGUserDefaults setObject:dict[@"user_name"] forKey:HGUserName];
+        [HGUserDefaults setObject:dict[@"user_type"] forKey:HGUserType];
+        [HGUserDefaults setObject:dict[@"real_name"] forKey:HGRealName];
+        [HGUserDefaults setObject:account forKey:HGUserAccount];
+        [HGUserDefaults setObject:passWord forKey:HGUserPassWord];
+        [HGUserDefaults synchronize];
         HGTabBarViewController *vc = [[HGTabBarViewController alloc]init];
-//        HGTeacherHomeController *Vc = [[HGTeacherHomeController alloc]init];
-//        HGNavigationController *nav = [[HGNavigationController alloc]initWithRootViewController:Vc];
         HGKeywindow.rootViewController = vc;
-    });
+        
+    } failure:^(NSError *error) {
+        [SVProgressHUD dismiss];
+    }];
 }
 
 - (void)autoLogin:(anyButton *)sender{

@@ -17,13 +17,13 @@ typedef NS_ENUM(NSInteger, MSG) {
     misson = 6
     
 };
-#define minH  [TextFrame frameOfText:@"备注:" With:[UIFont systemFontOfSize:ZKRFont] Andwidth:60].height
-#define ZKRSpace 1
+#define minH  [TextFrame frameOfText:@"备注:" With:[UIFont systemFontOfSize:HGFont] Andwidth:60].height
+#define HGSpace 1
 #define CellWMargin 15
 #define CellHMargin 8
 #define leftCellWidth 40
 #define leftCellHeight 80
-#define ZKRFont 14
+#define HGFont 14
 @interface Common : NSObject
 
 @end

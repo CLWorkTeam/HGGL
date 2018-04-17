@@ -7,7 +7,9 @@
 //
 
 #import "HGStudentHomeController.h"
-
+#import "HGNavigationController.h"
+#import "CurrViewController.h"
+#import "MessageListController.h"
 @interface HGStudentHomeController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong) UIImageView *imageV;
@@ -22,10 +24,23 @@
     // Do any additional setup after loading the view.
     self.name = @"我的班级";
     [self.leftBtn setImage:[UIImage imageNamed:@"icon_schedule"] forState:UIControlStateNormal];
-
+    [self.leftBtn addTarget:self action:@selector(schedule) forControlEvents:UIControlEventTouchUpInside];
+    [self.rightBtn addTarget:self action:@selector(message) forControlEvents:UIControlEventTouchUpInside];
     [self addTableview];
 }
-
+-(void)schedule
+{
+    CurrViewController *curr = [[CurrViewController alloc]init];
+    [self.navigationController   pushViewController:curr animated:YES];
+}
+-(void)message
+{
+    MessageListController *list = [[MessageListController   alloc]init];
+    
+    HGNavigationController *nav = [[HGNavigationController alloc]initWithRootViewController:list];
+    
+    [self presentViewController:nav animated:YES completion:nil];
+}
 - (void)addTableview{
     
     UITableView *tableV = [[UITableView alloc]initWithFrame:CGRectMake(0,self.bar.maxY , HGScreenWidth, HGScreenHeight - self.bar.maxY) style:UITableViewStyleGrouped];
