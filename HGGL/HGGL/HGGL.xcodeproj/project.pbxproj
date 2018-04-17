@@ -30,6 +30,12 @@
 		AD804C15206B958100299A08 /* TKUpDownButton.m in Sources */ = {isa = PBXBuildFile; fileRef = AD804C13206B958000299A08 /* TKUpDownButton.m */; };
 		AD804C18206B95D500299A08 /* TKButton.m in Sources */ = {isa = PBXBuildFile; fileRef = AD804C17206B95D400299A08 /* TKButton.m */; };
 		AD804C1C206BA7B800299A08 /* HGRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = AD804C1B206BA7B800299A08 /* HGRefresh.m */; };
+		AD9164ED2083214B00416124 /* HGItemDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9164EC2083214B00416124 /* HGItemDataController.m */; };
+		AD9164F5208323D300416124 /* HGMyDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9164F4208323D300416124 /* HGMyDataViewController.m */; };
+		AD9164FD2083264100416124 /* HGItemCertController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9164FC2083264100416124 /* HGItemCertController.m */; };
+		AD9165052083272F00416124 /* HGContactUSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9165042083272F00416124 /* HGContactUSViewController.m */; };
+		ADBD8DF1207DE89D0021B600 /* HGMyPointController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBD8DF0207DE89D0021B600 /* HGMyPointController.m */; };
+		ADBD8DF4207DEEFD0021B600 /* HGMyPointCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBD8DF3207DEEFD0021B600 /* HGMyPointCell.m */; };
 		ADBDC789206BC72500D32390 /* HGBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBDC788206BC72500D32390 /* HGBaseController.m */; };
 		ADBDC78C206BC7B200D32390 /* HGItemPlanController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBDC78B206BC7B200D32390 /* HGItemPlanController.m */; };
 		ADBDC78F206BCBAB00D32390 /* HGWebController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBDC78E206BCBAB00D32390 /* HGWebController.m */; };
@@ -356,6 +362,18 @@
 		AD804C17206B95D400299A08 /* TKButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKButton.m; sourceTree = "<group>"; };
 		AD804C1A206BA7B800299A08 /* HGRefresh.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGRefresh.h; sourceTree = "<group>"; };
 		AD804C1B206BA7B800299A08 /* HGRefresh.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGRefresh.m; sourceTree = "<group>"; };
+		AD9164EB2083214B00416124 /* HGItemDataController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGItemDataController.h; sourceTree = "<group>"; };
+		AD9164EC2083214B00416124 /* HGItemDataController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGItemDataController.m; sourceTree = "<group>"; };
+		AD9164F3208323D300416124 /* HGMyDataViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGMyDataViewController.h; sourceTree = "<group>"; };
+		AD9164F4208323D300416124 /* HGMyDataViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGMyDataViewController.m; sourceTree = "<group>"; };
+		AD9164FB2083264100416124 /* HGItemCertController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGItemCertController.h; sourceTree = "<group>"; };
+		AD9164FC2083264100416124 /* HGItemCertController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGItemCertController.m; sourceTree = "<group>"; };
+		AD9165032083272F00416124 /* HGContactUSViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGContactUSViewController.h; sourceTree = "<group>"; };
+		AD9165042083272F00416124 /* HGContactUSViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGContactUSViewController.m; sourceTree = "<group>"; };
+		ADBD8DEF207DE89D0021B600 /* HGMyPointController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGMyPointController.h; sourceTree = "<group>"; };
+		ADBD8DF0207DE89D0021B600 /* HGMyPointController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGMyPointController.m; sourceTree = "<group>"; };
+		ADBD8DF2207DEEFD0021B600 /* HGMyPointCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGMyPointCell.h; sourceTree = "<group>"; };
+		ADBD8DF3207DEEFD0021B600 /* HGMyPointCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGMyPointCell.m; sourceTree = "<group>"; };
 		ADBDC787206BC72500D32390 /* HGBaseController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGBaseController.h; sourceTree = "<group>"; };
 		ADBDC788206BC72500D32390 /* HGBaseController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGBaseController.m; sourceTree = "<group>"; };
 		ADBDC78A206BC7B200D32390 /* HGItemPlanController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGItemPlanController.h; sourceTree = "<group>"; };
@@ -909,6 +927,7 @@
 		AD0396BC20731C860082C817 /* 我的班级 */ = {
 			isa = PBXGroup;
 			children = (
+				AD9164E72083210D00416124 /* 项目资料 */,
 				AD0396BB20731B9C0082C817 /* model */,
 				AD0396BA20731B980082C817 /* view */,
 				AD0396B920731B8E0082C817 /* controller */,
@@ -939,6 +958,10 @@
 		AD0396BF20731CF70082C817 /* 个人中心 */ = {
 			isa = PBXGroup;
 			children = (
+				AD9164FE208326B700416124 /* 联系我们 */,
+				AD9164F72083261500416124 /* 项目证书 */,
+				AD9164EE2083238100416124 /* 我的档案 */,
+				ADBD8DEA207DE86F0021B600 /* 我的成绩单 */,
 				AD0396CB20731D8C0082C817 /* model */,
 				AD0396CA20731D870082C817 /* view */,
 				AD0396C920731D820082C817 /* controller */,
@@ -1098,6 +1121,173 @@
 			sourceTree = "<group>";
 		};
 		AD6BE237206B7CA500028673 /* model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		AD9164E72083210D00416124 /* 项目资料 */ = {
+			isa = PBXGroup;
+			children = (
+				AD9164EA2083212200416124 /* Model */,
+				AD9164E92083211E00416124 /* View */,
+				AD9164E82083211600416124 /* Controller */,
+			);
+			path = "项目资料";
+			sourceTree = "<group>";
+		};
+		AD9164E82083211600416124 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				AD9164EB2083214B00416124 /* HGItemDataController.h */,
+				AD9164EC2083214B00416124 /* HGItemDataController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		AD9164E92083211E00416124 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		AD9164EA2083212200416124 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		AD9164EE2083238100416124 /* 我的档案 */ = {
+			isa = PBXGroup;
+			children = (
+				AD9164F12083239400416124 /* Model */,
+				AD9164F02083239000416124 /* View */,
+				AD9164EF2083238800416124 /* Controller */,
+			);
+			path = "我的档案";
+			sourceTree = "<group>";
+		};
+		AD9164EF2083238800416124 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				AD9164F3208323D300416124 /* HGMyDataViewController.h */,
+				AD9164F4208323D300416124 /* HGMyDataViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		AD9164F02083239000416124 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		AD9164F12083239400416124 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		AD9164F72083261500416124 /* 项目证书 */ = {
+			isa = PBXGroup;
+			children = (
+				AD9164FA2083262900416124 /* Model */,
+				AD9164F92083262400416124 /* View */,
+				AD9164F82083261E00416124 /* Controller */,
+			);
+			path = "项目证书";
+			sourceTree = "<group>";
+		};
+		AD9164F82083261E00416124 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				AD9164FB2083264100416124 /* HGItemCertController.h */,
+				AD9164FC2083264100416124 /* HGItemCertController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		AD9164F92083262400416124 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		AD9164FA2083262900416124 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		AD9164FE208326B700416124 /* 联系我们 */ = {
+			isa = PBXGroup;
+			children = (
+				AD916501208326C900416124 /* Model */,
+				AD916500208326C600416124 /* View */,
+				AD9164FF208326BF00416124 /* Controller */,
+			);
+			path = "联系我们";
+			sourceTree = "<group>";
+		};
+		AD9164FF208326BF00416124 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				AD9165032083272F00416124 /* HGContactUSViewController.h */,
+				AD9165042083272F00416124 /* HGContactUSViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		AD916500208326C600416124 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		AD916501208326C900416124 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		ADBD8DEA207DE86F0021B600 /* 我的成绩单 */ = {
+			isa = PBXGroup;
+			children = (
+				ADBD8DED207DE8830021B600 /* model */,
+				ADBD8DEC207DE87F0021B600 /* view */,
+				ADBD8DEB207DE8770021B600 /* controller */,
+			);
+			path = "我的成绩单";
+			sourceTree = "<group>";
+		};
+		ADBD8DEB207DE8770021B600 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				ADBD8DEF207DE89D0021B600 /* HGMyPointController.h */,
+				ADBD8DF0207DE89D0021B600 /* HGMyPointController.m */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		ADBD8DEC207DE87F0021B600 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				ADBD8DF2207DEEFD0021B600 /* HGMyPointCell.h */,
+				ADBD8DF3207DEEFD0021B600 /* HGMyPointCell.m */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		ADBD8DED207DE8830021B600 /* model */ = {
 			isa = PBXGroup;
 			children = (
 			);
@@ -2506,6 +2696,10 @@
 				CEAD19FE207DDF1C008F1696 /* TeacBaseFrame.m in Sources */,
 				CEAD1B5B207F465A008F1696 /* HisTime.m in Sources */,
 				AD0396C220731D480082C817 /* HGStudentHomeController.m in Sources */,
+				AD9164F5208323D300416124 /* HGMyDataViewController.m in Sources */,
+				AD9164FD2083264100416124 /* HGItemCertController.m in Sources */,
+				AD9165052083272F00416124 /* HGContactUSViewController.m in Sources */,
+				AD9164ED2083214B00416124 /* HGItemDataController.m in Sources */,
 				ADBDC789206BC72500D32390 /* HGBaseController.m in Sources */,
 				CE4CAD482084A437001F711F /* Memeber.m in Sources */,
 				CE864448206F9675002FE9E7 /* MessageInfoController.m in Sources */,
@@ -2548,6 +2742,8 @@
 				CEAD1A9E207DF356008F1696 /* MenteeListTableViewController.m in Sources */,
 				CEAD19CB207DA9EB008F1696 /* TeachToolBar.m in Sources */,
 				CEAD19F8207DDF1C008F1696 /* ScoreList.m in Sources */,
+				ADBD8DF4207DEEFD0021B600 /* HGMyPointCell.m in Sources */,
+
 				CE86444B206F9675002FE9E7 /* MessageTableViewCell.m in Sources */,
 				CEAD1AF6207DF44F008F1696 /* BlackLogViewController.m in Sources */,
 				CEAD19D7207DDD5D008F1696 /* BaseInfoTableViewController.m in Sources */,
@@ -2572,6 +2768,7 @@
 				CE864447206F9675002FE9E7 /* MessageListController.m in Sources */,
 				CE864449206F9675002FE9E7 /* MessageParama.m in Sources */,
 				CEAD1A16207DE25B008F1696 /* CSTableViewController.m in Sources */,
+				ADBD8DF1207DE89D0021B600 /* HGMyPointController.m in Sources */,
 				CE769DEC206A56C5000F931F /* HGHttpTool.m in Sources */,
 				AD0396CE20731DD40082C817 /* HGContactController.m in Sources */,
 				CEAD1AA0207DF356008F1696 /* MenteeCollectionViewController.m in Sources */,

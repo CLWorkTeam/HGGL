@@ -19,6 +19,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [self setSVProgress];
     [self setWindow];
+    [self setSVProgress];
     
     return YES;
 }

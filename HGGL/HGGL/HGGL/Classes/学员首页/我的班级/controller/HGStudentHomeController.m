@@ -10,10 +10,19 @@
 #import "HGNavigationController.h"
 #import "CurrViewController.h"
 #import "MessageListController.h"
+#import "HGMyPointController.h"
+#import "HGItemDataController.h"
+#import "HGMyDataViewController.h"
+#import "HGItemCertController.h"
+#import "HGContactUSViewController.h"
+
 @interface HGStudentHomeController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong) UIImageView *imageV;
 @property (nonatomic,strong) UITableView *tableV;
+
+@property (nonatomic,strong) NSArray *teachersAry;
+
 
 @end
 
@@ -23,6 +32,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.name = @"我的班级";
+    self.teachersAry = @[@"",@"",@"",@"",@"",@""];
     [self.leftBtn setImage:[UIImage imageNamed:@"icon_schedule"] forState:UIControlStateNormal];
     [self.leftBtn addTarget:self action:@selector(schedule) forControlEvents:UIControlEventTouchUpInside];
     [self.rightBtn addTarget:self action:@selector(message) forControlEvents:UIControlEventTouchUpInside];
@@ -43,7 +53,7 @@
 }
 - (void)addTableview{
     
-    UITableView *tableV = [[UITableView alloc]initWithFrame:CGRectMake(0,self.bar.maxY , HGScreenWidth, HGScreenHeight - self.bar.maxY) style:UITableViewStyleGrouped];
+    UITableView *tableV = [[UITableView alloc]initWithFrame:CGRectMake(0,self.bar.maxY , HGScreenWidth, HGScreenHeight - self.bar.maxY - HGTabbarH) style:UITableViewStyleGrouped];
     tableV.separatorStyle = UITableViewCellSeparatorStyleNone;
     tableV.backgroundColor = [UIColor whiteColor];
     tableV.rowHeight = 120;
@@ -81,7 +91,7 @@
 
 - (UITableViewCell *)secondSectionCell{
     
-    UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"UITableViewCell"];
+    UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"UITableViewCell1"];
     for (UIView *subview in cell.contentView.subviews) {
         [subview removeFromSuperview];
     }
@@ -104,6 +114,7 @@
         btn.titleLabel.textAlignment = NSTextAlignmentCenter;
         btn.layer.masksToBounds = YES;
         btn.layer.cornerRadius = 5;
+        [btn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
         if (i==0) {
             [btn setImage:[UIImage imageNamed:@"icon_manual"] forState:UIControlStateNormal];
             [btn setTitle:@"学员手册" forState:UIControlStateNormal];
@@ -134,6 +145,7 @@
         btn.titleLabel.textAlignment = NSTextAlignmentCenter;
         btn.layer.masksToBounds = YES;
         btn.layer.cornerRadius = 5;
+        [btn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
         if (i==0) {
             [btn setImage:[UIImage imageNamed:@"icon_fill_station"] forState:UIControlStateNormal];
             [btn setTitle:@"填报接站信息" forState:UIControlStateNormal];
@@ -151,13 +163,145 @@
     btn.frame = CGRectMake(gap, (h + gap)*2, HGScreenWidth - 2*gap, h);
     btn.layer.masksToBounds = YES;
     btn.layer.cornerRadius = 5;
+    [btn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
     [cell.contentView addSubview:btn];
     
     return cell;
 }
 
+- (UITableViewCell *)thirdSectionCell{
+    
+    UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"UITableViewCell2"];
+    for (UIView *subview in cell.contentView.subviews) {
+        [subview removeFromSuperview];
+    }
+    
+    UIView *contentV = [[UIView alloc]initWithFrame:CGRectMake(10,0, HGScreenWidth-20, 245)];
+    contentV.backgroundColor = [UIColor whiteColor];
+    [cell.contentView addSubview:contentV];
+    
+    UIView *titleV = [[UIView alloc]initWithFrame:CGRectMake(0, 0, contentV.width, 50)];
+    titleV.backgroundColor = HGColor(249, 227, 249, 1);
+    [contentV addSubview:titleV];
+    
+    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:titleV.bounds byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:CGSizeMake(5, 5)];
+    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+    maskLayer.frame = titleV.bounds;
+    maskLayer.path = maskPath.CGPath;
+    titleV.layer.mask = maskLayer;
+
+    UILabel *titleLab = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, 100, 10)];
+    titleLab.font = [UIFont boldSystemFontOfSize:24];
+    titleLab.text = @"基本信息";
+    titleLab.textColor = HGColor(82,118, 215, 1);
+    [titleLab sizeToFit];
+    titleLab.centerY = titleV.centerY;
+    [titleV addSubview:titleLab];
+    
+    UIView *whiteV = [[UIView alloc]initWithFrame:CGRectMake(0, titleV.maxY, contentV.width, 185)];
+    whiteV.backgroundColor = [UIColor whiteColor];
+    whiteV.layer.borderColor = HGColor(249, 202, 168, 1).CGColor;
+    whiteV.layer.borderWidth = 1;
+    [contentV addSubview:whiteV];
+    
+    UILabel *classLab = [[UILabel alloc]initWithFrame:CGRectMake(10, 15, 100, 10)];
+    classLab.font = [UIFont boldSystemFontOfSize:20];
+    classLab.text = @"班级简介:";
+    classLab.textColor = [UIColor blackColor];
+    [classLab sizeToFit];
+    [whiteV addSubview:classLab];
+
+    UILabel *timeLab = [[UILabel alloc]initWithFrame:CGRectMake(classLab.x, classLab.maxY+40, 100, 10)];
+    timeLab.font = [UIFont boldSystemFontOfSize:20];
+    timeLab.text = @"培训时间:";
+    timeLab.textColor = [UIColor blackColor];
+    [timeLab sizeToFit];
+    [whiteV addSubview:timeLab];
+    
+    UILabel *numLab = [[UILabel alloc]initWithFrame:CGRectMake(classLab.x, timeLab.maxY+10, 100, 10)];
+    numLab.font = [UIFont boldSystemFontOfSize:20];
+    numLab.text = @"培训人数:";
+    numLab.textColor = [UIColor blackColor];
+    [numLab sizeToFit];
+    [whiteV addSubview:numLab];
+    
+    UILabel *teacherLab = [[UILabel alloc]initWithFrame:CGRectMake(classLab.x, numLab.maxY+10, 100, 10)];
+    teacherLab.font = [UIFont boldSystemFontOfSize:20];
+    teacherLab.text = @"班主任:";
+    teacherLab.textColor = [UIColor blackColor];
+    [teacherLab sizeToFit];
+    [whiteV addSubview:teacherLab];
+    
+    return cell;
+}
+
+- (UITableViewCell *)fourthSectionCell{
+    
+    UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"UITableViewCell3"];
+    for (UIView *subview in cell.contentView.subviews) {
+        [subview removeFromSuperview];
+    }
+    
+    CGFloat h = 80;
+
+    UIView *contentV = [[UIView alloc]initWithFrame:CGRectMake(10,0, HGScreenWidth-20, 50 + 80*self.teachersAry.count)];
+    contentV.backgroundColor = [UIColor whiteColor];
+    [cell.contentView addSubview:contentV];
+    
+    UIView *titleV = [[UIView alloc]initWithFrame:CGRectMake(0, 0, contentV.width, 50)];
+    titleV.backgroundColor = HGColor(249, 227, 249, 1);
+    [contentV addSubview:titleV];
+    
+    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:titleV.bounds byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:CGSizeMake(5, 5)];
+    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+    maskLayer.frame = titleV.bounds;
+    maskLayer.path = maskPath.CGPath;
+    titleV.layer.mask = maskLayer;
+    
+    UILabel *titleLab = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, 100, 10)];
+    titleLab.font = [UIFont boldSystemFontOfSize:24];
+    titleLab.text = @"基本信息";
+    titleLab.textColor = HGColor(82,118, 215, 1);
+    [titleLab sizeToFit];
+    titleLab.centerY = titleV.centerY;
+    [titleV addSubview:titleLab];
+    
+    CGFloat x = 5;
+    CGFloat y = 0;
+    CGFloat w = contentV.width - 10;
+    
+    UIView *whiteV = [[UIView alloc]initWithFrame:CGRectMake(0, titleV.maxY, contentV.width, h * self.teachersAry.count)];
+    whiteV.backgroundColor = [UIColor whiteColor];
+    whiteV.layer.borderColor = HGColor(249, 202, 168, 1).CGColor;
+    whiteV.layer.borderWidth = 1;
+    [contentV addSubview:whiteV];
+
+    for (int i = 0; i < self.teachersAry.count; i++) {
+        
+        y = h * i;
+        
+        UIView *teacherV = [[UIView alloc]initWithFrame:CGRectMake(x, y, w, h)];
+        teacherV.backgroundColor = [UIColor whiteColor];
+        [whiteV addSubview:teacherV];
+        
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(x, 0, 1000, 10)];
+        label.text = @"主讲人/主持人:";
+        label.font = [UIFont systemFontOfSize:16];
+        label.textColor = [UIColor blackColor];
+        [label sizeToFit];
+        label.y = h - label.height - 8;
+        [teacherV addSubview:label];
+        
+        UIView *lineV = [[UIView alloc]initWithFrame:CGRectMake(0, h-1, w, 1)];
+        lineV.backgroundColor = HGColor(249, 202, 168, 1);
+        [teacherV addSubview:lineV];
+    }
+    
+    return cell;
+}
+
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 2;
+    return 4;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -190,6 +334,30 @@
         }
         return cell;
 
+    }else if (indexPath.section==2){
+        static NSString *ID = @"section2";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+        if (cell==nil) {
+            
+            cell = [self thirdSectionCell];
+            
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+        }
+        return cell;
+
+    }else if (indexPath.section==3){
+        static NSString *ID = @"section3";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+        if (cell==nil) {
+            
+            cell = [self fourthSectionCell];
+            
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+        }
+        return cell;
+        
     }
     return nil;
 }
@@ -198,9 +366,11 @@
     if (indexPath.section==0) {
         return 150;
     }else if (indexPath.section==1){
-        return 155;
+        return 140;
+    }else if(indexPath.section==2){
+        return 235;
     }else{
-        return 200;
+        return 50 + 80*self.teachersAry.count;
     }
 }
 
@@ -225,6 +395,27 @@
     return .1f;
 }
 
+- (void)btnClick:(anyButton *)sender{
+    
+    NSLog(@"%@",sender.titleLabel.text);
+    if ([sender.titleLabel.text isEqualToString:@"成绩单"]) {
+        HGMyPointController *vc = [[HGMyPointController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    if ([sender.titleLabel.text isEqualToString:@"项目资料"]) {
+        HGItemDataController *vc = [[HGItemDataController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    if ([sender.titleLabel.text isEqualToString:@"学员手册"]) {
+        HGMyDataViewController *vc = [[HGMyDataViewController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    if ([sender.titleLabel.text isEqualToString:@"餐饮签退"]) {
+        HGContactUSViewController *vc = [[HGContactUSViewController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
