@@ -10,5 +10,6 @@
 
 @interface CourseTableViewController : UITableViewController
 @property (nonatomic,copy) NSString *teacher_id;
+@property (nonatomic,copy) void(^selectedRow)(id vc);
 -(void)showError;
 @end

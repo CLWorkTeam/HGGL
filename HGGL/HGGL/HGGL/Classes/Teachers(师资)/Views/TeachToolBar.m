@@ -8,7 +8,7 @@
 
 #import "TeachToolBar.h"
 #import "UIView+Frame.h"
-
+#define bothMargin 10
 @interface TeachToolBar()
 @property (nonatomic,strong) NSArray *arr;
 @property (nonatomic,strong) NSMutableArray *butArr;
@@ -20,7 +20,7 @@
 -(NSArray *)arr
 {
     if (_arr == nil) {
-        _arr = [NSArray arrayWithObjects:@"基本信息",@"档案/介绍",@"教授课程",@"授课评分", nil];
+        _arr = [NSArray arrayWithObjects:@"基本信息",@"课程信息",@"授课记录", nil];
     }
     return _arr;
 }
@@ -35,6 +35,7 @@
 {
     if(self == [super initWithFrame:frame])
     {
+        self.backgroundColor = [UIColor whiteColor];
         [self setSubviews];
     }
     return self;
@@ -44,7 +45,7 @@
     for (int i = 0; i<self.arr.count; i++) {
         UIButton *but = [UIButton buttonWithType:UIButtonTypeCustom];
         [but setTitle:[self.arr objectAtIndex:i] forState:UIControlStateNormal];
-        [but setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [but setTitleColor:HGMainColor forState:UIControlStateNormal];
         [but setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
         but.titleLabel.textAlignment = NSTextAlignmentCenter;
         but.titleLabel.font = ZKRButFont;
@@ -53,37 +54,38 @@
         but.tag = i;
         [but addTarget:self action:@selector(clickBut:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:but];
+        [but setBackgroundColor:HGGrayColor];
+        but.layer.masksToBounds = YES;
+        but.layer.cornerRadius = 5;
+        
         if (i == 0) {
-            [UIImage imageNamed:@"red_btn_pressed.9"];
+
             [self clickBut:but];
-            [but setBackgroundImage:[UIImage resizableLeftImageWithName:@"tab_left_normal"] forState:UIControlStateNormal];
-            [but setBackgroundImage:[UIImage resizableLeftImageWithName:@"tab_left_pressed"] forState:UIControlStateSelected];
-        }else if(i == self.arr.count-1)
-        {
-            [but setBackgroundImage:[UIImage resizableRightImageWithName:@"tab_right_normal"] forState:UIControlStateNormal];
-            [but setBackgroundImage:[UIImage resizableRightImageWithName:@"tab_right_pressed"] forState:UIControlStateSelected];
-        }else
-        {
-            UIImage *ima = [UIImage imageNamed:@"tab_white"];
-            UIImage *image = [ima stretchableImageWithLeftCapWidth:ima.size.width*0.5 topCapHeight:ima.size.height*0.5];
-            [but setBackgroundImage:image forState:UIControlStateNormal];
-            [but setBackgroundImage:[UIImage resizableImageWithName:@"tab_red"] forState:UIControlStateSelected];
+
         }
         [self.butArr addObject:but];
     }
-//    UIImageView *ima = [[UIImageView alloc]init];
-//    ima.backgroundColor = [UIColor redColor];
-//    self.ima = ima;
-//    [self addSubview:ima];
+
     
     
     
 }
 -(void)clickBut:(UIButton *)but
 {
+    if ([but isEqual:_selectedBut]) {
+        return;
+    }
     _selectedBut.selected = !_selectedBut.selected;
     but.selected = !but.selected;
+    _selectedBut.backgroundColor = HGGrayColor;
     _selectedBut = but;
+    but.backgroundColor = HGMainColor;
+//    if (but.selected) {
+//        but.backgroundColor = HGMainColor;
+//    }else
+//    {
+//        but.backgroundColor = HGGrayColor;
+//    }
     CGFloat w = (self.bounds.size.width-10)/self.arr.count;
     [UIView animateWithDuration:0.5 animations:^{
         self.ima.x = but.tag*w;
@@ -110,14 +112,20 @@
 -(void)layoutSubviews
 {
     [super layoutSubviews];
-    CGFloat w = (self.bounds.size.width-10)/self.arr.count;
+    CGFloat w = (self.bounds.size.width-(self.arr.count+1)*bothMargin)/self.arr.count;
     CGFloat h = 30;
-    CGFloat y = (self.height -30)/2;
+    CGFloat y = (self.height -h)/2;
 //    CGFloat x = (HGScreenWidth - w*3)/2;
     int i = 0;
     for (UIButton *but in self.butArr) {
-        but.frame = CGRectMake(5 + i*w, y, w, h);
+        but.frame = CGRectMake(bothMargin + i*(w+bothMargin), y, w, h);
         i++;
+    }
+    for (id view in self.subviews) {
+        if ([view isKindOfClass:(NSClassFromString(@"_UIToolbarContentView"))]) {
+            UIView *testView = view;
+            testView.userInteractionEnabled = NO;
+        }
     }
     //self.ima.frame = CGRectMake(0, h, w, 3);
 }

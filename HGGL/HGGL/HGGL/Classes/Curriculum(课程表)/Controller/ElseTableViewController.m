@@ -53,7 +53,7 @@
     
     // Configure the cell...
     CurrseList *cu = [self.arr objectAtIndex:indexPath.row];
-    cell.textLabel.text = cu.course_name;
+    cell.textLabel.text = cu.courseName;
     return cell;
 }
 

@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 @class CurrseList;
 @interface CurrBaseTableViewController : UITableViewController
-@property (nonatomic,copy)NSString *course_classroom;
-
-@property (nonatomic,strong) CurrseList *CL;
+//@property (nonatomic,copy)NSString *course_classroom;
+//
+@property (nonatomic,assign) BOOL noDetail;
+@property (nonatomic,copy)NSString *courseID;
 @end

@@ -11,17 +11,21 @@
 @interface Currse : NSObject
 //: 半天最大课程数量，-1表示无教室课程
 @property (nonatomic,copy)NSString *course_style;
+/**
+ 教室ID
+ */
+@property (nonatomic,copy) NSString *classroomId;
 //：教室(排序升序)
-@property (nonatomic,copy)NSString *course_classroom;
-//课节数
-@property (nonatomic,copy)NSString *course_classCount;
+@property (nonatomic,copy)NSString *classroomName;
+////课节数
+//@property (nonatomic,copy)NSString *course_classCount;
 
 //AM课表
-@property (nonatomic,strong)NSArray *course_AM;
+@property (nonatomic,strong)NSArray *morningList;
 //PM课表
-@property (nonatomic,strong)NSArray *course_PM;
+@property (nonatomic,strong)NSArray *afternoonList;
 //夜晚课表
-@property (nonatomic,strong)NSArray *course_NT;
+@property (nonatomic,strong)NSArray *nightList;
 
 +(instancetype)initWithDict:(NSDictionary *)dict;
 @end

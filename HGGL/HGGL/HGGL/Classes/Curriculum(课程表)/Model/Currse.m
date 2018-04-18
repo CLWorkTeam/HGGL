@@ -12,13 +12,20 @@
 -(instancetype)initWithDict:(NSDictionary *)dict
 {
     if (self = [super init]) {
-        self.course_style = dict[@"course_style"];
-        self.course_classroom = dict[@"course_classroom"];
-        self.course_classCount = dict[@"course_classCount"];
-        self.course_AM = dict[@"course_AM"];
-        self.course_PM = dict[@"course_PM"];
-        self.course_NT = dict[@"course_NT"];
-        
+//        self.course_style = dict[@"course_style"];
+        self.classroomName = dict[@"classroomName"];
+        self.classroomId = dict[@"classroomId"];
+        self.morningList = dict[@"morningList"];
+        self.afternoonList = dict[@"afternoonList"];
+        self.nightList = dict[@"nightList"];
+        NSInteger a = ((self.morningList.count>self.afternoonList.count)?self.morningList.count:self.afternoonList.count);
+        NSInteger b = ((a>self.nightList.count)?a:self.nightList.count);
+        if (b<=0) {
+            self.course_style = @"-1";
+        }else
+        {
+            self.course_style = [NSString stringWithFormat:@"%zd",b];
+        }
     }
     
     return self;
@@ -28,33 +35,34 @@
     
     return [[[self alloc] init] initWithDict:dict];
 }
--(void)setCourse_AM:(NSArray *)course_AM
+
+-(void)setMorningList:(NSArray *)morningList
 {
-    
     NSMutableArray *arr = [NSMutableArray array];
-    for (NSDictionary *dict in course_AM) {
+    for (NSDictionary *dict in morningList) {
         CurrseList *CL = [CurrseList initWithDict:dict];
         [arr addObject:CL];
     }
-    _course_AM = arr;
-    
+    _morningList = arr;
 }
--(void)setCourse_PM:(NSArray *)course_PM
+-(void)setAfternoonList:(NSArray *)afternoonList
 {
     NSMutableArray *arr = [NSMutableArray array];
-    for (NSDictionary *dict in course_PM) {
+    for (NSDictionary *dict in afternoonList) {
         CurrseList *CL = [CurrseList initWithDict:dict];
         [arr addObject:CL];
     }
-    _course_PM = arr;
+    _afternoonList = arr;
 }
--(void)setCourse_NT:(NSArray *)course_NT
+
+
+-(void)setNightList:(NSArray *)nightList
 {
     NSMutableArray *arr = [NSMutableArray array];
-    for (NSDictionary *dict in course_NT) {
+    for (NSDictionary *dict in nightList) {
         CurrseList *CL = [CurrseList initWithDict:dict];
         [arr addObject:CL];
     }
-    _course_NT = arr;
+    _nightList = arr;
 }
 @end

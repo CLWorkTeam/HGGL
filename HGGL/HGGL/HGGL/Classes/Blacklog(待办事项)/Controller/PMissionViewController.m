@@ -23,7 +23,7 @@
 {
     if (_parama == nil) {
         _parama = [[PMissionParama alloc]init];
-        _parama.user_id = [HGUserDefaults stringForKey:@"userID"];
+        _parama.user_id = [HGUserDefaults objectForKey:HGUserID];
     }
     return _parama;
 }

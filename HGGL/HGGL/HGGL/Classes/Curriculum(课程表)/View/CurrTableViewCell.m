@@ -84,14 +84,14 @@
         [self.butArr addObject:but];
         [self.contentView addSubview:but];
         but.tag = i;
-        but.course_classroom = cu.course_classroom;
+        but.course_classroom = cu.classroomName;
         
         
         //CurrseList *cl = [self.arr objectAtIndex:i-1];
         CGFloat currW = (HGScreenWidth - ClassroomW-HGSpace*5)/3;
         if (i == 0) {
             but.frame = CGRectMake(HGSpace, HGSpace, ClassroomW, j*(CurrseH+HGSpace)-HGSpace);
-            [but setTitle:cu.course_classroom forState:UIControlStateNormal];
+            [but setTitle:cu.classroomName forState:UIControlStateNormal];
             [but setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
             [but setBackgroundColor:[UIColor lightGrayColor]];
             self.but = but;
@@ -100,24 +100,24 @@
             //HGLog(@"%d",((i-1)/j == 0)&&i);
             but.frame = CGRectMake(HGSpace*2+ClassroomW, HGSpace+((i-1)%j)*(CurrseH+HGSpace), currW, CurrseH);
             
-            if (cu.course_AM.count>(i-1)) {
+            if (cu.morningList.count>(i-1)) {
                 
-                CurrseList *cl = [cu.course_AM objectAtIndex:i-1];
+                CurrseList *cl = [cu.morningList objectAtIndex:i-1];
                 but.CL = cl;
                // HGLog(@"早%@",cl.course_name);
                 [but addTarget:self action:@selector(clickBut:) forControlEvents:UIControlEventTouchUpInside];
-                [but setTitle:cl.course_name forState:UIControlStateNormal];
+                [but setTitle:[NSString stringWithFormat:@"%@-%@\n%@-%@",cl.startTime,cl.endTime,cl.courseName,cl.teacher] forState:UIControlStateNormal];
             }
             //[but setTitle:cl.course_name forState:UIControlStateNormal];
         }else if(((i-1)/j) == 1){
             //HGLog(@"222%d--%d",(i-1)/j == 1,j);
             but.frame = CGRectMake(HGSpace*3+ClassroomW+currW, HGSpace+((i-1)%j)*(CurrseH+HGSpace), currW, CurrseH);
-            if (cu.course_PM.count>(i-1-j)) {
-                CurrseList *cl = [cu.course_PM objectAtIndex:i-1-j];
+            if (cu.afternoonList.count>(i-1-j)) {
+                CurrseList *cl = [cu.afternoonList objectAtIndex:i-1-j];
                 but.CL = cl;
                 //HGLog(@"下%@",cl.teacher_pickup);
                 HGLog(@"1111%d",i);
-                [but setTitle:cl.course_name forState:UIControlStateNormal];
+                [but setTitle:[NSString stringWithFormat:@"%@-%@\n%@-%@",cl.startTime,cl.endTime,cl.courseName,cl.teacher] forState:UIControlStateNormal];
                 [but addTarget:self action:@selector(clickBut:) forControlEvents:UIControlEventTouchUpInside];
                 
             }
@@ -125,11 +125,11 @@
         }else
         {
             but.frame = CGRectMake(HGSpace*4+ClassroomW+2*currW, HGSpace, currW, j*(CurrseH+HGSpace)-HGSpace);
-            if (cu.course_NT.count >(i-1-2*j)) {
-                CurrseList *cl = [cu.course_NT firstObject];
+            if (cu.nightList.count >(i-1-2*j)) {
+                CurrseList *cl = [cu.nightList firstObject];
                 but.CL = cl;
-                HGLog(@"%@",cl.course_name);
-                [but setTitle:cl.course_name forState:UIControlStateNormal];
+                HGLog(@"%@",cl.courseName);
+                [but setTitle:[NSString stringWithFormat:@"%@-%@\n%@-%@",cl.startTime,cl.endTime,cl.courseName,cl.teacher] forState:UIControlStateNormal];
                 [but addTarget:self action:@selector(clickBut:) forControlEvents:UIControlEventTouchUpInside];
             }
             
@@ -143,44 +143,39 @@
 }
 -(void)clickRoom:(CurrBut *)but
 {
-    but.selected = !but.selected;
-    if (but.selected) {
-        ZKRCover *cover = [ZKRCover show];
-        cover.dimBackGround = YES;
-        CurrImageView *ima = [CurrImageView showInRect:CGRectMake(HGScreenWidth*0.1, HGScreenHeight*0.25, HGScreenWidth*0.8, HGScreenHeight*0.5)];
-        [HGKeywindow addSubview:ima];
-        //CurrPopTableViewController *CP = [[CurrPopTableViewController alloc]init];
-        self.pop.course_classroom = but.titleLabel.text;
-        self.pop.current_date = self.current_date;
-        self.pop.tableView.backgroundColor = [UIColor whiteColor];
-        ima.contentView = self.pop.tableView;
-        cover.ZKRCoverDismiss = ^(){
-            
-            [CurrImageView  dismiss];
-            but.selected = NO;
-            self.pop = nil;
-            
-        };
+//    but.selected = !but.selected;
+//    if (but.selected) {
+//        ZKRCover *cover = [ZKRCover show];
+//        cover.dimBackGround = YES;
+//        CurrImageView *ima = [CurrImageView showInRect:CGRectMake(HGScreenWidth*0.1, HGScreenHeight*0.25, HGScreenWidth*0.8, HGScreenHeight*0.5)];
+//        [HGKeywindow addSubview:ima];
+//        //CurrPopTableViewController *CP = [[CurrPopTableViewController alloc]init];
+//        self.pop.course_classroom = but.titleLabel.text;
+//        self.pop.current_date = self.current_date;
+//        self.pop.tableView.backgroundColor = [UIColor whiteColor];
+//        ima.contentView = self.pop.tableView;
+//        cover.ZKRCoverDismiss = ^(){
+//
+//            [CurrImageView  dismiss];
+//            but.selected = NO;
+//            self.pop = nil;
+//
+//        };
+//
+//    }else{
+//        [CurrImageView dismiss];
+//        self.pop = nil;
+//    }
 
-    }else{
-        [CurrImageView dismiss];
-        self.pop = nil;
-    }
-//    CurrImageView *ima = [CurrImageView showInRect:CGRectMake(HGScreenWidth*0.25, HGScreenHeight*0.25, HGScreenWidth*0.5, HGScreenHeight*0.5)];
-//    
-//    CurrPopTableViewController *CP = [[CurrPopTableViewController alloc]init];
-//    CP.course_classroom = but.titleLabel.text;
-//    CP.current_date = self.current_date;
-//    ima.contentView = CP.tableView;
     
 }
 -(void)clickBut:(CurrBut *)but
 {
     //HGLog(@"点击课程");
     CurrBaseTableViewController *base = [[CurrBaseTableViewController alloc]init];
-    base.course_classroom = but.course_classroom;
-    base.CL = but.CL;
-    base.CL = but.CL;
+//    base.course_classroom = but.course_classroom;
+    base.courseID = but.CL.courseId;
+//    base.CL = but.CL;
     if (_currButClick) {
         _currButClick(base);
     }

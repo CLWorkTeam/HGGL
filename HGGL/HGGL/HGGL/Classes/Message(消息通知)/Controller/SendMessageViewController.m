@@ -394,7 +394,7 @@
                 }
             }
             self.memberType = memberType;
-            NSString *user_id = [HGUserDefaults stringForKey:@"userID"];
+            NSString *user_id = [HGUserDefaults objectForKey:HGUserID];
             
             NSMutableDictionary *dic = [NSMutableDictionary dictionary];
             [dic setValue:[NSString stringWithFormat:@"%@", self.user_id] forKey:@"user_id"];

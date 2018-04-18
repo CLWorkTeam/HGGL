@@ -10,57 +10,18 @@
 #import "HGHttpTool.h"
 #import "Currse.h"
 #import "CurrseList.h"
-////#import "MBProgressHUD+Extend.h"
+//#import "MBProgressHUD+Extend.h"
 #import "CurrTableViewCell.h"
 #import "BaseTableViewCell.h"
 #import "CurrHeader.h"
-#import "ZKRCover.h"
-#import "PopTableViewController.h"
-#import "CurrImageView.h"
-#import "CurrentTableViewCell.h"
-#import "CurrseList.h"
-#import "HGHttpTool.h"
-////#import "MBProgressHUD+Extend.h"
 @interface CurrentTableViewController ()
 @property (nonatomic,strong) NSMutableArray *arr;
 @property (nonatomic,strong) NSMutableArray *currArr;
 @property (nonatomic,strong) NSMutableArray *otherArr;
-@property (nonatomic,strong) NSMutableArray *myCellArr;
-@property (nonatomic,strong) NSString *headerTitle;
-@property (nonatomic,strong) NSArray *categoryArr;
-@property (nonatomic, strong)UIButton *classRoomBtn;
-@property(nonatomic, strong)NSString *roomType;
-@property(nonatomic,copy) NSString *date;
-@property(nonatomic, strong)PopTableViewController *pop;
-
-
 @property (nonatomic,assign) BOOL isRefreshing;
 @end
 
 @implementation CurrentTableViewController
--(NSString *)roomType
-{
-    if (_roomType == nil) {
-        _roomType = @"1";
-    }
-    return _roomType;
-}
--(NSString *)headerTitle
-{
-    if (_headerTitle == nil) {
-        _headerTitle = @"教室资源";
-    }
-    return _headerTitle;
-}
--(NSMutableArray *)myCellArr
-{
-    if (_myCellArr == nil) {
-        _myCellArr = [NSMutableArray array];
-        
-    }
-    return _myCellArr;
-    
-}
 -(NSMutableArray *)currArr
 {
     if (_currArr == nil) {
@@ -88,61 +49,59 @@
     [super viewDidLoad];
     //self.tableView.bounces = NO;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    //[self postWith:@"2015-08-06"];
+    // Uncomment the following line to preserve selection between presentations.
+    // self.clearsSelectionOnViewWillAppear = NO;
     
+    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 -(void)postWith:(NSString *)date
 {
-
-    self.date = date;
-//    NSLog(@"self.data = %@", self.date);
-    [self.myCellArr removeAllObjects];
-//    [self.otherArr removeAllObjects];
+//    if (_isRefreshing) {
+//        return;
+//    }
+//    _isRefreshing = YES;
+    [self.currArr removeAllObjects];
+    [self.otherArr removeAllObjects];
     [self.tableView reloadData];
-    
-    NSString *url = [HGURL stringByAppendingString:@"/Project/getClassroomToday.do"];
-    NSString *user_id = [HGUserDefaults stringForKey:@"userID"];
-    [HGHttpTool POSTWithURL:url parameters:@{@"course_date":date, @"roomType":self.roomType,@"tokenval":user_id} success:^(id responseObject) {
+    [SVProgressHUD showWithStatus:@"请稍后..."];
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
+    NSString *url = [HGURL stringByAppendingString:@"Course/getCourseList.do"];
+    [HGHttpTool POSTWithURL:url parameters:@{@"course_date":date} success:^(id responseObject) {
+        [SVProgressHUD dismiss];
         NSArray *array = [NSArray array];
-        HGLog(@"%@",self.roomType);
+//        _isRefreshing = NO;
         array = [responseObject objectForKey:@"data"];
-
          HGLog(@"-----%@",array);
         NSString *status = [responseObject objectForKey:@"status"];
-//        status = @"1";
         if([status isEqualToString:@"0"])
         {
             [SVProgressHUD showErrorWithStatus:[responseObject objectForKey:@"message"]];
-        }else
-        {
-//            for (NSDictionary *dict in array) {
-//                Currse *cu = [Currse initWithDict:dict];
-//                if (cu.course_style.intValue == -1) {
-//                    for (CurrseList *cl in cu.course_AM) {
-//                        [self.otherArr addObject:cl];
-//                    }
-//                    
-//                    for (CurrseList *cl in cu.course_PM) {
-//                        [self.otherArr addObject:cl];
-//                    }
-//                    for (CurrseList *cl in cu.course_NT) {
-//                        [self.otherArr addObject:cl];
-//                    }
-//                }else{
-//                    [self.currArr addObject:cu];
-//                }
-//                
-//            }
-            for (NSDictionary *dic in array) {
-                CurrseList *currse = [CurrseList initWithDict:dic];
-                [self.myCellArr addObject:currse];
+        }else{
+            for (NSDictionary *dict in array) {
+                Currse *cu = [Currse initWithDict:dict];
+                if (cu.course_style.intValue == -1) {
+                    for (CurrseList *cl in cu.morningList) {
+                        [self.otherArr addObject:cl];
+                    }
+                    
+                    for (CurrseList *cl in cu.afternoonList) {
+                        [self.otherArr addObject:cl];
+                    }
+                    for (CurrseList *cl in cu.nightList) {
+                        [self.otherArr addObject:cl];
+                    }
+                }else{
+                    [self.currArr addObject:cu];
+                }
                 
             }
-
-            
         }
         [self.tableView reloadData];
     } failure:^(NSError *error) {
-//        HGLog(@"%@",error);
+        [SVProgressHUD dismiss];
+        HGLog(@"%@",error);
     }];
 }
 - (void)didReceiveMemoryWarning {
@@ -151,142 +110,136 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return  40;
+    if (section == 0) {
+        return  40+HGSpace;
+    }else
+    {
+        return 10;
+    }
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-//        CurrHeader *header= [[CurrHeader alloc] init];
-        UIView *view = [[UIView alloc] init];
-        view.backgroundColor = [UIColor whiteColor];
-        view.frame = CGRectMake(0, 0, HGScreenWidth, 45);
-        UIButton *classRoomBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        classRoomBtn.backgroundColor = [UIColor clearColor];
-        [classRoomBtn setTitle:self.headerTitle forState:UIControlStateNormal];
-        classRoomBtn.frame = CGRectMake(0, 0, HGScreenWidth/2, 40);
-        classRoomBtn.titleLabel.font = [UIFont systemFontOfSize:HGTextFont1];
-        [classRoomBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [classRoomBtn addTarget:self action:@selector(classClick:) forControlEvents:UIControlEventTouchUpInside];
-        [view addSubview:classRoomBtn];
-        self.classRoomBtn = classRoomBtn;
-        
-        UIView *viewLine = [[UIView alloc] init];
-        viewLine.frame = CGRectMake(HGScreenWidth/2-1, 15, 1, 15);
-        viewLine.backgroundColor = HGColor(220, 220, 220,1);
-        [view addSubview:viewLine];
-        
-        UIView *viewLine1 = [[UIView alloc] init];
-        viewLine1.frame = CGRectMake(5, 39, HGScreenWidth-10, 1);
-        viewLine1.backgroundColor = HGColor(220, 220, 220,1);
-        [view addSubview:viewLine1];
-        
-        UILabel *takeUp = [[UILabel alloc] init];
-        takeUp.frame = CGRectMake(HGScreenWidth/2, 0, HGScreenWidth/2, 40);
-        takeUp.textAlignment = NSTextAlignmentCenter;
-        takeUp.font = [UIFont systemFontOfSize:HGTextFont1];
-        takeUp.text = @"占用情况";
-        [view addSubview:takeUp];
-        
-        return view;
-   
+    if (section == 0) {
+        CurrHeader *header= [[CurrHeader alloc] init];
+        return header;
+    }
+    return nil;
 }
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+#warning Potentially incomplete method implementation.
+    // Return the number of sections.
+    return 2;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-        return self.myCellArr.count;
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+#warning Incomplete method implementation.
+    // Return the number of rows in the section.
+    
+    if (section == 0) {
+        return self.currArr.count;
+    }else
+    {
+        return self.otherArr.count;
+    }
 }
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    static NSString *ID1 = @"cell1";
+    static NSString *ID1 = @"cell1";
     
-//    if (indexPath.section == 0) {
-    
-//        CurrTableViewCell *cell = [CurrTableViewCell cellWithTabView:self.tableView];
-//        cell.cu = [self.currArr objectAtIndex:indexPath.row];
-//        cell.current_date = self.current_date;
-//        __weak typeof (self) weekSelf = self;
-//        cell.currCellClick = ^(id vc)
-//        {
-//            if (weekSelf.currentBlock) {
-//                weekSelf.currentBlock(vc);
-//            }
-//        };
-//        cell.currButClick = ^(id vc )
-//        {
-//            if (weekSelf.currentBlock) {
-//                weekSelf. currentBlock(vc);
-//            }
-//        };
-        CurrentTableViewCell *cell = [CurrentTableViewCell cellWithTabView:tableView];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        CurrseList *model = [self.myCellArr objectAtIndex:indexPath.row];
-        cell.currse = model;
+    if (indexPath.section == 0) {
+        
+        CurrTableViewCell *cell = [CurrTableViewCell cellWithTabView:self.tableView];
+        cell.cu = [self.currArr objectAtIndex:indexPath.row];
+        cell.current_date = self.current_date;
+        __weak typeof (self) weekSelf = self;
+        cell.currCellClick = ^(id vc)
+        {
+            if (weekSelf.currentBlock) {
+                weekSelf.currentBlock(vc);
+            }
+        };
+        cell.currButClick = ^(id vc )
+        {
+            if (weekSelf.currentBlock) {
+                weekSelf. currentBlock(vc);
+            }
+        };
         return cell;
-//    }
-//    else{
-//        
-////        BaseTableViewCell *cell = [BaseTableViewCell cellWithTabView:self.tableView];
-//        
-////        cell.name = cu.course_classroom;
-//        CurrseList *cl = [self.otherArr objectAtIndex:indexPath.row];
-//        UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:ID1];
-//        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID1];
-//        
-//        cell.textLabel.text = cl.course_name;
-//        return cell;
-//        
-//    }
+    }else{
+        
+//        BaseTableViewCell *cell = [BaseTableViewCell cellWithTabView:self.tableView];
+        
+//        cell.name = cu.course_classroom;
+        CurrseList *cl = [self.otherArr objectAtIndex:indexPath.row];
+        UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:ID1];
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID1];
+        
+        cell.textLabel.text = cl.courseName;
+        return cell;
+        
+    }
 
  
     
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-        return 30;
+    if (indexPath.section == 0) {
+        Currse *cu = [self.currArr objectAtIndex:indexPath.row];
+        NSInteger i = cu.course_style .integerValue;
+        return i*(45+HGSpace);
+    }else
+    {
+        return 45;
+    }
 }
--(void)classClick:(UIButton *)btn
-{
-//    HGLog(@"点击");
-    ZKRCover *cover = [ZKRCover show];
-    cover.dimBackGround = YES;
-    cover.ZKRCoverDismiss = ^(){
-        
-        [CurrImageView  dismiss];};
-    self.categoryArr = @[@"教室资源", @"研讨室资源", @"会议室资源"];
-    CGRect rect = CGRectMake(0, 226, HGScreenWidth/2, 44*self.categoryArr.count);
-    PopTableViewController *pop = [PopTableViewController setPopViewWith:rect And:self.categoryArr];
-    self.pop = pop;
-    __weak typeof(self)weakSelf = self;
-    
-    pop.selectedCell = ^(NSString *str){
-        
-        
-//        [weakSelf.classRoomBtn setTitle:str forState:UIControlStateNormal];
-        HGLog(@"%@",weakSelf.classRoomBtn.titleLabel.text);
-            if ([str isEqualToString:@"教室资源"]) {
-                weakSelf.roomType = @"1";
-                
-                
-            } else if ([str isEqualToString:@"研讨室资源"]){
-                weakSelf.roomType = @"2";
-            } else
-            {
-                weakSelf.roomType = @"3";
-            }
-        weakSelf.headerTitle = str;
-        [weakSelf postWith:self.date];
-        [CurrImageView  dismiss];
-        
-        //这句话必须的加上,否则上面会有一层透明的遮罩
-        [ZKRCover dismiss];
-        
-        cover.dimBackGround = NO;
-    };
-    
+
+
+/*
+// Override to support conditional editing of the table view.
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Return NO if you do not want the specified item to be editable.
+    return YES;
 }
+*/
+
+/*
+// Override to support editing the table view.
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        // Delete the row from the data source
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
+        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+    }   
+}
+*/
+
+/*
+// Override to support rearranging the table view.
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+}
+*/
+
+/*
+// Override to support conditional rearranging of the table view.
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Return NO if you do not want the item to be re-orderable.
+    return YES;
+}
+*/
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
 
 @end

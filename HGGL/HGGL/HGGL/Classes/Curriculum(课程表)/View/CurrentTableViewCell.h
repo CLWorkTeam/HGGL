@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ClassCountViewController.h"
+//#import "ClassCountViewController.h"
 
 @class CurrseList;
 @interface CurrentTableViewCell : UITableViewCell
 @property(nonatomic, strong)CurrseList *currse;
-@property(nonatomic, strong)ClassCountViewController *classVC;
+//@property(nonatomic, strong)ClassCountViewController *classVC;
 //@property(strong,nonatomic)void(^btnClick)(NSInteger);
 
 @property(nonatomic, strong)UILabel *course_classroom;

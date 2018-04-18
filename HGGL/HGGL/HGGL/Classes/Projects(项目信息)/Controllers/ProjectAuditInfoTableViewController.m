@@ -80,7 +80,7 @@
     NSString *url = [HGURL stringByAppendingString:@"Project/getApproveProjects.do"];
     parama.page = @"1";
 
-    NSString *user_id = [HGUserDefaults stringForKey:@"userID"];
+    NSString *user_id = [HGUserDefaults objectForKey:HGUserID];
     NSMutableDictionary *par =[NSMutableDictionary dictionaryWithDictionary:parama.keyValues];
     [par setValue:user_id forKey:@"tokenval"];
     [HGHttpTool POSTWithURL:url parameters:par success:^(id responseObject) {
@@ -120,7 +120,7 @@
     }
     _isRefreshing = YES;
     NSString *url = [HGURL stringByAppendingString:@"Project/getApproveProjects.do"];
-    NSString *user_id = [HGUserDefaults stringForKey:@"userID"];
+    NSString *user_id = [HGUserDefaults objectForKey:HGUserID];
     NSMutableDictionary *par =[NSMutableDictionary dictionaryWithDictionary:parama.keyValues];
     [par setValue:user_id forKey:@"tokenval"];
     [HGHttpTool POSTWithURL:url parameters:par success:^(id responseObject) {

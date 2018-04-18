@@ -69,7 +69,7 @@
 -(void)loginWith:(NSString *)account and:(NSString *)pw
 {
     NSString *url = [HGURL stringByAppendingString:@"User/Login.do"];
-    NSString *user_id = [HGUserDefaults stringForKey:@"userID"];
+    NSString *user_id = [HGUserDefaults objectForKey:HGUserID];
     [HGHttpTool POSTWithURL:url parameters:@{@"account":account,@"password":pw,@"tokenval":user_id} success:^(id responseObject) {
         NSString *status = [responseObject objectForKey:@"status"];
         if ([status isEqualToString:@"-1"]) {
@@ -210,7 +210,7 @@
         }
     
     }
-    NSString *user_id = [HGUserDefaults stringForKey:@"userID"];
+    NSString *user_id = [HGUserDefaults objectForKey:HGUserID];
     NSString *url = [HGURL stringByAppendingString:@"User/infoChange.do"];
     [HGHttpTool POSTWithURL:url parameters:@{@"user_duty":self.U.user_duty,@"user_email":self.U.user_email,@"user_id":self.U.user_id,@"user_idCard":self.U.user_idCard,@"user_name":self.U.user_name,@"user_note":self.U.user_note,@"user_phone":self.U.user_phone,@"user_sex":self.U.user_sex,@"user_tel":self.U.user_tel,@"tokenval":user_id} success:^(id responseObject) {
          NSString *status = [responseObject objectForKey:@"status"];

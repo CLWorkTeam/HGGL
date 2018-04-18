@@ -53,7 +53,7 @@ static NSString * const reuseIdentifier = @"Cell";
     
 //    NSArray *array = @[@{@"memberName":@"张欣荣",@"memberId":@"1"},@{@"memberName":@"吴海燕",@"memberId":@"2"},@{@"memberName":@"刘天奇",@"memberId":@"3"},@{@"memberName":@"吴敏霞",@"memberId":@"4"},@{@"memberName":@"郭跃",@"memberId":@"5"},@{@"memberName":@"董成鹏",@"memberId":@"6"},@{@"memberName":@"王磊",@"memberId":@"7"},@{@"memberName":@"于小海",@"memberId":@"8"},@{@"memberName":@"吕玉树",@"memberId":@"9"},@{@"memberName":@"刘天宝",@"memberId":@"10"},@{@"memberName":@"王向阳",@"memberId":@"11"},@{@"memberName":@"韩归属",@"memberId":@"12"},@{@"memberName":@"张天翼",@"memberId":@"13"},@{@"memberName":@"向天",@"memberId":@"14"},@{@"memberName":@"徐冰童",@"memberId":@"15"},@{@"memberName":@"李阳",@"memberId":@"16"},@{@"memberName":@"娄底",@"memberId":@"17"}];
     HGLog(@"self.role.roleId = %@", self.role.roleId);
-    NSString *user_id = [HGUserDefaults stringForKey:@"userID"];
+    NSString *user_id = [HGUserDefaults objectForKey:HGUserID];
     [HGHttpTool POSTWithURL:[HGURL stringByAppendingString:@"User/getUserByRole.do"] parameters:@{@"roleId":self.role.roleId,@"tokenval":user_id} success:^(id responseObject) {
         NSArray *array = [responseObject objectForKey:@"data"];
         HGLog(@"array = %@", array);

@@ -33,12 +33,18 @@
 
 static NSString * const reuseIdentifier = @"Cell";
 
-//授课课程
+//课程信息
 -(CourseTableViewController *)course
 {
     if (_course == nil) {
-        _course = [[CourseTableViewController  alloc]init];
+        _course = [[CourseTableViewController alloc]init];
         _course.teacher_id = self.teacher_id;
+        __weak typeof (self) weekSelf = self;
+        _course.selectedRow = ^(id vc){
+            if (weekSelf.PushVC) {
+                weekSelf.PushVC (vc);
+            }
+        };
     }
     return _course;
 }
@@ -82,7 +88,7 @@ static NSString * const reuseIdentifier = @"Cell";
 {
     if (_arr == nil) {
 
-        _arr = [NSMutableArray arrayWithObjects:self.base.tableView,self.intro.tableView,self.course.tableView,self.score.tableView, nil];
+        _arr = [NSMutableArray arrayWithObjects:self.base.tableView,self.course.tableView,self.score.tableView, nil];
     }
     return _arr;
 }

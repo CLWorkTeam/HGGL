@@ -7,8 +7,10 @@
 //
 
 #import "ScoreTableViewController.h"
-#import "ScoreTableViewCell.h"
-#import "ScoreList.h"
+//#import "ScoreTableViewCell.h"
+#import "HGTRcordTableViewCell.h"
+//#import "ScoreList.h"
+#import "HGTeachRecord.h"
 #import "HGHttpTool.h"
 #import "CSTableViewController.h"
 ////#import "MBProgressHUD+Extend.h"
@@ -28,8 +30,8 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSString *url = [HGURL stringByAppendingString:@"Teacher/getTeacherScore.do"];
-    NSString *user_id = [HGUserDefaults stringForKey:@"userID"];
+    NSString *url = [HGURL stringByAppendingString:@"Teacher/getRecord.do?"];
+    NSString *user_id = [HGUserDefaults objectForKey:HGUserID];
     [HGHttpTool POSTWithURL:url parameters:@{@"teacher_id":self.teacher_id,@"tokenval":user_id} success:^(id responseObject) {
         NSArray *array = [NSArray array];
         array = [responseObject objectForKey:@"data"];
@@ -39,8 +41,8 @@
             self.error =  [responseObject objectForKey:@"message"];
         }else{
         for (NSDictionary *dict in array) {
-            ScoreList *SList = [ScoreList scoreWithDict:dict];
-            [self.array addObject:SList];
+            HGTeachRecord *record = [HGTeachRecord initWithDict:dict];
+            [self.array addObject:record];
             
         }
         [self.tableView reloadData];}
@@ -82,28 +84,24 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    ScoreTableViewCell *cell = [ScoreTableViewCell cellWithTabView:self.tableView];
-    cell.score = [self.array objectAtIndex:indexPath.row];
+    HGTRcordTableViewCell *cell = [HGTRcordTableViewCell cellWithTabView:self.tableView];
+    WeakSelf
+    cell.scoreBlock = ^(id vc) {
+        if (weakSelf.selectedRow) {
+            weakSelf.selectedRow(vc);
+        }
+    };
+    cell.record = [self.array objectAtIndex:indexPath.row];
     return cell;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ScoreList *sc = [self.array objectAtIndex:indexPath.row];
-    
-    return sc.cellH>(4*minH+5*CellHMargin)?sc.cellH:(4*minH+5*CellHMargin);
+//    ScoreList *sc = [self.array objectAtIndex:indexPath.row];
+//
+//    return sc.cellH>(4*minH+5*CellHMargin)?sc.cellH:(4*minH+5*CellHMargin);
+    return 2*minH+30+4*CellHMargin;
 }
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    
-    CSTableViewController *cs = [[CSTableViewController alloc]init];
-    ScoreList *sc = [self.array objectAtIndex:indexPath.row];
-    cs.projectCourse_id = sc.projectCourse_id;
-    if (_selectedRow) {
-        _selectedRow(cs);
-    }
-    
-//    HGLog(@"cs.projectCourse_id=%@",cs.projectCourse_id);
-}
+
 -(void)dealloc
 {
     //NSLog(@"score");

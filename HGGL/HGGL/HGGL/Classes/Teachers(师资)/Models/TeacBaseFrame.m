@@ -27,9 +27,9 @@
     _baseInfo = baseInfo;
     
     NSArray *array1 = [NSArray arrayWithObjects:baseInfo.teacher_national,baseInfo.teacher_bith,baseInfo.teacher_cerType,baseInfo.teacher_cerNum, nil];
-    NSArray *array2 = [NSArray arrayWithObjects:baseInfo.teacher_type,baseInfo.teacher_prof,baseInfo.teacher_class,baseInfo.teacher_pay, nil];
-    NSArray *array3 = [NSArray arrayWithObjects:baseInfo.teacher_workUnit,baseInfo.teacher_workPlace,baseInfo.teacher_title, nil];
-    NSArray *array4 = [NSArray arrayWithObjects:baseInfo.teacher_tel,baseInfo.teacher_oficTel,baseInfo.teacher_fax,baseInfo.teacher_mail,baseInfo.teacher_zipCode, nil];
+    NSArray *array2 = [NSArray arrayWithObjects:baseInfo.teacher_type,baseInfo.teacher_area,baseInfo.teacher_prof,baseInfo.teacher_class,baseInfo.teacher_pay, nil];
+    NSArray *array3 = [NSArray arrayWithObjects:baseInfo.teacher_workUnit,baseInfo.teacher_title,baseInfo.teacher_workPlace,baseInfo.teacher_zipCode, nil];
+    NSArray *array4 = [NSArray arrayWithObjects:baseInfo.teacher_tel,baseInfo.teacher_oficTel,baseInfo.teacher_fax,baseInfo.teacher_mail, nil];
     self.baseArr = [NSArray arrayWithObjects:array2,array3,array1,array4, nil];
    
     

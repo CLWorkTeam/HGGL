@@ -8,7 +8,8 @@
 
 #import "AppDelegate.h"
 #import "HGLoginController.h"
-
+#import "HGSourceViewController.h"
+#import "HGNavigationController.h"
 @interface AppDelegate ()
 
 @end
@@ -18,6 +19,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [self setSVProgress];
+    [self test];
+    return YES;
     [self setWindow];
     [self setSVProgress];
     
@@ -36,6 +39,14 @@
     [SVProgressHUD setMinimumDismissTimeInterval:1];
     [SVProgressHUD setMaximumDismissTimeInterval:2];
     [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
+}
+-(void)test
+{
+    self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
+    HGSourceViewController *source = [[HGSourceViewController alloc]init];
+    HGNavigationController *nav = [[HGNavigationController alloc]initWithRootViewController:source];
+    self.window.rootViewController = nav;
+    [self.window makeKeyAndVisible];
 }
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

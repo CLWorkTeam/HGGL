@@ -9,7 +9,7 @@
 #import "CurrPopTableViewController.h"
 #import "HGHttpTool.h"
 #import "ProjectList.h"
-////#import "MBProgressHUD+Extend.h"
+//#import "MBProgressHUD+Extend.h"
 #import "ProjectInfoViewController.h"
 @interface CurrPopTableViewController ()
 @property (nonatomic,strong) NSMutableArray *array;
@@ -28,15 +28,13 @@
 //    self.tableView.backgroundColor = [UIColor whiteColor];
      NSString *url = [HGURL stringByAppendingString:@"Project/getCroomProjectList.do"];
     //HGLog(@"%@-----%@",self.course_classroom,self.current_date);
-    NSString *user_id = [HGUserDefaults stringForKey:@"userID"];
-    [HGHttpTool POSTWithURL:url parameters:@{@"course_classroom":self.course_classroom,@"current_date":self.current_date,@"tokenval":user_id} success:^(id responseObject) {
+    [HGHttpTool POSTWithURL:url parameters:@{@"course_classroom":self.course_classroom,@"current_date":self.current_date} success:^(id responseObject) {
         NSArray *array = [NSArray array];
         array = [responseObject objectForKey:@"data"];
         HGLog(@"%@",array);
         NSString *status = [responseObject objectForKey:@"status"];
         if([status isEqualToString:@"0"])
         {
-//            [SVProgressHUD showErrorWithStatus:[responseObject objectForKey:@"message"]];
             [SVProgressHUD showErrorWithStatus:[responseObject objectForKey:@"message"]];
         }else{
             for (NSDictionary *dict in array) {

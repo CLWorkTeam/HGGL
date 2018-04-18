@@ -179,7 +179,7 @@
 -(void)clickSure:(UIButton *)but
 {
     NSString *url = [HGURL stringByAppendingString:@"Research/doReport.do"];
-    NSString *user_id = [HGUserDefaults stringForKey:@"userID"];
+    NSString *user_id = [HGUserDefaults objectForKey:HGUserID];
     [HGHttpTool POSTWithURL:url parameters:@{@"research_id":self.research_id,@"name":self.reportNameV.text,@"reportDate":self.reportDV.text,@"tokenval":user_id} success:^(id responseObject) {
         NSString *status = [responseObject objectForKey:@"status"];
         if ([status isEqualToString:@"1"]) {

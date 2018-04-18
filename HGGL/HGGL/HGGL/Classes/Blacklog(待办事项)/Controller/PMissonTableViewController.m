@@ -35,7 +35,7 @@
     [super viewDidLoad];
     self.navigationItem.title = @"我的项目任务";
     PMissionParama *parama = [[PMissionParama alloc]init];
-    parama.user_id = [HGUserDefaults stringForKey:@"userID"];
+    parama.user_id = [HGUserDefaults objectForKey:HGUserID];
     self.parama = parama;
 
     [self setRefresh];
@@ -99,7 +99,7 @@
     //parama.page = @"1";
     
     NSString *url = [HGURL stringByAppendingString:@"Project/getTaskList.do"];
-    NSString *user_id = [HGUserDefaults stringForKey:@"userID"];
+    NSString *user_id = [HGUserDefaults objectForKey:HGUserID];
     NSMutableDictionary *par =[NSMutableDictionary dictionaryWithDictionary:parama.keyValues];
     [par setValue:user_id forKey:@"tokenval"];
     [HGHttpTool POSTWithURL:url parameters:par success:^(id responseObject) {

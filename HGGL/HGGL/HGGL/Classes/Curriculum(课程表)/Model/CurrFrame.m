@@ -25,7 +25,7 @@
 -(void)setCL:(CurrseList *)CL
 {
     _CL = CL;
-    self.baseArr = @[CL.project_name,CL.course_name,self.course_classroom,CL.course_teacher,CL.teacher_pickup,[NSString stringWithFormat:@"%@-%@",CL.course_start,CL.course_end],CL.teacher_info,CL.course_info,CL.course_remark];
+//    self.baseArr = @[CL.project_name,CL.course_name,self.course_classroom,CL.course_teacher,CL.teacher_pickup,[NSString stringWithFormat:@"%@-%@",CL.course_start,CL.course_end],CL.teacher_info,CL.course_info,CL.course_remark];
 }
 -(void)setBaseArr:(NSArray *)baseArr
 {

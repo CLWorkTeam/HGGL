@@ -115,7 +115,7 @@
     {
         if ([self.oldPW.text isEqualToString:PW]&&[self.UP1.text isEqualToString:self.UP2.text]) {
             NSString *url = [HGURL stringByAppendingString:@"User/pwdChange.do"];
-            NSString *user_id = [HGUserDefaults stringForKey:@"userID"];
+            NSString *user_id = [HGUserDefaults objectForKey:HGUserID];
             HGLog(@"%@-%@-%@",user_id,self.oldPW.text,self.UP1.text);
             
             [HGHttpTool POSTWithURL:url parameters:@{@"user_id":user_id,@"oldPassword":self.oldPW.text,@"newPassword":self.UP1.text,@"tokenval":user_id} success:^(id responseObject) {

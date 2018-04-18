@@ -89,11 +89,11 @@
     if (_isRefreshing) {
         return;
     }
-    parama.user_id = [HGUserDefaults stringForKey:@"userID"];
+    parama.user_id = [HGUserDefaults objectForKey:HGUserID];
     _isRefreshing = YES;
 //    HGLog(@"%@",parama.keyValues);
     NSString *url = [HGURL stringByAppendingString:@"MsgPush/getBacklogList.do"];
-    NSString *user_id = [HGUserDefaults stringForKey:@"userID"];
+    NSString *user_id = [HGUserDefaults objectForKey:HGUserID];
     NSMutableDictionary *par =[NSMutableDictionary dictionaryWithDictionary:parama.keyValues];
     [par setValue:user_id forKey:@"tokenval"];
     [HGHttpTool POSTWithURL:url parameters:par success:^(id responseObject) {

@@ -108,7 +108,7 @@
 }
 +(instancetype)cellWithTabView:(UITableView *)view
 {
-    static NSString *ID = @"cell";
+    static NSString *ID = @"CourseTableViewCell";
     CourseTableViewCell *cell = [view dequeueReusableCellWithIdentifier:ID];
     if (cell == nil) {
         cell = [[CourseTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];

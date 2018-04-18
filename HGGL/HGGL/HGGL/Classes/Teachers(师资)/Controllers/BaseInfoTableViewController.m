@@ -26,7 +26,7 @@
     if (_arr == nil) {
 //        NSString *path = [[NSBundle mainBundle] pathForResource:@"TeacherPro.plist" ofType:nil];
 //        _arr = [NSArray arrayWithContentsOfFile:path];
-        _arr = [NSArray arrayWithObjects:@[@"聘任类型:",@"专业领域:",@"适合班次:",@"课酬区间:"],@[@"工作单位:",@"单位地址:",@"职位:"],@[@"民族:",@"出生日期:",@"证件类型:",@"证件号码:"],@[@"移动电话:",@"办公电话:",@"传真号码:",@"邮箱地址:",@"邮政编码:"],nil];
+        _arr = [NSArray arrayWithObjects:@[@"聘任类型:",@"区范围",@"专业领域:",@"适合班次:",@"课酬区间:"],@[@"工作单位:",@"职位:",@"单位地址:",@"邮政编码:"],@[@"民族:",@"出生日期:",@"证件类型:",@"证件号码:"],@[@"移动电话:",@"办公电话:",@"传真号码:",@"邮箱地址:"],nil];
     }
     return _arr;
 }
@@ -38,12 +38,16 @@
 //    self.tableView.style = UITableViewStyleGrouped;
     [self setHeader];
     NSString *url = [HGURL stringByAppendingString:@"Teacher/getTeacherInfo.do"];
-    NSString *user_id = [HGUserDefaults stringForKey:@"userID"];
+    NSString *user_id = [HGUserDefaults stringForKey:HGUserID];
+    [SVProgressHUD showWithStatus:@"请稍后..."];
     [HGHttpTool POSTWithURL:url parameters:@{@"teacher_id":self.teacher_id,@"tokenval":user_id} success:^(id responseObject) {
-////////////////////////////////////////////////////////
+        [SVProgressHUD dismiss];
         NSDictionary *dict = [responseObject objectForKey:@"data"];
+        
         NSString *status = [responseObject objectForKey:@"status"];
+        
         HGLog(@"-----%@",dict[@"teacher_sex"]);
+        
         if([status isEqualToString:@"0"])
         {
             self.error = [responseObject objectForKey:@"message"];
@@ -57,6 +61,7 @@
         [self.tableView reloadData];
             [self setHeader];}
     } failure:^(NSError *error) {
+        [SVProgressHUD dismiss];
         HGLog(@"%@",error);
     }];
     // Uncomment the following line to preserve selection between presentations.
@@ -74,11 +79,16 @@
 }
 -(void)setHeader
 {
-    BaseHeaderView *header = [[BaseHeaderView alloc]initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 120)];
+    UIView *newH = [[UIView alloc]init];
+    newH.backgroundColor = HGGrayColor;
+    BaseHeaderView *header = [[BaseHeaderView alloc]initWithFrame:CGRectMake(0, 8, self.tableView.frame.size.width, 120)];
     header.nameS = self.teachInfo.baseInfo.teacher_name;
     header.telS = self.teachInfo.baseInfo.teacher_tel;
+    header.backgroundColor = [UIColor whiteColor];
     header.sexS = self.teachInfo.baseInfo.teacher_sex;
-    self.tableView.tableHeaderView = header;
+    [newH addSubview:header];
+    newH.frame = CGRectMake(0, 0, self.tableView.frame.size.width, 128);
+    self.tableView.tableHeaderView = newH;
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -86,7 +96,13 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 10;
+    return 5;
+}
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *header = [[UIView alloc]init];
+    header.backgroundColor = HGGrayColor;
+    return header;
 }
 #pragma mark - Table view data source
 

@@ -65,8 +65,9 @@
         NSString *str = [dict objectForKey:@"date"];
         NSString *str1 = [str substringFromIndex:5];
         but.contentMode = UIViewContentModeCenter;
-        
-        [but setBackgroundImage:[UIImage imageNamed:@"date_bg"] forState:UIControlStateSelected];
+        NSString *bgiP = [[NSBundle mainBundle] pathForResource:@"bg_date.png" ofType:nil];
+        UIImage *bgi = [UIImage imageWithContentsOfFile:bgiP];
+        [but setBackgroundImage:bgi forState:UIControlStateSelected];
         [but setTitle:[NSString stringWithFormat:@"周%@\n%@",[dict objectForKey:@"weekday"],str1] forState:UIControlStateNormal];
         //NSString *s = [NSString stringWithFormat:@"周%@\n%@",[dict objectForKey:@"weekday"],str1];
         //HGLog(@"%d,,,,,%d",[s rangeOfString:str1].location,[s rangeOfString:str1].length);
@@ -108,9 +109,11 @@
         for (int i = 0; i<7; i++) {
             UIButton *but =[[UIButton alloc]init];
             but.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
+            self.backgroundColor = [UIColor whiteColor];
             [but setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             [but setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
             but.titleLabel.font = [UIFont systemFontOfSize:14];
+            but.backgroundColor = [UIColor whiteColor];
             //[but.titleLabel setTextColor:[UIColor blackColor]];
             but.tag = i;
             but.titleLabel.textAlignment = NSTextAlignmentCenter;
@@ -132,11 +135,19 @@
     
     [super layoutSubviews];
     [self setButFrame];
+    NSArray *subViewArray = [self subviews];
+    
+    for (id view in subViewArray) {
+        if ([view isKindOfClass:(NSClassFromString(@"_UIToolbarContentView"))]) {
+            UIView *testView = view;
+            testView.userInteractionEnabled = NO;
+        }
+    }
 }
 -(void)setButFrame
 {
-    CGFloat y = 0;
-    CGFloat height = self.bounds.size.height;
+    CGFloat y = 5;
+    CGFloat height = self.bounds.size.height-2*y;
     CGFloat width = self.bounds.size.width/7;
     CGFloat x = 0;
     int i = 0;

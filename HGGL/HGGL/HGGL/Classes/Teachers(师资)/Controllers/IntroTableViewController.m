@@ -39,7 +39,7 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     NSString *url = [HGURL stringByAppendingString:@"Teacher/getTeacherDec.do"];
     HGLog(@"ID%@",self.teacher_id);
-    NSString *user_id = [HGUserDefaults stringForKey:@"userID"];
+    NSString *user_id = [HGUserDefaults objectForKey:HGUserID];
     [HGHttpTool POSTWithURL:url parameters:@{@"teacher_id":self.teacher_id,@"tokenval":user_id} success:^(id responseObject) {
         ////////////////////////////////////
         /////////接口文档上data是info/////////

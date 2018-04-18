@@ -28,7 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSString *url = [HGURL stringByAppendingString:@"Project/getProjectCourseList.do"];
-    NSString *user_id = [HGUserDefaults stringForKey:@"userID"];
+    NSString *user_id = [HGUserDefaults objectForKey:HGUserID];
     [HGHttpTool POSTWithURL:url parameters:@{@"project_id":self.project_id,@"tokenval":user_id} success:^(id responseObject) {
         NSArray *array = [NSArray array];
         array = [responseObject objectForKey:@"data"];

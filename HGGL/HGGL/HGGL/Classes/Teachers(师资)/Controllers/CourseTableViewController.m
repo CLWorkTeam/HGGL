@@ -8,6 +8,7 @@
 
 #import "CourseTableViewController.h"
 #import "CourseTableViewCell.h"
+#import "CurrBaseTableViewController.h"
 #import "CourseFrame.h"
 #import "CourseList.h"
 #import "HGHttpTool.h"
@@ -30,10 +31,12 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    NSString *user_id = [HGUserDefaults stringForKey:@"userID"];
+//    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    NSString *user_id = [HGUserDefaults objectForKey:HGUserID];
     NSString *url = [HGURL stringByAppendingString:@"Teacher/getTeacherCourse.do"];
+    [SVProgressHUD showWithStatus:@"请稍后..."];
     [HGHttpTool POSTWithURL:url parameters:@{@"teacher_id":self.teacher_id,@"tokenval":user_id} success:^(id responseObject) {
+        [SVProgressHUD dismiss];
         NSArray *array = [NSArray array];
         array = [responseObject objectForKey:@"data"];
         NSString *status = [responseObject objectForKey:@"status"];
@@ -49,14 +52,10 @@
         }}
         [self.tableView reloadData];
     } failure:^(NSError *error) {
+        [SVProgressHUD dismiss];
         HGLog(@"%@",error);
     }];
-    //HGLog(@"%@-%f",self.tableView,HGScreenHeight);
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 -(void)showError
 {
@@ -98,6 +97,26 @@
     CourseFrame *cou = [self.arr objectAtIndex:indexPath.row];
     HGLog(@"%f---==%f",cou.cellH,(3*minH+4*CellHMargin));
     return cou.cellH>=(3*minH+4*CellHMargin)?cou.cellH:(3*minH+4*CellHMargin);
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CurrBaseTableViewController *base = [[CurrBaseTableViewController alloc]init];
+    base.noDetail = YES;
+    CourseFrame *cf = [self.arr objectAtIndex:indexPath.row];
+    base.courseID = cf.course.course_id;
+    if (_selectedRow) {
+        _selectedRow(base);
+    }
+    
+}
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    return  [[UIView alloc]init];
+    
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return .1;
 }
 
 /*

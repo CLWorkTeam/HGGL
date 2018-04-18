@@ -118,7 +118,7 @@
         [HGUserDefaults synchronize];
         HGTabBarViewController *vc = [[HGTabBarViewController alloc]init];
         HGKeywindow.rootViewController = vc;
-        
+        HGLog(@"%@",[HGUserDefaults objectForKey:HGUserID]);
     } failure:^(NSError *error) {
         [SVProgressHUD dismiss];
     }];

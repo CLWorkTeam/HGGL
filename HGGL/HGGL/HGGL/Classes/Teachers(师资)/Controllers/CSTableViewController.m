@@ -27,8 +27,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSString *url = [HGURL stringByAppendingString:@"Teacher/getScoreDetail.do"];
-    NSString *user_id = [HGUserDefaults stringForKey:@"userID"];
+    NSString *user_id = [HGUserDefaults objectForKey:HGUserID];
+    [SVProgressHUD showWithStatus:@"请稍后..."];
     [HGHttpTool POSTWithURL:url parameters:@{@"projectCourse_id":self.projectCourse_id,@"tokenval":user_id} success:^(id responseObject) {
+        [SVProgressHUD dismiss];
         NSArray *array = [NSArray array];
         array = [responseObject objectForKey:@"data"];
         NSString *status = [responseObject objectForKey:@"status"];
@@ -45,6 +47,7 @@
         }}
         [self.tableView reloadData];
     } failure:^(NSError *error) {
+        [SVProgressHUD dismiss];
         HGLog(@"%@",error);
     }];
     // Uncomment the following line to preserve selection between presentations.
@@ -83,10 +86,19 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CourseScore *cs = [self.arr objectAtIndex:indexPath.row];
-    return cs.cellH>(minH*4+5*CellHMargin)?cs.cellH:(minH*4+5*CellHMargin);
+//    CourseScore *cs = [self.arr objectAtIndex:indexPath.row];
+//    return cs.cellH>(minH*4+5*CellHMargin)?cs.cellH:(minH*4+5*CellHMargin);
+    return minH*3+4*CellHMargin;
 }
-
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    return  [[UIView alloc]init];
+    
+}
+-(CGFloat) tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return .1;
+}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

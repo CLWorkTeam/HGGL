@@ -31,10 +31,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self setupLeftNavItem];
+//    [self setupLeftNavItem];
 //    NSString *path1 = [[NSBundle mainBundle] pathForResource:@"TeacherInfo" ofType:@"plist" inDirectory:@"teacher"];
     
-    self.navigationItem.title = @"教师详情";
+    self.navigationItem.title = @"师资详情";
     self.view.backgroundColor = [UIColor whiteColor];
     // Do any additional setup after loading the view.
     [self setToolBar];
@@ -58,15 +58,15 @@
 
 }
 //设置NavItemBtn
--(void)setupLeftNavItem{
-    UIButton *but = [UIButton buttonWithType:UIButtonTypeCustom];
-    [but sizeToFit];
-    but.width = 20;
-    [but setImage:[UIImage imageNamed:@"return_normal"] forState:UIControlStateNormal];
-    [but addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *letfBut = [[UIBarButtonItem alloc]initWithCustomView:but];
-    self.navigationItem.leftBarButtonItem = letfBut;
-}
+//-(void)setupLeftNavItem{
+//    UIButton *but = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [but sizeToFit];
+//    but.width = 20;
+//    [but setImage:[UIImage imageNamed:@"return_normal"] forState:UIControlStateNormal];
+//    [but addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+//    UIBarButtonItem *letfBut = [[UIBarButtonItem alloc]initWithCustomView:but];
+//    self.navigationItem.leftBarButtonItem = letfBut;
+//}
 //返回前一页
 -(void)back
 {

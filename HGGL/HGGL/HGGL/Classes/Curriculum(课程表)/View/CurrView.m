@@ -30,10 +30,12 @@
 {
     if (_toolBar == nil) {
         WeekToolBar *toolBar = [[WeekToolBar alloc]init];
-//        toolBar.backgroundColor = [UIColor greenColor];
-        
-        //[self.arr addObject:toolBar];
+//        WeakSelf
+//        toolBar.weekDayClick = ^(NSString *date) {
+//            
+//        };
         [self addSubview:toolBar];
+        [toolBar layoutIfNeeded];
         _toolBar = toolBar;
     }
     return _toolBar;
@@ -66,7 +68,8 @@
         lab.textAlignment = NSTextAlignmentCenter;
         lab.textColor = [UIColor blackColor];
         lab.font = ZKRCurrFont;
-        lab.text = @"请选择周段\n(默认当周)";
+        
+        lab.text = @"请选择";
         _lab = lab;
         [self addSubview:lab];
     }
@@ -79,9 +82,10 @@
         lab.backgroundColor = [UIColor whiteColor];
         lab.text = @"注:点击资源类型选择你想要选的类型,点击占用情况查看每个教室的占用详情信息";
         lab.textColor = [UIColor redColor];
+        
         lab.numberOfLines = 2;
         lab.font = [UIFont systemFontOfSize:11];
-        lab.textAlignment = NSTextAlignmentLeft;
+        lab.textAlignment = NSTextAlignmentCenter;
         _zhuLab = lab;
         [self addSubview:lab];
     }
@@ -91,7 +95,7 @@
 {
     _weekOfYear = weekOfYear;
  
-    [self.but setTitle:[NSString stringWithFormat:@"第%@周\n%@--%@",weekOfYear.week,weekOfYear.weekStar,weekOfYear.weekEnd] forState:UIControlStateNormal];
+    [self.but setTitle:[NSString stringWithFormat:@"第%@周 %@--%@",weekOfYear.week,weekOfYear.weekStar,weekOfYear.weekEnd] forState:UIControlStateNormal];
 }
 -(void)setToday:(NSString *)today
 {
@@ -141,26 +145,27 @@
 }
 -(void)setButtonFrame
 {
-    CGFloat x = self.bounds.size.width /3;
+//    CGFloat x = self.bounds.size.width /3;
     CGFloat y = 3;
-    CGFloat width = self.bounds.size.width /3;
-    
+//
+    [self.lab sizeToFit];
+    CGFloat width = self.lab.width+5*2;
     CGFloat heigh = 34;
 
-    self.lab.frame = CGRectMake(0, 0, width, heigh);
-    _but.frame = CGRectMake(x, y, width*2-5, heigh);
+    self.lab.frame = CGRectMake(0, y, width, heigh);
+    _but.frame = CGRectMake(self.lab.maxX, y, self.width-self.lab.width-3, heigh);
     //self.rect = _but.frame;
     
 }
 -(void )setToolBarFrame
 {
     CGFloat x = 0;
-    CGFloat y = 40;
+    CGFloat y = self.lab.maxY+3;
     CGFloat width = self.bounds.size.width;
-    CGFloat heigh = 40;
+    CGFloat heigh = 50;
     
     self.toolBar.frame = CGRectMake(x, y, width, heigh);
-    self.zhuLab.frame = CGRectMake(5, 90, HGScreenWidth-10, 27);
+//    self.zhuLab.frame = CGRectMake(5, 90, HGScreenWidth-10, 27);
 
 }
 @end

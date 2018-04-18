@@ -25,42 +25,42 @@
     _currse = currse;
 //    self.myArr = arr;
     //教室号
-    UILabel *course_classroom = [[UILabel alloc] init];
-    course_classroom.textAlignment = NSTextAlignmentCenter;
-    course_classroom.text = currse.roomName;
-    self.course_classroom  = course_classroom;
-    [self.contentView addSubview:course_classroom];
-    
-    //课程数
-    UIButton *course_classCount = [UIButton buttonWithType:UIButtonTypeCustom];
-    course_classCount.backgroundColor = [UIColor clearColor];
-    [course_classCount setTitle:[NSString stringWithFormat:@"%ld节", currse.roomContent.count] forState:UIControlStateNormal];
-    
-    course_classCount.titleLabel.font = [UIFont systemFontOfSize:HGTextFont1];
-    course_classCount.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-    [course_classCount setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [course_classCount addTarget:self action:@selector(classCountClick:) forControlEvents:UIControlEventTouchUpInside];
-    self.course_classCount = course_classCount;
-    [self.contentView addSubview:course_classCount];
-    
-    
-    UIView *viewLine = [[UIView alloc] init];
-    viewLine.frame = CGRectMake(5, 29, HGScreenWidth-10, 1);
-    viewLine.backgroundColor = HGColor(220, 220, 220,1);
-    [self.contentView addSubview:viewLine];
-    
-    UIView *viewLine1 = [[UIView alloc] init];
-    viewLine1.frame = CGRectMake(HGScreenWidth/2, 8, 0.5, 14);
-    viewLine1.backgroundColor = HGColor(220, 220, 220,1);;
-    [self.contentView addSubview:viewLine1];
+//    UILabel *course_classroom = [[UILabel alloc] init];
+//    course_classroom.textAlignment = NSTextAlignmentCenter;
+//    course_classroom.text = currse.classroom;
+//    self.course_classroom  = course_classroom;
+//    [self.contentView addSubview:course_classroom];
+//    
+//    //课程数
+//    UIButton *course_classCount = [UIButton buttonWithType:UIButtonTypeCustom];
+//    course_classCount.backgroundColor = [UIColor clearColor];
+//    [course_classCount setTitle:[NSString stringWithFormat:@"%ld节", currse.roomContent.count] forState:UIControlStateNormal];
+//    
+//    course_classCount.titleLabel.font = [UIFont systemFontOfSize:HGTextFont1];
+//    course_classCount.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+//    [course_classCount setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//    [course_classCount addTarget:self action:@selector(classCountClick:) forControlEvents:UIControlEventTouchUpInside];
+//    self.course_classCount = course_classCount;
+//    [self.contentView addSubview:course_classCount];
+//    
+//    
+//    UIView *viewLine = [[UIView alloc] init];
+//    viewLine.frame = CGRectMake(5, 29, HGScreenWidth-10, 1);
+//    viewLine.backgroundColor = HGColor(220, 220, 220,1);
+//    [self.contentView addSubview:viewLine];
+//    
+//    UIView *viewLine1 = [[UIView alloc] init];
+//    viewLine1.frame = CGRectMake(HGScreenWidth/2, 8, 0.5, 14);
+//    viewLine1.backgroundColor = HGColor(220, 220, 220,1);;
+//    [self.contentView addSubview:viewLine1];
     
 }
 -(void)classCountClick:(UIButton *)btn
 {
-    HGLog(@"点击");
-    ClassCountViewController *classVC = [[ClassCountViewController alloc] init];
-    [classVC setViewRect:CGRectMake(15, 200, HGScreenWidth-30, HGScreenHeight-400) and:self.currse.roomContent];
-    self.classVC = classVC;
+//    HGLog(@"点击");
+//    ClassCountViewController *classVC = [[ClassCountViewController alloc] init];
+//    [classVC setViewRect:CGRectMake(15, 200, HGScreenWidth-30, HGScreenHeight-400) and:self.currse.roomContent];
+//    self.classVC = classVC;
     
 }
 -(void)layoutSubviews

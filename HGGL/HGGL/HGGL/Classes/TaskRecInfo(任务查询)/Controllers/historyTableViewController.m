@@ -69,7 +69,7 @@
     _isRefreshing = YES;
     parma.page = @"1";
     NSString *url = [HGURL stringByAppendingString:@"Reception/getReception.do"];
-    NSString *user_id = [HGUserDefaults stringForKey:@"userID"];
+    NSString *user_id = [HGUserDefaults objectForKey:HGUserID];
     NSMutableDictionary *par =[NSMutableDictionary dictionaryWithDictionary:parma.keyValues];
     [par setValue:user_id forKey:@"tokenval"];
     [HGHttpTool  POSTWithURL:url parameters:par success:^(id responseObject) {
@@ -104,7 +104,7 @@
         return;
     }
     _isRefreshing = YES;
-    NSString *user_id = [HGUserDefaults stringForKey:@"userID"];
+    NSString *user_id = [HGUserDefaults objectForKey:HGUserID];
     NSMutableDictionary *par =[NSMutableDictionary dictionaryWithDictionary:parama.keyValues];
     [par setValue:user_id forKey:@"tokenval"];
     NSString *url = [HGURL stringByAppendingString:@"Reception/getReception.do"];

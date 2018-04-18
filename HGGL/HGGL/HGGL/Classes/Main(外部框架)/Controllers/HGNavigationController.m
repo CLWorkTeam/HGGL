@@ -63,8 +63,8 @@
 {
     NSString *url = [HGURL stringByAppendingString:@"MsgPush/getMessage.do"];
     //HGLog(@"timer");
-    if ([HGUserDefaults stringForKey:@"userID"]) {
-        [HGHttpTool POSTWithURL:url parameters:@{@"user_id":[HGUserDefaults stringForKey:@"userID"]} success:^(id responseObject) {
+    if ([HGUserDefaults objectForKey:HGUserID]) {
+        [HGHttpTool POSTWithURL:url parameters:@{@"user_id":[HGUserDefaults objectForKey:HGUserID]} success:^(id responseObject) {
             NSString *status = [responseObject objectForKey:@"status"];
             if ([status isEqualToString:@"1"]) {
                 NSString *data = [responseObject objectForKey:@"data"];

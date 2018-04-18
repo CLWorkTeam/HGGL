@@ -136,6 +136,15 @@
 
     
 }
+-(void)layoutSubviews
+{
+    [super layoutSubviews];
+    
+    
+    self.key.center = CGPointMake(self.key.center.x, self.height/2);
+    self.value.center = CGPointMake(self.value.center.x, self.height/2);
+    
+}
 +(instancetype)cellWithTabView:(UITableView *)view
 {
     static NSString *ID = @"cell";

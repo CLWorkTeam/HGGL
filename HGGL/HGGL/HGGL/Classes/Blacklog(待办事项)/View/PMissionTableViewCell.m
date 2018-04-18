@@ -80,8 +80,8 @@
 {
     NSString *url = [HGURL stringByAppendingString:@"Project/finishTask.do"];
     PMissionParama *parama = [[PMissionParama alloc]init ];
-    parama.user_id = [HGUserDefaults stringForKey:@"userID"];
-    NSString *user_id = [HGUserDefaults stringForKey:@"userID"];
+    parama.user_id = [HGUserDefaults objectForKey:HGUserID];
+    NSString *user_id = [HGUserDefaults objectForKey:HGUserID];
     [HGHttpTool POSTWithURL:url parameters:@{@"task_id":[NSString stringWithFormat:@"%ld",but.tag],@"tokenval":user_id} success:^(id responseObject) {
         NSString *status = [responseObject objectForKey:@"status"];
         if ([status isEqualToString:@"1"]) {

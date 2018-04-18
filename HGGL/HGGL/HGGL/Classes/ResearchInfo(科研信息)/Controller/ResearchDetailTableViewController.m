@@ -151,7 +151,7 @@
 {
     HGLog(@"%@",self.research_id);
     NSString *url = [HGURL stringByAppendingString:@"Research/showResearchInfo.do"];
-     NSString *user_id = [HGUserDefaults stringForKey:@"userID"];
+     NSString *user_id = [HGUserDefaults objectForKey:HGUserID];
     NSDictionary *parameters = @{@"research_id":self.research_id,@"tokenval":user_id};
     
     [HGHttpTool POSTWithURL:url parameters:parameters success:^(id responseObject) {
@@ -248,7 +248,7 @@
 -(void)reloadD
 {
     NSString *url = [HGURL stringByAppendingString:@"Research/getResearchList.do"];
-    NSString *user_id = [HGUserDefaults stringForKey:@"userID"];
+    NSString *user_id = [HGUserDefaults objectForKey:HGUserID];
     [HGHttpTool POSTWithURL:url parameters:@{@"user_id":@"1",@"tokenval":user_id} success:^(id responseObject) {
         
        
@@ -493,7 +493,7 @@
             FinalApprove *report = [[FinalApprove alloc]init];
             curr.contentView = report;
             NSString *url = [HGURL stringByAppendingString:@"Research/reviewApprove.do"];
-            NSString *user_id = [HGUserDefaults stringForKey:@"userID"];
+            NSString *user_id = [HGUserDefaults objectForKey:HGUserID];
             [HGHttpTool POSTWithURL:url parameters:@{@"research_id":self.research_id,@"tokenval":user_id} success:^(id responseObject) {
                 NSString *status = [responseObject objectForKey:@"status"];
                 if ([status isEqualToString:@"1"]) {
@@ -590,7 +590,7 @@
 }
 -(void)postWith:(NSString *)url dict:(NSDictionary *)dict
 {
-    NSString *user_id = [HGUserDefaults stringForKey:@"userID"];
+    NSString *user_id = [HGUserDefaults objectForKey:HGUserID];
     NSMutableDictionary *par =[NSMutableDictionary dictionaryWithDictionary:dict];
     [par setValue:user_id forKey:@"tokenval"];
    [ HGHttpTool POSTWithURL:url parameters:par success:^(id responseObject) {

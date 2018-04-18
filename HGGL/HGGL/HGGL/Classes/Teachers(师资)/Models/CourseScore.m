@@ -14,11 +14,11 @@
 +(instancetype)courseScoreWithDict:(NSDictionary *)dict
 {
     CourseScore *cs = [[CourseScore alloc]init];
-    cs.student_name = dict[@"student_name"];
-    cs.student_satisf = dict[@"student_satisf"];
-    cs.student_evaluation = dict[@"student_evaluation"];
-    cs.student_date = dict[@"student_date"];
-    CGFloat h = [TextFrame frameOfText:cs.student_evaluation With:[UIFont systemFontOfSize:14] Andwidth:HGScreenWidth-Width-2*CellWMargin-CellHMargin].height;
+    cs.projectName = dict[@"projectName"];
+    cs.courseName = dict[@"courseName"];
+    cs.courseScore = dict[@"courseScore"];
+    cs.evaluateList = dict[@"evaluateList"];
+    CGFloat h = [TextFrame frameOfText:cs.courseScore With:[UIFont systemFontOfSize:14] Andwidth:HGScreenWidth-Width-2*CellWMargin-CellHMargin].height;
     cs.evaluateH = h>=minH?h:minH;
     //HGLog(@"111111%f",h);
     cs.cellH = 3*minH +cs.evaluateH+5*CellHMargin;

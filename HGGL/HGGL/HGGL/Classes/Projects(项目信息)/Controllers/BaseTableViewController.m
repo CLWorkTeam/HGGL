@@ -118,7 +118,7 @@
     }else
     {
         NSString *url = [HGURL2 stringByAppendingString:self.PL.projectUrl_confirm_list];
-        NSString *user_id = [HGUserDefaults stringForKey:@"userID"];
+        NSString *user_id = [HGUserDefaults objectForKey:HGUserID];
         url = [url stringByAppendingString:[NSString stringWithFormat:@"&tokenval=%@",user_id]];
         wf.url = url;
         if (_butBlock) {

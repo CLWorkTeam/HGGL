@@ -53,7 +53,7 @@
     [self.array removeAllObjects];
     NSString *url = [HGURL stringByAppendingString:@"Reception/getDiningToday.do"];
     HGLog(@"%@--%@",url,self.today);
-    NSString *user_id = [HGUserDefaults stringForKey:@"userID"];
+    NSString *user_id = [HGUserDefaults objectForKey:HGUserID];
     [HGHttpTool POSTWithURL:url parameters:@{@"date_today":self.today,@"tokenval":user_id} success:^(id responseObject) {
         NSString *status = [responseObject objectForKey:@"status"];
         if ([status isEqualToString:@"1"]) {
@@ -79,7 +79,7 @@
 {
     [self.array removeAllObjects];
     NSString *url = [HGURL stringByAppendingString:@"Reception/getCarToday.do"];
-    NSString *user_id = [HGUserDefaults stringForKey:@"userID"];
+    NSString *user_id = [HGUserDefaults objectForKey:HGUserID];
     [HGHttpTool POSTWithURL:url parameters:@{@"date_today":self.today,@"tokenval":user_id} success:^(id responseObject) {
         NSString *status = [responseObject objectForKey:@"status"];
         if ([status isEqualToString:@"1"]) {
@@ -104,7 +104,7 @@
 {
     [self.array removeAllObjects];
     NSString *url = [HGURL stringByAppendingString:@"Reception/getAccomToday.do"];
-    NSString *user_id = [HGUserDefaults stringForKey:@"userID"];
+    NSString *user_id = [HGUserDefaults objectForKey:HGUserID];
     [HGHttpTool POSTWithURL:url parameters:@{@"date_today":self.today,@"tokenval":user_id} success:^(id responseObject) {
         NSString *status = [responseObject objectForKey:@"status"];
         if ([status isEqualToString:@"1"]) {
@@ -129,7 +129,7 @@
 {
     [self.array removeAllObjects];
     NSString *url = [HGURL stringByAppendingString:@"Reception/getClassroomToday.do"];
-    NSString *user_id = [HGUserDefaults stringForKey:@"userID"];
+    NSString *user_id = [HGUserDefaults objectForKey:HGUserID];
     [HGHttpTool POSTWithURL:url parameters:@{@"date_today":self.today,@"tokenval":user_id} success:^(id responseObject) {
         NSString *status = [responseObject objectForKey:@"status"];
         

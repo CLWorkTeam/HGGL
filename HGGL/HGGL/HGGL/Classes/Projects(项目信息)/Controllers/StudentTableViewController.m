@@ -32,7 +32,7 @@
     [super viewDidLoad];
     NSString *url = [HGURL stringByAppendingString:@"Mentee/getMenteeList.do"];
     //HGLog(@"///%@",self.project_id);
-    NSString *user_id = [HGUserDefaults stringForKey:@"userID"];
+    NSString *user_id = [HGUserDefaults objectForKey:HGUserID];
     [HGHttpTool POSTWithURL:url parameters:@{@"project_id":self.project_id,@"tokenval":user_id} success:^(id responseObject) {
         NSArray *array = [NSArray array];
         HGLog(@"====%@",self.project_id);

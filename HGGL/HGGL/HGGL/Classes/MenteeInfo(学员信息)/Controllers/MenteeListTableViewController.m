@@ -104,7 +104,7 @@
     _isrefreshing = YES;
     //[self setRefreshWithParma:parama];
     NSString *url = [HGURL stringByAppendingString:@"Mentee/getMenteeList.do"];
-    NSString *user_id = [HGUserDefaults stringForKey:@"userID"];
+    NSString *user_id = [HGUserDefaults objectForKey:HGUserID];
     NSMutableDictionary *par =[NSMutableDictionary dictionaryWithDictionary:parama.keyValues];
     [par setValue:user_id forKey:@"tokenval"];
     [HGHttpTool POSTWithURL:url parameters:par success:^(id responseObject) {
@@ -184,7 +184,7 @@
     _isrefreshing = YES;
     //[self setRefreshWithParma:parama];
     NSString *url = [HGURL stringByAppendingString:@"Mentee/getMenteeList.do"];
-    NSString *user_id = [HGUserDefaults stringForKey:@"userID"];
+    NSString *user_id = [HGUserDefaults objectForKey:HGUserID];
     NSMutableDictionary *par =[NSMutableDictionary dictionaryWithDictionary:parama.keyValues];
     [par setValue:user_id forKey:@"tokenval"];
     [HGHttpTool POSTWithURL:url parameters:par success:^(id responseObject) {

@@ -10,13 +10,13 @@
 
 @interface CourseScore : NSObject
 //项目课程名称
-@property (nonatomic,strong)NSString *student_name;
+@property (nonatomic,strong)NSString *projectName;
+//课程名称
+@property (nonatomic,strong)NSString *courseName;
 //课程满意度评分
-@property (nonatomic,strong)NSString *student_satisf;
-//学生评价
-@property (nonatomic,strong)NSString *student_evaluation;
+@property (nonatomic,strong)NSString *courseScore;
 //评价时间
-@property (nonatomic,strong)NSString *student_date;
+@property (nonatomic,strong)NSArray *evaluateList;
 //cell的高度
 @property (nonatomic,assign) CGFloat cellH;
 //评价详情的高度
