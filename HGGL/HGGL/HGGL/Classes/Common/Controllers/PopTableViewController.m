@@ -8,6 +8,7 @@
 
 #import "PopTableViewController.h"
 #import "CurrImageView.h"
+#import "TKProfessionTableViewCell.h"
 @interface PopTableViewController ()
 
 @end
@@ -23,7 +24,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.tableView.separatorInset =  UIEdgeInsetsMake(0, 0, 0, 0);
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -64,14 +65,17 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *ID = @"cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
-    }
-    cell.textLabel.text = [self.arr objectAtIndex:indexPath.row];
-    cell.textLabel.textAlignment = NSTextAlignmentCenter;
+//    static NSString *ID = @"cell";
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+//    if (cell == nil) {
+//        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+//    }
+//    cell.textLabel.text = [self.arr objectAtIndex:indexPath.row];
+//    cell.textLabel.textAlignment = NSTextAlignmentCenter;
+    
     //NSLog(@"%@",cell.textLabel.text);
+    TKProfessionTableViewCell *cell = [TKProfessionTableViewCell cellWithTabView:tableView];
+    cell.content = [self.arr objectAtIndex:indexPath.row];
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

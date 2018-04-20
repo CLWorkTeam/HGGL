@@ -158,11 +158,8 @@
     HGTRcordTableViewCell *cell = [view dequeueReusableCellWithIdentifier:ID];
     if (cell == nil) {
         cell = [[HGTRcordTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];
-    }else{
-        for (UIView *view in cell.contentView.subviews) {
-            [view removeFromSuperview];
-        }
     }
+    
     return cell;
 }
 @end

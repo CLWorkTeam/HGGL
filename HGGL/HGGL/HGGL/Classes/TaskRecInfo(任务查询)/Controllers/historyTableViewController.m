@@ -127,11 +127,15 @@
         {
 //            [SVProgressHUD showErrorWithStatus:[responseObject objectForKey:@"message"]];
             [SVProgressHUD showErrorWithStatus:[responseObject objectForKey:@"message"]];
+            NSInteger i = [self.parma.page integerValue ];
+            self.parma.page = [NSString stringWithFormat:@"%ld",--i];
         }
         
     } failure:^(NSError *error) {
         _isRefreshing = NO;
         [self.tableView.mj_footer endRefreshing];
+        NSInteger i = [self.parma.page integerValue ];
+        self.parma.page = [NSString stringWithFormat:@"%ld",--i];
         HGLog(@"%@",error);
     }];
 
@@ -171,7 +175,7 @@
 {
     History *his = [self.arr objectAtIndex:indexPath.row];
     HGWebViewController *wf = [[HGWebViewController alloc]init];
-    wf.navigationItem.title = @"确认单详情";
+    wf.navigationItem.title = @"接待确认单";
     NSString *URL = [HGURL2 stringByAppendingString:his.list_url];
     
     //HGLog(@"%@",his.list_url);

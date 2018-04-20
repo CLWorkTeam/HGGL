@@ -74,6 +74,10 @@
 		CE4CAD9020872D84001F711F /* HGBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4CAD8F20872D84001F711F /* HGBaseTableViewCell.m */; };
 		CE4CAD9320875B4E001F711F /* HGTeachRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4CAD9220875B4E001F711F /* HGTeachRecord.m */; };
 		CE4CAD9620875C33001F711F /* HGTRcordTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4CAD9520875C33001F711F /* HGTRcordTableViewCell.m */; };
+		CE4CAD9920883BE8001F711F /* HGClassRHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4CAD9820883BE8001F711F /* HGClassRHeader.m */; };
+		CE4CAD9C208847BB001F711F /* HGClassRTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4CAD9B208847BB001F711F /* HGClassRTableViewCell.m */; };
+		CE4CAD9F208847DC001F711F /* HGCRModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4CAD9E208847DC001F711F /* HGCRModel.m */; };
+		CE4CADA2208860E1001F711F /* HGCRParama.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4CADA1208860E1001F711F /* HGCRParama.m */; };
 		CE769DAB206A343E000F931F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE769DAA206A343E000F931F /* Assets.xcassets */; };
 		CE769DAE206A343E000F931F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE769DAC206A343E000F931F /* LaunchScreen.storyboard */; };
 		CE769DBB206A343E000F931F /* HGGLTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CE769DBA206A343E000F931F /* HGGLTests.m */; };
@@ -172,6 +176,8 @@
 		CE86444B206F9675002FE9E7 /* MessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE864446206F9675002FE9E7 /* MessageTableViewCell.m */; };
 		CE86444E206FA2EA002FE9E7 /* HGLable.m in Sources */ = {isa = PBXBuildFile; fileRef = CE86444D206FA2EA002FE9E7 /* HGLable.m */; };
 		CE864455206FA992002FE9E7 /* HGCPWViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE864454206FA992002FE9E7 /* HGCPWViewController.m */; };
+		CE91330F2089869C00780113 /* TKProfessionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE91330D2089869C00780113 /* TKProfessionTableViewCell.m */; };
+		CE9133152089BA8F00780113 /* HGPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9133142089BA8F00780113 /* HGPopView.m */; };
 		CEAD199D207C9DA1008F1696 /* Currse.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAD196A207C9DA1008F1696 /* Currse.m */; };
 		CEAD199E207C9DA1008F1696 /* CurrseList.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAD196B207C9DA1008F1696 /* CurrseList.m */; };
 		CEAD199F207C9DA1008F1696 /* CurrFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAD196C207C9DA1008F1696 /* CurrFrame.m */; };
@@ -464,6 +470,14 @@
 		CE4CAD9220875B4E001F711F /* HGTeachRecord.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGTeachRecord.m; sourceTree = "<group>"; };
 		CE4CAD9420875C33001F711F /* HGTRcordTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGTRcordTableViewCell.h; sourceTree = "<group>"; };
 		CE4CAD9520875C33001F711F /* HGTRcordTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGTRcordTableViewCell.m; sourceTree = "<group>"; };
+		CE4CAD9720883BE8001F711F /* HGClassRHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGClassRHeader.h; sourceTree = "<group>"; };
+		CE4CAD9820883BE8001F711F /* HGClassRHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGClassRHeader.m; sourceTree = "<group>"; };
+		CE4CAD9A208847BB001F711F /* HGClassRTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGClassRTableViewCell.h; sourceTree = "<group>"; };
+		CE4CAD9B208847BB001F711F /* HGClassRTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGClassRTableViewCell.m; sourceTree = "<group>"; };
+		CE4CAD9D208847DC001F711F /* HGCRModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGCRModel.h; sourceTree = "<group>"; };
+		CE4CAD9E208847DC001F711F /* HGCRModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGCRModel.m; sourceTree = "<group>"; };
+		CE4CADA0208860E1001F711F /* HGCRParama.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGCRParama.h; sourceTree = "<group>"; };
+		CE4CADA1208860E1001F711F /* HGCRParama.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGCRParama.m; sourceTree = "<group>"; };
 		CE769D9E206A343E000F931F /* HGGL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HGGL.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE769DAA206A343E000F931F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE769DAD206A343E000F931F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -589,6 +603,10 @@
 		CE86444D206FA2EA002FE9E7 /* HGLable.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGLable.m; sourceTree = "<group>"; };
 		CE864453206FA992002FE9E7 /* HGCPWViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGCPWViewController.h; sourceTree = "<group>"; };
 		CE864454206FA992002FE9E7 /* HGCPWViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGCPWViewController.m; sourceTree = "<group>"; };
+		CE91330D2089869C00780113 /* TKProfessionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKProfessionTableViewCell.m; sourceTree = "<group>"; };
+		CE91330E2089869C00780113 /* TKProfessionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKProfessionTableViewCell.h; sourceTree = "<group>"; };
+		CE9133132089BA8F00780113 /* HGPopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGPopView.h; sourceTree = "<group>"; };
+		CE9133142089BA8F00780113 /* HGPopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGPopView.m; sourceTree = "<group>"; };
 		CEAD196A207C9DA1008F1696 /* Currse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Currse.m; sourceTree = "<group>"; };
 		CEAD196B207C9DA1008F1696 /* CurrseList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrseList.m; sourceTree = "<group>"; };
 		CEAD196C207C9DA1008F1696 /* CurrFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrFrame.m; sourceTree = "<group>"; };
@@ -1793,6 +1811,10 @@
 				CE4CAD8920872393001F711F /* HGCourseInfo.m */,
 				CE4CAD8B208724C9001F711F /* HGCourseInfoFrame.h */,
 				CE4CAD8C208724C9001F711F /* HGCourseInfoFrame.m */,
+				CE4CAD9D208847DC001F711F /* HGCRModel.h */,
+				CE4CAD9E208847DC001F711F /* HGCRModel.m */,
+				CE4CADA0208860E1001F711F /* HGCRParama.h */,
+				CE4CADA1208860E1001F711F /* HGCRParama.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1838,6 +1860,10 @@
 				CEAD1986207C9DA1008F1696 /* ZKRImageview.m */,
 				CE4CAD8E20872D84001F711F /* HGBaseTableViewCell.h */,
 				CE4CAD8F20872D84001F711F /* HGBaseTableViewCell.m */,
+				CE4CAD9720883BE8001F711F /* HGClassRHeader.h */,
+				CE4CAD9820883BE8001F711F /* HGClassRHeader.m */,
+				CE4CAD9A208847BB001F711F /* HGClassRTableViewCell.h */,
+				CE4CAD9B208847BB001F711F /* HGClassRTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1866,12 +1892,16 @@
 		CEAD19B4207C9E6F008F1696 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CE91330E2089869C00780113 /* TKProfessionTableViewCell.h */,
+				CE91330D2089869C00780113 /* TKProfessionTableViewCell.m */,
 				CEAD1B17207DFB5E008F1696 /* ImageLeftBut.h */,
 				CEAD1B16207DFB5E008F1696 /* ImageLeftBut.m */,
 				CEAD19BF207DA8F8008F1696 /* ImageRightBut.h */,
 				CEAD19C0207DA8F8008F1696 /* ImageRightBut.m */,
 				CEAD19B6207C9EA8008F1696 /* BaseTableViewCell.h */,
 				CEAD19B7207C9EA9008F1696 /* BaseTableViewCell.m */,
+				CE9133132089BA8F00780113 /* HGPopView.h */,
+				CE9133142089BA8F00780113 /* HGPopView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2663,6 +2693,7 @@
 				CEAD19DA207DDDD8008F1696 /* IntroTableViewController.m in Sources */,
 				CEAD1B04207DF6D4008F1696 /* MissonList.m in Sources */,
 				CEAD19A5207C9DA1008F1696 /* CurrCollectionViewCell.m in Sources */,
+				CE4CAD9C208847BB001F711F /* HGClassRTableViewCell.m in Sources */,
 				CE4CAD822085E318001F711F /* CurrBaseTableViewController.m in Sources */,
 				CEAD19F9207DDF1C008F1696 /* CourseScore.m in Sources */,
 				CEAD1AFB207DF44F008F1696 /* BlacklogTableViewCell.m in Sources */,
@@ -2713,6 +2744,7 @@
 				CEAD1A9D207DF356008F1696 /* MenteeListViewController.m in Sources */,
 				CE4CAD872085E319001F711F /* CurrViewController.m in Sources */,
 				CEAD1B01207DF5FB008F1696 /* PMissonTableViewController.m in Sources */,
+				CE4CAD9920883BE8001F711F /* HGClassRHeader.m in Sources */,
 				CEAD1A04207DE01A008F1696 /* CSTableViewCell.m in Sources */,
 				CEAD19FB207DDF1C008F1696 /* TeacIntroInfo.m in Sources */,
 				CEAD1A6C207DE5AD008F1696 /* PStudentTableViewCell.m in Sources */,
@@ -2747,6 +2779,7 @@
 				CEAD1A6E207DE5AD008F1696 /* ProjectCollectionViewCell.m in Sources */,
 				CEAD1B2F207F4639008F1696 /* RecTableViewController.m in Sources */,
 				CEAD1B4E207F464F008F1696 /* ClassRoom.m in Sources */,
+				CE4CAD9F208847DC001F711F /* HGCRModel.m in Sources */,
 				CEAD1B0D207DF709008F1696 /* PMissionTableViewCell.m in Sources */,
 				CEAD19A8207C9DA1008F1696 /* ClassNumCollectionViewCell.m in Sources */,
 				CEAD1A90207DF34C008F1696 /* MenteeProject.m in Sources */,
@@ -2813,6 +2846,7 @@
 				CEAD1AE0207DF42B008F1696 /* DistNoAndLevel.m in Sources */,
 				CEAD1A68207DE5AD008F1696 /* ProjectTime.m in Sources */,
 				CE86444E206FA2EA002FE9E7 /* HGLable.m in Sources */,
+				CE4CADA2208860E1001F711F /* HGCRParama.m in Sources */,
 				CE4CAD9020872D84001F711F /* HGBaseTableViewCell.m in Sources */,
 				CE769DFA206A56F0000F931F /* UIView+Frame.m in Sources */,
 				CEAD1AB8207DF418008F1696 /* ZKRTextField.m in Sources */,
@@ -2856,6 +2890,7 @@
 				AD0396CE20731DD40082C817 /* HGContactController.m in Sources */,
 				CEAD1AA0207DF356008F1696 /* MenteeCollectionViewController.m in Sources */,
 				CEAD19A9207C9DA1008F1696 /* ZKRImageview.m in Sources */,
+				CE91330F2089869C00780113 /* TKProfessionTableViewCell.m in Sources */,
 				CEAD19AF207C9DA1008F1696 /* CurrTableViewCell.m in Sources */,
 				CE4CAD9620875C33001F711F /* HGTRcordTableViewCell.m in Sources */,
 				ADBDC795206BD01E00D32390 /* HGItemPlanCell.m in Sources */,
@@ -2865,6 +2900,7 @@
 				CEAD1A65207DE5AD008F1696 /* HeaderView.m in Sources */,
 				CEAD1AF9207DF44F008F1696 /* BlackLog.m in Sources */,
 				CEAD1ADF207DF42B008F1696 /* Report.m in Sources */,
+				CE9133152089BA8F00780113 /* HGPopView.m in Sources */,
 				CEAD199F207C9DA1008F1696 /* CurrFrame.m in Sources */,
 				CEAD1B59207F465A008F1696 /* HistroyTopView.m in Sources */,
 				CE4CAD812085E318001F711F /* CurrTableViewController.m in Sources */,

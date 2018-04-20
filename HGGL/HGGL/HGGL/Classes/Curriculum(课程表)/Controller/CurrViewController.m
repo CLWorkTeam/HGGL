@@ -191,7 +191,7 @@
     UIBarButtonItem *back = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStyleDone target:self action:@selector(clickBack)];
     //[back setImage:[UIImage imageNamed:@"return_normal"]];
 ////    [bar pushNavigationItem:self.navigationItem animated:YES];
-    self.navigationController.navigationBar.barTintColor =HGColor(205,0,36,1);
+    self.navigationController.navigationBar.barTintColor =HGMainColor;
 ////    [self.view addSubview:bar];
     self.navigationItem.leftBarButtonItem = back;
 //    self.navigationItem.title = @"课程表";
