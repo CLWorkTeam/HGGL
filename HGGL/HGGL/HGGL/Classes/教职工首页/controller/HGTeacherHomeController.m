@@ -9,6 +9,7 @@
 #import "HGTeacherHomeController.h"
 #import "HGItemPlanController.h"
 #import "HGWeekMenuController.h"
+#import "SDWebImageManager.h"
 #import "HGWebController.h"
 #import "TKButton.h"
 
@@ -57,10 +58,27 @@
     [messageBtn addTarget:self action:@selector(clickMessage:) forControlEvents:UIControlEventTouchUpInside];
     [backV addSubview:messageBtn];
     
+    
+    
     UIImageView *imageV =[[UIImageView alloc]initWithFrame:CGRectMake(0, backV.maxY, HGScreenWidth, 150)];
-    imageV.image = [UIImage imageNamed:@"WechatIMG79.jpeg"];
     self.imageV = imageV;
     [self.view addSubview:imageV];
+    
+    NSString *url = [HGURL stringByAppendingString:@"Banner/getBannerInfo.do"];
+    NSString *type = [HGUserDefaults objectForKey:HGUserType];
+    [HGHttpTool POSTWithURL:url parameters:@{@"type":type} success:^(id responseObject) {
+        if ([responseObject[@"status"] isEqualToString:@"1"]) {
+            NSString *resultUrl = [responseObject[@"data"] firstObject][@"imageUrl"];
+            NSString *imgUrl = [NSString stringWithFormat:@"%@%@",HGURL,resultUrl];
+            [imageV sd_setImageWithURL:[NSURL URLWithString:imgUrl]  completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+                if (error) {
+                    imageV.image = [UIImage imageNamed:@"WechatIMG79.jpeg"];
+                }
+            }];
+        }
+    } failure:^(NSError *error) {
+        
+    }];
     
 
     [self addMenuBtn];

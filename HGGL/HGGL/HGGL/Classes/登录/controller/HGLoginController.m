@@ -47,6 +47,10 @@
     textF.clearButtonMode = UITextFieldViewModeAlways;
     [self.view addSubview:textF];
     self.accountTextField = textF;
+    NSString *username = [HGUserDefaults objectForKey:HGUserName];
+    if (username) {
+        textF.text =username;
+    }
     
     UITextField *textF1 = [[UITextField alloc]initWithFrame:CGRectMake(textF.x, textF.maxY+20, HGScreenWidth-40, 40)];
     textF1.font = [UIFont systemFontOfSize:18];
@@ -86,15 +90,7 @@
     
     
     [SVProgressHUD showWithStatus:@"登录中..."];
-//<<<<<<< HEAD
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        [SVProgressHUD dismiss];
-//
-//        HGTabBarViewController *vc = [[HGTabBarViewController alloc]init];
-////        HGTeacherHomeController *Vc = [[HGTeacherHomeController alloc]init];
-////        HGNavigationController *nav = [[HGNavigationController alloc]initWithRootViewController:Vc];
-//        HGKeywindow.rootViewController = vc;
-//    });
+
     NSString *account = self.accountTextField.text;
     NSString *passWord = self.pwTextField.text;
     if (account==nil||account.length==0) {
@@ -106,8 +102,13 @@
         return;
     }
     [HGHttpTool POSTWithURL:[HGURL stringByAppendingString:@"User/Login.do"] parameters:@{@"account":account,@"password":passWord} success:^(id responseObject) {
-        [SVProgressHUD dismiss];
-        NSDictionary *dict = responseObject[@"data"];
+//        [SVProgressHUD dismiss];
+        if ([responseObject[@"data"] isNull]||[responseObject[@"status"] isEqualToString:@"-1"]) {
+            [SVProgressHUD showErrorWithStatus:responseObject[@"message"]];
+            return ;
+        }
+        NSDictionary *dict1 = responseObject[@"data"];
+        NSDictionary *dict = [dict1 changeValueToString];
         
         [HGUserDefaults setObject:dict[@"user_id"] forKey:HGUserID];
         [HGUserDefaults setObject:dict[@"user_name"] forKey:HGUserName];
@@ -116,21 +117,16 @@
         [HGUserDefaults setObject:account forKey:HGUserAccount];
         [HGUserDefaults setObject:passWord forKey:HGUserPassWord];
         [HGUserDefaults synchronize];
-        HGTabBarViewController *vc = [[HGTabBarViewController alloc]init];
-        HGKeywindow.rootViewController = vc;
-        HGLog(@"%@",[HGUserDefaults objectForKey:HGUserID]);
+        if ([dict[@"user_type"] isEqualToString:@"1"]) {
+            HGTeacherHomeController *vc =[[HGTeacherHomeController alloc]init];
+            HGNavigationController *nav = [[HGNavigationController alloc]initWithRootViewController:vc];
+            HGKeywindow.rootViewController = nav;
+        }else if ([dict[@"user_type"] isEqualToString:@"3"]){
+            HGTabBarViewController *vc = [[HGTabBarViewController alloc]init];
+            HGKeywindow.rootViewController = vc;
+        }
     } failure:^(NSError *error) {
-        [SVProgressHUD dismiss];
     }];
-//=======
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//
-////        HGTabBarViewController *vc = [[HGTabBarViewController alloc]init];
-//        HGTeacherHomeController *Vc = [[HGTeacherHomeController alloc]init];
-//        HGNavigationController *nav = [[HGNavigationController alloc]initWithRootViewController:Vc];
-//        HGKeywindow.rootViewController = nav;
-//    });
-//>>>>>>> eaa6810394b5d6645e04535c949d834b4a76d304
 }
 
 - (void)autoLogin:(anyButton *)sender{

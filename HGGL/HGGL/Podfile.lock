@@ -14,6 +14,7 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
+  - HcdDateTimePicker (1.1.1)
   - IQKeyboardManager (5.0.8)
   - MJExtension (3.0.13)
   - MJRefresh (3.1.15.3)
@@ -28,6 +29,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 3.1.0)
+  - HcdDateTimePicker
   - IQKeyboardManager
   - MJExtension (~> 3.0.13)
   - MJRefresh (~> 3.1.14)
@@ -38,6 +40,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  HcdDateTimePicker: 187736981f667f699d4d8d6ccc21621b55a6edb8
   IQKeyboardManager: 266cb7b1d11f94a3e71229d77f960f9a1b538e5b
   MJExtension: 5932755f451458eefa24239358817f8d291240c7
   MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
@@ -47,6 +50,6 @@ SPEC CHECKSUMS:
   UMCCommon: ac0bc01a46a5640bbd58646448f455b4c5404bf0
   UMCPush: 6d67ff5ca853857e2690abbdaecb86b254b1f823
 
-PODFILE CHECKSUM: abbdb57cdf7485d5147a896cd1f168fd1a6be915
+PODFILE CHECKSUM: d303cc77f11ac4c3059e1251de77bd70386c9940
 
 COCOAPODS: 1.4.0
