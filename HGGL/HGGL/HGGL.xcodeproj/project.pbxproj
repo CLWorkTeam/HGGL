@@ -42,6 +42,11 @@
 		ADBDC792206BCC0000D32390 /* TKWebProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBDC791206BCC0000D32390 /* TKWebProgressView.m */; };
 		ADBDC795206BD01E00D32390 /* HGItemPlanCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBDC794206BD01E00D32390 /* HGItemPlanCell.m */; };
 		ADBDC798206BD29400D32390 /* HGItemPlanModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBDC797206BD29400D32390 /* HGItemPlanModel.m */; };
+		ADDD57582089B4BA005A38EA /* NSNull+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = ADDD57562089B4B9005A38EA /* NSNull+Safe.m */; };
+		ADDD575B2089B516005A38EA /* NSObject+Blank.m in Sources */ = {isa = PBXBuildFile; fileRef = ADDD57592089B516005A38EA /* NSObject+Blank.m */; };
+		ADDD575E2089B746005A38EA /* NSDictionary+Value.m in Sources */ = {isa = PBXBuildFile; fileRef = ADDD575C2089B746005A38EA /* NSDictionary+Value.m */; };
+		ADDD57642089BFA6005A38EA /* TKBDPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADDD57622089BFA5005A38EA /* TKBDPickerView.m */; };
+		ADDD57672089BFC1005A38EA /* NSDate+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = ADDD57652089BFC1005A38EA /* NSDate+Additions.m */; };
 		CE4CAD3A2084A415001F711F /* MessageCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4CAD352084A414001F711F /* MessageCollectionViewController.m */; };
 		CE4CAD3B2084A415001F711F /* MessagePopCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4CAD382084A415001F711F /* MessagePopCollectionViewController.m */; };
 		CE4CAD3C2084A415001F711F /* SendMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4CAD392084A415001F711F /* SendMessageViewController.m */; };
@@ -400,6 +405,16 @@
 		ADBDC794206BD01E00D32390 /* HGItemPlanCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGItemPlanCell.m; sourceTree = "<group>"; };
 		ADBDC796206BD29400D32390 /* HGItemPlanModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGItemPlanModel.h; sourceTree = "<group>"; };
 		ADBDC797206BD29400D32390 /* HGItemPlanModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGItemPlanModel.m; sourceTree = "<group>"; };
+		ADDD57562089B4B9005A38EA /* NSNull+Safe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNull+Safe.m"; sourceTree = "<group>"; };
+		ADDD57572089B4BA005A38EA /* NSNull+Safe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNull+Safe.h"; sourceTree = "<group>"; };
+		ADDD57592089B516005A38EA /* NSObject+Blank.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Blank.m"; sourceTree = "<group>"; };
+		ADDD575A2089B516005A38EA /* NSObject+Blank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Blank.h"; sourceTree = "<group>"; };
+		ADDD575C2089B746005A38EA /* NSDictionary+Value.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Value.m"; sourceTree = "<group>"; };
+		ADDD575D2089B746005A38EA /* NSDictionary+Value.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Value.h"; sourceTree = "<group>"; };
+		ADDD57622089BFA5005A38EA /* TKBDPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKBDPickerView.m; sourceTree = "<group>"; };
+		ADDD57632089BFA6005A38EA /* TKBDPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKBDPickerView.h; sourceTree = "<group>"; };
+		ADDD57652089BFC1005A38EA /* NSDate+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Additions.m"; sourceTree = "<group>"; };
+		ADDD57662089BFC1005A38EA /* NSDate+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Additions.h"; sourceTree = "<group>"; };
 		CE4CAD342084A413001F711F /* SendMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendMessageViewController.h; sourceTree = "<group>"; };
 		CE4CAD352084A414001F711F /* MessageCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCollectionViewController.m; sourceTree = "<group>"; };
 		CE4CAD362084A414001F711F /* MessageCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCollectionViewController.h; sourceTree = "<group>"; };
@@ -1158,6 +1173,8 @@
 		AD6BE236206B7CA100028673 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				ADDD57632089BFA6005A38EA /* TKBDPickerView.h */,
+				ADDD57622089BFA5005A38EA /* TKBDPickerView.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1462,12 +1479,20 @@
 				CE769DF4206A56EF000F931F /* UIView+Frame.m */,
 				AD804BFC206B8F7B00299A08 /* UIColor+Hex.h */,
 				AD804BFD206B8F7B00299A08 /* UIColor+Hex.m */,
+				ADDD57662089BFC1005A38EA /* NSDate+Additions.h */,
+				ADDD57652089BFC1005A38EA /* NSDate+Additions.m */,
 				AD804C14206B958100299A08 /* TKUpDownButton.h */,
 				AD804C13206B958000299A08 /* TKUpDownButton.m */,
 				AD804C16206B95D400299A08 /* TKButton.h */,
 				AD804C17206B95D400299A08 /* TKButton.m */,
 				ADBDC790206BCBFF00D32390 /* TKWebProgressView.h */,
 				ADBDC791206BCC0000D32390 /* TKWebProgressView.m */,
+				ADDD57572089B4BA005A38EA /* NSNull+Safe.h */,
+				ADDD57562089B4B9005A38EA /* NSNull+Safe.m */,
+				ADDD575A2089B516005A38EA /* NSObject+Blank.h */,
+				ADDD57592089B516005A38EA /* NSObject+Blank.m */,
+				ADDD575D2089B746005A38EA /* NSDictionary+Value.h */,
+				ADDD575C2089B746005A38EA /* NSDictionary+Value.m */,
 				CE769DE9206A56A4000F931F /* Tools */,
 			);
 			path = Libs;
@@ -2647,6 +2672,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADDD575B2089B516005A38EA /* NSObject+Blank.m in Sources */,
 				CEAD1A66207DE5AD008F1696 /* ProjectAuditTableViewCell.m in Sources */,
 				CEAD1B07207DF6E9008F1696 /* PMissionParama.m in Sources */,
 				CEAD1B4A207F464F008F1696 /* room.m in Sources */,
@@ -2657,6 +2683,7 @@
 				CEAD1A37207DE4DF008F1696 /* ProjectAuditViewController.m in Sources */,
 				CEAD1A8F207DF34C008F1696 /* MenteeFrame.m in Sources */,
 				CEAD1B2C207F4639008F1696 /* RecViewController.m in Sources */,
+				ADDD57672089BFC1005A38EA /* NSDate+Additions.m in Sources */,
 				CE4CAD452084A437001F711F /* MessagePopLayout.m in Sources */,
 				CE4CAD4F2084A463001F711F /* PopView.m in Sources */,
 				CE769EA0206A5DAC000F931F /* HGNavigationController.m in Sources */,
@@ -2691,6 +2718,7 @@
 				CEAD1B12207DFA62008F1696 /* User.m in Sources */,
 				CEAD1B5A207F465A008F1696 /* HistoryTableViewCell.m in Sources */,
 				CEAD1ADC207DF42B008F1696 /* SuggestReturn.m in Sources */,
+				ADDD575E2089B746005A38EA /* NSDictionary+Value.m in Sources */,
 				CEAD1A4F207DE59D008F1696 /* PCourse.m in Sources */,
 				CEAD1A13207DE04F008F1696 /* TeacherListHeader.m in Sources */,
 				CEAD19B1207C9DA1008F1696 /* NightCollectionViewCell.m in Sources */,
@@ -2767,6 +2795,7 @@
 				CEAD1ADA207DF42B008F1696 /* ResearchInfoTableViewController.m in Sources */,
 				CEAD19A2207C9DA1008F1696 /* CurrBut.m in Sources */,
 				CE4CAD832085E318001F711F /* ElseTableViewController.m in Sources */,
+				ADDD57582089B4BA005A38EA /* NSNull+Safe.m in Sources */,
 				CEAD1A6D207DE5AD008F1696 /* PCourseTableViewCell.m in Sources */,
 				CEAD1B15207DFB2F008F1696 /* TeachTableViewCell.m in Sources */,
 				CEAD1AB4207DF418008F1696 /* EditViewController.m in Sources */,
@@ -2821,6 +2850,7 @@
 				CEAD1A35207DE4DF008F1696 /* ProjectAuditDetailViewController.m in Sources */,
 				CEAD19AC207C9DA1008F1696 /* TabImageView.m in Sources */,
 				CEAD19A3207C9DA1008F1696 /* ClassRoomCollectionViewCell.m in Sources */,
+				ADDD57642089BFA6005A38EA /* TKBDPickerView.m in Sources */,
 				CEAD1B4C207F464F008F1696 /* HistoryParma.m in Sources */,
 				CEAD1A9E207DF356008F1696 /* MenteeListTableViewController.m in Sources */,
 				CEAD19CB207DA9EB008F1696 /* TeachToolBar.m in Sources */,

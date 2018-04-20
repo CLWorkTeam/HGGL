@@ -9,6 +9,7 @@
 #import "HGItemPlanController.h"
 #import "HGItemPlanCell.h"
 #import "HGItemPlanModel.h"
+#import "TKBDPickerView.h"
 
 @interface HGItemPlanController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -88,6 +89,14 @@
         self.yearBtn.selected = NO;
         self.monthBtn.selected = YES;
     }
+    
+    TKBDPickerView *pickView = [[TKBDPickerView alloc] init];
+    pickView.frame = CGRectMake(0, HGScreenHeight-150, HGScreenWidth, 150);
+    pickView.startTime = @"1900-01-01";
+    pickView.endTime = @"2100-12-31";
+    pickView.Components = 2;
+    pickView.isOrder = NO;
+    [self.view addSubview:pickView];
 }
 
 - (void)addTableview{

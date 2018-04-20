@@ -30,6 +30,7 @@
         if (failure) {
             failure(error);
         }
+        [SVProgressHUD showErrorWithStatus:@"请求失败，稍后重试"];
     }];
     
 }
