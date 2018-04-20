@@ -161,7 +161,7 @@
     
     okBtn = [[UIButton alloc]initWithFrame:CGRectMake(kScreen_Width-60, 0, 60, kTopViewHeight)];
     [okBtn setTitleColor:_buttonTitleColor forState:UIControlStateNormal];
-    okBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+    okBtn.titleLabel.font = [UIFont systemFontOfSize:16];
     [okBtn setBackgroundColor:[UIColor clearColor]];
     [okBtn setTitle:@"确定" forState:UIControlStateNormal];
     [okBtn addTarget:self action:@selector(selectedButtons:) forControlEvents:UIControlEventTouchUpInside];
@@ -169,7 +169,7 @@
     [self addSubview:okBtn];
     
     cancleBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 60, kTopViewHeight)];
-    cancleBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+    cancleBtn.titleLabel.font = [UIFont systemFontOfSize:16];
     [cancleBtn setTitleColor:_buttonTitleColor forState:UIControlStateNormal];
     [cancleBtn setBackgroundColor:[UIColor clearColor]];
     [cancleBtn setTitle:@"取消" forState:UIControlStateNormal];
@@ -242,6 +242,8 @@
         [self setDayScrollView];
         [self setHourScrollView];
         [self setMinuteScrollView];
+    }else if (self.datePickerMode ==DatePickerYearMode){
+        [self setYearScrollView];
     }
     
     [timeBroadcastView addSubview:topView];
@@ -258,6 +260,8 @@
         yearScrollView = [[MXSCycleScrollView alloc] initWithFrame:CGRectMake(0, kTopViewHeight, kScreen_Width*0.5, kTimeBroadcastViewHeight)];
     } else if (self.datePickerMode == DatePickerDateHourMinuteMode) {
         yearScrollView = [[MXSCycleScrollView alloc] initWithFrame:CGRectMake(0, kTopViewHeight, kScreen_Width*0.28, kTimeBroadcastViewHeight)];
+    }else if (self.datePickerMode ==DatePickerYearMode){
+        yearScrollView = [[MXSCycleScrollView alloc] initWithFrame:CGRectMake(0, kTopViewHeight, kScreen_Width, kTimeBroadcastViewHeight)];
     }
     
     self.curYear = [self setNowTimeShow:0];
@@ -660,7 +664,8 @@
     
     [UIView animateWithDuration:0.4f delay:0 usingSpringWithDamping:0.8f initialSpringVelocity:0 options:UIViewAnimationOptionLayoutSubviews animations:^{
         
-        [weak setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.0f]];
+//        [weak setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.0f]];
+        weak.alpha = 0;
         [timeBroadcastView setFrame:CGRectMake(0, kScreen_Height, kScreen_Width, height)];
         
     } completion:^(BOOL finished) {
@@ -701,6 +706,9 @@
             switch (self.datePickerMode) {
                 case DatePickerDateMode:
                     dateTimeStr = [NSString stringWithFormat:@"%ld-%ld-%ld",(long)self.curYear,(long)self.curMonth,(long)self.curDay];
+                    break;
+                case DatePickerYearMode:
+                    dateTimeStr = [NSString stringWithFormat:@"%ld",(long)self.curYear];
                     break;
                 case DatePickerTimeMode:
                     dateTimeStr = [NSString stringWithFormat:@"%02ld:%02ld:%02ld",(long)self.curHour,(long)self.curMin,(long)self.curSecond];

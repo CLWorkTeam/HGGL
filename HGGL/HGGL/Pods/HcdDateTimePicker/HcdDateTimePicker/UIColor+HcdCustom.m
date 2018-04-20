@@ -122,10 +122,23 @@
 }
 
 + (UIColor *)colorWithHexString:(NSString *)stringToConvert {
-    NSScanner *scanner = [NSScanner scannerWithString:stringToConvert];
+    
+    if([stringToConvert hasPrefix:@"#"])
+    {
+        stringToConvert = [stringToConvert substringFromIndex:1];
+    }
+    NSScanner*scanner = [NSScanner scannerWithString:stringToConvert];
     unsigned hexNum;
-    if (![scanner scanHexInt:&hexNum]) return nil;
-    return [UIColor colorWithRGBHex:hexNum];
+    if(![scanner scanHexInt:&hexNum])
+    {
+        return nil;
+    }
+    return[UIColor colorWithRGBHex:hexNum];
+    
+//    NSScanner *scanner = [NSScanner scannerWithString:stringToConvert];
+//    unsigned hexNum;
+//    if (![scanner scanHexInt:&hexNum]) return nil;
+//    return [UIColor colorWithRGBHex:hexNum];
 }
 + (UIColor *)colorWithHexString:(NSString *)stringToConvert andAlpha:(CGFloat)alpha{
     UIColor *color = [UIColor colorWithHexString:stringToConvert];

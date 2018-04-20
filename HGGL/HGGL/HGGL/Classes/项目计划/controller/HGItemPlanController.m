@@ -9,7 +9,8 @@
 #import "HGItemPlanController.h"
 #import "HGItemPlanCell.h"
 #import "HGItemPlanModel.h"
-#import "TKBDPickerView.h"
+//#import "TKBDPickerView.h"
+#import "HcdDateTimePickerView.h"
 
 @interface HGItemPlanController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -90,13 +91,20 @@
         self.monthBtn.selected = YES;
     }
     
-    TKBDPickerView *pickView = [[TKBDPickerView alloc] init];
-    pickView.frame = CGRectMake(0, HGScreenHeight-150, HGScreenWidth, 150);
-    pickView.startTime = @"1900-01-01";
-    pickView.endTime = @"2100-12-31";
-    pickView.Components = 2;
-    pickView.isOrder = NO;
-    [self.view addSubview:pickView];
+//    TKBDPickerView *pickView = [[TKBDPickerView alloc] init];
+//    pickView.frame = CGRectMake(0, HGScreenHeight-150, HGScreenWidth, 150);
+//    pickView.startTime = @"1900-01-01";
+//    pickView.endTime = @"2100-12-31";
+//    pickView.Components = 2;
+//    pickView.isOrder = NO;
+//    [self.view addSubview:pickView];
+    
+    HcdDateTimePickerView *dateTimePickerView = [[HcdDateTimePickerView alloc] initWithDatePickerMode:DatePickerYearMonthMode defaultDateTime:[[NSDate alloc]initWithTimeIntervalSinceNow:0]];
+    dateTimePickerView.clickedOkBtn = ^(NSString * datetimeStr){
+        NSLog(@"%@", datetimeStr);
+    };
+    [self.view addSubview:dateTimePickerView];
+    [dateTimePickerView showHcdDateTimePicker];
 }
 
 - (void)addTableview{

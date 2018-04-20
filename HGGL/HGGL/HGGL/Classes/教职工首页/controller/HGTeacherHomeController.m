@@ -38,7 +38,7 @@
     [self.view addSubview:backV];
     
     UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, HGStautsBarH, HGScreenWidth, 44)];
-    label.text = @"登录";
+    label.text = @"首页";
     label.textColor = [UIColor whiteColor];
     label.textAlignment = NSTextAlignmentCenter;
     label.font = [UIFont systemFontOfSize:18];
