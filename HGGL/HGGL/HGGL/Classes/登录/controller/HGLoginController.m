@@ -88,7 +88,7 @@
 
 - (void)login:(UIButton *)sender{
     
-    
+    [self.view endEditing:YES];
     [SVProgressHUD showWithStatus:@"登录中..."];
 
     NSString *account = self.accountTextField.text;
@@ -114,6 +114,9 @@
         [HGUserDefaults setObject:dict[@"user_name"] forKey:HGUserName];
         [HGUserDefaults setObject:dict[@"user_type"] forKey:HGUserType];
         [HGUserDefaults setObject:dict[@"real_name"] forKey:HGRealName];
+        if (![dict[@"project_id"] isNull]) {
+            [HGUserDefaults setObject:dict[@"project_id"] forKey:HGProjectID];
+        }
         [HGUserDefaults setObject:account forKey:HGUserAccount];
         [HGUserDefaults setObject:passWord forKey:HGUserPassWord];
         [HGUserDefaults synchronize];
@@ -126,6 +129,7 @@
             HGKeywindow.rootViewController = vc;
         }
     } failure:^(NSError *error) {
+        
     }];
 }
 

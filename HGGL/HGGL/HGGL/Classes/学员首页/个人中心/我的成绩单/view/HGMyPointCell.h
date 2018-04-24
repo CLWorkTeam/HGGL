@@ -17,6 +17,4 @@
 @property (nonatomic,strong) CALayer *topLayer;
 
 
-
-
 @end
