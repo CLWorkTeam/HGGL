@@ -11,6 +11,7 @@
 #import "HGItemPlanModel.h"
 //#import "TKBDPickerView.h"
 #import "HcdDateTimePickerView.h"
+#import "NSDate+Additions.h"
 
 @interface HGItemPlanController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -19,7 +20,12 @@
 @property (nonatomic,strong) NSArray *dataAry;
 @property (nonatomic,strong) UIButton *yearBtn;
 @property (nonatomic,strong) UIButton *monthBtn;
+@property (nonatomic,strong) UIButton *selectBtn; //选择时间的按钮
 
+@property (nonatomic,copy) NSString *selectTime;//选中的时间
+
+@property (nonatomic,copy) NSString *yearTime;
+@property (nonatomic,copy) NSString *monthTime;
 
 @end
 
@@ -30,12 +36,60 @@
     // Do any additional setup after loading the view.
     self.name = @"项目计划";
     self.rightBtn.hidden = YES;
-    NSDictionary *dict = @{@"title":@"测试小孩",@"money":@"1212",@"days":@"11",@"number":@"12",@"time":@"2018-12-12 - 2018-12-31"};
-    HGItemPlanModel *model = [HGItemPlanModel mj_objectWithKeyValues:dict];
-    self.dataAry = @[model,model,model,model,model,model];
+    NSString *yearTime = [[NSDate date] stringWithFormat:@"yyyy"];
+    self.yearTime = yearTime;
+
     [self addHeaderView];
     [self addTableview];
+    [self.tableV.mj_header beginRefreshing];
 }
+
+- (void)addTableview{
+    
+    UITableView *tableV = [[UITableView alloc]initWithFrame:CGRectMake(0,self.headerV.maxY+10 , HGScreenWidth, HGScreenHeight - self.headerV.maxY-10) style:UITableViewStyleGrouped];
+    tableV.separatorStyle = UITableViewCellSeparatorStyleNone;
+    tableV.backgroundColor = [UIColor whiteColor];
+    tableV.rowHeight = 120;
+    tableV.delegate = self;
+    tableV.dataSource = self;
+    self.tableV = tableV;
+    [self.view addSubview:tableV];
+    
+    WeakSelf;
+    self.tableV.mj_header = [HGRefresh loadNewRefreshWithRefreshBlock:^{
+        [weakSelf loadDataWithYear:self.yearTime month:self.monthTime];
+    }];
+}
+
+
+- (void)loadDataWithYear:(NSString *)year month:(NSString *)month{
+    
+    NSString *url = [HGURL stringByAppendingString:@"Project/getPlanList.do"];
+    NSDictionary *param = @{@"year":year};
+    if (month) {
+        param = @{@"year":year,@"month":month};
+    }
+    [HGHttpTool POSTWithURL:url parameters:param success:^(id responseObject) {
+        NSLog(@"%@",responseObject);
+        
+        [self.tableV.mj_header endRefreshing];
+
+        if ([responseObject[@"status"] isEqualToString:@"0"]) {
+            self.dataAry = @[];
+            [self.tableV reloadData];
+            self.tableV.backgroundView = [[HGNoDataView alloc]init];
+        }else{
+            NSArray *ary = responseObject[@"data"];
+            self.dataAry = [HGItemPlanModel mj_objectArrayWithKeyValuesArray:ary];
+            [self.tableV reloadData];
+        }
+    } failure:^(NSError *error) {
+        [self.tableV.mj_header endRefreshing];
+    }];
+
+}
+
+
 
 - (void)addHeaderView{
     
@@ -75,61 +129,73 @@
     [btn2 addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
     [headerV addSubview:btn2];
 
+    UIButton *btn3 = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btn3 setTitle:self.yearTime forState:UIControlStateNormal];
+    [btn3 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    btn3.titleLabel.font = [UIFont systemFontOfSize:14];
+    btn3.frame = CGRectMake(HGScreenWidth-100-10, headerV.height-30,100, 30);
+    btn3.layer.cornerRadius = 3;
+    btn3.layer.masksToBounds = YES;
+    btn3.layer.borderColor = HGMainColor.CGColor;
+    btn3.layer.borderWidth = 1;
+    self.selectBtn = btn3;
+    [btn3 addTarget:self action:@selector(selectTimeClick:) forControlEvents:UIControlEventTouchUpInside];
+    [headerV addSubview:btn3];
+
     
     UIView *grayV = [[UIView alloc]initWithFrame:CGRectMake(0, headerV.maxY, HGScreenWidth, 10)];
     grayV.backgroundColor = HGGrayColor;
     [self.view addSubview:grayV];
 }
 
-- (void)clickBtn:(UIButton *)sender{
-    NSInteger tag = sender.tag;
-    if (tag==1001) {
-        self.yearBtn.selected = YES;
-        self.monthBtn.selected = NO;
+- (void)selectTimeClick:(UIButton *)sender{
+    
+    WeakSelf;
+    if (self.monthBtn.isSelected==YES) { //说明是月度计划
+        HcdDateTimePickerView *dateTimePickerView = [[HcdDateTimePickerView alloc] initWithDatePickerMode:DatePickerYearMonthMode defaultDateTime:[[NSDate alloc]initWithTimeIntervalSinceNow:0]];
+        dateTimePickerView.clickedOkBtn = ^(NSString * datetimeStr){
+            [self.selectBtn setTitle:datetimeStr forState:UIControlStateNormal];
+            NSString *year = [datetimeStr componentsSeparatedByString:@"-"].firstObject;
+            NSString *month = [datetimeStr componentsSeparatedByString:@"-"].lastObject;
+            [weakSelf loadDataWithYear:year month:month];
+        };
+        [self.view addSubview:dateTimePickerView];
+        [dateTimePickerView showHcdDateTimePicker];
+
     }else{
-        self.yearBtn.selected = NO;
-        self.monthBtn.selected = YES;
+        
+        HcdDateTimePickerView *dateTimePickerView = [[HcdDateTimePickerView alloc] initWithDatePickerMode:DatePickerYearMode defaultDateTime:[[NSDate alloc]initWithTimeIntervalSinceNow:0]];
+        dateTimePickerView.clickedOkBtn = ^(NSString * datetimeStr){
+            NSLog(@"%@", datetimeStr);
+            [self.selectBtn setTitle:datetimeStr forState:UIControlStateNormal];
+            [weakSelf loadDataWithYear:datetimeStr month:nil];
+        };
+        [self.view addSubview:dateTimePickerView];
+        [dateTimePickerView showHcdDateTimePicker];
     }
-    
-//    TKBDPickerView *pickView = [[TKBDPickerView alloc] init];
-//    pickView.frame = CGRectMake(0, HGScreenHeight-150, HGScreenWidth, 150);
-//    pickView.startTime = @"1900-01-01";
-//    pickView.endTime = @"2100-12-31";
-//    pickView.Components = 2;
-//    pickView.isOrder = NO;
-//    [self.view addSubview:pickView];
-    
-    HcdDateTimePickerView *dateTimePickerView = [[HcdDateTimePickerView alloc] initWithDatePickerMode:DatePickerYearMonthMode defaultDateTime:[[NSDate alloc]initWithTimeIntervalSinceNow:0]];
-    dateTimePickerView.clickedOkBtn = ^(NSString * datetimeStr){
-        NSLog(@"%@", datetimeStr);
-    };
-    [self.view addSubview:dateTimePickerView];
-    [dateTimePickerView showHcdDateTimePicker];
 }
 
-- (void)addTableview{
+- (void)clickBtn:(UIButton *)sender{
     
-    UITableView *tableV = [[UITableView alloc]initWithFrame:CGRectMake(0,self.headerV.maxY+10 , HGScreenWidth, HGScreenHeight - self.headerV.maxY-10) style:UITableViewStyleGrouped];
-    tableV.separatorStyle = UITableViewCellSeparatorStyleNone;
-    tableV.backgroundColor = [UIColor whiteColor];
-    tableV.rowHeight = 120;
-    tableV.delegate = self;
-    tableV.dataSource = self;
-    self.tableV = tableV;
-    [self.view addSubview:tableV];
+    NSInteger tag = sender.tag;
+    if (tag==1001) { //点击年度计划
+        self.yearBtn.selected = YES;
+        self.monthBtn.selected = NO;
+        self.monthTime = nil;
+        [self.selectBtn setTitle:self.yearTime forState:UIControlStateNormal];
+        [self loadDataWithYear:self.yearTime month:nil];
+    }else{ //点击月度计划
+        self.yearBtn.selected = NO;
+        self.monthBtn.selected = YES;
+        NSString *monthTime = [[NSDate date] stringWithFormat:@"MM"];
+        self.monthTime = monthTime;
+        [self.selectBtn setTitle:[[NSDate date] stringWithFormat:@"yyyy-MM"] forState:UIControlStateNormal];
+        [self loadDataWithYear:self.yearTime month:self.monthTime];
+
+    }
     
-//    WeakSelf;
-//    self.tableV.mj_header = [HGRefresh loadNewRefreshWithRefreshBlock:^{
-//        NSLog(@"321312");
-//        [weakSelf.tableV.mj_header endRefreshing];
-//    }];
-//
-//    self.tableV.mj_footer = [HGRefresh loadMoreRefreshWithRefreshBlock:^{
-//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//            [weakSelf.tableV.mj_footer endRefreshingWithNoMoreData];
-//        });
-//    }];
 }
+
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     return [[UIView alloc]init];

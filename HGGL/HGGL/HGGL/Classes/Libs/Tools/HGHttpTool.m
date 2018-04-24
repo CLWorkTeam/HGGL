@@ -26,6 +26,7 @@
         if (success) {
             success(responseObject);
         }
+        [SVProgressHUD dismiss];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         if (failure) {
             failure(error);

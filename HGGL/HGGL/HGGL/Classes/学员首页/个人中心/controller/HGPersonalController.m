@@ -7,8 +7,14 @@
 //
 
 #import "HGPersonalController.h"
+#import "HGPersionCenterCell.h"
+#import "HGLoginController.h"
 
-@interface HGPersonalController ()
+@interface HGPersonalController ()<UITableViewDelegate,UITableViewDataSource>
+
+@property (nonatomic,strong) NSArray *listAry;
+@property (nonatomic,strong) UITableView *tableV;
+
 
 @end
 
@@ -18,7 +24,49 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.name = @"个人中心";
-    self.leftBtn.hidden = YES;
+    NSString *type = [HGUserDefaults objectForKey:HGUserType];
+    self.listAry = @[@"版本",@"个人信息及修改",@"密码修改",@"我的班级",@"我的档案",@"退出当前账号"];
+    if ([type isEqualToString:@"3"]) {  //学员没有返回按钮
+        self.leftBtn.hidden = YES;
+        self.listAry = @[@"版本",@"个人信息及修改",@"密码修改",@"我的下载",@"我的档案",@"我的成绩单",@"项目证书",@"联系我们",@"退出当前账号"];
+    }
+    [self addTableview];
+}
+
+- (void)addTableview{
+    
+    UITableView *tableV = [[UITableView alloc]initWithFrame:CGRectMake(0,self.bar.maxY, HGScreenWidth, HGScreenHeight - self.bar.maxY) style:UITableViewStylePlain];
+    tableV.separatorStyle = UITableViewCellSeparatorStyleNone;
+    tableV.backgroundColor = [UIColor whiteColor];
+    tableV.rowHeight = 44;
+    tableV.delegate = self;
+    tableV.dataSource = self;
+    self.tableV = tableV;
+    [self.view addSubview:tableV];
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.listAry.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    static NSString *ID = @"itemPlanCell";
+    HGPersionCenterCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    if (cell==nil) {
+        cell = [[HGPersionCenterCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    cell.titleStr = self.listAry[indexPath.row];
+    return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSString *title = self.listAry[indexPath.row];
+    if ([title isEqualToString:@"退出当前账号"]) {
+        HGLoginController *vc = [[HGLoginController alloc]init];
+        HGKeywindow.rootViewController = vc;
+    }
 }
 
 - (void)didReceiveMemoryWarning {

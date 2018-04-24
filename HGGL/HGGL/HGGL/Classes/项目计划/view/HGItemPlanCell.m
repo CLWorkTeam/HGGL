@@ -50,25 +50,25 @@
     [backV addSubview:titleLab];
     
     UILabel *moneyLab = [[UILabel alloc]init];
-    moneyLab.textColor = [UIColor blackColor];
+    moneyLab.textColor = [UIColor colorWithHexString:@"#666666"];
     moneyLab.font = [UIFont systemFontOfSize:16];
     self.moneyLab = moneyLab;
     [backV addSubview:moneyLab];
 
     UILabel *daysLab = [[UILabel alloc]init];
-    daysLab.textColor = [UIColor blackColor];
+    daysLab.textColor = [UIColor colorWithHexString:@"#666666"];
     daysLab.font = [UIFont systemFontOfSize:16];
     self.daysLab = daysLab;
     [backV addSubview:daysLab];
 
     UILabel *numberLab = [[UILabel alloc]init];
-    numberLab.textColor = [UIColor blackColor];
+    numberLab.textColor = [UIColor colorWithHexString:@"#666666"];
     numberLab.font = [UIFont systemFontOfSize:16];
     self.numberLab = numberLab;
     [backV addSubview:numberLab];
 
     UILabel *timeLab = [[UILabel alloc]init];
-    timeLab.textColor = [UIColor blackColor];
+    timeLab.textColor = [UIColor colorWithHexString:@"#666666"];
     timeLab.font = [UIFont systemFontOfSize:16];
     self.timeLab = timeLab;
     [backV addSubview:timeLab];
@@ -77,11 +77,11 @@
 
 -(void)setModel:(HGItemPlanModel *)model{
     _model = model;
-    self.titleLab.text = [NSString stringWithFormat:@"[调训项目]%@",model.title];
-    self.moneyLab.text = [NSString stringWithFormat:@"收费标准：%@",model.money];
+    self.titleLab.text = [NSString stringWithFormat:@"[调训项目]%@",model.projectName];
+    self.moneyLab.text = [NSString stringWithFormat:@"收费标准：%@",model.feeStandard];
     self.daysLab.text = [NSString stringWithFormat:@"天数：%@",model.days];
-    self.numberLab.text = [NSString stringWithFormat:@"人数：%@",model.number];
-    self.timeLab.text = [NSString stringWithFormat:@"时间：%@",model.time];
+    self.numberLab.text = [NSString stringWithFormat:@"人数：%@",model.peopleNums];
+    self.timeLab.text = [NSString stringWithFormat:@"时间：%@ - %@",model.startTime,model.endTime];
 }
 
 -(void)layoutSubviews{

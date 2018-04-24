@@ -13,6 +13,18 @@
 		AD0396D220731DEB0082C817 /* HGClassController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD0396D120731DEB0082C817 /* HGClassController.m */; };
 		AD0396D520731E400082C817 /* HGPersonalController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD0396D420731E400082C817 /* HGPersonalController.m */; };
 		AD472FEF206CB26A0024BDBB /* HGWeekMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD472FEE206CB26A0024BDBB /* HGWeekMenuController.m */; };
+		AD5F5F06208DA9B700F68471 /* HGMydataCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5F5F05208DA9B700F68471 /* HGMydataCell.m */; };
+		AD5F5F09208DAAA700F68471 /* HGMydataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5F5F08208DAAA700F68471 /* HGMydataModel.m */; };
+		AD5F5F0C208DB92600F68471 /* HGStudentItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5F5F0B208DB92600F68471 /* HGStudentItemModel.m */; };
+		AD5F5F10208DC6EC00F68471 /* HGClassDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5F5F0F208DC6EC00F68471 /* HGClassDetailController.m */; };
+		AD5F5F13208DD36C00F68471 /* HGItemCertCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5F5F12208DD36C00F68471 /* HGItemCertCell.m */; };
+		AD5F5F16208DD50F00F68471 /* HGItemCertModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5F5F15208DD50F00F68471 /* HGItemCertModel.m */; };
+		AD5F5F1D208DDE8300F68471 /* HGSchoolFCController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5F5F1C208DDE8300F68471 /* HGSchoolFCController.m */; };
+		AD5F5F20208DDFD400F68471 /* HGSchoolFCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5F5F1F208DDFD400F68471 /* HGSchoolFCCell.m */; };
+		AD5F5F23208DDFE400F68471 /* HGSchoolFCModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5F5F22208DDFE400F68471 /* HGSchoolFCModel.m */; };
+		AD5F5F26208EF99300F68471 /* HGPersionCenterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5F5F25208EF99300F68471 /* HGPersionCenterCell.m */; };
+		AD5F5F29208F059A00F68471 /* HGStudentContactCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5F5F28208F059A00F68471 /* HGStudentContactCell.m */; };
+		AD5F5F2C208F05AF00F68471 /* HGContactModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5F5F2B208F05AF00F68471 /* HGContactModel.m */; };
 		AD6BE231206B6B1800028673 /* HGLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD6BE230206B6B1800028673 /* HGLoginController.m */; };
 		AD6BE233206B777200028673 /* WechatIMG8.png in Resources */ = {isa = PBXBuildFile; fileRef = AD6BE232206B777200028673 /* WechatIMG8.png */; };
 		AD6BE23A206B7CBB00028673 /* HGTeacherHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD6BE239206B7CBB00028673 /* HGTeacherHomeController.m */; };
@@ -45,8 +57,8 @@
 		ADDD57582089B4BA005A38EA /* NSNull+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = ADDD57562089B4B9005A38EA /* NSNull+Safe.m */; };
 		ADDD575B2089B516005A38EA /* NSObject+Blank.m in Sources */ = {isa = PBXBuildFile; fileRef = ADDD57592089B516005A38EA /* NSObject+Blank.m */; };
 		ADDD575E2089B746005A38EA /* NSDictionary+Value.m in Sources */ = {isa = PBXBuildFile; fileRef = ADDD575C2089B746005A38EA /* NSDictionary+Value.m */; };
-		ADDD57642089BFA6005A38EA /* TKBDPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADDD57622089BFA5005A38EA /* TKBDPickerView.m */; };
 		ADDD57672089BFC1005A38EA /* NSDate+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = ADDD57652089BFC1005A38EA /* NSDate+Additions.m */; };
+		ADDD576A2089CD32005A38EA /* HGNoDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADDD57692089CD32005A38EA /* HGNoDataView.m */; };
 		CE4CAD3A2084A415001F711F /* MessageCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4CAD352084A414001F711F /* MessageCollectionViewController.m */; };
 		CE4CAD3B2084A415001F711F /* MessagePopCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4CAD382084A415001F711F /* MessagePopCollectionViewController.m */; };
 		CE4CAD3C2084A415001F711F /* SendMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4CAD392084A415001F711F /* SendMessageViewController.m */; };
@@ -364,6 +376,30 @@
 		AD0396D420731E400082C817 /* HGPersonalController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGPersonalController.m; sourceTree = "<group>"; };
 		AD472FED206CB26A0024BDBB /* HGWeekMenuController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGWeekMenuController.h; sourceTree = "<group>"; };
 		AD472FEE206CB26A0024BDBB /* HGWeekMenuController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGWeekMenuController.m; sourceTree = "<group>"; };
+		AD5F5F04208DA9B700F68471 /* HGMydataCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGMydataCell.h; sourceTree = "<group>"; };
+		AD5F5F05208DA9B700F68471 /* HGMydataCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGMydataCell.m; sourceTree = "<group>"; };
+		AD5F5F07208DAAA700F68471 /* HGMydataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGMydataModel.h; sourceTree = "<group>"; };
+		AD5F5F08208DAAA700F68471 /* HGMydataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGMydataModel.m; sourceTree = "<group>"; };
+		AD5F5F0A208DB92600F68471 /* HGStudentItemModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGStudentItemModel.h; sourceTree = "<group>"; };
+		AD5F5F0B208DB92600F68471 /* HGStudentItemModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGStudentItemModel.m; sourceTree = "<group>"; };
+		AD5F5F0E208DC6EC00F68471 /* HGClassDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGClassDetailController.h; sourceTree = "<group>"; };
+		AD5F5F0F208DC6EC00F68471 /* HGClassDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGClassDetailController.m; sourceTree = "<group>"; };
+		AD5F5F11208DD36C00F68471 /* HGItemCertCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGItemCertCell.h; sourceTree = "<group>"; };
+		AD5F5F12208DD36C00F68471 /* HGItemCertCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGItemCertCell.m; sourceTree = "<group>"; };
+		AD5F5F14208DD50F00F68471 /* HGItemCertModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGItemCertModel.h; sourceTree = "<group>"; };
+		AD5F5F15208DD50F00F68471 /* HGItemCertModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGItemCertModel.m; sourceTree = "<group>"; };
+		AD5F5F1B208DDE8300F68471 /* HGSchoolFCController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGSchoolFCController.h; sourceTree = "<group>"; };
+		AD5F5F1C208DDE8300F68471 /* HGSchoolFCController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGSchoolFCController.m; sourceTree = "<group>"; };
+		AD5F5F1E208DDFD400F68471 /* HGSchoolFCCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGSchoolFCCell.h; sourceTree = "<group>"; };
+		AD5F5F1F208DDFD400F68471 /* HGSchoolFCCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGSchoolFCCell.m; sourceTree = "<group>"; };
+		AD5F5F21208DDFE400F68471 /* HGSchoolFCModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGSchoolFCModel.h; sourceTree = "<group>"; };
+		AD5F5F22208DDFE400F68471 /* HGSchoolFCModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGSchoolFCModel.m; sourceTree = "<group>"; };
+		AD5F5F24208EF99300F68471 /* HGPersionCenterCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGPersionCenterCell.h; sourceTree = "<group>"; };
+		AD5F5F25208EF99300F68471 /* HGPersionCenterCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGPersionCenterCell.m; sourceTree = "<group>"; };
+		AD5F5F27208F059A00F68471 /* HGStudentContactCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGStudentContactCell.h; sourceTree = "<group>"; };
+		AD5F5F28208F059A00F68471 /* HGStudentContactCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGStudentContactCell.m; sourceTree = "<group>"; };
+		AD5F5F2A208F05AF00F68471 /* HGContactModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGContactModel.h; sourceTree = "<group>"; };
+		AD5F5F2B208F05AF00F68471 /* HGContactModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGContactModel.m; sourceTree = "<group>"; };
 		AD6BE22F206B6B1800028673 /* HGLoginController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGLoginController.h; sourceTree = "<group>"; };
 		AD6BE230206B6B1800028673 /* HGLoginController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGLoginController.m; sourceTree = "<group>"; };
 		AD6BE232206B777200028673 /* WechatIMG8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WechatIMG8.png; sourceTree = "<group>"; };
@@ -417,10 +453,10 @@
 		ADDD575A2089B516005A38EA /* NSObject+Blank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Blank.h"; sourceTree = "<group>"; };
 		ADDD575C2089B746005A38EA /* NSDictionary+Value.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Value.m"; sourceTree = "<group>"; };
 		ADDD575D2089B746005A38EA /* NSDictionary+Value.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Value.h"; sourceTree = "<group>"; };
-		ADDD57622089BFA5005A38EA /* TKBDPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKBDPickerView.m; sourceTree = "<group>"; };
-		ADDD57632089BFA6005A38EA /* TKBDPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKBDPickerView.h; sourceTree = "<group>"; };
 		ADDD57652089BFC1005A38EA /* NSDate+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Additions.m"; sourceTree = "<group>"; };
 		ADDD57662089BFC1005A38EA /* NSDate+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Additions.h"; sourceTree = "<group>"; };
+		ADDD57682089CD32005A38EA /* HGNoDataView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGNoDataView.h; sourceTree = "<group>"; };
+		ADDD57692089CD32005A38EA /* HGNoDataView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGNoDataView.m; sourceTree = "<group>"; };
 		CE4CAD342084A413001F711F /* SendMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendMessageViewController.h; sourceTree = "<group>"; };
 		CE4CAD352084A414001F711F /* MessageCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCollectionViewController.m; sourceTree = "<group>"; };
 		CE4CAD362084A414001F711F /* MessageCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCollectionViewController.h; sourceTree = "<group>"; };
@@ -995,6 +1031,8 @@
 		AD0396BB20731B9C0082C817 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				AD5F5F0A208DB92600F68471 /* HGStudentItemModel.h */,
+				AD5F5F0B208DB92600F68471 /* HGStudentItemModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -1002,6 +1040,7 @@
 		AD0396BC20731C860082C817 /* 我的班级 */ = {
 			isa = PBXGroup;
 			children = (
+				AD5F5F0D208DC60200F68471 /* 课程详情 */,
 				AD9164E72083210D00416124 /* 项目资料 */,
 				AD0396BB20731B9C0082C817 /* model */,
 				AD0396BA20731B980082C817 /* view */,
@@ -1056,6 +1095,8 @@
 		AD0396C420731D660082C817 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				AD5F5F27208F059A00F68471 /* HGStudentContactCell.h */,
+				AD5F5F28208F059A00F68471 /* HGStudentContactCell.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1063,6 +1104,8 @@
 		AD0396C520731D6A0082C817 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				AD5F5F2A208F05AF00F68471 /* HGContactModel.h */,
+				AD5F5F2B208F05AF00F68471 /* HGContactModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -1102,6 +1145,8 @@
 		AD0396CA20731D870082C817 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				AD5F5F24208EF99300F68471 /* HGPersionCenterCell.h */,
+				AD5F5F25208EF99300F68471 /* HGPersionCenterCell.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1146,6 +1191,52 @@
 			path = model;
 			sourceTree = "<group>";
 		};
+		AD5F5F0D208DC60200F68471 /* 课程详情 */ = {
+			isa = PBXGroup;
+			children = (
+				AD5F5F0E208DC6EC00F68471 /* HGClassDetailController.h */,
+				AD5F5F0F208DC6EC00F68471 /* HGClassDetailController.m */,
+			);
+			path = "课程详情";
+			sourceTree = "<group>";
+		};
+		AD5F5F17208DDE4400F68471 /* 校园风采 */ = {
+			isa = PBXGroup;
+			children = (
+				AD5F5F1A208DDE5900F68471 /* Model */,
+				AD5F5F19208DDE5500F68471 /* View */,
+				AD5F5F18208DDE4F00F68471 /* Controller */,
+			);
+			path = "校园风采";
+			sourceTree = "<group>";
+		};
+		AD5F5F18208DDE4F00F68471 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				AD5F5F1B208DDE8300F68471 /* HGSchoolFCController.h */,
+				AD5F5F1C208DDE8300F68471 /* HGSchoolFCController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		AD5F5F19208DDE5500F68471 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AD5F5F1E208DDFD400F68471 /* HGSchoolFCCell.h */,
+				AD5F5F1F208DDFD400F68471 /* HGSchoolFCCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		AD5F5F1A208DDE5900F68471 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AD5F5F21208DDFE400F68471 /* HGSchoolFCModel.h */,
+				AD5F5F22208DDFE400F68471 /* HGSchoolFCModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		AD6BE22B206B6ADC00028673 /* 登录 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1168,6 +1259,7 @@
 		AD6BE234206B7C8100028673 /* 教职工首页 */ = {
 			isa = PBXGroup;
 			children = (
+				AD5F5F17208DDE4400F68471 /* 校园风采 */,
 				AD6BE237206B7CA500028673 /* model */,
 				AD6BE236206B7CA100028673 /* view */,
 				AD6BE235206B7C9300028673 /* controller */,
@@ -1191,8 +1283,8 @@
 		AD6BE236206B7CA100028673 /* view */ = {
 			isa = PBXGroup;
 			children = (
-				ADDD57632089BFA6005A38EA /* TKBDPickerView.h */,
-				ADDD57622089BFA5005A38EA /* TKBDPickerView.m */,
+				ADDD57682089CD32005A38EA /* HGNoDataView.h */,
+				ADDD57692089CD32005A38EA /* HGNoDataView.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1259,6 +1351,8 @@
 		AD9164F02083239000416124 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				AD5F5F04208DA9B700F68471 /* HGMydataCell.h */,
+				AD5F5F05208DA9B700F68471 /* HGMydataCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1266,6 +1360,8 @@
 		AD9164F12083239400416124 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				AD5F5F07208DAAA700F68471 /* HGMydataModel.h */,
+				AD5F5F08208DAAA700F68471 /* HGMydataModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1292,6 +1388,8 @@
 		AD9164F92083262400416124 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				AD5F5F11208DD36C00F68471 /* HGItemCertCell.h */,
+				AD5F5F12208DD36C00F68471 /* HGItemCertCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1299,6 +1397,8 @@
 		AD9164FA2083262900416124 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				AD5F5F14208DD50F00F68471 /* HGItemCertModel.h */,
+				AD5F5F15208DD50F00F68471 /* HGItemCertModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2704,12 +2804,14 @@
 			files = (
 				ADDD575B2089B516005A38EA /* NSObject+Blank.m in Sources */,
 				CEAD1A66207DE5AD008F1696 /* ProjectAuditTableViewCell.m in Sources */,
+				AD5F5F20208DDFD400F68471 /* HGSchoolFCCell.m in Sources */,
 				CEAD1B07207DF6E9008F1696 /* PMissionParama.m in Sources */,
 				CEAD1B4A207F464F008F1696 /* room.m in Sources */,
 				CE4CAD722085E02D001F711F /* HGLibraryViewController.m in Sources */,
 				CEAD19D4207DAAA7008F1696 /* CourseTableViewController.m in Sources */,
 				ADBDC78C206BC7B200D32390 /* HGItemPlanController.m in Sources */,
 				CEAD1A3D207DE4DF008F1696 /* ProjectCollectionViewController.m in Sources */,
+				AD5F5F06208DA9B700F68471 /* HGMydataCell.m in Sources */,
 				CEAD1A37207DE4DF008F1696 /* ProjectAuditViewController.m in Sources */,
 				CEAD1A8F207DF34C008F1696 /* MenteeFrame.m in Sources */,
 				CEAD1B2C207F4639008F1696 /* RecViewController.m in Sources */,
@@ -2733,6 +2835,7 @@
 				CEAD1A01207DDFEC008F1696 /* BaseHeaderView.m in Sources */,
 				CEAD19FD207DDF1C008F1696 /* TeacherListParama.m in Sources */,
 				CEAD19AD207C9DA1008F1696 /* ClassShowTableViewCell.m in Sources */,
+				AD5F5F2C208F05AF00F68471 /* HGContactModel.m in Sources */,
 				CEAD1A8E207DF34C008F1696 /* MenteeParama.m in Sources */,
 				CEAD1B2D207F4639008F1696 /* TaskTableViewController.m in Sources */,
 				CEAD1A67207DE5AD008F1696 /* AuditHeaderVIew.m in Sources */,
@@ -2748,6 +2851,7 @@
 				CE769E9D206A5BD1000F931F /* HGBadgeView.m in Sources */,
 				CEAD1B12207DFA62008F1696 /* User.m in Sources */,
 				CEAD1B5A207F465A008F1696 /* HistoryTableViewCell.m in Sources */,
+				AD5F5F1D208DDE8300F68471 /* HGSchoolFCController.m in Sources */,
 				CEAD1ADC207DF42B008F1696 /* SuggestReturn.m in Sources */,
 				ADDD575E2089B746005A38EA /* NSDictionary+Value.m in Sources */,
 				CEAD1A4F207DE59D008F1696 /* PCourse.m in Sources */,
@@ -2803,6 +2907,7 @@
 				CE4CAD8A20872393001F711F /* HGCourseInfo.m in Sources */,
 				CEAD1A4B207DE59D008F1696 /* ProjectAuditParama.m in Sources */,
 				CEAD19FA207DDF1C008F1696 /* CourseFrame.m in Sources */,
+				AD5F5F10208DC6EC00F68471 /* HGClassDetailController.m in Sources */,
 				CEAD1B46207F464F008F1696 /* Dinner.m in Sources */,
 				CEAD1A6E207DE5AD008F1696 /* ProjectCollectionViewCell.m in Sources */,
 				CEAD1B2F207F4639008F1696 /* RecTableViewController.m in Sources */,
@@ -2825,10 +2930,12 @@
 				CEAD1AD8207DF42B008F1696 /* ResearchViewController.m in Sources */,
 				CEAD1A69207DE5AD008F1696 /* ProInfoTableViewCell.m in Sources */,
 				CEAD1B4B207F464F008F1696 /* Car.m in Sources */,
+				AD5F5F16208DD50F00F68471 /* HGItemCertModel.m in Sources */,
 				CEAD1ADA207DF42B008F1696 /* ResearchInfoTableViewController.m in Sources */,
 				CEAD19A2207C9DA1008F1696 /* CurrBut.m in Sources */,
 				CE4CAD832085E318001F711F /* ElseTableViewController.m in Sources */,
 				ADDD57582089B4BA005A38EA /* NSNull+Safe.m in Sources */,
+				AD5F5F09208DAAA700F68471 /* HGMydataModel.m in Sources */,
 				CEAD1A6D207DE5AD008F1696 /* PCourseTableViewCell.m in Sources */,
 				CEAD1B15207DFB2F008F1696 /* TeachTableViewCell.m in Sources */,
 				CEAD1AB4207DF418008F1696 /* EditViewController.m in Sources */,
@@ -2847,6 +2954,7 @@
 				CE864448206F9675002FE9E7 /* MessageInfoController.m in Sources */,
 				CE4CAD632085C493001F711F /* HGRecipSendTableViewController.m in Sources */,
 				CEAD19C1207DA8F8008F1696 /* ImageRightBut.m in Sources */,
+				AD5F5F29208F059A00F68471 /* HGStudentContactCell.m in Sources */,
 				CE769DE3206A3559000F931F /* AppDelegate.m in Sources */,
 				CEAD1A4D207DE59D008F1696 /* PBaseFrame.m in Sources */,
 				ADBDC792206BCC0000D32390 /* TKWebProgressView.m in Sources */,
@@ -2868,6 +2976,7 @@
 				CE769E9A206A5B68000F931F /* HGTabBarButton.m in Sources */,
 				CEAD19E0207DDE3A008F1696 /* TeachCollectionViewCell.m in Sources */,
 				CEAD1A3B207DE4DF008F1696 /* PCourseTableViewController.m in Sources */,
+				ADDD576A2089CD32005A38EA /* HGNoDataView.m in Sources */,
 				CEAD19C8207DA9A7008F1696 /* TeacViewController.m in Sources */,
 				CEAD19A1207C9DA1008F1696 /* WeekToolBar.m in Sources */,
 				CEAD1A80207DF33F008F1696 /* MenteeToolBar.m in Sources */,
@@ -2884,19 +2993,21 @@
 				CEAD1A35207DE4DF008F1696 /* ProjectAuditDetailViewController.m in Sources */,
 				CEAD19AC207C9DA1008F1696 /* TabImageView.m in Sources */,
 				CEAD19A3207C9DA1008F1696 /* ClassRoomCollectionViewCell.m in Sources */,
-				ADDD57642089BFA6005A38EA /* TKBDPickerView.m in Sources */,
 				CEAD1B4C207F464F008F1696 /* HistoryParma.m in Sources */,
 				CEAD1A9E207DF356008F1696 /* MenteeListTableViewController.m in Sources */,
 				CEAD19CB207DA9EB008F1696 /* TeachToolBar.m in Sources */,
 				CEAD19F8207DDF1C008F1696 /* ScoreList.m in Sources */,
 				ADBD8DF4207DEEFD0021B600 /* HGMyPointCell.m in Sources */,
 				CE86444B206F9675002FE9E7 /* MessageTableViewCell.m in Sources */,
+				AD5F5F0C208DB92600F68471 /* HGStudentItemModel.m in Sources */,
 				CEAD1AF6207DF44F008F1696 /* BlackLogViewController.m in Sources */,
+				AD5F5F26208EF99300F68471 /* HGPersionCenterCell.m in Sources */,
 				CEAD19D7207DDD5D008F1696 /* BaseInfoTableViewController.m in Sources */,
 				CEAD19B0207C9DA1008F1696 /* CurrImageView.m in Sources */,
 				CEAD1AE3207DF42B008F1696 /* ResearchListHeader.m in Sources */,
 				CE4CAD3B2084A415001F711F /* MessagePopCollectionViewController.m in Sources */,
 				CE769DF7206A56F0000F931F /* UIImage+image.m in Sources */,
+				AD5F5F13208DD36C00F68471 /* HGItemCertCell.m in Sources */,
 				CE4CAD602085A045001F711F /* HGClassAdmitTableViewController.m in Sources */,
 				CEAD1A50207DE59D008F1696 /* MenteeList.m in Sources */,
 				CE769DE2206A3559000F931F /* main.m in Sources */,
@@ -2935,6 +3046,7 @@
 				CEAD1B59207F465A008F1696 /* HistroyTopView.m in Sources */,
 				CE4CAD812085E318001F711F /* CurrTableViewController.m in Sources */,
 				CE769EA6206A5F1D000F931F /* HGBarBut.m in Sources */,
+				AD5F5F23208DDFE400F68471 /* HGSchoolFCModel.m in Sources */,
 				CEAD1AA1207DF356008F1696 /* MenteeBaseTableViewController.m in Sources */,
 				CEAD1AB5207DF418008F1696 /* MoreTableViewController.m in Sources */,
 			);

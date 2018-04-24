@@ -39,6 +39,7 @@
     [SVProgressHUD setMinimumDismissTimeInterval:1];
     [SVProgressHUD setMaximumDismissTimeInterval:2];
     [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
 }
 -(void)test
 {

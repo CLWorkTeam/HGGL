@@ -12,6 +12,9 @@
 #import "SDWebImageManager.h"
 #import "HGWebController.h"
 #import "TKButton.h"
+#import "HGMyDataViewController.h"
+#import "HGSchoolFCController.h"
+#import "HGPersonalController.h"
 
 @interface HGTeacherHomeController ()
 
@@ -48,7 +51,7 @@
     persionBtn.frame = CGRectMake(20, HGStautsBarH+5, 30, 30);
     [persionBtn setImage:[UIImage imageNamed:@"icon_top_personal"] forState:UIControlStateNormal];
     persionBtn.backgroundColor = HGMainColor;
-    [persionBtn addTarget:self action:@selector(login:) forControlEvents:UIControlEventTouchUpInside];
+    [persionBtn addTarget:self action:@selector(clickPersion) forControlEvents:UIControlEventTouchUpInside];
     [backV addSubview:persionBtn];
     
     UIButton *messageBtn =[UIButton buttonWithType:UIButtonTypeCustom];
@@ -57,8 +60,6 @@
     messageBtn.backgroundColor = HGMainColor;
     [messageBtn addTarget:self action:@selector(clickMessage:) forControlEvents:UIControlEventTouchUpInside];
     [backV addSubview:messageBtn];
-    
-    
     
     UIImageView *imageV =[[UIImageView alloc]initWithFrame:CGRectMake(0, backV.maxY, HGScreenWidth, 150)];
     self.imageV = imageV;
@@ -75,13 +76,21 @@
                     imageV.image = [UIImage imageNamed:@"WechatIMG79.jpeg"];
                 }
             }];
+        }else{
+            imageV.image = [UIImage imageNamed:@"WechatIMG79.jpeg"];
         }
     } failure:^(NSError *error) {
-        
+        imageV.image = [UIImage imageNamed:@"WechatIMG79.jpeg"];
     }];
-    
 
     [self addMenuBtn];
+}
+
+//点击个人中心
+- (void)clickPersion{
+    
+    HGPersonalController *vc = [[HGPersonalController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)addMenuBtn{
@@ -135,6 +144,9 @@
         [self.navigationController pushViewController:vc animated:YES];
     }else if ([title isEqualToString:@"每周菜谱"]){
         HGWeekMenuController *vc = [[HGWeekMenuController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if ([title isEqualToString:@"校园风采"]){
+        HGSchoolFCController *vc =[[HGSchoolFCController alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
     }
 

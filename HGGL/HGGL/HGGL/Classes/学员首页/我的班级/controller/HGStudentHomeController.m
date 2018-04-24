@@ -15,13 +15,18 @@
 #import "HGMyDataViewController.h"
 #import "HGItemCertController.h"
 #import "HGContactUSViewController.h"
+#import "HGStudentItemModel.h"
+#import "HGClassDetailController.h"
 
 @interface HGStudentHomeController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong) UIImageView *imageV;
 @property (nonatomic,strong) UITableView *tableV;
 
-@property (nonatomic,strong) NSArray *teachersAry;
+@property (nonatomic,strong) NSArray *dataAry;
+@property (nonatomic,strong) NSDictionary *infoDic;
+
+
 
 
 @end
@@ -32,12 +37,31 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.name = @"我的班级";
-    self.teachersAry = @[@"",@"",@"",@"",@"",@""];
     [self.leftBtn setImage:[UIImage imageNamed:@"icon_schedule"] forState:UIControlStateNormal];
     [self.leftBtn addTarget:self action:@selector(schedule) forControlEvents:UIControlEventTouchUpInside];
     [self.rightBtn addTarget:self action:@selector(message) forControlEvents:UIControlEventTouchUpInside];
+    
     [self addTableview];
+    [self.tableV.mj_header beginRefreshing];
 }
+
+- (void)requestData{
+    NSString *projectId = [HGUserDefaults objectForKey:HGProjectID];
+    NSString *url = [HGURL stringByAppendingString:@"Project/getProjectInfo.do"];
+    [HGHttpTool POSTWithURL:url parameters:@{@"project_id":projectId} success:^(id responseObject) {
+        [self.tableV.mj_header endRefreshing];
+        if ([responseObject[@"status"] isEqualToString:@"1"]) {
+            self.infoDic = responseObject[@"data"];
+            NSArray *tempAry = responseObject[@"data"][@"project_course"][@"course"];
+            self.dataAry = [HGStudentItemModel mj_objectArrayWithKeyValuesArray:tempAry];
+            [self.tableV reloadData];
+        }
+    } failure:^(NSError *error) {
+        [self.tableV.mj_header endRefreshing];
+    }];
+
+}
+
 -(void)schedule
 {
     CurrViewController *curr = [[CurrViewController alloc]init];
@@ -62,11 +86,10 @@
     self.tableV = tableV;
     [self.view addSubview:tableV];
     
-    //    WeakSelf;
-    //    self.tableV.mj_header = [HGRefresh loadNewRefreshWithRefreshBlock:^{
-    //        NSLog(@"321312");
-    //        [weakSelf.tableV.mj_header endRefreshing];
-    //    }];
+    WeakSelf;
+    self.tableV.mj_header = [HGRefresh loadNewRefreshWithRefreshBlock:^{
+        [weakSelf requestData];
+    }];
     //
     //    self.tableV.mj_footer = [HGRefresh loadMoreRefreshWithRefreshBlock:^{
     //        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -83,9 +106,26 @@
     }
     
     UIImageView *imageV =[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, HGScreenWidth, 150)];
-    imageV.image = [UIImage imageNamed:@"WechatIMG79.jpeg"];
     [cell.contentView addSubview:imageV];
     
+    NSString *url = [HGURL stringByAppendingString:@"Banner/getBannerInfo.do"];
+    NSString *type = [HGUserDefaults objectForKey:HGUserType];
+    [HGHttpTool POSTWithURL:url parameters:@{@"type":type} success:^(id responseObject) {
+        if ([responseObject[@"status"] isEqualToString:@"1"]) {
+            NSString *resultUrl = [responseObject[@"data"] firstObject][@"imageUrl"];
+            NSString *imgUrl = [NSString stringWithFormat:@"%@%@",HGURL,resultUrl];
+            [imageV sd_setImageWithURL:[NSURL URLWithString:imgUrl]  completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+                if (error) {
+                    imageV.image = [UIImage imageNamed:@"WechatIMG79.jpeg"];
+                }
+            }];
+        }else{
+            imageV.image = [UIImage imageNamed:@"WechatIMG79.jpeg"];
+        }
+    } failure:^(NSError *error) {
+            imageV.image = [UIImage imageNamed:@"WechatIMG79.jpeg"];
+    }];
+
     return cell;
 }
 
@@ -176,11 +216,11 @@
         [subview removeFromSuperview];
     }
     
-    UIView *contentV = [[UIView alloc]initWithFrame:CGRectMake(10,0, HGScreenWidth-20, 245)];
+    UIView *contentV = [[UIView alloc]initWithFrame:CGRectMake(10,0, HGScreenWidth-20, 230)];
     contentV.backgroundColor = [UIColor whiteColor];
     [cell.contentView addSubview:contentV];
     
-    UIView *titleV = [[UIView alloc]initWithFrame:CGRectMake(0, 0, contentV.width, 50)];
+    UIView *titleV = [[UIView alloc]initWithFrame:CGRectMake(0, 0, contentV.width, 40)];
     titleV.backgroundColor = HGColor(249, 227, 249, 1);
     [contentV addSubview:titleV];
     
@@ -191,47 +231,85 @@
     titleV.layer.mask = maskLayer;
 
     UILabel *titleLab = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, 100, 10)];
-    titleLab.font = [UIFont boldSystemFontOfSize:24];
+    titleLab.font = [UIFont boldSystemFontOfSize:18];
     titleLab.text = @"基本信息";
     titleLab.textColor = HGColor(82,118, 215, 1);
     [titleLab sizeToFit];
     titleLab.centerY = titleV.centerY;
     [titleV addSubview:titleLab];
     
-    UIView *whiteV = [[UIView alloc]initWithFrame:CGRectMake(0, titleV.maxY, contentV.width, 185)];
+    UIView *whiteV = [[UIView alloc]initWithFrame:CGRectMake(0, titleV.maxY, contentV.width, 190)];
     whiteV.backgroundColor = [UIColor whiteColor];
     whiteV.layer.borderColor = HGColor(249, 202, 168, 1).CGColor;
     whiteV.layer.borderWidth = 1;
     [contentV addSubview:whiteV];
     
     UILabel *classLab = [[UILabel alloc]initWithFrame:CGRectMake(10, 15, 100, 10)];
-    classLab.font = [UIFont boldSystemFontOfSize:20];
+    classLab.font = [UIFont boldSystemFontOfSize:18];
     classLab.text = @"班级简介:";
     classLab.textColor = [UIColor blackColor];
     [classLab sizeToFit];
     [whiteV addSubview:classLab];
+    
+    UILabel *classDescLab = [[UILabel alloc]initWithFrame:CGRectMake(10, classLab.maxY+8, 100, 10)];
+    classDescLab.font = [UIFont systemFontOfSize:16];
+    classDescLab.text = self.infoDic[@"project_info"];
+    classDescLab.textColor = [UIColor lightGrayColor];
+    [classDescLab sizeToFit];
+    [whiteV addSubview:classDescLab];
+
 
     UILabel *timeLab = [[UILabel alloc]initWithFrame:CGRectMake(classLab.x, classLab.maxY+40, 100, 10)];
-    timeLab.font = [UIFont boldSystemFontOfSize:20];
+    timeLab.font = [UIFont boldSystemFontOfSize:18];
     timeLab.text = @"培训时间:";
     timeLab.textColor = [UIColor blackColor];
     [timeLab sizeToFit];
     [whiteV addSubview:timeLab];
     
+    UILabel *timeDescLab = [[UILabel alloc]initWithFrame:CGRectMake(timeLab.maxX + 5, timeLab.y+2, 100, 10)];
+    timeDescLab.font = [UIFont systemFontOfSize:16];
+    timeDescLab.text = [NSString stringWithFormat:@"%@~%@",self.infoDic[@"project_start"],self.infoDic[@"project_end"]];
+    timeDescLab.textColor = [UIColor colorWithHexString:@"#333333"];
+    [timeDescLab sizeToFit];
+    [whiteV addSubview:timeDescLab];
+
+    
     UILabel *numLab = [[UILabel alloc]initWithFrame:CGRectMake(classLab.x, timeLab.maxY+10, 100, 10)];
-    numLab.font = [UIFont boldSystemFontOfSize:20];
+    numLab.font = [UIFont boldSystemFontOfSize:18];
     numLab.text = @"培训人数:";
     numLab.textColor = [UIColor blackColor];
     [numLab sizeToFit];
     [whiteV addSubview:numLab];
     
+    UILabel *numDescLab = [[UILabel alloc]initWithFrame:CGRectMake(numLab.maxX + 5, numLab.y+2, 100, 10)];
+    numDescLab.font = [UIFont systemFontOfSize:16];
+    numDescLab.text = self.infoDic[@"project_Num"];
+    numDescLab.textColor = [UIColor colorWithHexString:@"#333333"];
+    [numDescLab sizeToFit];
+    [whiteV addSubview:numDescLab];
+    
     UILabel *teacherLab = [[UILabel alloc]initWithFrame:CGRectMake(classLab.x, numLab.maxY+10, 100, 10)];
-    teacherLab.font = [UIFont boldSystemFontOfSize:20];
+    teacherLab.font = [UIFont boldSystemFontOfSize:18];
     teacherLab.text = @"班主任:";
     teacherLab.textColor = [UIColor blackColor];
     [teacherLab sizeToFit];
     [whiteV addSubview:teacherLab];
     
+    UILabel *teacherDescLab = [[UILabel alloc]initWithFrame:CGRectMake(numDescLab.x , teacherLab.y+2, 100, 10)];
+    teacherDescLab.font = [UIFont systemFontOfSize:16];
+    teacherDescLab.text = self.infoDic[@"project_manager"];
+    teacherDescLab.textColor = [UIColor colorWithHexString:@"#333333"];
+    [teacherDescLab sizeToFit];
+    [whiteV addSubview:teacherDescLab];
+    
+    UILabel *teacherPhoneLab = [[UILabel alloc]initWithFrame:CGRectMake(teacherDescLab.maxX + 25, teacherLab.y+2, 100, 10)];
+    teacherPhoneLab.font = [UIFont systemFontOfSize:16];
+    teacherPhoneLab.text = self.infoDic[@"project_manager_tel"];
+    teacherPhoneLab.textColor = [UIColor colorWithHexString:@"#333333"];
+    [teacherPhoneLab sizeToFit];
+    [whiteV addSubview:teacherPhoneLab];
+
+
     return cell;
 }
 
@@ -242,13 +320,13 @@
         [subview removeFromSuperview];
     }
     
-    CGFloat h = 80;
+    CGFloat h = 90;
 
-    UIView *contentV = [[UIView alloc]initWithFrame:CGRectMake(10,0, HGScreenWidth-20, 50 + 80*self.teachersAry.count)];
+    UIView *contentV = [[UIView alloc]initWithFrame:CGRectMake(10,0, HGScreenWidth-20, 40 + 80*self.dataAry.count)];
     contentV.backgroundColor = [UIColor whiteColor];
     [cell.contentView addSubview:contentV];
     
-    UIView *titleV = [[UIView alloc]initWithFrame:CGRectMake(0, 0, contentV.width, 50)];
+    UIView *titleV = [[UIView alloc]initWithFrame:CGRectMake(0, 0, contentV.width, 40)];
     titleV.backgroundColor = HGColor(249, 227, 249, 1);
     [contentV addSubview:titleV];
     
@@ -259,8 +337,8 @@
     titleV.layer.mask = maskLayer;
     
     UILabel *titleLab = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, 100, 10)];
-    titleLab.font = [UIFont boldSystemFontOfSize:24];
-    titleLab.text = @"基本信息";
+    titleLab.font = [UIFont boldSystemFontOfSize:18];
+    titleLab.text = @"项目课程";
     titleLab.textColor = HGColor(82,118, 215, 1);
     [titleLab sizeToFit];
     titleLab.centerY = titleV.centerY;
@@ -270,27 +348,48 @@
     CGFloat y = 0;
     CGFloat w = contentV.width - 10;
     
-    UIView *whiteV = [[UIView alloc]initWithFrame:CGRectMake(0, titleV.maxY, contentV.width, h * self.teachersAry.count)];
+    UIView *whiteV = [[UIView alloc]initWithFrame:CGRectMake(0, titleV.maxY, contentV.width, h * self.dataAry.count)];
     whiteV.backgroundColor = [UIColor whiteColor];
     whiteV.layer.borderColor = HGColor(249, 202, 168, 1).CGColor;
     whiteV.layer.borderWidth = 1;
     [contentV addSubview:whiteV];
 
-    for (int i = 0; i < self.teachersAry.count; i++) {
+    for (int i = 0; i < self.dataAry.count; i++) {
+        
+        HGStudentItemModel *model = self.dataAry[i];
         
         y = h * i;
         
         UIView *teacherV = [[UIView alloc]initWithFrame:CGRectMake(x, y, w, h)];
         teacherV.backgroundColor = [UIColor whiteColor];
+        teacherV.tag = 1000+i;
         [whiteV addSubview:teacherV];
         
-        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(x, 0, 1000, 10)];
-        label.text = @"主讲人/主持人:";
-        label.font = [UIFont systemFontOfSize:16];
+        UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(clickClass:)];
+        [teacherV addGestureRecognizer:tapGes];
+        
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(x, 8, 1000, 10)];
+        label.text = model.courseName;
+        label.font = [UIFont boldSystemFontOfSize:16];
         label.textColor = [UIColor blackColor];
         [label sizeToFit];
-        label.y = h - label.height - 8;
         [teacherV addSubview:label];
+        
+        UILabel *label1 = [[UILabel alloc]initWithFrame:CGRectMake(x, label.maxY+9, 1000, 10)];
+        label1.text = model.courseInfo;
+        label1.font = [UIFont systemFontOfSize:14];
+        label1.textColor = [UIColor colorWithHexString:@"#333333"];
+        [label1 sizeToFit];
+        [teacherV addSubview:label1];
+
+        
+        UILabel *label2 = [[UILabel alloc]initWithFrame:CGRectMake(x, label1.maxY+8, 1000, 10)];
+        label2.text = [NSString stringWithFormat:@"主讲人/主持人:%@",model.teacher];
+        label2.font = [UIFont systemFontOfSize:14];
+        label2.textColor = [UIColor colorWithHexString:@"#333333"];
+        [label2 sizeToFit];
+        label2.y = h - label2.height - 8;
+        [teacherV addSubview:label2];
         
         UIView *lineV = [[UIView alloc]initWithFrame:CGRectMake(0, h-1, w, 1)];
         lineV.backgroundColor = HGColor(249, 202, 168, 1);
@@ -368,9 +467,9 @@
     }else if (indexPath.section==1){
         return 140;
     }else if(indexPath.section==2){
-        return 235;
+        return 230;
     }else{
-        return 50 + 80*self.teachersAry.count;
+        return 40 + 90*self.dataAry.count;
     }
 }
 
@@ -384,7 +483,7 @@
     if (section==0) {
         return .1;
     }
-    return 15;
+    return 10;
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
@@ -415,6 +514,14 @@
         [self.navigationController pushViewController:vc animated:YES];
     }
 
+}
+
+- (void)clickClass:(UITapGestureRecognizer *)ges{
+    UIView *view = ges.view;
+    HGStudentItemModel *model = self.dataAry[view.tag - 1000];
+    HGClassDetailController *vc = [[HGClassDetailController alloc]init];
+    vc.course_id = model.courseId;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
