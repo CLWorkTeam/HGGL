@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TeachToolBar : UIToolbar
+@interface TeachToolBar : UIView
+@property (nonatomic,strong) NSArray *arr;
 -(void)clickbutWith:(NSInteger) tag;
 @property (nonatomic,copy) void(^clickChange)(NSInteger page);
 @end

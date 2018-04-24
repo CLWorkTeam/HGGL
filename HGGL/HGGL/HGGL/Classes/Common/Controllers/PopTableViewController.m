@@ -65,17 +65,18 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    static NSString *ID = @"cell";
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
-//    if (cell == nil) {
-//        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
-//    }
-//    cell.textLabel.text = [self.arr objectAtIndex:indexPath.row];
-//    cell.textLabel.textAlignment = NSTextAlignmentCenter;
-    
-    //NSLog(@"%@",cell.textLabel.text);
+
     TKProfessionTableViewCell *cell = [TKProfessionTableViewCell cellWithTabView:tableView];
-    cell.content = [self.arr objectAtIndex:indexPath.row];
+    id obj = [self.arr objectAtIndex:indexPath.row];
+    if ([obj isKindOfClass:[NSString class]]) {
+        
+        cell.content = (NSString *)obj;
+    }else
+    {
+        NSDictionary *dict = (NSDictionary *)obj;
+        cell.content = dict[self.showKey];
+    }
+    
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

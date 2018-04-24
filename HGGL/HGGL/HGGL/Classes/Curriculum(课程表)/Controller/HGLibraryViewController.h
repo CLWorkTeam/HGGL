@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HGLibraryViewController : UIViewController
+@interface HGLibraryViewController : UITableViewController
 
 @end

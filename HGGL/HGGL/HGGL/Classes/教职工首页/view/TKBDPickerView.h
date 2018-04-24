@@ -20,4 +20,7 @@
 @property (nonatomic,copy) void(^returnTimeBlock)(NSString *time);//返回形如2017-03-05
 
 @property (nonatomic, copy) NSString *currentTime;//当前选中的时间
+
++(instancetype)showInRect:(CGRect)rect SureBlock:(void(^)(NSString *time))sureBlock;
++(void)disMiss;
 @end

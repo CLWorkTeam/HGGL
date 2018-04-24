@@ -8,6 +8,7 @@
 
 #import "TKBDPickerView.h"
 #import "NSDate+Additions.h"
+#import "ZKRCover.h"
 @interface TKBDPickerView ()<UIPickerViewDelegate,UIPickerViewDataSource>
 //布局相关
 @property (nonatomic,weak) UILabel *titleLable;
@@ -515,6 +516,29 @@
     
     if (_returnTimeBlock) {
         _returnTimeBlock(time);
+    }
+}
+
++(instancetype)showInRect:(CGRect)rect SureBlock:(void (^)(NSString *))sureBlock
+{
+    ZKRCover *cover =[ZKRCover show];
+    cover.dimBackGround = YES;
+    cover.ZKRCoverDismiss = ^{
+        [TKBDPickerView disMiss];
+    };
+    TKBDPickerView *picker = [[TKBDPickerView alloc]init];
+    if (CGRectEqualToRect(rect, CGRectZero)) {
+        
+    }
+    return picker;
+}
++(void)disMiss
+{
+    
+    for (UIView *view in HGKeywindow.subviews) {
+        if ([view isKindOfClass:self]||[view isKindOfClass:[ZKRCover class]]) {
+            [view removeFromSuperview];
+        }
     }
 }
 @end

@@ -31,7 +31,7 @@
     content.ControllerArray = @[@"CurrViewController",@"HGClassAdmitTableViewController",@"HGRecipSendTableViewController",@"HGMealViewController",@"HGClassRViewController",@"HGGuestRoomViewController",@"HGLibraryViewController"];
     [self addChildViewController:content];
     [self.view addSubview:content.view];
-    content.view.frame = CGRectMake(0, HGHeaderH, self.view.width, self.view.height-HGHeaderH-HGSafeBottom);
+    content.view.frame = CGRectMake(0, HGHeaderH, self.view.width, self.view.height-HGHeaderH);
     
 }
 - (void)didReceiveMemoryWarning {

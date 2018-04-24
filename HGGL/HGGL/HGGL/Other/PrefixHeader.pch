@@ -35,6 +35,7 @@
 #define HGGrayColor HGColor(243,243,243,1)
 //#define HGURL @"http://118.190.203.109:8080/zghg/"
 #define HGURL @"http://47.95.235.187/zghg/"
+#define HGURLImage @"http://47.95.235.187/zghg"
 #define HGURL2 @"http://42.202.133.196:8089/gjjl"
 #define HGURL3 @"http://42.202.133.196:8089/gjjl"
 #define HGUserDefaults [NSUserDefaults standardUserDefaults]

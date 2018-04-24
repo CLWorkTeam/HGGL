@@ -12,6 +12,8 @@
 #import "ZKRCover.h"
 #import "CurrImageView.h"
 #import "HGCRParama.h"
+#import "HcdDateTimePickerView.h"
+#define currFont [UIFont systemFontOfSize:12]
 @interface HGClassRHeader ()
 @property (nonatomic,strong) NSMutableArray *buttonArray;
 @property (nonatomic,strong) UIDatePicker *datePicker;
@@ -23,63 +25,8 @@
 @property (nonatomic,strong) UIButton *Y;
 @end
 @implementation HGClassRHeader
--(UIDatePicker *)datePicker
-{
-    if (_datePicker == nil) {
-        UIDatePicker *picker = [[UIDatePicker alloc]init];
-        //设置为中文
-        picker.locale = [[NSLocale alloc]initWithLocaleIdentifier:@"zh-Hans"];
-        
-        //显示的模式
-        picker.datePickerMode = UIDatePickerModeDate;
-        _datePicker = picker;
-    }
-    return _datePicker;
-}
--(NSDateFormatter *)formatter
-{
-    if (_formatter == nil) {
-        NSDateFormatter *fomatter = [[NSDateFormatter alloc]init];
-        [fomatter setDateFormat:@"yyyy-MM-dd"];
-        _formatter = fomatter;
-    }
-    return _formatter;
-}
--(UIView *)accessoryView
-{
-    if (_accessoryView == nil) {
-        UIView *accessoryView = [[UIView alloc]init];
-        accessoryView.frame = CGRectMake(0, 0, HGScreenWidth, 30);
-        accessoryView.backgroundColor = [UIColor lightGrayColor];
-        UIButton *cancle = [UIButton buttonWithType:UIButtonTypeCustom];
-        cancle.backgroundColor = [UIColor redColor];
-        cancle.titleLabel.font = [UIFont systemFontOfSize:14];
-        [cancle setTitle:@"取消" forState:UIControlStateNormal];
-        
-        [cancle addTarget:self action:@selector(cancleA) forControlEvents:UIControlEventTouchUpInside];
-        cancle.bounds = CGRectMake(0, 0, 60, 30);
-        cancle.center = CGPointMake(40, accessoryView.frame.size.height/2);
-        [accessoryView addSubview:cancle];
-        UIButton *sure = [UIButton buttonWithType:UIButtonTypeCustom];
-        sure.backgroundColor = [UIColor redColor];
-        sure.titleLabel.font = [UIFont systemFontOfSize:14];
-        self.Y = sure;
-        [sure setTitle:@"确定" forState:UIControlStateNormal];
-        [cancle.layer setMasksToBounds:YES];
-        [cancle.layer setCornerRadius:4];
-        [cancle setBackgroundImage:[UIImage resizableImageWithName:@"red_btn_normal"] forState:UIControlStateNormal];
-        [sure.layer setMasksToBounds:YES];
-        [sure.layer setCornerRadius:4];
-        [sure setBackgroundImage:[UIImage resizableImageWithName:@"red_btn_normal"] forState:UIControlStateNormal];
-        
-        sure.bounds = CGRectMake(0, 0, 60, 30);
-        sure.center = CGPointMake(HGScreenWidth - 40, accessoryView.frame.size.height/2);
-        [accessoryView addSubview:sure];
-        _accessoryView = accessoryView;
-        
-    }
-    return _accessoryView;
-}
+
+
 -(NSMutableArray *)buttonArray
 {
     if (_buttonArray == nil) {
@@ -100,7 +47,7 @@
             
             
             
-            button.titleLabel.font = ZKRButFont;
+            button.titleLabel.font = currFont;
             
             button.tag = 200+i;
             
@@ -131,16 +78,18 @@
     CGFloat Wmarg = 8;
     CGFloat HMarg = 5;
     CGFloat buttonH = 30;
-    CGFloat lastW = [TextFrame frameOfText:@"恢复默认" With:ZKRButFont AndHeigh:1100].width ;
-    CGFloat W = (self.width-5*Wmarg-lastW)/3;
+    
+    
     for (NSInteger i = 0; i<self.buttonArray.count; i++) {
         UIButton *but = (UIButton *)self.buttonArray[i];
+        CGFloat lastW = [TextFrame frameOfText:@"恢复默认" With:but.titleLabel.font AndHeigh:1100].width ;
+        CGFloat W = (self.width-5*Wmarg-lastW)/3;
         if (i<self.buttonArray.count-1) {
             but.frame = CGRectMake(Wmarg+i*(Wmarg+W), HMarg, W, buttonH);
         
         }else
         {
-            CGFloat H = [TextFrame frameOfText:@"恢复默认" With:ZKRButFont Andwidth:1000].height;
+            CGFloat H = [TextFrame frameOfText:@"恢复默认" With:but.titleLabel.font Andwidth:1000].height;
             but.frame = CGRectMake(self.width-lastW-Wmarg, self.height-H-HMarg, lastW, H);
         }
         if ((i == 1 )||(i == 2)) {
@@ -170,6 +119,12 @@
             break;
         case 3:
         {
+            UIButton *but1 = self.buttonArray.firstObject;
+            [but1 setTitle:@"项目类型" forState:UIControlStateNormal];
+            UIButton *but2 = self.buttonArray[1];
+            [but2 setTitle:@"开始时间" forState:UIControlStateNormal];
+            UIButton *but3 = self.buttonArray[2];
+            [but3 setTitle:@"结束时间" forState:UIControlStateNormal];
             self.parama.page = @"1";
             self.parama.pageSize = @"10";
             self.parama.startTime = @"";
@@ -192,7 +147,7 @@
     CGRect r = [self convertRect:button.frame toView:HGKeywindow];
     CGRect rect = CGRectMake(r.origin.x, r.origin.y+r.size.height, r.size.width, 44*4);
     
-    HGPopView *pop = [HGPopView setPopViewWith:rect And:[NSArray arrayWithObjects:@"全部",@"调训",@"委托",@"集中工作", nil] selectBlock:^(NSString *str) {
+    [HGPopView setPopViewWith:rect And:[NSArray arrayWithObjects:@"全部",@"调训",@"委托",@"集中工作", nil] andShowKey:nil  selectBlock:^(NSString *str) {
         
         [but setTitle:str forState:UIControlStateNormal];
         
@@ -218,44 +173,28 @@
 }
 -(void)showTimeView:(BOOL)isStart
 {
-    UIButton *but = (UIButton *)self.buttonArray[2];
-    [but becomeFirstResponder];
-    if (isStart) {
-        
-        [self.Y removeTarget:self action:@selector(sureB) forControlEvents:UIControlEventTouchUpInside];
-        [self.Y addTarget:self action:@selector(sureA) forControlEvents:UIControlEventTouchUpInside];
-    }else
-    {
-        [self.Y removeTarget:self action:@selector(sureA) forControlEvents:UIControlEventTouchUpInside];
-        [self.Y addTarget:self action:@selector(sureB) forControlEvents:UIControlEventTouchUpInside];
-    }
+    HcdDateTimePickerView *dateTimePickerView = [[HcdDateTimePickerView alloc] initWithDatePickerMode:DatePickerDateMode defaultDateTime:[[NSDate alloc]initWithTimeIntervalSinceNow:0]];
+    dateTimePickerView.clickedOkBtn = ^(NSString * datetimeStr){
+        if (isStart) {
+//            NSString *date = [self.formatter stringFromDate:self.datePicker.date];
+            UIButton *but = (UIButton *)self.buttonArray[1];
+            [but setTitle:datetimeStr forState:UIControlStateNormal];
+            self.parama.startTime = datetimeStr;
+            [self endEditing:YES];
+        }else
+        {
+//            NSString *date = [self.formatter stringFromDate:self.datePicker.date];
+            UIButton *but = (UIButton *)self.buttonArray[2];
+            [but setTitle:datetimeStr forState:UIControlStateNormal];
+            self.parama.endTime = datetimeStr;
+            [self endEditing:YES];
+        }
+        if (_clickBlock) {
+            _clickBlock(self.parama);
+        }
+    };
+    [HGKeywindow addSubview:dateTimePickerView];
+    [dateTimePickerView showHcdDateTimePicker];
 }
--(void)cancleA
-{
-    [self endEditing:YES];
-    //[ZKRCover dismiss];
-    //[CurrImageView dismiss];
-}
--(void)sureA
-{
-    NSString *date = [self.formatter stringFromDate:self.datePicker.date];
-    UIButton *but = (UIButton *)self.buttonArray[1];
-    [but setTitle:date forState:UIControlStateNormal];
-    self.parama.startTime = date;
-    [self endEditing:YES];
-    if (_clickBlock) {
-        _clickBlock(self.parama);
-    }
-}
--(void)sureB
-{
-    NSString *date = [self.formatter stringFromDate:self.datePicker.date];
-    UIButton *but = (UIButton *)self.buttonArray[2];
-    [but setTitle:date forState:UIControlStateNormal];
-    self.parama.endTime = date;
-    [self endEditing:YES];
-    if (_clickBlock) {
-        _clickBlock(self.parama);
-    }
-}
+
 @end

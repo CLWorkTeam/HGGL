@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface HGPopView : UIView
-+(instancetype)setPopViewWith:(CGRect)rect And:(NSArray *)arr selectBlock:(void(^)(NSString *str))selectBlock;
++(instancetype)setPopViewWith:(CGRect)rect And:(NSArray *)arr andShowKey:(NSString *)showKey selectBlock:(void(^)(id obj))selectBlock;
+
 +(void)disMiss;
 @end

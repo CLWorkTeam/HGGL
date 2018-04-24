@@ -76,6 +76,7 @@
 -(void)setToolBar
 {
     TeachToolBar *toolBar = [[TeachToolBar alloc]init];
+    toolBar.arr = [NSArray arrayWithObjects:@"基本信息",@"课程信息",@"授课记录", nil];
     toolBar.frame = CGRectMake(0, 64, self.view.bounds.size.width, 43);
     self.toolBar = toolBar;
     [self.view addSubview:toolBar];

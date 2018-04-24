@@ -11,5 +11,6 @@
 @interface PopTableViewController : UITableViewController
 @property (nonatomic,copy) void(^selectedCell)(NSString *str);
 @property (nonatomic,strong) NSArray *arr;
+@property (nonatomic,copy) NSString *showKey;
 +(instancetype)setPopViewWith:(CGRect)rect And:(NSArray *)arr;
 @end

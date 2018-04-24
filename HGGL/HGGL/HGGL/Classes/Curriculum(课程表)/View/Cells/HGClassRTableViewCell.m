@@ -22,13 +22,19 @@
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
+    
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        
         [self setUpAllSubviews];
+        
     }
+    
     return self;
 }
+
 -(void)setUpAllSubviews
 {
+    
     UIImageView *ima = [[UIImageView alloc]init];
     ima.contentMode = UIViewContentModeCenter;
     ima.image = [UIImage imageNamed:@"point"];
@@ -49,7 +55,6 @@
     self.peopleLable = projectNL;
     
     
-    
 }
 -(void)setModel:(HGCRModel *)model
 {
@@ -60,12 +65,11 @@
     self.timeLable.text = [NSString stringWithFormat:@"%@至%@",model.startTime,model.endTime];
     
     self.peopleLable.text = [NSString stringWithFormat:@"负责人：%@",model.principle];
+    
 }
 -(void)layoutSubviews
 {
     [super layoutSubviews];
-    CGFloat mar = 5;
-//    CGFloat butH = 30;
     CGFloat imaH = [TextFrame frameOfText:@"马克思主义" With:[UIFont fontWithName:@"Helvetica-Bold" size:14] Andwidth:HGScreenWidth-CellWMargin*2].height;
     self.ima.frame = CGRectMake(0, CellHMargin, CellWMargin, CellWMargin);
     self.titleLable.frame = CGRectMake(self.ima.maxX, self.ima.y, self.width-2*CellWMargin, imaH);

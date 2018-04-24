@@ -10,20 +10,14 @@
 #import "UIView+Frame.h"
 #define bothMargin 10
 @interface TeachToolBar()
-@property (nonatomic,strong) NSArray *arr;
+
 @property (nonatomic,strong) NSMutableArray *butArr;
 @property (nonatomic,weak) UIImageView *ima;
 @property (nonatomic,weak) UIButton *selectedBut;
 @end
 
 @implementation TeachToolBar
--(NSArray *)arr
-{
-    if (_arr == nil) {
-        _arr = [NSArray arrayWithObjects:@"基本信息",@"课程信息",@"授课记录", nil];
-    }
-    return _arr;
-}
+
 -(NSMutableArray *)butArr
 {
     if (_butArr == nil) {
@@ -36,15 +30,16 @@
     if(self == [super initWithFrame:frame])
     {
         self.backgroundColor = [UIColor whiteColor];
-        [self setSubviews];
+//        [self setSubviews];
     }
     return self;
 }
--(void)setSubviews
+-(void)setArr:(NSArray *)arr
 {
-    for (int i = 0; i<self.arr.count; i++) {
+    _arr = arr;
+    for (int i = 0; i<arr.count; i++) {
         UIButton *but = [UIButton buttonWithType:UIButtonTypeCustom];
-        [but setTitle:[self.arr objectAtIndex:i] forState:UIControlStateNormal];
+        [but setTitle:[arr objectAtIndex:i] forState:UIControlStateNormal];
         [but setTitleColor:HGMainColor forState:UIControlStateNormal];
         [but setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
         but.titleLabel.textAlignment = NSTextAlignmentCenter;
@@ -80,12 +75,7 @@
     _selectedBut.backgroundColor = HGGrayColor;
     _selectedBut = but;
     but.backgroundColor = HGMainColor;
-//    if (but.selected) {
-//        but.backgroundColor = HGMainColor;
-//    }else
-//    {
-//        but.backgroundColor = HGGrayColor;
-//    }
+
     CGFloat w = (self.bounds.size.width-10)/self.arr.count;
     [UIView animateWithDuration:0.5 animations:^{
         self.ima.x = but.tag*w;
@@ -115,18 +105,17 @@
     CGFloat w = (self.bounds.size.width-(self.arr.count+1)*bothMargin)/self.arr.count;
     CGFloat h = 30;
     CGFloat y = (self.height -h)/2;
-//    CGFloat x = (HGScreenWidth - w*3)/2;
     int i = 0;
+    
     for (UIButton *but in self.butArr) {
         but.frame = CGRectMake(bothMargin + i*(w+bothMargin), y, w, h);
         i++;
     }
-    for (id view in self.subviews) {
-        if ([view isKindOfClass:(NSClassFromString(@"_UIToolbarContentView"))]) {
-            UIView *testView = view;
-            testView.userInteractionEnabled = NO;
-        }
-    }
-    //self.ima.frame = CGRectMake(0, h, w, 3);
+//    for (id view in self.subviews) {
+//        if ([view isKindOfClass:(NSClassFromString(@"_UIToolbarContentView"))]) {
+//            UIView *testView = view;
+//            testView.userInteractionEnabled = NO;
+//        }
+//    }
 }
 @end

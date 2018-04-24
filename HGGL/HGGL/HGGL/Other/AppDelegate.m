@@ -18,11 +18,11 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-//    [self setSVProgress];
-//    [self test];
-//    return YES;
-    [self setWindow];
     [self setSVProgress];
+    [self test];
+    return YES;
+    [self setWindow];
+    
     
     return YES;
 }

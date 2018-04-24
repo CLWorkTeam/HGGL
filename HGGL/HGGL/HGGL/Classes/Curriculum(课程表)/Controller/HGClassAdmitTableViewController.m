@@ -83,29 +83,36 @@
     if (_isRefreshing) {
         return;
     }
+    [SVProgressHUD showWithStatus:@"请稍后..."];
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
     parama.page = @"1";
     NSString *url = [HGURL stringByAppendingString:@"Reception/getTeamReception.do"];
     _isRefreshing = YES;
     [HGHttpTool POSTWithURL:url parameters:self.parama.mj_keyValues success:^(id responseObject) {
         _isRefreshing = NO;
+        [SVProgressHUD dismiss];
+        [self.arr removeAllObjects];
         [self.tableView.mj_header endRefreshing];
         NSString *status = [responseObject objectForKey:@"status"];
         if ([status isEqualToString:@"1"]) {
-            [self.arr removeAllObjects];
+            
             //[MBProgressHUD SVProgressHUD showSuccessWithStatusWithStatus:[responseObject objectForKey:@"message"]];
             NSArray *array = [responseObject objectForKey:@"data"];
             for (NSDictionary *dict in array) {
                 HGCRModel *mes = [HGCRModel initWithDict:dict];
                 [self.arr addObject:mes];
             }
-            [self.tableView reloadData];
+            
         }else
         {
             [SVProgressHUD showErrorWithStatus:[responseObject objectForKey:@"message"]];
             
         }
         
+        [self.tableView reloadData];
+        
     } failure:^(NSError *error) {
+        [SVProgressHUD dismiss];
         _isRefreshing = NO;
         [self.tableView.mj_header endRefreshing];
         
@@ -117,11 +124,14 @@
     if (_isRefreshing) {
         return;
     }
+    [SVProgressHUD showWithStatus:@"请稍后..."];
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
     // parama.page = @"1";
-    NSString *url = [HGURL stringByAppendingString:@"MsgPush/getMessageList.do"];
+    NSString *url = [HGURL stringByAppendingString:@"Reception/getTeamReception.do"];
     _isRefreshing = YES;
     [HGHttpTool POSTWithURL:url parameters:self.parama.mj_keyValues success:^(id responseObject) {
         _isRefreshing = NO;
+        [SVProgressHUD dismiss];
         [self.tableView.mj_footer endRefreshing];
         NSString *status = [responseObject objectForKey:@"status"];
         if ([status isEqualToString:@"1"]) {
@@ -142,6 +152,7 @@
         }
         
     } failure:^(NSError *error) {
+        [SVProgressHUD dismiss];
         _isRefreshing = NO;
         [self.tableView.mj_footer endRefreshing];
         NSInteger i = [self.parama.page integerValue ];
@@ -187,7 +198,6 @@
     
     
     HGCRModel *model = [self.arr objectAtIndex:indexPath.row];
-    
     HGWebViewController *wf = [[HGWebViewController alloc]init];
     wf.navigationItem.title = @"接待确认单";
     NSString *URL = [HGURL2 stringByAppendingString:model.receptionUrl];
@@ -203,58 +213,6 @@
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     return [[UIView alloc]init];
 }
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
-}
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

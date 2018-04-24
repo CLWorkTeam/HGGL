@@ -13,7 +13,8 @@
 @interface HGPopView () <UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,weak) UITableView *tableView;
 @property (nonatomic,strong) NSArray *arr;
-@property (nonatomic,copy)void(^popBlock)(NSString *str );
+@property (nonatomic,copy) NSString *showKey;
+@property (nonatomic,copy)void(^popBlock)(id obj);
 @end
 @implementation HGPopView
 
@@ -52,7 +53,16 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TKProfessionTableViewCell *cell = [TKProfessionTableViewCell cellWithTabView:tableView];
-    cell.content = [self.arr objectAtIndex:indexPath.row];
+//    cell.content = [self.arr objectAtIndex:indexPath.row];
+    id obj = [self.arr objectAtIndex:indexPath.row];
+    if ([obj isKindOfClass:[NSString class]]) {
+        
+        cell.content = (NSString *)obj;
+    }else
+    {
+        NSDictionary *dict = (NSDictionary *)obj;
+        cell.content = dict[self.showKey];
+    }
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -63,7 +73,7 @@
     }
     [HGPopView disMiss];
 }
-+(instancetype)setPopViewWith:(CGRect)rect And:(NSArray *)arr selectBlock:(void(^)(NSString *str))selectBlock
++(instancetype)setPopViewWith:(CGRect)rect And:(NSArray *)arr andShowKey:(NSString *)showKey selectBlock:(void(^)(id obj))selectBlock
 {
     
     ZKRCover *cover =[ZKRCover show];
@@ -74,6 +84,7 @@
     HGPopView *popView = [[HGPopView alloc]init];
     popView.frame = rect;
     popView.arr = arr;
+    popView.showKey = showKey;
     [HGKeywindow addSubview:popView];
     popView.popBlock = selectBlock;
     return popView;

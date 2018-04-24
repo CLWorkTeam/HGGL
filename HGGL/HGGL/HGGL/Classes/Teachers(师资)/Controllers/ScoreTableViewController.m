@@ -30,7 +30,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSString *url = [HGURL stringByAppendingString:@"Teacher/getRecord.do?"];
+    NSString *url = [HGURL stringByAppendingString:@"Teacher/getRecord.do"];
     NSString *user_id = [HGUserDefaults objectForKey:HGUserID];
     [HGHttpTool POSTWithURL:url parameters:@{@"teacher_id":self.teacher_id,@"tokenval":user_id} success:^(id responseObject) {
         NSArray *array = [NSArray array];

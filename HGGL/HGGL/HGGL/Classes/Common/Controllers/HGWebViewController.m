@@ -67,7 +67,11 @@
     }
     return _WKWeb;
 }
-
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    self.navigationController.navigationBarHidden = NO;
+}
 - (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message{
     
     if ([message.name isEqualToString:@"closeByNative"]) {
@@ -87,7 +91,7 @@
     titleLab.font = [UIFont systemFontOfSize:18];
     titleLab.textAlignment = NSTextAlignmentCenter;
     titleLab.textColor = [UIColor whiteColor];
-    titleLab.text = @"在线视频客服系统";
+    titleLab.text = self.titleStr;
     [self.bar addSubview:titleLab];
     
     [self addNavBar];
