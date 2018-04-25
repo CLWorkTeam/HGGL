@@ -9,6 +9,13 @@
 #import "HGCRoomModel.h"
 #import "HGHoldRMDModel.h"
 @implementation HGCRoomModel
+-(NSMutableArray *)detailArr
+{
+    if (_detailArr == nil) {
+        _detailArr = [NSMutableArray array];
+    }
+    return _detailArr;
+}
 -(instancetype)initWithDict:(NSDictionary *)dict
 {
     if (self = [super init]) {

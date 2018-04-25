@@ -58,6 +58,7 @@
 		ADDD575B2089B516005A38EA /* NSObject+Blank.m in Sources */ = {isa = PBXBuildFile; fileRef = ADDD57592089B516005A38EA /* NSObject+Blank.m */; };
 		ADDD575E2089B746005A38EA /* NSDictionary+Value.m in Sources */ = {isa = PBXBuildFile; fileRef = ADDD575C2089B746005A38EA /* NSDictionary+Value.m */; };
 		ADDD57672089BFC1005A38EA /* NSDate+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = ADDD57652089BFC1005A38EA /* NSDate+Additions.m */; };
+		ADDD576A2089CD32005A38EA /* HGNoDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADDD57692089CD32005A38EA /* HGNoDataView.m */; };
 		CE1E1F31208BA2A40098B1E1 /* HGCRoomHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1E1F30208BA2A40098B1E1 /* HGCRoomHeader.m */; };
 		CE1E1F37208BA3CA0098B1E1 /* HGUCRoomModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1E1F36208BA3CA0098B1E1 /* HGUCRoomModel.m */; };
 		CE1E1F3A208BA3DE0098B1E1 /* HGCRoomModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1E1F39208BA3DE0098B1E1 /* HGCRoomModel.m */; };
@@ -77,9 +78,8 @@
 		CE1E1F67208DFCA40098B1E1 /* HGSRBModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1E1F66208DFCA40098B1E1 /* HGSRBModel.m */; };
 		CE1E1F6A208DFCEF0098B1E1 /* HGTRBModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1E1F69208DFCEF0098B1E1 /* HGTRBModel.m */; };
 		CE1E1F6D208DFDB70098B1E1 /* HGTRBTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1E1F6C208DFDB70098B1E1 /* HGTRBTableViewCell.m */; };
-
-		ADDD576A2089CD32005A38EA /* HGNoDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADDD57692089CD32005A38EA /* HGNoDataView.m */; };
-
+		CE1E1F70208F4DC80098B1E1 /* HGHoldTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1E1F6F208F4DC80098B1E1 /* HGHoldTableViewCell.m */; };
+		CE1E1F73208F52650098B1E1 /* HGCRPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1E1F72208F52650098B1E1 /* HGCRPopView.m */; };
 		CE4CAD3A2084A415001F711F /* MessageCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4CAD352084A414001F711F /* MessageCollectionViewController.m */; };
 		CE4CAD3B2084A415001F711F /* MessagePopCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4CAD382084A415001F711F /* MessagePopCollectionViewController.m */; };
 		CE4CAD3C2084A415001F711F /* SendMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4CAD392084A415001F711F /* SendMessageViewController.m */; };
@@ -480,6 +480,8 @@
 		ADDD575D2089B746005A38EA /* NSDictionary+Value.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Value.h"; sourceTree = "<group>"; };
 		ADDD57652089BFC1005A38EA /* NSDate+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Additions.m"; sourceTree = "<group>"; };
 		ADDD57662089BFC1005A38EA /* NSDate+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Additions.h"; sourceTree = "<group>"; };
+		ADDD57682089CD32005A38EA /* HGNoDataView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGNoDataView.h; sourceTree = "<group>"; };
+		ADDD57692089CD32005A38EA /* HGNoDataView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGNoDataView.m; sourceTree = "<group>"; };
 		CE1E1F2F208BA2A40098B1E1 /* HGCRoomHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGCRoomHeader.h; sourceTree = "<group>"; };
 		CE1E1F30208BA2A40098B1E1 /* HGCRoomHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGCRoomHeader.m; sourceTree = "<group>"; };
 		CE1E1F35208BA3CA0098B1E1 /* HGUCRoomModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGUCRoomModel.h; sourceTree = "<group>"; };
@@ -518,8 +520,10 @@
 		CE1E1F69208DFCEF0098B1E1 /* HGTRBModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGTRBModel.m; sourceTree = "<group>"; };
 		CE1E1F6B208DFDB70098B1E1 /* HGTRBTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGTRBTableViewCell.h; sourceTree = "<group>"; };
 		CE1E1F6C208DFDB70098B1E1 /* HGTRBTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGTRBTableViewCell.m; sourceTree = "<group>"; };
-		ADDD57682089CD32005A38EA /* HGNoDataView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGNoDataView.h; sourceTree = "<group>"; };
-		ADDD57692089CD32005A38EA /* HGNoDataView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGNoDataView.m; sourceTree = "<group>"; };
+		CE1E1F6E208F4DC80098B1E1 /* HGHoldTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGHoldTableViewCell.h; sourceTree = "<group>"; };
+		CE1E1F6F208F4DC80098B1E1 /* HGHoldTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGHoldTableViewCell.m; sourceTree = "<group>"; };
+		CE1E1F71208F52650098B1E1 /* HGCRPopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGCRPopView.h; sourceTree = "<group>"; };
+		CE1E1F72208F52650098B1E1 /* HGCRPopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGCRPopView.m; sourceTree = "<group>"; };
 		CE4CAD342084A413001F711F /* SendMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendMessageViewController.h; sourceTree = "<group>"; };
 		CE4CAD352084A414001F711F /* MessageCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCollectionViewController.m; sourceTree = "<group>"; };
 		CE4CAD362084A414001F711F /* MessageCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCollectionViewController.h; sourceTree = "<group>"; };
@@ -1616,6 +1620,8 @@
 				CE1E1F63208DFC350098B1E1 /* HGSGBTableViewCell.m */,
 				CE1E1F6B208DFDB70098B1E1 /* HGTRBTableViewCell.h */,
 				CE1E1F6C208DFDB70098B1E1 /* HGTRBTableViewCell.m */,
+				CE1E1F6E208F4DC80098B1E1 /* HGHoldTableViewCell.h */,
+				CE1E1F6F208F4DC80098B1E1 /* HGHoldTableViewCell.m */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1649,6 +1655,8 @@
 				CEAD1986207C9DA1008F1696 /* ZKRImageview.m */,
 				CE1E1F50208DB3C60098B1E1 /* HGMealHeader.h */,
 				CE1E1F51208DB3C60098B1E1 /* HGMealHeader.m */,
+				CE1E1F71208F52650098B1E1 /* HGCRPopView.h */,
+				CE1E1F72208F52650098B1E1 /* HGCRPopView.m */,
 			);
 			path = subViews;
 			sourceTree = "<group>";
@@ -3058,6 +3066,7 @@
 				CEAD19FC207DDF1C008F1696 /* teacBaseInfo.m in Sources */,
 				CEAD1B2E207F4639008F1696 /* historyTableViewController.m in Sources */,
 				CE1E1F5E208DC63E0098B1E1 /* HGSOutTableViewCell.m in Sources */,
+				CE1E1F70208F4DC80098B1E1 /* HGHoldTableViewCell.m in Sources */,
 				CEAD19A0207C9DA1008F1696 /* Date.m in Sources */,
 				CEAD1AA2207DF356008F1696 /* MenteeViewController.m in Sources */,
 				CE1E1F3D208BA4250098B1E1 /* HGHoldRMDModel.m in Sources */,
@@ -3076,6 +3085,7 @@
 				CEAD1A90207DF34C008F1696 /* MenteeProject.m in Sources */,
 				CEAD199D207C9DA1008F1696 /* Currse.m in Sources */,
 				CEAD1A9F207DF356008F1696 /* MenteeProTableViewController.m in Sources */,
+				CE1E1F73208F52650098B1E1 /* HGCRPopView.m in Sources */,
 				CEAD1A81207DF33F008F1696 /* MenteeCollectionViewCell.m in Sources */,
 				CE4CAD3A2084A415001F711F /* MessageCollectionViewController.m in Sources */,
 				AD804C18206B95D500299A08 /* TKButton.m in Sources */,

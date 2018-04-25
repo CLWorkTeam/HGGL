@@ -14,6 +14,7 @@
 #import "HGCRCollectionViewCell.h"
 #import "HGLable.h"
 #import "HGCRoomHeader.h"
+#import "HGCRPopView.h"
 @interface HGClassRViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic,strong) NSMutableArray *UHCRArray;
 @property (nonatomic,strong) NSMutableArray *HCRArray;
@@ -302,6 +303,15 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    if (indexPath.section) {
+        
+        HGCRoomModel *model = self.HCRArray[indexPath.row];
+        
+        CGRect r = [self.collectionView.superview convertRect:self.collectionView.frame toView:HGKeywindow];
+        CGRect rect = CGRectMake(30, r.origin.y, r.size.width-2*30, HGScreenHeight-HGSafeBottom-r.origin.y*2);
+        
+        [HGCRPopView setPopViewWith:rect  And:model.detailArr ];
+        
+    }
 }
 @end
