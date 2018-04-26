@@ -1,29 +1,30 @@
 //
-//  HGSchoolFCController.m
+//  HGTeacherMyClassController.m
 //  HGGL
 //
-//  Created by taikang on 2018/4/23.
+//  Created by taikang on 2018/4/25.
 //  Copyright © 2018年 HGGL. All rights reserved.
 //
 
-#import "HGSchoolFCController.h"
-#import "HGSchoolFCModel.h"
-#import "HGSchoolFCCell.h"
+#import "HGTeacherMyClassController.h"
+#import "HGTeacherMyClassCell.h"
+#import "HGTeacherMyClassModel.h"
+#import "HGScrollBaseController.h"
 
-@interface HGSchoolFCController ()<UITableViewDelegate,UITableViewDataSource>
+@interface HGTeacherMyClassController ()<UITableViewDelegate,UITableViewDataSource>
 
-@property (nonatomic,strong) UITableView *tableV;
 @property (nonatomic,strong) NSArray *dataAry;
-
+@property (nonatomic,strong) HGNoDataView *nodataView;
+@property (nonatomic,strong) UITableView *tableV;
 
 @end
 
-@implementation HGSchoolFCController
+@implementation HGTeacherMyClassController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.name = @"校园风采";
+    self.name = @"我的班级";
     self.rightBtn.hidden = YES;
     [self addTableview];
     [self.tableV.mj_header beginRefreshing];
@@ -34,7 +35,7 @@
     UITableView *tableV = [[UITableView alloc]initWithFrame:CGRectMake(0,self.bar.maxY, HGScreenWidth, HGScreenHeight - self.bar.maxY) style:UITableViewStylePlain];
     tableV.separatorStyle = UITableViewCellSeparatorStyleNone;
     tableV.backgroundColor = [UIColor whiteColor];
-    tableV.rowHeight = 90;
+    tableV.rowHeight = 75;
     tableV.delegate = self;
     tableV.dataSource = self;
     self.tableV = tableV;
@@ -47,10 +48,10 @@
 
 
 - (void)requestData{
-
-    NSString *url = [HGURL stringByAppendingString:@"Notice/getLearningOnCampus.do"];
-//    NSString *userid = [HGUserDefaults objectForKey:HGProjectID];
-    [HGHttpTool POSTWithURL:url parameters:@{@"project_id":@"0"} success:^(id responseObject) {
+    
+    NSString *url = [HGURL stringByAppendingString:@"Mentee/getMyClass.do"];
+    NSString *userid = [HGUserDefaults objectForKey:HGUserID];
+    [HGHttpTool POSTWithURL:url parameters:@{@"user_id":userid} success:^(id responseObject) {
         
         [self.tableV.mj_header endRefreshing];
         
@@ -59,15 +60,14 @@
             [self.tableV reloadData];
             WeakSelf;
             HGNoDataView *nodataView = [[HGNoDataView alloc]init];
-            nodataView.label.text = @"无数据";
+            nodataView.label.text = @"暂无数据，点击刷新";
             nodataView.block = ^{
                 [weakSelf.tableV.mj_header beginRefreshing];
             };
             self.tableV.backgroundView = nodataView;
         }else{
             NSArray *tempAry = responseObject[@"data"];
-//           NSArray *tempAry = @[@{@"noticeId":@"1",@"publisher":@"我问问",@"releaseTimeStr":@"2012-23-12",@"noticeTitle":@"测试"},@{@"noticeId":@"1",@"publisher":@"我问问",@"releaseTimeStr":@"2012-23-12",@"noticeTitle":@"测试"},@{@"noticeId":@"1",@"publisher":@"我问问",@"releaseTimeStr":@"2012-23-12",@"noticeTitle":@"测试"},@{@"noticeId":@"1",@"publisher":@"我问问",@"releaseTimeStr":@"2012-23-12",@"noticeTitle":@"测试"}];
-            self.dataAry = [HGSchoolFCModel mj_objectArrayWithKeyValuesArray:tempAry];
+            self.dataAry = [HGTeacherMyClassModel mj_objectArrayWithKeyValuesArray:tempAry];
             [self.tableV reloadData];
         }
     } failure:^(NSError *error) {
@@ -81,16 +81,29 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    static NSString *ID = @"itemPlanCell";
-    HGSchoolFCCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    static NSString *ID = @"teacherMyClassCell";
+    HGTeacherMyClassCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     if (cell==nil) {
-        cell = [[HGSchoolFCCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+        cell = [[HGTeacherMyClassCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     cell.model = self.dataAry[indexPath.row];
     return cell;
 }
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    return [[UIView alloc]init];
+}
 
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 0.1;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    HGTeacherMyClassModel *model = self.dataAry[indexPath.row];
+    HGScrollBaseController *vc = [[HGScrollBaseController alloc]init];
+    vc.project_id = model.project_id;
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

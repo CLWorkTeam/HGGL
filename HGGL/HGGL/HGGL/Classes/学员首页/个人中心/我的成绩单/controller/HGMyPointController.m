@@ -8,6 +8,7 @@
 
 #import "HGMyPointController.h"
 #import "HGMyPointCell.h"
+#import "HGMyPointModel.h"
 
 @interface HGMyPointController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -18,6 +19,7 @@
 @property (nonatomic,strong) NSArray *nameAry;//培训班数组
 @property (nonatomic,strong) NSArray *pointAry;//成绩ary
 
+@property (nonatomic,strong) NSArray *dataAry;
 
 
 @end
@@ -29,8 +31,8 @@
     // Do any additional setup after loading the view.
     self.name = @"我的成绩单";
     self.rightBtn.hidden = YES;
-    self.nameAry = @[@"北京海关培训班",@"大连海关培训班",@"呼和浩特海关培训班"];
-    self.pointAry = @[@"100",@"90",@"95"];
+//    self.nameAry = @[@"北京海关培训班",@"大连海关培训班",@"呼和浩特海关培训班"];
+//    self.pointAry = @[@"100",@"90",@"95"];
     [self setupSubviews];
 }
 - (void)setupSubviews{
@@ -67,6 +69,7 @@
     [view1 addSubview:label1];
 
     [self addTableview];
+    [self.tableV.mj_header beginRefreshing];
 }
 
 - (void)addTableview{
@@ -78,17 +81,17 @@
     tableV.backgroundColor = [UIColor whiteColor];
 //    tableV.layer.borderColor = HGColor(249, 202, 168, 1).CGColor;
 //    tableV.layer.borderWidth = 1.5;
+    tableV.showsVerticalScrollIndicator = NO;
     tableV.rowHeight = 50;
     tableV.delegate = self;
     tableV.dataSource = self;
     self.tableV = tableV;
     [self.view addSubview:tableV];
     
-    //    WeakSelf;
-    //    self.tableV.mj_header = [HGRefresh loadNewRefreshWithRefreshBlock:^{
-    //        NSLog(@"321312");
-    //        [weakSelf.tableV.mj_header endRefreshing];
-    //    }];
+    self.tableV.mj_header = [HGRefresh loadNewRefreshWithRefreshBlock:^{
+        NSLog(@"321312");
+        [self requestData];
+    }];
     //
     //    self.tableV.mj_footer = [HGRefresh loadMoreRefreshWithRefreshBlock:^{
     //        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -96,6 +99,36 @@
     //        });
     //    }];
 }
+
+- (void)requestData{
+
+    NSString *url = [HGURL stringByAppendingString:@"Notice/getLearningOnCampus.do"];
+    NSString *userid = [HGUserDefaults objectForKey:HGUserID];
+    [HGHttpTool POSTWithURL:url parameters:@{@"user_id":userid} success:^(id responseObject) {
+        
+        [self.tableV.mj_header endRefreshing];
+        
+        if ([responseObject[@"status"] isEqualToString:@"0"]) {
+            self.dataAry = @[];
+            [self.tableV reloadData];
+            WeakSelf;
+            HGNoDataView *nodataView = [[HGNoDataView alloc]init];
+            nodataView.label.text = @"无数据";
+            nodataView.block = ^{
+                [weakSelf.tableV.mj_header beginRefreshing];
+            };
+            self.tableV.backgroundView = nodataView;
+        }else{
+            NSArray *tempAry = responseObject[@"data"];
+            //           NSArray *tempAry = @[@{@"noticeId":@"1",@"publisher":@"我问问",@"releaseTimeStr":@"2012-23-12",@"noticeTitle":@"测试"},@{@"noticeId":@"1",@"publisher":@"我问问",@"releaseTimeStr":@"2012-23-12",@"noticeTitle":@"测试"},@{@"noticeId":@"1",@"publisher":@"我问问",@"releaseTimeStr":@"2012-23-12",@"noticeTitle":@"测试"},@{@"noticeId":@"1",@"publisher":@"我问问",@"releaseTimeStr":@"2012-23-12",@"noticeTitle":@"测试"}];
+            self.dataAry = [HGMyPointModel mj_objectArrayWithKeyValuesArray:tempAry];
+            [self.tableV reloadData];
+        }
+    } failure:^(NSError *error) {
+        [self.tableV.mj_header endRefreshing];
+    }];
+}
+
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
@@ -116,14 +149,12 @@
     }
 
     if (indexPath.row<self.nameAry.count) {
-        cell.lineV.hidden = NO;
-        cell.nameLab.text = self.nameAry[indexPath.row];
-        cell.pointLab.text = self.pointAry[indexPath.row];
+//        cell.lineV.hidden = NO;
+        cell.model = self.dataAry[indexPath.row];
 
     }else{
-        cell.lineV.hidden = YES;
-        cell.nameLab.text = @"";
-        cell.pointLab.text = @"";
+//        cell.lineV.hidden = YES;
+        cell.model = nil;
         if (indexPath.row!=9) {
             cell.bottomLayer.hidden = YES;
         }

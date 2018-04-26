@@ -8,6 +8,14 @@
 
 #import "HGMyPointCell.h"
 
+@interface HGMyPointCell ()
+
+@property (nonatomic,strong) UILabel *nameLab;
+@property (nonatomic,strong) UILabel *pointLab;
+@property (nonatomic,strong) UIView *lineV;
+
+@end
+
 @implementation HGMyPointCell
 
 - (void)awakeFromNib {
@@ -77,6 +85,22 @@
     self.pointLab = label1;
     [view1 addSubview:label1];
 
+}
+
+-(void)setModel:(HGMyPointModel *)model{
+    
+    if (model==nil) {
+        _model = model;
+        self.nameLab.text = @"";
+        self.pointLab.text = @"";
+        self.lineV.hidden = YES;
+        return;
+    }
+    
+    _model = model;
+    self.nameLab.text = model.project_name;
+    self.pointLab.text = model.project_score;
+    self.lineV.hidden = NO;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

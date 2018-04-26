@@ -7,14 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HGMyPointModel.h"
 
 @interface HGMyPointCell : UITableViewCell
 
-@property (nonatomic,strong) UILabel *nameLab;
-@property (nonatomic,strong) UILabel *pointLab;
-@property (nonatomic,strong) UIView *lineV;
+
 @property (nonatomic,strong) CALayer *bottomLayer;
 @property (nonatomic,strong) CALayer *topLayer;
+@property (nonatomic,strong) HGMyPointModel *model;
 
 
 @end

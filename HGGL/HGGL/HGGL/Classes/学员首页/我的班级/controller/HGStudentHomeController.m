@@ -21,7 +21,6 @@
 @interface HGStudentHomeController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong) UIImageView *imageV;
-@property (nonatomic,strong) UITableView *tableV;
 
 @property (nonatomic,strong) NSArray *dataAry;
 @property (nonatomic,strong) NSDictionary *infoDic;
@@ -46,9 +45,10 @@
 }
 
 - (void)requestData{
+    
     NSString *projectId = [HGUserDefaults objectForKey:HGProjectID];
     NSString *url = [HGURL stringByAppendingString:@"Project/getProjectInfo.do"];
-    [HGHttpTool POSTWithURL:url parameters:@{@"project_id":projectId} success:^(id responseObject) {
+    [HGHttpTool POSTWithURL:url parameters:@{@"project_id":self.project_id?self.project_id:projectId} success:^(id responseObject) {
         [self.tableV.mj_header endRefreshing];
         if ([responseObject[@"status"] isEqualToString:@"1"]) {
             self.infoDic = responseObject[@"data"];
@@ -86,9 +86,8 @@
     self.tableV = tableV;
     [self.view addSubview:tableV];
     
-    WeakSelf;
     self.tableV.mj_header = [HGRefresh loadNewRefreshWithRefreshBlock:^{
-        [weakSelf requestData];
+        [self requestData];
     }];
     //
     //    self.tableV.mj_footer = [HGRefresh loadMoreRefreshWithRefreshBlock:^{
@@ -141,6 +140,33 @@
     CGFloat y=0;
     CGFloat w;
     CGFloat h = 40;
+    
+    if (self.secondSectionAry.count) {
+        
+        NSInteger count = self.secondSectionAry.count;
+        
+        for (int i =0; i < count; i++) {
+            
+            anyButton *btn = [anyButton buttonWithType:UIButtonTypeCustom];
+            w = (HGScreenWidth - (count+1) *gap)/count;
+            x = i *(gap + w) + gap;
+            btn.frame = CGRectMake(x, y, w, h);
+            [btn changeImageFrame:CGRectMake(5, 7, 25, 25)];
+            [btn changeTitleFrame:CGRectMake(30, 7, w-30, 25)];
+            btn.backgroundColor = self.secondSectionColors[i];
+            [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            btn.titleLabel.font = [UIFont systemFontOfSize:13];
+            btn.titleLabel.textAlignment = NSTextAlignmentCenter;
+            btn.layer.masksToBounds = YES;
+            btn.layer.cornerRadius = 5;
+            [btn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
+            [btn setImage:[self imageWithName:self.secondSectionAry[i]] forState:UIControlStateNormal];
+            [btn setTitle:self.secondSectionAry[i] forState:UIControlStateNormal];
+            [cell.contentView addSubview:btn];
+        }
+        
+        return cell;
+    }
     
     for (int i =0; i<3; i++) {
         anyButton *btn = [anyButton buttonWithType:UIButtonTypeCustom];
@@ -465,6 +491,9 @@
     if (indexPath.section==0) {
         return 150;
     }else if (indexPath.section==1){
+        if (self.secondSectionAry.count) {
+            return 40;
+        }
         return 140;
     }else if(indexPath.section==2){
         return 230;
@@ -522,6 +551,11 @@
     HGClassDetailController *vc = [[HGClassDetailController alloc]init];
     vc.course_id = model.courseId;
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (UIImage *)imageWithName:(NSString *)name{
+    NSDictionary *imageDic = @{@"接待确认单":@"icon_manual",@"班级成绩单":@"icon_report",@"成绩单":@"icon_report"};
+    return [UIImage imageNamed:imageDic[name]];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -90,7 +90,6 @@
 }
 
 - (UIImage *)imageWithName:(NSString *)name{
-//    @[@"版本",@"个人信息及修改",@"密码修改",@"我的下载",@"我的档案",@"我的成绩单",@"项目证书",@"联系我们",@"退出当前账号"]
     NSDictionary *imageDic = @{@"版本":@"icon_version",@"个人信息及修改":@"icon_s_person",@"密码修改":@"icon_password",@"我的下载":@"icon_my_download",@"我的档案":@"icon_my_history",@"我的成绩单":@"icon_my_schedule",@"项目证书":@"icon_my_certificate",@"联系我们":@"icon_contact_us",@"退出当前账号":@"icon_exit",@"我的班级":@"icon_my_download"};
     
     return [UIImage imageNamed:imageDic[name]];

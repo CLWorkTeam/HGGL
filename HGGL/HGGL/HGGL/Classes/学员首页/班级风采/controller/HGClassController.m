@@ -42,13 +42,13 @@
     
     WeakSelf;
     self.tableV.mj_header = [HGRefresh loadNewRefreshWithRefreshBlock:^{
-        [weakSelf requestData];
+        [self requestData];
     }];
 }
 
 
 - (void)requestData{
-    [SVProgressHUD showWithStatus:@"请求中...."];
+
     NSString *url = [HGURL stringByAppendingString:@"Notice/getLearningOnCampus.do"];
     NSString *userid = [HGUserDefaults objectForKey:HGProjectID];
     [HGHttpTool POSTWithURL:url parameters:@{@"project_id":userid} success:^(id responseObject) {

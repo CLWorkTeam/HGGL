@@ -12,7 +12,6 @@
 
 @interface HGContactController ()<UITableViewDelegate,UITableViewDataSource>
 
-@property (nonatomic,strong) UITableView *tableV;
 @property (nonatomic,strong) NSArray *dataAry;
 
 @end
@@ -40,18 +39,17 @@
     self.tableV = tableV;
     [self.view addSubview:tableV];
     
-    WeakSelf;
     self.tableV.mj_header = [HGRefresh loadNewRefreshWithRefreshBlock:^{
-        [weakSelf requestData];
+        [self requestData];
     }];
 }
 
 
 - (void)requestData{
-    [SVProgressHUD showWithStatus:@"请求中...."];
+
     NSString *url = [HGURL stringByAppendingString:@"Mentee/getMenteeList.do"];
-    NSString *userid = [HGUserDefaults objectForKey:HGProjectID];
-    [HGHttpTool POSTWithURL:url parameters:@{@"project_id":userid} success:^(id responseObject) {
+    NSString *projectid = [HGUserDefaults objectForKey:HGProjectID];
+    [HGHttpTool POSTWithURL:url parameters:@{@"project_id":self.project_id?self.project_id:projectid} success:^(id responseObject) {
         
         [self.tableV.mj_header endRefreshing];
         
@@ -96,9 +94,24 @@
     HGContactModel *model = self.dataAry[indexPath.row];
     if (model.studentPhone) {
         NSString *str= [NSString stringWithFormat:@"tel:%@",model.studentPhone];
-        UIWebView *callWebview = [[UIWebView alloc] init];
-        [callWebview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:str]]];
-        [self.view addSubview:callWebview];
+        if ([str containsString:@" "]) {
+            str = [str stringByReplacingOccurrencesOfString:@" " withString:@""];
+        }
+        BOOL isOK;
+        if ([str containsString:@"+"]) {//有+号，去掉+号再看是不是纯数字
+           NSString *tempStr = [str stringByReplacingOccurrencesOfString:@"+" withString:@""];
+            isOK = [tempStr mj_isPureInt];
+        }else{
+            isOK = [str mj_isPureInt];
+        }
+        
+        if (isOK) {
+            UIWebView *callWebview = [[UIWebView alloc] init];
+            [callWebview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:str]]];
+            [self.view addSubview:callWebview];
+        }else{
+            [SVProgressHUD showInfoWithStatus:@"号码不正确！"];
+        }
     }
 }
 

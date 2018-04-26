@@ -9,6 +9,10 @@
 #import "HGPersonalController.h"
 #import "HGPersionCenterCell.h"
 #import "HGLoginController.h"
+#import "HGContactUSViewController.h"
+#import "HGScrollBaseController.h"
+#import "HGMyDataViewController.h"
+#import "HGTeacherMyClassController.h"
 
 @interface HGPersonalController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -67,6 +71,23 @@
         HGLoginController *vc = [[HGLoginController alloc]init];
         HGKeywindow.rootViewController = vc;
     }
+    if ([title isEqualToString:@"联系我们"]) {
+        HGContactUSViewController *vc =[[HGContactUSViewController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    if([title isEqualToString:@"密码修改"]){
+        HGScrollBaseController *vc = [[HGScrollBaseController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    if ([title isEqualToString:@"我的档案"]) {
+        HGMyDataViewController *vc = [[HGMyDataViewController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    if ([title isEqualToString:@"我的班级"]) {
+        HGTeacherMyClassController *vc = [[HGTeacherMyClassController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+
 }
 
 - (void)didReceiveMemoryWarning {

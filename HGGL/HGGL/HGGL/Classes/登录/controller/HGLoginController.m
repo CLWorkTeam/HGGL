@@ -103,6 +103,7 @@
     }
     [HGHttpTool POSTWithURL:[HGURL stringByAppendingString:@"User/Login.do"] parameters:@{@"account":account,@"password":passWord} success:^(id responseObject) {
 //        [SVProgressHUD dismiss];
+        NSLog(@"登录信息\n %@",responseObject);
         if ([responseObject[@"data"] isNull]||[responseObject[@"status"] isEqualToString:@"-1"]) {
             [SVProgressHUD showErrorWithStatus:responseObject[@"message"]];
             return ;
