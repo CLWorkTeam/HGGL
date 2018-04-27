@@ -45,31 +45,31 @@
     
     UILabel *titleLab = [[UILabel alloc]init];
     titleLab.textColor = HGMainColor;
-    titleLab.font = [UIFont systemFontOfSize:18];
+    titleLab.font = [UIFont systemFontOfSize:FONT_PT(18)];
     self.titleLab = titleLab;
     [backV addSubview:titleLab];
     
     UILabel *moneyLab = [[UILabel alloc]init];
     moneyLab.textColor = [UIColor colorWithHexString:@"#666666"];
-    moneyLab.font = [UIFont systemFontOfSize:16];
+    moneyLab.font = [UIFont systemFontOfSize:FONT_PT(16)];
     self.moneyLab = moneyLab;
     [backV addSubview:moneyLab];
 
     UILabel *daysLab = [[UILabel alloc]init];
     daysLab.textColor = [UIColor colorWithHexString:@"#666666"];
-    daysLab.font = [UIFont systemFontOfSize:16];
+    daysLab.font = [UIFont systemFontOfSize:FONT_PT(16)];
     self.daysLab = daysLab;
     [backV addSubview:daysLab];
 
     UILabel *numberLab = [[UILabel alloc]init];
     numberLab.textColor = [UIColor colorWithHexString:@"#666666"];
-    numberLab.font = [UIFont systemFontOfSize:16];
+    numberLab.font = [UIFont systemFontOfSize:FONT_PT(16)];
     self.numberLab = numberLab;
     [backV addSubview:numberLab];
 
     UILabel *timeLab = [[UILabel alloc]init];
     timeLab.textColor = [UIColor colorWithHexString:@"#666666"];
-    timeLab.font = [UIFont systemFontOfSize:16];
+    timeLab.font = [UIFont systemFontOfSize:FONT_PT(16)];
     self.timeLab = timeLab;
     [backV addSubview:timeLab];
 

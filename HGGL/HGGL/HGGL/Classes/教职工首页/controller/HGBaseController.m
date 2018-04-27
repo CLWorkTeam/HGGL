@@ -32,7 +32,7 @@
     [self.view addSubview:self.bar];
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     
-    UILabel *titleLab = [[UILabel alloc]initWithFrame:CGRectMake((HGScreenWidth-150)/2, HGStautsBarH + (44-20)/2, 150, 20)];
+    UILabel *titleLab = [[UILabel alloc]initWithFrame:CGRectMake((HGScreenWidth-WIDTH_PT(150))/2, HGStautsBarH + (44-20)/2, WIDTH_PT(150), HEIGHT_PT(20))];
     titleLab.font = [UIFont systemFontOfSize:18];
     titleLab.textAlignment = NSTextAlignmentCenter;
     titleLab.textColor = [UIColor whiteColor];

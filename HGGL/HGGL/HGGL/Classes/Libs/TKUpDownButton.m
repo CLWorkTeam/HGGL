@@ -65,7 +65,7 @@
         
         UILabel *label = [[UILabel alloc]init];
         label.text = title;
-        label.font = [UIFont systemFontOfSize:16];
+        label.font = [UIFont systemFontOfSize:FONT_PT(16)];
         label.textColor = [UIColor colorWithHexString:@"#333333"];
         [label sizeToFit];
         self.titleLab = label;

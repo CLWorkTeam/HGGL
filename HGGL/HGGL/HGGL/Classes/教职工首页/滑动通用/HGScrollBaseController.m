@@ -9,6 +9,7 @@
 #import "HGScrollBaseController.h"
 #import "HGStudentHomeController.h"
 #import "HGContactController.h"
+#import "HGMyPointController.h"
 
 @interface HGScrollBaseController ()<UIScrollViewDelegate>
 
@@ -92,8 +93,23 @@
             vc.bar.hidden = YES;
             vc.tableV.frame = CGRectMake(0, HGHeaderH,HGScreenWidth , scroll.height);
             vc.project_id = self.project_id;
-            vc.secondSectionAry = @[@"接待确认单",@"班级成绩单"];
-            vc.secondSectionColors = @[HGColor(52, 255, 33, 1),HGColor(248, 191, 149, 1)];
+            NSString *type = [HGUserDefaults objectForKey:HGUserType];
+            if ([type isEqualToString:@"3"]) { //学员
+                vc.secondSectionAry = @[@"成绩单"];
+                vc.secondSectionColors = @[HGColor(248, 191, 149, 1)];
+            }else if ([type isEqualToString:@"1"]){
+                vc.secondSectionAry = @[@"接待确认单",@"班级成绩单"];
+                vc.secondSectionColors = @[HGColor(52, 255, 33, 1),HGColor(248, 191, 149, 1)];
+            }
+            WeakSelf;
+            vc.block = ^(NSInteger tag) {
+                if (tag==1) {
+                    HGMyPointController *vc = [[HGMyPointController alloc]init];
+                    [weakSelf.navigationController pushViewController:vc animated:YES];
+                }else{
+                    
+                }
+            };
             [scroll addSubview:vc.view];
         }else if (i ==1){
             HGContactController *vc = [[HGContactController alloc]init];

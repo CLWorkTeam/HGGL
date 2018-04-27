@@ -34,7 +34,7 @@
     UITableView *tableV = [[UITableView alloc]initWithFrame:CGRectMake(0,self.bar.maxY, HGScreenWidth, HGScreenHeight - self.bar.maxY) style:UITableViewStylePlain];
     tableV.separatorStyle = UITableViewCellSeparatorStyleNone;
     tableV.backgroundColor = [UIColor whiteColor];
-    tableV.rowHeight = 90;
+    tableV.rowHeight = HEIGHT_PT(90);
     tableV.delegate = self;
     tableV.dataSource = self;
     self.tableV = tableV;

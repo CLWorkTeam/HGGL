@@ -22,7 +22,7 @@
         self.imageView.contentMode = UIViewContentModeScaleAspectFit;
         
         self.titleLabel.textAlignment = NSTextAlignmentCenter;
-        self.titleLabel.font = [UIFont systemFontOfSize:12];
+        self.titleLabel.font = [UIFont systemFontOfSize:FONT_PT(12)];
         [self setTitleColor:HGColor(191, 191, 191, 1) forState:UIControlStateNormal];
         [self setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
     }

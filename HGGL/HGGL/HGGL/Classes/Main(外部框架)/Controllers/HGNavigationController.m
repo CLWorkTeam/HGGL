@@ -21,7 +21,7 @@
 {
     UIBarButtonItem *butItem = [UIBarButtonItem appearance];
     NSMutableDictionary *attribute = [NSMutableDictionary dictionary];
-    attribute[NSFontAttributeName] = [UIFont systemFontOfSize:14];
+    attribute[NSFontAttributeName] = [UIFont systemFontOfSize:FONT_PT(14)];
     attribute[NSForegroundColorAttributeName] = [UIColor whiteColor];
     [butItem setTitleTextAttributes:attribute forState:UIControlStateNormal];
     NSMutableDictionary *disableDict = [NSMutableDictionary dictionary];

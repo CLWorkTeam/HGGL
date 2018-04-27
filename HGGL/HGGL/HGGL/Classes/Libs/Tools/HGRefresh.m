@@ -20,7 +20,7 @@
     [footer setTitle:@"正在刷新..." forState:MJRefreshStateRefreshing];
     [footer setTitle:@"没有更多了" forState:MJRefreshStateNoMoreData];
     footer.stateLabel.textColor = [UIColor colorWithHexString:@"#999999"];;
-    footer.stateLabel.font = [UIFont systemFontOfSize:12];
+    footer.stateLabel.font = [UIFont systemFontOfSize:FONT_PT(12)];
 
     return footer;
 }
@@ -34,7 +34,7 @@
     [header setTitle:@"下拉刷新" forState:MJRefreshStateIdle];
     [header setTitle:@"载入中..." forState:MJRefreshStateRefreshing];
     header.stateLabel.textColor = [UIColor colorWithHexString:@"#999999"];;
-    header.stateLabel.font = [UIFont systemFontOfSize:12];
+    header.stateLabel.font = [UIFont systemFontOfSize:FONT_PT(12)];
     header.lastUpdatedTimeLabel.hidden = YES;
 
     return header;

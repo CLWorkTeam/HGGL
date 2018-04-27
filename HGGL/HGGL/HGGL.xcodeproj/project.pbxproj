@@ -12,6 +12,9 @@
 		AD0396CE20731DD40082C817 /* HGContactController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD0396CD20731DD40082C817 /* HGContactController.m */; };
 		AD0396D220731DEB0082C817 /* HGClassController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD0396D120731DEB0082C817 /* HGClassController.m */; };
 		AD0396D520731E400082C817 /* HGPersonalController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD0396D420731E400082C817 /* HGPersonalController.m */; };
+		AD38EC6320931002004F5E79 /* hg_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = AD38EC6120931002004F5E79 /* hg_logo.png */; };
+		AD38EC6420931002004F5E79 /* hg_login_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = AD38EC6220931002004F5E79 /* hg_login_bg.png */; };
+		AD38EC6620931154004F5E79 /* icon_sign_out.png in Resources */ = {isa = PBXBuildFile; fileRef = AD38EC6520931154004F5E79 /* icon_sign_out.png */; };
 		AD472FEF206CB26A0024BDBB /* HGWeekMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD472FEE206CB26A0024BDBB /* HGWeekMenuController.m */; };
 		AD5F5F06208DA9B700F68471 /* HGMydataCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5F5F05208DA9B700F68471 /* HGMydataCell.m */; };
 		AD5F5F09208DAAA700F68471 /* HGMydataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5F5F08208DAAA700F68471 /* HGMydataModel.m */; };
@@ -404,6 +407,9 @@
 		AD0396D120731DEB0082C817 /* HGClassController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGClassController.m; sourceTree = "<group>"; };
 		AD0396D320731E400082C817 /* HGPersonalController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGPersonalController.h; sourceTree = "<group>"; };
 		AD0396D420731E400082C817 /* HGPersonalController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGPersonalController.m; sourceTree = "<group>"; };
+		AD38EC6120931002004F5E79 /* hg_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hg_logo.png; sourceTree = "<group>"; };
+		AD38EC6220931002004F5E79 /* hg_login_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hg_login_bg.png; sourceTree = "<group>"; };
+		AD38EC6520931154004F5E79 /* icon_sign_out.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_sign_out.png; sourceTree = "<group>"; };
 		AD472FED206CB26A0024BDBB /* HGWeekMenuController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGWeekMenuController.h; sourceTree = "<group>"; };
 		AD472FEE206CB26A0024BDBB /* HGWeekMenuController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGWeekMenuController.m; sourceTree = "<group>"; };
 		AD5F5F04208DA9B700F68471 /* HGMydataCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGMydataCell.h; sourceTree = "<group>"; };
@@ -1919,6 +1925,9 @@
 		CE769DFF206A5797000F931F /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				AD38EC6520931154004F5E79 /* icon_sign_out.png */,
+				AD38EC6220931002004F5E79 /* hg_login_bg.png */,
+				AD38EC6120931002004F5E79 /* hg_logo.png */,
 				AD804C11206B941000299A08 /* WechatIMG79.jpeg */,
 				CE769E06206A57B1000F931F /* bg_date.png */,
 				CE769E3B206A57B8000F931F /* bg_pop_bottom.png */,
@@ -2906,6 +2915,7 @@
 				CE769E7A206A57BA000F931F /* icon_delete.png in Resources */,
 				AD804C0D206B8FBF00299A08 /* icon_new_share.png in Resources */,
 				CE769E84206A57BA000F931F /* bg_pop_bottom.png in Resources */,
+				AD38EC6620931154004F5E79 /* icon_sign_out.png in Resources */,
 				CE769E71206A57BA000F931F /* bg_tab_box.9.png in Resources */,
 				AD804C08206B8FBF00299A08 /* icon_new_menu.png in Resources */,
 				CE769E75206A57BA000F931F /* icon_my_schedule.png in Resources */,
@@ -2913,6 +2923,7 @@
 				CE769E64206A57BA000F931F /* icon_tab_personal_unpress.png in Resources */,
 				CE769E60206A57BA000F931F /* icon_class.png in Resources */,
 				CE769E51206A57BA000F931F /* icon_notification_send.png in Resources */,
+				AD38EC6320931002004F5E79 /* hg_logo.png in Resources */,
 				CE769E5C206A57BA000F931F /* icon_return.png in Resources */,
 				CE769E5F206A57BA000F931F /* icon_tab_active.png in Resources */,
 				AD804C0C206B8FBF00299A08 /* icon_new_project.png in Resources */,
@@ -2920,6 +2931,7 @@
 				CE769E58206A57BA000F931F /* icon_s_person.png in Resources */,
 				CE769E5E206A57BA000F931F /* icon_password.png in Resources */,
 				AD804C12206B941000299A08 /* WechatIMG79.jpeg in Resources */,
+				AD38EC6420931002004F5E79 /* hg_login_bg.png in Resources */,
 				CE769E70206A57BA000F931F /* icon_message.png in Resources */,
 				CE769E49206A57BA000F931F /* icon_report.png in Resources */,
 				CE769E5A206A57BA000F931F /* icon_add.png in Resources */,

@@ -44,7 +44,7 @@
     
     UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, imageV.maxY, HGScreenWidth, 15)];
     label.textColor = [UIColor colorWithHexString:@"#333333"];
-    label.font = [UIFont systemFontOfSize:14];
+    label.font = [UIFont systemFontOfSize:FONT_PT(14)];
     label.textAlignment = NSTextAlignmentCenter;
     self.label = label;
     [self.contentView addSubview:label];

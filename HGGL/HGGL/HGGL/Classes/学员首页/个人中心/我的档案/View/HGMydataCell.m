@@ -36,14 +36,14 @@
 - (void)setupSubviews{
     
     UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(10, 15, HGScreenWidth, 15)];
-    label.font = [UIFont systemFontOfSize:14];
+    label.font = [UIFont systemFontOfSize:FONT_PT(14)];
     label.textAlignment = NSTextAlignmentLeft;
     label.textColor = [UIColor blackColor];
     self.titleLab = label;
     [self.contentView addSubview:label];
     
     UILabel *label1 = [[UILabel alloc]initWithFrame:CGRectMake(10, label.maxY+15, HGScreenWidth, 15)];
-    label1.font = [UIFont systemFontOfSize:14];
+    label1.font = [UIFont systemFontOfSize:FONT_PT(14)];
     label1.textAlignment = NSTextAlignmentLeft;
     label1.textColor = [UIColor grayColor];
     self.descLab = label1;

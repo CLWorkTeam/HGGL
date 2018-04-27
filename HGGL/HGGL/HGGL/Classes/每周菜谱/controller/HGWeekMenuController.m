@@ -63,7 +63,7 @@
         UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapView)];
         [backV addGestureRecognizer:tapGes];
         
-        UIView *listV = [[UIView alloc]initWithFrame:CGRectMake(10, self.menuBtn.maxY, self.menuBtn.width, 44*3+2)];
+        UIView *listV = [[UIView alloc]initWithFrame:CGRectMake(WIDTH_PT(10), self.menuBtn.maxY, self.menuBtn.width, HEIGHT_PT(44)*3+HEIGHT_PT(2))];
         listV.backgroundColor = [UIColor clearColor];
         [backV addSubview:listV];
         
@@ -73,8 +73,8 @@
             [btn setTitle:self.dinnerAry[i] forState:UIControlStateNormal];
             [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
             btn.titleLabel.textAlignment = NSTextAlignmentCenter;
-            btn.titleLabel.font = [UIFont systemFontOfSize:18];
-            btn.frame = CGRectMake(0, i * (44+1), listV.width, 44);
+            btn.titleLabel.font = [UIFont systemFontOfSize:FONT_PT(18)];
+            btn.frame = CGRectMake(0, i * (HEIGHT_PT(44)+HEIGHT_PT(1)), listV.width, HEIGHT_PT(44));
             [btn addTarget:self action:@selector(clickDetailDinner:) forControlEvents:UIControlEventTouchUpInside];
             [listV addSubview:btn];
         }
@@ -86,19 +86,19 @@
 
 - (void)addWeekView{
     
-    UIView *weekView = [[UIView alloc]initWithFrame:CGRectMake(0, self.bar.maxY, HGScreenWidth, 100)];
+    UIView *weekView = [[UIView alloc]initWithFrame:CGRectMake(0, self.bar.maxY, HGScreenWidth, HEIGHT_PT(100))];
     weekView.backgroundColor = [UIColor whiteColor];
     self.weekView = weekView;
     [self.view addSubview:weekView];
     
-    CGFloat x = 10;
-    CGFloat y = 10;
-    CGFloat w = (HGScreenWidth-20)/7;
+    CGFloat x = WIDTH_PT(10);
+    CGFloat y = HEIGHT_PT(10);
+    CGFloat w = (HGScreenWidth-WIDTH_PT(20))/7;
     CGFloat h = w;
     
     for (int i =0; i<7; i++) {
         
-        x = 10 + i *w;
+        x = WIDTH_PT(10) + i *w;
         NSString *day = self.dayAry[i];
         NSString *week = self.weekAry[i];
         anyButton *btn = [anyButton buttonWithType:UIButtonTypeCustom];
@@ -107,7 +107,7 @@
         btn.titleLabel.numberOfLines = 0;
         btn.layer.masksToBounds = YES;
         btn.layer.cornerRadius = w/2;
-        btn.titleLabel.font = [UIFont systemFontOfSize:12];
+        btn.titleLabel.font = [UIFont systemFontOfSize:FONT_PT(12)];
         btn.titleLabel.textAlignment = NSTextAlignmentCenter;
         NSString *title = [NSString stringWithFormat:@"%@\n%@",week,day];
         [btn setTitle:title forState:UIControlStateNormal];
@@ -125,39 +125,39 @@
         [self.weekBtnAry addObject:btn];
     }
     
-    weekView.height = 20 + h ;
+    weekView.height = HEIGHT_PT(20) + h ;
     
-    UIView *lineV = [[UIView alloc]initWithFrame:CGRectMake(0, weekView.maxY, HGScreenWidth, 10)];
+    UIView *lineV = [[UIView alloc]initWithFrame:CGRectMake(0, weekView.maxY, HGScreenWidth, HEIGHT_PT(10))];
     lineV.backgroundColor = HGGrayColor;
     [self.view addSubview:lineV];
 }
 
 - (void)addMenuView{
     
-    UILabel *alertLab = [[UILabel alloc]initWithFrame:CGRectMake(0, self.weekView.maxY+10, HGScreenWidth, 20)];
+    UILabel *alertLab = [[UILabel alloc]initWithFrame:CGRectMake(0, self.weekView.maxY+HEIGHT_PT(10), HGScreenWidth, HEIGHT_PT(20))];
     alertLab.textColor = HGMainColor;
-    alertLab.font = [UIFont systemFontOfSize:13];
+    alertLab.font = [UIFont systemFontOfSize:FONT_PT(13)];
     alertLab.textAlignment = NSTextAlignmentCenter;
     alertLab.text = @"注：需提前一天订餐";
     [alertLab sizeToFit];
     alertLab.centerX = self.view.centerX;
-    alertLab.y = alertLab.y + 5;
+    alertLab.y = alertLab.y + HEIGHT_PT(5);
     [self.view addSubview:alertLab];
     
     anyButton *btn = [anyButton buttonWithType:UIButtonTypeCustom];
-    btn.frame = CGRectMake(10, alertLab.maxY+5, HGScreenWidth-20, 40);
+    btn.frame = CGRectMake(WIDTH_PT(10), alertLab.maxY+HEIGHT_PT(5), HGScreenWidth-WIDTH_PT(20), HEIGHT_PT(40));
     btn.layer.masksToBounds = YES;
     btn.layer.cornerRadius = 5;
     btn.layer.borderColor = [UIColor lightGrayColor].CGColor;
     btn.layer.borderWidth = 1;
     [btn setTitle:@"早餐" forState:UIControlStateNormal];
     [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    btn.titleLabel.font = [UIFont systemFontOfSize:16];
+    btn.titleLabel.font = [UIFont systemFontOfSize:FONT_PT(16)];
     btn.titleLabel.textAlignment = NSTextAlignmentCenter;
     [btn setImage:[UIImage imageNamed:@"icon_btn_down"] forState:UIControlStateNormal];
     [btn setImage:[UIImage imageNamed:@"icon_btn_up"] forState:UIControlStateSelected];
     [btn changeTitleFrame:CGRectMake(0, 0, btn.width*0.9, btn.height)];
-    [btn changeImageFrame:CGRectMake(btn.width-20, (btn.height-8)/2, 13, 8)];
+    [btn changeImageFrame:CGRectMake(btn.width-WIDTH_PT(20), (btn.height-HEIGHT_PT(8))/2, WIDTH_PT(13), HEIGHT_PT(8))];
     [btn addTarget:self action:@selector(clickMenu:) forControlEvents:UIControlEventTouchUpInside];
     self.menuBtn = btn;
     [self.view addSubview:btn];
@@ -166,11 +166,11 @@
 - (void)addNextButton{
     
     UIButton *nextBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    nextBtn.frame = CGRectMake(0,HGScreenHeight-50, HGScreenWidth ,50);
+    nextBtn.frame = CGRectMake(0,HGScreenHeight-HEIGHT_PT(50), HGScreenWidth ,HEIGHT_PT(50));
     [nextBtn setTitle:@"订餐" forState:UIControlStateNormal];
     [nextBtn setBackgroundImage:[UIImage imageWithColor:HGMainColor] forState:UIControlStateNormal];
     [nextBtn setTitleColor:[UIColor colorWithHexString:@"#ffffff"] forState:UIControlStateNormal];
-    [nextBtn.titleLabel setFont:[UIFont systemFontOfSize:18]];
+    [nextBtn.titleLabel setFont:[UIFont systemFontOfSize:FONT_PT(18)]];
     [nextBtn addTarget:self action:@selector(bookDinner:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:nextBtn];
     

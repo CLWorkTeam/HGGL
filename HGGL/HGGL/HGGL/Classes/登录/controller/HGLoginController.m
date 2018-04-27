@@ -24,7 +24,7 @@
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
     
-    UIView *backV = [[UIView alloc]initWithFrame:CGRectMake(0, 0, HGScreenWidth, 64)];
+    UIView *backV = [[UIView alloc]initWithFrame:CGRectMake(0, 0, HGScreenWidth, 44 + HGStautsBarH)];
     backV.backgroundColor = HGMainColor;
     [self.view addSubview:backV];
     
@@ -35,13 +35,18 @@
     label.font = [UIFont systemFontOfSize:18];
     [backV addSubview:label];
 
+    UIImageView *bgImageV = [[UIImageView alloc]initWithFrame:CGRectMake(0, backV.maxY, HGScreenWidth, HGScreenHeight-HEIGHT_PT(200))];
+    bgImageV.image = [UIImage imageNamed:@"hg_login_bg"];
+    bgImageV.userInteractionEnabled = YES;
+    [self.view addSubview:bgImageV];
+
     
-    UIImageView *imageV = [[UIImageView alloc]initWithFrame:CGRectMake(30, backV.maxY + 100, HGScreenWidth-60, 40)];
-    imageV.image = [UIImage imageNamed:@"WechatIMG8"];
+    UIImageView *imageV = [[UIImageView alloc]initWithFrame:CGRectMake(WIDTH_PT(20), backV.maxY + HEIGHT_PT(60), HGScreenWidth-WIDTH_PT(40), HEIGHT_PT(50))];
+    imageV.image = [UIImage imageNamed:@"hg_logo"];
     [self.view addSubview:imageV];
     
-    UITextField *textF = [[UITextField alloc]initWithFrame:CGRectMake(20, imageV.maxY+50, HGScreenWidth-40, 40)];
-    textF.font = [UIFont systemFontOfSize:18];
+    UITextField *textF = [[UITextField alloc]initWithFrame:CGRectMake(WIDTH_PT(20), imageV.maxY+HEIGHT_PT(90), HGScreenWidth-WIDTH_PT(40), HEIGHT_PT(40))];
+    textF.font = [UIFont systemFontOfSize:FONT_PT(18)];
     textF.placeholder = @"账号";
     textF.borderStyle = UITextBorderStyleRoundedRect;
     textF.clearButtonMode = UITextFieldViewModeAlways;
@@ -52,8 +57,8 @@
         textF.text =username;
     }
     
-    UITextField *textF1 = [[UITextField alloc]initWithFrame:CGRectMake(textF.x, textF.maxY+20, HGScreenWidth-40, 40)];
-    textF1.font = [UIFont systemFontOfSize:18];
+    UITextField *textF1 = [[UITextField alloc]initWithFrame:CGRectMake(textF.x, textF.maxY+WIDTH_PT(20), textF.width, textF.height)];
+    textF1.font = [UIFont systemFontOfSize:FONT_PT(18)];
     textF1.placeholder = @"密码";
     textF1.borderStyle = UITextBorderStyleRoundedRect;
     textF1.clearButtonMode = UITextFieldViewModeAlways;
@@ -62,10 +67,10 @@
     self.pwTextField = textF1;
 
     UIButton *loginBtn =[UIButton buttonWithType:UIButtonTypeCustom];
-    loginBtn.frame = CGRectMake(textF.x, textF1.maxY + 30, textF.width, 40);
+    loginBtn.frame = CGRectMake(textF.x, textF1.maxY + HEIGHT_PT(30), textF.width, HEIGHT_PT(40));
     [loginBtn setTitle:@"登录" forState:UIControlStateNormal];
     [loginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    loginBtn.titleLabel.font = [UIFont systemFontOfSize:18];
+    loginBtn.titleLabel.font = [UIFont systemFontOfSize:FONT_PT(18)];
     loginBtn.backgroundColor = HGMainColor;
     loginBtn.layer.masksToBounds = YES;
     loginBtn.layer.cornerRadius = 5;
@@ -73,14 +78,14 @@
     [self.view addSubview:loginBtn];
     
     anyButton *autoBtn = [anyButton buttonWithType:UIButtonTypeCustom];
-    autoBtn.frame = CGRectMake(loginBtn.x, loginBtn.maxY+10, 200, 21);
+    autoBtn.frame = CGRectMake(loginBtn.x, loginBtn.maxY+HEIGHT_PT(10), WIDTH_PT(200), HEIGHT_PT(21));
     [autoBtn setImage:[UIImage imageNamed:@"icon_xuanze"] forState:UIControlStateNormal];
     [autoBtn setImage:[UIImage imageNamed:@"icon_xuanze_check"] forState:UIControlStateSelected];
     [autoBtn setTitle:@"自动登录" forState:UIControlStateNormal];
     [autoBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [autoBtn.titleLabel setFont:[UIFont systemFontOfSize:16]];
-    [autoBtn changeImageFrame:CGRectMake(0, 0, 21, 21)];
-    [autoBtn changeTitleFrame:CGRectMake(30, 0, 170, 21)];
+    [autoBtn changeImageFrame:CGRectMake(0, 0, WIDTH_PT(21), HEIGHT_PT(21))];
+    [autoBtn changeTitleFrame:CGRectMake(WIDTH_PT(30), 0, WIDTH_PT(170), HEIGHT_PT(21))];
     [autoBtn addTarget:self action:@selector(autoLogin:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:autoBtn];
     

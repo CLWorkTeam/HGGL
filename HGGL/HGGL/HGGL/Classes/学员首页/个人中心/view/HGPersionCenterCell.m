@@ -48,13 +48,13 @@
     
     UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(imageV.maxX + 5,imageV.y, HGScreenWidth-imageV.maxX - 10, 15)];
     label.textColor = [UIColor colorWithHexString:@"#333333"];
-    label.font = [UIFont systemFontOfSize:14];
+    label.font = [UIFont systemFontOfSize:FONT_PT(14)];
     self.titleLab = label;
     [self.contentView addSubview:label];
     
     UILabel *label1 = [[UILabel alloc]initWithFrame:CGRectMake(10, 20, HGScreenWidth-40, 15)];
     label1.textColor = [UIColor colorWithHexString:@"#333333"];
-    label1.font = [UIFont systemFontOfSize:14];
+    label1.font = [UIFont systemFontOfSize:FONT_PT(14)];
     label1.text = @"v1.0";
     [label1 sizeToFit];
     label1.maxX = HGScreenWidth - 10;

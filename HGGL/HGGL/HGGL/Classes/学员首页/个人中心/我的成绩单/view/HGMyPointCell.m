@@ -66,7 +66,7 @@
     
     UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, view1.width/3*2, view1.height)];
     label.backgroundColor = [UIColor clearColor];
-    label.font = [UIFont boldSystemFontOfSize:18];
+    label.font = [UIFont boldSystemFontOfSize:FONT_PT(18)];
     label.textAlignment = NSTextAlignmentCenter;
     label.textColor = HGMainColor;
     self.nameLab = label;
@@ -79,7 +79,7 @@
     
     UILabel *label1 = [[UILabel alloc]initWithFrame:CGRectMake(lineV.maxX, 0, view1.width/3*1 - 1.5, view1.height)];
     label1.backgroundColor = [UIColor clearColor];
-    label1.font = [UIFont boldSystemFontOfSize:18];
+    label1.font = [UIFont boldSystemFontOfSize:FONT_PT(18)];
     label1.textAlignment = NSTextAlignmentCenter;
     label1.textColor = HGMainColor;
     self.pointLab = label1;
