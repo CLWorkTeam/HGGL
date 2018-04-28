@@ -83,7 +83,7 @@
     [autoBtn setImage:[UIImage imageNamed:@"icon_xuanze_check"] forState:UIControlStateSelected];
     [autoBtn setTitle:@"自动登录" forState:UIControlStateNormal];
     [autoBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [autoBtn.titleLabel setFont:[UIFont systemFontOfSize:16]];
+    [autoBtn.titleLabel setFont:[UIFont systemFontOfSize:FONT_PT(16)]];
     [autoBtn changeImageFrame:CGRectMake(0, 0, WIDTH_PT(21), HEIGHT_PT(21))];
     [autoBtn changeTitleFrame:CGRectMake(WIDTH_PT(30), 0, WIDTH_PT(170), HEIGHT_PT(21))];
     [autoBtn addTarget:self action:@selector(autoLogin:) forControlEvents:UIControlEventTouchUpInside];
@@ -107,7 +107,7 @@
         return;
     }
     [HGHttpTool POSTWithURL:[HGURL stringByAppendingString:@"User/Login.do"] parameters:@{@"account":account,@"password":passWord} success:^(id responseObject) {
-//        [SVProgressHUD dismiss];
+        [SVProgressHUD dismiss];
         NSLog(@"登录信息\n %@",responseObject);
         if ([responseObject[@"data"] isNull]||[responseObject[@"status"] isEqualToString:@"-1"]) {
             [SVProgressHUD showErrorWithStatus:responseObject[@"message"]];

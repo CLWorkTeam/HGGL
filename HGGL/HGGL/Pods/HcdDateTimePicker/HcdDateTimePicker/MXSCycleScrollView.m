@@ -21,12 +21,20 @@
 #import "MXSCycleScrollView.h"
 #import "UIColor+HcdCustom.h"
 
+
+#define ScreenScale [UIScreen mainScreen].scale
+#define HGFONT_PT(pt) ceil([UIScreen mainScreen].bounds.size.width / (320*ScreenScale) * ((pt)*ScreenScale))
+#define HGHEIGHT_PT(pt) ceil([UIScreen mainScreen].bounds.size.width / (320*ScreenScale) * ((pt)*ScreenScale))
+#define HGWIDTH_PT(pt) ceil([UIScreen mainScreen].bounds.size.width / (320*ScreenScale) * ((pt)*ScreenScale))
+
 @implementation MXSCycleScrollView
 
 @synthesize scrollView = _scrollView;
 @synthesize currentPage = _curPage;
 @synthesize datasource = _datasource;
 @synthesize delegate = _delegate;
+
+
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -153,21 +161,21 @@
 - (void)setAfterScrollShowView:(UIScrollView*)scrollview  andCurrentPage:(NSInteger)pageNumber
 {
     UILabel *oneLabel = (UILabel*)[[scrollview subviews] objectAtIndex:pageNumber];
-    [oneLabel setFont:[UIFont systemFontOfSize:14]];
+    [oneLabel setFont:[UIFont systemFontOfSize:HGFONT_PT(14)]];
     [oneLabel setTextColor:[UIColor colorWithHexString:@"0xBABABA"]];
     UILabel *twoLabel = (UILabel*)[[scrollview subviews] objectAtIndex:pageNumber+1];
-    [twoLabel setFont:[UIFont systemFontOfSize:16]];
+    [twoLabel setFont:[UIFont systemFontOfSize:HGFONT_PT(16)]];
     [twoLabel setTextColor:[UIColor colorWithHexString:@"0x717171"]];
     
     UILabel *currentLabel = (UILabel*)[[scrollview subviews] objectAtIndex:pageNumber+2];
-    [currentLabel setFont:[UIFont systemFontOfSize:18]];
+    [currentLabel setFont:[UIFont systemFontOfSize:HGFONT_PT(18)]];
     [currentLabel setTextColor:[UIColor blackColor]];
     
     UILabel *threeLabel = (UILabel*)[[scrollview subviews] objectAtIndex:pageNumber+3];
-    [threeLabel setFont:[UIFont systemFontOfSize:16]];
+    [threeLabel setFont:[UIFont systemFontOfSize:HGFONT_PT(16)]];
     [threeLabel setTextColor:[UIColor colorWithHexString:@"0x717171"]];
     UILabel *fourLabel = (UILabel*)[[scrollview subviews] objectAtIndex:pageNumber+4];
-    [fourLabel setFont:[UIFont systemFontOfSize:14]];
+    [fourLabel setFont:[UIFont systemFontOfSize:HGFONT_PT(14)]];
     [fourLabel setTextColor:[UIColor colorWithHexString:@"0xBABABA"]];
 }
 

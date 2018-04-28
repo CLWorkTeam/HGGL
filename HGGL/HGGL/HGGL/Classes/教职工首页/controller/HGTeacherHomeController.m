@@ -44,18 +44,18 @@
     label.text = @"首页";
     label.textColor = [UIColor whiteColor];
     label.textAlignment = NSTextAlignmentCenter;
-    label.font = [UIFont systemFontOfSize:18];
+    label.font = [UIFont systemFontOfSize:FONT_PT(18)];
     [backV addSubview:label];
 
     UIButton *persionBtn =[UIButton buttonWithType:UIButtonTypeCustom];
-    persionBtn.frame = CGRectMake(20, HGStautsBarH+5, 30, 30);
+    persionBtn.frame = CGRectMake(WIDTH_PT(20), HGStautsBarH+HEIGHT_PT(5), WIDTH_PT(30), HEIGHT_PT(30));
     [persionBtn setImage:[UIImage imageNamed:@"icon_top_personal"] forState:UIControlStateNormal];
     persionBtn.backgroundColor = HGMainColor;
     [persionBtn addTarget:self action:@selector(clickPersion) forControlEvents:UIControlEventTouchUpInside];
     [backV addSubview:persionBtn];
     
     UIButton *messageBtn =[UIButton buttonWithType:UIButtonTypeCustom];
-    messageBtn.frame = CGRectMake(HGScreenWidth-45, persionBtn.y, 30, 30);
+    messageBtn.frame = CGRectMake(HGScreenWidth-WIDTH_PT(45), persionBtn.y, WIDTH_PT(30), HEIGHT_PT(30));
     [messageBtn setImage:[UIImage imageNamed:@"icon_message"] forState:UIControlStateNormal];
     messageBtn.backgroundColor = HGMainColor;
     [messageBtn addTarget:self action:@selector(clickMessage:) forControlEvents:UIControlEventTouchUpInside];

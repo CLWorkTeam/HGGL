@@ -23,6 +23,11 @@
 #define kDatePickerHeight (kTopViewHeight + kTimeBroadcastViewHeight)
 #define kOKBtnTag 101
 #define kCancleBtnTag 100
+#define ScreenScale [UIScreen mainScreen].scale
+#define HGFONT_PT(pt) ceil([UIScreen mainScreen].bounds.size.width / (320*ScreenScale) * ((pt)*ScreenScale))
+#define HGHEIGHT_PT(pt) ceil([UIScreen mainScreen].bounds.size.width / (320*ScreenScale) * ((pt)*ScreenScale))
+#define HGWIDTH_PT(pt) ceil([UIScreen mainScreen].bounds.size.width / (320*ScreenScale) * ((pt)*ScreenScale))
+
 
 #import "HcdDateTimePickerView.h"
 #import "UIColor+HcdCustom.h"
@@ -159,17 +164,17 @@
     topView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreen_Width, kTopViewHeight)];
     topView.backgroundColor = _topViewColor;
     
-    okBtn = [[UIButton alloc]initWithFrame:CGRectMake(kScreen_Width-60, 0, 60, kTopViewHeight)];
+    okBtn = [[UIButton alloc]initWithFrame:CGRectMake(kScreen_Width-HGWIDTH_PT(60), 0, HGWIDTH_PT(60), kTopViewHeight)];
     [okBtn setTitleColor:_buttonTitleColor forState:UIControlStateNormal];
-    okBtn.titleLabel.font = [UIFont systemFontOfSize:16];
+    okBtn.titleLabel.font = [UIFont systemFontOfSize:HGFONT_PT(16)];
     [okBtn setBackgroundColor:[UIColor clearColor]];
     [okBtn setTitle:@"确定" forState:UIControlStateNormal];
     [okBtn addTarget:self action:@selector(selectedButtons:) forControlEvents:UIControlEventTouchUpInside];
     okBtn.tag = kOKBtnTag;
     [self addSubview:okBtn];
     
-    cancleBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 60, kTopViewHeight)];
-    cancleBtn.titleLabel.font = [UIFont systemFontOfSize:16];
+    cancleBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, HGWIDTH_PT(60), kTopViewHeight)];
+    cancleBtn.titleLabel.font = [UIFont systemFontOfSize:HGFONT_PT(16)];
     [cancleBtn setTitleColor:_buttonTitleColor forState:UIControlStateNormal];
     [cancleBtn setBackgroundColor:[UIColor clearColor]];
     [cancleBtn setTitle:@"取消" forState:UIControlStateNormal];
@@ -177,9 +182,9 @@
     cancleBtn.tag = kCancleBtnTag;
     [self addSubview:cancleBtn];
     
-    titleLbl = [[UILabel alloc]initWithFrame:CGRectMake(60, 0, kScreen_Width - 120, kTopViewHeight)];
+    titleLbl = [[UILabel alloc]initWithFrame:CGRectMake(HGWIDTH_PT(60), 0, kScreen_Width - HGWIDTH_PT(120), kTopViewHeight)];
     titleLbl.textAlignment = NSTextAlignmentCenter;
-    titleLbl.font = [UIFont systemFontOfSize:14];
+    titleLbl.font = [UIFont systemFontOfSize:HGFONT_PT(14)];
     
     [topView addSubview:okBtn];
     [topView addSubview:cancleBtn];
@@ -247,7 +252,7 @@
     }
     
     [timeBroadcastView addSubview:topView];
-    [timeBroadcastView setFrame:CGRectMake(0, kScreen_Height-100, kScreen_Width, kDatePickerHeight)];
+    [timeBroadcastView setFrame:CGRectMake(0, kScreen_Height-HGHEIGHT_PT(100), kScreen_Width, kDatePickerHeight)];
 }
 //设置年月日时分的滚动视图
 - (void)setYearScrollView
@@ -371,21 +376,21 @@
 - (void)setAfterScrollShowView:(MXSCycleScrollView*)scrollview  andCurrentPage:(NSInteger)pageNumber
 {
     UILabel *oneLabel = [[(UILabel*)[[scrollview subviews] objectAtIndex:0] subviews] objectAtIndex:pageNumber];
-    [oneLabel setFont:[UIFont systemFontOfSize:14]];
+    [oneLabel setFont:[UIFont systemFontOfSize:HGFONT_PT(14)]];
     [oneLabel setTextColor:[UIColor colorWithHexString:@"0xBABABA"]];
     UILabel *twoLabel = [[(UILabel*)[[scrollview subviews] objectAtIndex:0] subviews] objectAtIndex:pageNumber+1];
-    [twoLabel setFont:[UIFont systemFontOfSize:16]];
+    [twoLabel setFont:[UIFont systemFontOfSize:HGFONT_PT(16)]];
     [twoLabel setTextColor:[UIColor colorWithHexString:@"0x717171"]];
     
     UILabel *currentLabel = [[(UILabel*)[[scrollview subviews] objectAtIndex:0] subviews] objectAtIndex:pageNumber+2];
-    [currentLabel setFont:[UIFont systemFontOfSize:18]];
+    [currentLabel setFont:[UIFont systemFontOfSize:HGFONT_PT(18)]];
     [currentLabel setTextColor:[UIColor blackColor]];
     
     UILabel *threeLabel = [[(UILabel*)[[scrollview subviews] objectAtIndex:0] subviews] objectAtIndex:pageNumber+3];
-    [threeLabel setFont:[UIFont systemFontOfSize:16]];
+    [threeLabel setFont:[UIFont systemFontOfSize:HGFONT_PT(16)]];
     [threeLabel setTextColor:[UIColor colorWithHexString:@"0x717171"]];
     UILabel *fourLabel = [[(UILabel*)[[scrollview subviews] objectAtIndex:0] subviews] objectAtIndex:pageNumber+4];
-    [fourLabel setFont:[UIFont systemFontOfSize:14]];
+    [fourLabel setFont:[UIFont systemFontOfSize:HGFONT_PT(14)]];
     [fourLabel setTextColor:[UIColor colorWithHexString:@"0xBABABA"]];
 }
 #pragma mark mxccyclescrollview delegate
@@ -474,7 +479,7 @@
         else
             l.text = [NSString stringWithFormat:@"%ld秒",(long)index];
     
-    l.font = [UIFont systemFontOfSize:12];
+    l.font = [UIFont systemFontOfSize:HGFONT_PT(12)];
     l.textAlignment = NSTextAlignmentCenter;
     l.backgroundColor = [UIColor clearColor];
     return l;

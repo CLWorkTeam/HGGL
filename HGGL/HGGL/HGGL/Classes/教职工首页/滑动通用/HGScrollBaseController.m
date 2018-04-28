@@ -37,14 +37,14 @@
 }
 
 - (void)addBtnView{
-    UIView *btnView = [[UIView alloc]initWithFrame:CGRectMake(0, self.bar.maxY, HGScreenWidth, 70)];
+    UIView *btnView = [[UIView alloc]initWithFrame:CGRectMake(0, self.bar.maxY, HGScreenWidth, HEIGHT_PT(70))];
     btnView.backgroundColor = [UIColor whiteColor];
     self.btnView = btnView;
     [self.view addSubview:btnView];
     
-    CGFloat w = (HGScreenWidth - 30)/2;
+    CGFloat w = (HGScreenWidth - WIDTH_PT(30))/2;
     UIButton *btn1 = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn1.frame = CGRectMake(10, 10, w, 40);
+    btn1.frame = CGRectMake(WIDTH_PT(10), HEIGHT_PT(10), w, WIDTH_PT(40));
     [btn1 setBackgroundImage:[UIImage imageWithColor:HGGrayColor] forState:UIControlStateNormal];
     [btn1 setBackgroundImage:[UIImage imageWithColor:HGMainColor] forState:UIControlStateSelected];
     [btn1 setTitle:@"基本信息" forState:UIControlStateNormal];
@@ -58,7 +58,7 @@
     [btnView addSubview:btn1];
     
     UIButton *btn2 = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn2.frame = CGRectMake(btn1.maxX + 10, 10, w, 40);
+    btn2.frame = CGRectMake(btn1.maxX + WIDTH_PT(10), HEIGHT_PT(10), w, HEIGHT_PT(40));
     [btn2 setBackgroundImage:[UIImage imageWithColor:HGGrayColor] forState:UIControlStateNormal];
     [btn2 setBackgroundImage:[UIImage imageWithColor:HGMainColor] forState:UIControlStateSelected];
     [btn2 setTitle:@"学员通讯录" forState:UIControlStateNormal];
@@ -70,7 +70,7 @@
     self.contactBtn = btn2;
     [btnView addSubview:btn2];
 
-    UIView *lineV =[[UIView alloc]initWithFrame:CGRectMake(0, 60, HGScreenWidth, 10)];
+    UIView *lineV =[[UIView alloc]initWithFrame:CGRectMake(0, HEIGHT_PT(60), HGScreenWidth, HEIGHT_PT(10))];
     lineV.backgroundColor = HGGrayColor;
     [btnView addSubview:lineV];
 }

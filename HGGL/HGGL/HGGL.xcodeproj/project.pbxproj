@@ -67,6 +67,8 @@
 		ADDD575E2089B746005A38EA /* NSDictionary+Value.m in Sources */ = {isa = PBXBuildFile; fileRef = ADDD575C2089B746005A38EA /* NSDictionary+Value.m */; };
 		ADDD57672089BFC1005A38EA /* NSDate+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = ADDD57652089BFC1005A38EA /* NSDate+Additions.m */; };
 		ADDD576A2089CD32005A38EA /* HGNoDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADDD57692089CD32005A38EA /* HGNoDataView.m */; };
+		ADF2F05B20943D0600C787F0 /* HGItemDataCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF2F05A20943D0600C787F0 /* HGItemDataCell.m */; };
+		ADF2F05E2094478D00C787F0 /* HGItemDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF2F05D2094478D00C787F0 /* HGItemDataModel.m */; };
 		CE1E1F31208BA2A40098B1E1 /* HGCRoomHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1E1F30208BA2A40098B1E1 /* HGCRoomHeader.m */; };
 		CE1E1F37208BA3CA0098B1E1 /* HGUCRoomModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1E1F36208BA3CA0098B1E1 /* HGUCRoomModel.m */; };
 		CE1E1F3A208BA3DE0098B1E1 /* HGCRoomModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1E1F39208BA3DE0098B1E1 /* HGCRoomModel.m */; };
@@ -503,6 +505,10 @@
 		ADDD57662089BFC1005A38EA /* NSDate+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Additions.h"; sourceTree = "<group>"; };
 		ADDD57682089CD32005A38EA /* HGNoDataView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGNoDataView.h; sourceTree = "<group>"; };
 		ADDD57692089CD32005A38EA /* HGNoDataView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGNoDataView.m; sourceTree = "<group>"; };
+		ADF2F05920943D0600C787F0 /* HGItemDataCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGItemDataCell.h; sourceTree = "<group>"; };
+		ADF2F05A20943D0600C787F0 /* HGItemDataCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGItemDataCell.m; sourceTree = "<group>"; };
+		ADF2F05C2094478D00C787F0 /* HGItemDataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGItemDataModel.h; sourceTree = "<group>"; };
+		ADF2F05D2094478D00C787F0 /* HGItemDataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGItemDataModel.m; sourceTree = "<group>"; };
 		CE1E1F2F208BA2A40098B1E1 /* HGCRoomHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGCRoomHeader.h; sourceTree = "<group>"; };
 		CE1E1F30208BA2A40098B1E1 /* HGCRoomHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGCRoomHeader.m; sourceTree = "<group>"; };
 		CE1E1F35208BA3CA0098B1E1 /* HGUCRoomModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGUCRoomModel.h; sourceTree = "<group>"; };
@@ -1462,6 +1468,8 @@
 		AD9164E92083211E00416124 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				ADF2F05920943D0600C787F0 /* HGItemDataCell.h */,
+				ADF2F05A20943D0600C787F0 /* HGItemDataCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1469,6 +1477,8 @@
 		AD9164EA2083212200416124 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				ADF2F05C2094478D00C787F0 /* HGItemDataModel.h */,
+				ADF2F05D2094478D00C787F0 /* HGItemDataModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3123,8 +3133,10 @@
 				CE4CAD472084A437001F711F /* RoleMember.m in Sources */,
 				CE1E1F4F208CE9720098B1E1 /* HGGRRModel.m in Sources */,
 				CEAD1AFE207DF5E4008F1696 /* PMissionViewController.m in Sources */,
+				ADF2F05E2094478D00C787F0 /* HGItemDataModel.m in Sources */,
 				CEAD1B0A207DF6F7008F1696 /* PMissionFrame.m in Sources */,
 				CEAD1A4E207DE59D008F1696 /* ProjectListParama.m in Sources */,
+				ADF2F05B20943D0600C787F0 /* HGItemDataCell.m in Sources */,
 				CEAD1A07207DE022008F1696 /* IntroTableViewCell.m in Sources */,
 				CE769E94206A598A000F931F /* HGTabBarViewController.m in Sources */,
 				CE913321208A3C4F00780113 /* HGRSTableViewCell.m in Sources */,

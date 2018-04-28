@@ -36,7 +36,7 @@
 
 - (void)setupSubviews{
     
-    UIView *view1 = [[UIView alloc]initWithFrame:CGRectMake(15, 0, HGScreenWidth-30, 50)];
+    UIView *view1 = [[UIView alloc]initWithFrame:CGRectMake(WIDTH_PT(15), 0, HGScreenWidth-WIDTH_PT(30), HEIGHT_PT(50))];
     view1.backgroundColor = [UIColor whiteColor];
     [self.contentView addSubview:view1];
     

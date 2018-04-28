@@ -98,11 +98,11 @@
             str = [str stringByReplacingOccurrencesOfString:@" " withString:@""];
         }
         BOOL isOK;
-        if ([str containsString:@"+"]) {//有+号，去掉+号再看是不是纯数字
-           NSString *tempStr = [str stringByReplacingOccurrencesOfString:@"+" withString:@""];
+        if ([model.studentPhone containsString:@"+"]) {//有+号，去掉+号再看是不是纯数字
+           NSString *tempStr = [model.studentPhone stringByReplacingOccurrencesOfString:@"+" withString:@""];
             isOK = [tempStr mj_isPureInt];
         }else{
-            isOK = [str mj_isPureInt];
+            isOK = [model.studentPhone mj_isPureInt];
         }
         
         if (isOK) {
@@ -110,7 +110,7 @@
             [callWebview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:str]]];
             [self.view addSubview:callWebview];
         }else{
-            [SVProgressHUD showInfoWithStatus:@"号码不正确！"];
+            [SVProgressHUD showErrorWithStatus:@"号码不正确！"];
         }
     }
 }

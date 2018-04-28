@@ -46,12 +46,12 @@
 }
 - (void)addHeaderView{
     
-    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, self.bar.maxY, HGScreenWidth, 60)];
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, self.bar.maxY, HGScreenWidth, HEIGHT_PT(60))];
     view.backgroundColor = [UIColor whiteColor];
     self.headerView = view;
     [self.view addSubview:view];
     
-    UIView *view1 = [[UIView alloc]initWithFrame:CGRectMake(15, 15, HGScreenWidth-30, 45)];
+    UIView *view1 = [[UIView alloc]initWithFrame:CGRectMake(WIDTH_PT(15), HEIGHT_PT(15), HGScreenWidth-WIDTH_PT(30), HEIGHT_PT(45))];
     view1.backgroundColor = HGColor(247, 218, 248, 0.8);
     view1.layer.borderWidth = 1.5;
     view1.layer.borderColor = HGColor(249, 202, 168, 1).CGColor;
@@ -81,12 +81,12 @@
 
 - (void)addFooterView{
     
-    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, HGScreenHeight-60, HGScreenWidth, 60)];
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, HGScreenHeight-HEIGHT_PT(60), HGScreenWidth, HEIGHT_PT(60))];
     view.backgroundColor = [UIColor whiteColor];
     self.footerView = view;
     [self.view addSubview:view];
     
-    UIView *view1 = [[UIView alloc]initWithFrame:CGRectMake(15, 0, HGScreenWidth-30, 45)];
+    UIView *view1 = [[UIView alloc]initWithFrame:CGRectMake(WIDTH_PT(15), 0, HGScreenWidth-WIDTH_PT(30), HEIGHT_PT(45))];
     view1.backgroundColor = HGColor(247, 218, 248, 0.8);
     view1.layer.borderWidth = 1.5;
     view1.layer.borderColor = HGColor(249, 202, 168, 1).CGColor;
