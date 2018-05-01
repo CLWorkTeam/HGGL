@@ -7,22 +7,29 @@
 //
 
 #import "HGWeekMenuController.h"
+#import "HGWeekMenuCell.h"
+#import "HGWeekMenuModel.h"
 
-@interface HGWeekMenuController ()
+@interface HGWeekMenuController ()<UITableViewDelegate,UITableViewDataSource>
 
-@property (nonatomic,strong) NSMutableArray *weekAry;
 @property (nonatomic,strong) NSMutableArray *dayAry;
+@property (nonatomic,strong) NSMutableArray *weekAry;
 @property (nonatomic,strong) NSMutableArray *weekBtnAry;
 
 
 @property (nonatomic,strong) UIView *weekView;
 @property (nonatomic,strong) anyButton *menuBtn;
+@property (nonatomic,strong) UIButton *dinnerBtn;
 @property (nonatomic,strong) UIView *dinnerView;//选择早、中、晚餐的弹窗view
-@property (nonatomic,strong) NSArray *dinnerAry;
+@property (nonatomic,strong) NSArray *dinnerAry;//早中晚餐字符串数组
 
 
+@property (nonatomic,strong) NSArray *menuAry;//菜谱数组
+@property (nonatomic,strong) NSArray *foodAry;//主食数组
 
+@property (nonatomic,strong) UITableView *tableV;
 
+@property (nonatomic,copy) NSString *selectTime;//当前选中的日期（用于请求数据）
 
 @end
 
@@ -49,7 +56,9 @@
     }
     [self addWeekView];
     [self addMenuView];
+    [self addTableview];
     [self addNextButton];
+    [self.tableV.mj_header beginRefreshing];
 }
 
 -(UIView *)dinnerView{
@@ -172,11 +181,12 @@
     [nextBtn setTitleColor:[UIColor colorWithHexString:@"#ffffff"] forState:UIControlStateNormal];
     [nextBtn.titleLabel setFont:[UIFont systemFontOfSize:FONT_PT(18)]];
     [nextBtn addTarget:self action:@selector(bookDinner:) forControlEvents:UIControlEventTouchUpInside];
+    self.dinnerBtn = nextBtn;
     [self.view addSubview:nextBtn];
     
 }
 
-
+//点击每天的按钮
 - (void)clickDay:(UIButton *)sender{
 
     sender.selected = !sender.isSelected;
@@ -186,6 +196,12 @@
         }else{
             btn.selected = NO;
         }
+    }
+    if (sender.titleLabel.text.length==8) {
+        NSString *dateStr = [sender.titleLabel.text substringFromIndex:3];
+        NSString *rightTime = [self rightTimeFromMonthDay:dateStr];
+        self.selectTime = rightTime;
+        [self requestDataWithData:rightTime type:@"1"];
     }
 }
 
@@ -216,8 +232,155 @@
         [self.dinnerView removeFromSuperview];
         self.menuBtn.selected = NO;
     }
-
+    
+    NSString *type = @"1";
+    if ([sender.titleLabel.text isEqualToString:@"午餐"]) {
+        type = @"2";
+    }else if ([sender.titleLabel.text isEqualToString:@"晚餐"]){
+        type = @"3";
+    }
+    [self requestDataWithData:self.selectTime type:type];
 }
+
+- (void)addTableview{
+    
+    UITableView *tableV = [[UITableView alloc]initWithFrame:CGRectMake(0,self.menuBtn.maxY + 20, HGScreenWidth, HGScreenHeight - HEIGHT_PT(50) - self.menuBtn.maxY - 20) style:UITableViewStylePlain];
+    tableV.separatorStyle = UITableViewCellSeparatorStyleNone;
+    tableV.backgroundColor = [UIColor whiteColor];
+    tableV.rowHeight = HEIGHT_PT(44);
+    tableV.delegate = self;
+    tableV.dataSource = self;
+    self.tableV = tableV;
+    [self.view addSubview:tableV];
+    
+    NSDate *date = [NSDate date];
+    NSDate *newDate = [date dateByAddingTimeInterval:24*60*60];
+    NSDateFormatter *dateFor = [[NSDateFormatter alloc]init];
+    dateFor.dateFormat = @"yyyy-MM-dd";
+    NSString *dayStr = [dateFor stringFromDate:newDate];
+    self.selectTime = dayStr;
+    
+    self.tableV.mj_header = [HGRefresh loadNewRefreshWithRefreshBlock:^{
+        [self requestDataWithData:dayStr type:@"1"];
+    }];
+}
+
+
+- (void)requestDataWithData:(NSString *)date type:(NSString *)type{
+    
+    NSString *url = [HGURL stringByAppendingString:@"Banner/getUserOrderDish.do"];
+    NSString *userID = [HGUserDefaults objectForKey:HGUserID];
+    [HGHttpTool POSTWithURL:url parameters:@{@"user_id":userID,@"time":date,@"type":type} success:^(id responseObject) {
+        
+        NSLog(@"%@---%@\n---\n%@",[self class],url,responseObject);
+
+        [self.tableV.mj_header endRefreshing];
+        
+        if ([responseObject[@"status"] isEqualToString:@"0"]||[responseObject[@"data"] count]==0) {
+            self.menuAry = @[];
+            self.foodAry = @[];
+            [self.tableV reloadData];
+            HGNoDataView *nodataView = [[HGNoDataView alloc]init];
+            nodataView.label.text = @"暂无上传的菜谱";
+            self.tableV.backgroundView = nodataView;
+        }else{
+            self.menuAry = [HGWeekMenuModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"menuList"]];
+            self.foodAry = [HGMenuFoodModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"stapleFoodList"]];
+            [self.tableV reloadData];
+        }
+    } failure:^(NSError *error) {
+        [self.tableV.mj_header endRefreshing];
+    }];
+}
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    
+    if (self.menuAry.count && self.foodAry.count) {
+        return 2;
+    }
+    if (self.menuAry.count || self.foodAry.count) {
+        return 1;
+    }
+    return 0;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    
+    if (self.menuAry.count && self.foodAry.count) {
+        if (section==0) {
+            return self.menuAry.count;
+        }
+        return self.foodAry.count;
+    }
+    if (self.menuAry.count) {
+        return self.menuAry.count;
+    }
+    if (self.foodAry.count) {
+        return self.foodAry.count;
+    }
+    return 0;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    static NSString *ID = @"itemPlanCell";
+    HGWeekMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    if (cell==nil) {
+        cell = [[HGWeekMenuCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    if (self.menuAry.count && self.foodAry.count) {
+        if (indexPath.section ==0) {
+            cell.menuModel = self.menuAry[indexPath.row];
+        }else{
+            cell.foodModel = self.foodAry[indexPath.row];
+        }
+    }else if (self.menuAry.count) {
+        cell.menuModel = self.menuAry[indexPath.row];
+    }else if (self.foodAry.count) {
+        cell.foodModel = self.foodAry[indexPath.row];
+    }
+    return cell;
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    
+    UIView *backV = [[UIView alloc]init];
+    backV.backgroundColor = [UIColor whiteColor];
+    
+    UILabel *titleLab = [[UILabel alloc]initWithFrame:CGRectMake(WIDTH_PT(20), 0, HGScreenWidth, HEIGHT_PT(20))];
+    titleLab.font = [UIFont systemFontOfSize:FONT_PT(16)];
+    titleLab.textColor = HGMainColor;
+    if (self.menuAry.count && self.foodAry.count) {
+        if (section ==0) {
+            titleLab.text = @"菜谱";
+        }else{
+            titleLab.text = @"主食";
+        }
+    }else if (self.menuAry.count) {
+        titleLab.text = @"菜谱";
+    }else if (self.foodAry.count) {
+        titleLab.text = @"主食";
+    }
+    
+    [backV addSubview:titleLab];
+    
+    return backV;
+}
+
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return HEIGHT_PT(20);
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    return [[UIView alloc]init];
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return .1f;
+}
+
 
 #pragma mark -订餐
 - (void)bookDinner:(UIButton *)sender{
@@ -240,6 +403,14 @@
     
     return [weekdays objectAtIndex:theComponents.weekday];
     
+}
+
+- (NSString *)rightTimeFromMonthDay:(NSString *)time{
+    NSDateFormatter *dateFor = [[NSDateFormatter alloc]init];
+    dateFor.dateFormat = @"MM.dd";
+    NSDate *date = [dateFor dateFromString:time];
+    dateFor.dateFormat = @"yyyy-MM-dd";
+    return [dateFor stringFromDate:date];
 }
 
 - (void)didReceiveMemoryWarning {

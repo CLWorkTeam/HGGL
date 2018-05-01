@@ -69,6 +69,9 @@
 		ADDD576A2089CD32005A38EA /* HGNoDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADDD57692089CD32005A38EA /* HGNoDataView.m */; };
 		ADF2F05B20943D0600C787F0 /* HGItemDataCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF2F05A20943D0600C787F0 /* HGItemDataCell.m */; };
 		ADF2F05E2094478D00C787F0 /* HGItemDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF2F05D2094478D00C787F0 /* HGItemDataModel.m */; };
+		ADF6FCA620989AFB005E27E6 /* HGWeekMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF6FCA520989AFB005E27E6 /* HGWeekMenuCell.m */; };
+		ADF6FCA920989B0E005E27E6 /* HGWeekMenuModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF6FCA820989B0E005E27E6 /* HGWeekMenuModel.m */; };
+		ADF6FCAC20989CD7005E27E6 /* HGMenuFoodModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF6FCAB20989CD7005E27E6 /* HGMenuFoodModel.m */; };
 		CE1E1F31208BA2A40098B1E1 /* HGCRoomHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1E1F30208BA2A40098B1E1 /* HGCRoomHeader.m */; };
 		CE1E1F37208BA3CA0098B1E1 /* HGUCRoomModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1E1F36208BA3CA0098B1E1 /* HGUCRoomModel.m */; };
 		CE1E1F3A208BA3DE0098B1E1 /* HGCRoomModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1E1F39208BA3DE0098B1E1 /* HGCRoomModel.m */; };
@@ -509,6 +512,12 @@
 		ADF2F05A20943D0600C787F0 /* HGItemDataCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGItemDataCell.m; sourceTree = "<group>"; };
 		ADF2F05C2094478D00C787F0 /* HGItemDataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGItemDataModel.h; sourceTree = "<group>"; };
 		ADF2F05D2094478D00C787F0 /* HGItemDataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGItemDataModel.m; sourceTree = "<group>"; };
+		ADF6FCA420989AFB005E27E6 /* HGWeekMenuCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGWeekMenuCell.h; sourceTree = "<group>"; };
+		ADF6FCA520989AFB005E27E6 /* HGWeekMenuCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGWeekMenuCell.m; sourceTree = "<group>"; };
+		ADF6FCA720989B0E005E27E6 /* HGWeekMenuModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGWeekMenuModel.h; sourceTree = "<group>"; };
+		ADF6FCA820989B0E005E27E6 /* HGWeekMenuModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGWeekMenuModel.m; sourceTree = "<group>"; };
+		ADF6FCAA20989CD7005E27E6 /* HGMenuFoodModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGMenuFoodModel.h; sourceTree = "<group>"; };
+		ADF6FCAB20989CD7005E27E6 /* HGMenuFoodModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGMenuFoodModel.m; sourceTree = "<group>"; };
 		CE1E1F2F208BA2A40098B1E1 /* HGCRoomHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGCRoomHeader.h; sourceTree = "<group>"; };
 		CE1E1F30208BA2A40098B1E1 /* HGCRoomHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGCRoomHeader.m; sourceTree = "<group>"; };
 		CE1E1F35208BA3CA0098B1E1 /* HGUCRoomModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGUCRoomModel.h; sourceTree = "<group>"; };
@@ -1282,6 +1291,8 @@
 		AD472FEB206CB23B0024BDBB /* view */ = {
 			isa = PBXGroup;
 			children = (
+				ADF6FCA420989AFB005E27E6 /* HGWeekMenuCell.h */,
+				ADF6FCA520989AFB005E27E6 /* HGWeekMenuCell.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1289,6 +1300,10 @@
 		AD472FEC206CB2400024BDBB /* model */ = {
 			isa = PBXGroup;
 			children = (
+				ADF6FCA720989B0E005E27E6 /* HGWeekMenuModel.h */,
+				ADF6FCA820989B0E005E27E6 /* HGWeekMenuModel.m */,
+				ADF6FCAA20989CD7005E27E6 /* HGMenuFoodModel.h */,
+				ADF6FCAB20989CD7005E27E6 /* HGMenuFoodModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -3077,6 +3092,7 @@
 				CEAD19AD207C9DA1008F1696 /* ClassShowTableViewCell.m in Sources */,
 				AD5F5F2C208F05AF00F68471 /* HGContactModel.m in Sources */,
 				CEAD1A8E207DF34C008F1696 /* MenteeParama.m in Sources */,
+				ADF6FCAC20989CD7005E27E6 /* HGMenuFoodModel.m in Sources */,
 				CEAD1B2D207F4639008F1696 /* TaskTableViewController.m in Sources */,
 				CEAD1A67207DE5AD008F1696 /* AuditHeaderVIew.m in Sources */,
 				CEAD1ADB207DF42B008F1696 /* ResearchParama.m in Sources */,
@@ -3257,6 +3273,7 @@
 				CEAD1A35207DE4DF008F1696 /* ProjectAuditDetailViewController.m in Sources */,
 				CEAD19AC207C9DA1008F1696 /* TabImageView.m in Sources */,
 				CEAD19A3207C9DA1008F1696 /* ClassRoomCollectionViewCell.m in Sources */,
+				ADF6FCA920989B0E005E27E6 /* HGWeekMenuModel.m in Sources */,
 				CEAD1B4C207F464F008F1696 /* HistoryParma.m in Sources */,
 				CEAD1A9E207DF356008F1696 /* MenteeListTableViewController.m in Sources */,
 				CEAD19CB207DA9EB008F1696 /* TeachToolBar.m in Sources */,
@@ -3265,6 +3282,7 @@
 				ADBD8DF4207DEEFD0021B600 /* HGMyPointCell.m in Sources */,
 				CE86444B206F9675002FE9E7 /* MessageTableViewCell.m in Sources */,
 				AD5F5F0C208DB92600F68471 /* HGStudentItemModel.m in Sources */,
+				ADF6FCA620989AFB005E27E6 /* HGWeekMenuCell.m in Sources */,
 				CEAD1AF6207DF44F008F1696 /* BlackLogViewController.m in Sources */,
 				AD5F5F26208EF99300F68471 /* HGPersionCenterCell.m in Sources */,
 				CEAD19D7207DDD5D008F1696 /* BaseInfoTableViewController.m in Sources */,

@@ -28,13 +28,13 @@
     self.name = @"项目资料";
     self.rightBtn.hidden = YES;
     
-    NSDictionary *dict = @{@"dataId":@"1",@"dataName":@"的撒打算",@"downloadUrl":@"dsadasdas"};
-    HGItemDataModel *model = [HGItemDataModel mj_objectWithKeyValues:dict];
-    
-    self.courseAry = @[model,model,model];
-    self.videoAry = @[model,model,model];
+//    NSDictionary *dict = @{@"dataId":@"1",@"dataName":@"的撒打算",@"downloadUrl":@"dsadasdas"};
+//    HGItemDataModel *model = [HGItemDataModel mj_objectWithKeyValues:dict];
+//
+//    self.courseAry = @[model,model,model];
+//    self.videoAry = @[model,model,model];
     [self addTableview];
-//    [self.tableV.mj_header beginRefreshing];
+    [self.tableV.mj_header beginRefreshing];
 //    [self requestData];
 
 }
@@ -50,9 +50,9 @@
     self.tableV = tableV;
     [self.view addSubview:tableV];
     
-//    self.tableV.mj_header = [HGRefresh loadNewRefreshWithRefreshBlock:^{
-//        [self requestData];
-//    }];
+    self.tableV.mj_header = [HGRefresh loadNewRefreshWithRefreshBlock:^{
+        [self requestData];
+    }];
 }
 
 
@@ -62,6 +62,8 @@
     NSString *project_id = [HGUserDefaults objectForKey:HGProjectID];
     [HGHttpTool POSTWithURL:url parameters:@{@"project_id":project_id} success:^(id responseObject) {
         
+        NSLog(@"%@---%@\n---\n%@",[self class],url,responseObject);
+
 //        [self.tableV.mj_header endRefreshing];
         
         if ([responseObject[@"status"] isEqualToString:@"0"]) {

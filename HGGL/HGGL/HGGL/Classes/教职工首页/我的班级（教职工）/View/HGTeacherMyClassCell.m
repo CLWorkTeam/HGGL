@@ -37,9 +37,9 @@
 
 - (void)setupSubviews{
     
-    UIView *dotView = [[UIView alloc]initWithFrame:CGRectMake(WIDTH_PT(10), HEIGHT_PT(20), WIDTH_PT(8), HEIGHT_PT(8))];
+    UIView *dotView = [[UIView alloc]initWithFrame:CGRectMake(WIDTH_PT(10), HEIGHT_PT(20), WIDTH_PT(8), WIDTH_PT(8))];
     dotView.layer.masksToBounds = YES;
-    dotView.layer.cornerRadius = 4;
+    dotView.layer.cornerRadius = WIDTH_PT(8)/2;
     dotView.backgroundColor = HGMainColor;
     [self.contentView addSubview:dotView];
     

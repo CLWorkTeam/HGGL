@@ -52,6 +52,8 @@
 //    NSString *userid = [HGUserDefaults objectForKey:HGProjectID];
     [HGHttpTool POSTWithURL:url parameters:@{@"project_id":@"0"} success:^(id responseObject) {
         
+        NSLog(@"%@---%@\n---\n%@",[self class],url,responseObject);
+
         [self.tableV.mj_header endRefreshing];
         
         if ([responseObject[@"status"] isEqualToString:@"0"]) {

@@ -27,6 +27,7 @@
     [SVProgressHUD showWithStatus:@"加载中..."];
     NSString *url = [HGURL stringByAppendingString:@"Course/getCourseInfo.do"];
     [HGHttpTool POSTWithURL:url parameters:@{@"course_id":self.course_id} success:^(id responseObject) {
+        NSLog(@"%@---%@\n---\n%@",[self class],url,responseObject);
         [SVProgressHUD dismiss];
         if ([responseObject[@"status"] isEqualToString:@"1"]) {
             self.dataDic = responseObject[@"data"];

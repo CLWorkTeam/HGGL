@@ -60,6 +60,8 @@
     }
     [HGHttpTool POSTWithURL:url parameters:@{@"user_id":userid} success:^(id responseObject) {
         
+        NSLog(@"%@---%@\n---\n%@",[self class],url,responseObject);
+
         [self.tableV.mj_header endRefreshing];
 
         if ([responseObject[@"status"] isEqualToString:@"0"]) {

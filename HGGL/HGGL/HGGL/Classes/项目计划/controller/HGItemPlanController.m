@@ -70,8 +70,8 @@
         param = @{@"year":year,@"month":month};
     }
     [HGHttpTool POSTWithURL:url parameters:param success:^(id responseObject) {
-        NSLog(@"%@",responseObject);
-        
+        NSLog(@"%@---%@\n---\n%@",[self class],url,responseObject);
+
         [self.tableV.mj_header endRefreshing];
 
         if ([responseObject[@"status"] isEqualToString:@"0"]) {

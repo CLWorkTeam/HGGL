@@ -49,6 +49,7 @@
     NSString *projectId = [HGUserDefaults objectForKey:HGProjectID];
     NSString *url = [HGURL stringByAppendingString:@"Project/getProjectInfo.do"];
     [HGHttpTool POSTWithURL:url parameters:@{@"project_id":self.project_id?self.project_id:projectId} success:^(id responseObject) {
+        NSLog(@"%@---%@\n---\n%@",[self class],url,responseObject);
         [self.tableV.mj_header endRefreshing];
         if ([responseObject[@"status"] isEqualToString:@"1"]) {
             self.infoDic = responseObject[@"data"];
@@ -110,6 +111,8 @@
     NSString *url = [HGURL stringByAppendingString:@"Banner/getBannerInfo.do"];
     NSString *type = [HGUserDefaults objectForKey:HGUserType];
     [HGHttpTool POSTWithURL:url parameters:@{@"type":type} success:^(id responseObject) {
+        NSLog(@"%@---%@\n---\n%@",[self class],url,responseObject);
+
         if ([responseObject[@"status"] isEqualToString:@"1"]) {
             NSString *resultUrl = [responseObject[@"data"] firstObject][@"imageUrl"];
             NSString *imgUrl = [NSString stringWithFormat:@"%@%@",HGURL,resultUrl];
