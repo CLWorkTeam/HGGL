@@ -72,6 +72,7 @@
 		ADF6FCA620989AFB005E27E6 /* HGWeekMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF6FCA520989AFB005E27E6 /* HGWeekMenuCell.m */; };
 		ADF6FCA920989B0E005E27E6 /* HGWeekMenuModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF6FCA820989B0E005E27E6 /* HGWeekMenuModel.m */; };
 		ADF6FCAC20989CD7005E27E6 /* HGMenuFoodModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF6FCAB20989CD7005E27E6 /* HGMenuFoodModel.m */; };
+		ADF6FCB02098ACC9005E27E6 /* HGInfoChangeController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF6FCAF2098ACC9005E27E6 /* HGInfoChangeController.m */; };
 		CE1E1F31208BA2A40098B1E1 /* HGCRoomHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1E1F30208BA2A40098B1E1 /* HGCRoomHeader.m */; };
 		CE1E1F37208BA3CA0098B1E1 /* HGUCRoomModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1E1F36208BA3CA0098B1E1 /* HGUCRoomModel.m */; };
 		CE1E1F3A208BA3DE0098B1E1 /* HGCRoomModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1E1F39208BA3DE0098B1E1 /* HGCRoomModel.m */; };
@@ -518,6 +519,8 @@
 		ADF6FCA820989B0E005E27E6 /* HGWeekMenuModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGWeekMenuModel.m; sourceTree = "<group>"; };
 		ADF6FCAA20989CD7005E27E6 /* HGMenuFoodModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGMenuFoodModel.h; sourceTree = "<group>"; };
 		ADF6FCAB20989CD7005E27E6 /* HGMenuFoodModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGMenuFoodModel.m; sourceTree = "<group>"; };
+		ADF6FCAE2098ACC9005E27E6 /* HGInfoChangeController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGInfoChangeController.h; sourceTree = "<group>"; };
+		ADF6FCAF2098ACC9005E27E6 /* HGInfoChangeController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGInfoChangeController.m; sourceTree = "<group>"; };
 		CE1E1F2F208BA2A40098B1E1 /* HGCRoomHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGCRoomHeader.h; sourceTree = "<group>"; };
 		CE1E1F30208BA2A40098B1E1 /* HGCRoomHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGCRoomHeader.m; sourceTree = "<group>"; };
 		CE1E1F35208BA3CA0098B1E1 /* HGUCRoomModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGUCRoomModel.h; sourceTree = "<group>"; };
@@ -1183,6 +1186,7 @@
 		AD0396BF20731CF70082C817 /* 个人中心 */ = {
 			isa = PBXGroup;
 			children = (
+				ADF6FCAD2098ACAA005E27E6 /* 个人信息修改 */,
 				AD9164FE208326B700416124 /* 联系我们 */,
 				AD9164F72083261500416124 /* 项目证书 */,
 				AD9164EE2083238100416124 /* 我的档案 */,
@@ -1677,6 +1681,15 @@
 				ADBDC797206BD29400D32390 /* HGItemPlanModel.m */,
 			);
 			path = model;
+			sourceTree = "<group>";
+		};
+		ADF6FCAD2098ACAA005E27E6 /* 个人信息修改 */ = {
+			isa = PBXGroup;
+			children = (
+				ADF6FCAE2098ACC9005E27E6 /* HGInfoChangeController.h */,
+				ADF6FCAF2098ACC9005E27E6 /* HGInfoChangeController.m */,
+			);
+			path = "个人信息修改";
 			sourceTree = "<group>";
 		};
 		CE1E1F2C208BA19B0098B1E1 /* Cells */ = {
@@ -3071,6 +3084,7 @@
 				AD6944AD20904E1300B06531 /* HGTeacherMyClassController.m in Sources */,
 				ADDD57672089BFC1005A38EA /* NSDate+Additions.m in Sources */,
 				CE4CAD452084A437001F711F /* MessagePopLayout.m in Sources */,
+				ADF6FCB02098ACC9005E27E6 /* HGInfoChangeController.m in Sources */,
 				CE4CAD4F2084A463001F711F /* PopView.m in Sources */,
 				CE1E1F67208DFCA40098B1E1 /* HGSRBModel.m in Sources */,
 				CE769EA0206A5DAC000F931F /* HGNavigationController.m in Sources */,

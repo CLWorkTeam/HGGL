@@ -15,6 +15,7 @@
 #import "HGTeacherMyClassController.h"
 #import "HGMyPointController.h"
 #import "HGItemCertController.h"
+#import "PersonInfoTableViewController.h"
 
 @interface HGPersonalController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -97,7 +98,10 @@
         HGItemCertController *vc = [[HGItemCertController alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
     }
-
+    if ([title isEqualToString:@"个人信息及修改"]) {
+        PersonInfoTableViewController *vc = [[PersonInfoTableViewController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

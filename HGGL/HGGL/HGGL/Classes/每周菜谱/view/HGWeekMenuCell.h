@@ -12,9 +12,10 @@
 
 @interface HGWeekMenuCell : UITableViewCell
 
-@property (nonatomic,strong) HGWeekMenuModel *menuModel;
-@property (nonatomic,strong) HGMenuFoodModel *foodModel;
+@property (nonatomic,strong) HGWeekMenuModel *model;
+//@property (nonatomic,strong) HGMenuFoodModel *foodModel;
 
+@property (nonatomic,strong) UILabel *numLab;
 
 
 @end

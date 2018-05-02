@@ -10,9 +10,9 @@
 
 @interface HGWeekMenuModel : NSObject
 
-@property (nonatomic,copy) NSString *dish_id;
-@property (nonatomic,copy) NSString *dish_name;
-@property (nonatomic,copy) NSString *dish_pic;
-@property (nonatomic,copy) NSString *dish_num;
+@property (nonatomic,copy) NSString *menuId;
+@property (nonatomic,copy) NSString *menuName;
+@property (nonatomic,copy) NSString *menuNum;
+@property (nonatomic,copy) NSString *menuUrl;
 
 @end

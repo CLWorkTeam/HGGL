@@ -30,6 +30,7 @@
 @property (nonatomic,strong) UITableView *tableV;
 
 @property (nonatomic,copy) NSString *selectTime;//当前选中的日期（用于请求数据）
+@property (nonatomic,copy) NSString *selectType;//当前选中的早午晚餐（用于请求数据）
 
 @end
 
@@ -239,6 +240,7 @@
     }else if ([sender.titleLabel.text isEqualToString:@"晚餐"]){
         type = @"3";
     }
+    self.selectType = type;
     [self requestDataWithData:self.selectTime type:type];
 }
 
@@ -247,7 +249,7 @@
     UITableView *tableV = [[UITableView alloc]initWithFrame:CGRectMake(0,self.menuBtn.maxY + 20, HGScreenWidth, HGScreenHeight - HEIGHT_PT(50) - self.menuBtn.maxY - 20) style:UITableViewStylePlain];
     tableV.separatorStyle = UITableViewCellSeparatorStyleNone;
     tableV.backgroundColor = [UIColor whiteColor];
-    tableV.rowHeight = HEIGHT_PT(44);
+    tableV.rowHeight = HEIGHT_PT(70);
     tableV.delegate = self;
     tableV.dataSource = self;
     self.tableV = tableV;
@@ -259,6 +261,7 @@
     dateFor.dateFormat = @"yyyy-MM-dd";
     NSString *dayStr = [dateFor stringFromDate:newDate];
     self.selectTime = dayStr;
+    self.selectType = @"1";
     
     self.tableV.mj_header = [HGRefresh loadNewRefreshWithRefreshBlock:^{
         [self requestDataWithData:dayStr type:@"1"];
@@ -276,6 +279,8 @@
 
         [self.tableV.mj_header endRefreshing];
         
+        self.dinnerBtn.enabled = ![responseObject[@"data"][@"isOrdered"] boolValue];
+        
         if ([responseObject[@"status"] isEqualToString:@"0"]||[responseObject[@"data"] count]==0) {
             self.menuAry = @[];
             self.foodAry = @[];
@@ -285,8 +290,9 @@
             self.tableV.backgroundView = nodataView;
         }else{
             self.menuAry = [HGWeekMenuModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"menuList"]];
-            self.foodAry = [HGMenuFoodModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"stapleFoodList"]];
+            self.foodAry = [HGWeekMenuModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"stapleFoodList"]];
             [self.tableV reloadData];
+            self.tableV.backgroundView = nil;
         }
     } failure:^(NSError *error) {
         [self.tableV.mj_header endRefreshing];
@@ -331,14 +337,14 @@
     }
     if (self.menuAry.count && self.foodAry.count) {
         if (indexPath.section ==0) {
-            cell.menuModel = self.menuAry[indexPath.row];
+            cell.model = self.menuAry[indexPath.row];
         }else{
-            cell.foodModel = self.foodAry[indexPath.row];
+            cell.model = self.foodAry[indexPath.row];
         }
     }else if (self.menuAry.count) {
-        cell.menuModel = self.menuAry[indexPath.row];
+        cell.model = self.menuAry[indexPath.row];
     }else if (self.foodAry.count) {
-        cell.foodModel = self.foodAry[indexPath.row];
+        cell.model = self.foodAry[indexPath.row];
     }
     return cell;
 }
@@ -385,6 +391,75 @@
 #pragma mark -订餐
 - (void)bookDinner:(UIButton *)sender{
     
+    BOOL OK = NO;
+    
+    for (HGWeekMenuModel *model in self.menuAry) {
+        if (![model.menuNum isEqualToString:@"0"]) {
+            OK = YES;
+            break;
+        }
+    }
+    for (HGWeekMenuModel *model in self.foodAry) {
+        if (![model.menuNum isEqualToString:@"0"]) {
+            OK = YES;
+            break;
+        }
+    }
+    
+    if (OK ==NO) {
+        [SVProgressHUD showInfoWithStatus:@"您还未选择任何菜品，无法点餐"];
+        return;
+    }
+    
+    WeakSelf;
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"确定提交订单吗？" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *actionConfirm1 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil];
+    [alert addAction:actionConfirm1];
+
+    UIAlertAction *actionConfirm = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [weakSelf postForDinner];
+    }];
+    [alert addAction:actionConfirm];
+    
+    [HGKeywindow.rootViewController presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)postForDinner{
+    
+    NSString *url = [HGURL stringByAppendingString:@"Banner/orderDish.do"];
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    NSString *userID = [HGUserDefaults objectForKey:HGUserID];
+    [param setObject:userID forKey:@"user_id"];
+    [param setObject:self.selectTime forKey:@"time"];
+    [param setObject:self.selectType forKey:@"type"];
+    NSMutableString *order = [NSMutableString string];
+    for (HGWeekMenuModel *model in self.menuAry) {
+        if (model.menuNum.integerValue>0) {
+            [order appendFormat:@"%@_%@,",model.menuId,model.menuNum];
+        }
+    }
+    for (HGWeekMenuModel *model in self.foodAry) {
+        if (model.menuNum.integerValue>0) {
+            [order appendFormat:@"%@_%@,",model.menuId,model.menuNum];
+        }
+    }
+    if ([[order substringFromIndex:order.length-1] isEqualToString:@","]) {
+        [order deleteCharactersInRange:NSMakeRange(order.length-1, 1)];
+    }
+    [param setObject:order forKey:@"order"];
+    [HGHttpTool POSTWithURL:url parameters:param success:^(id responseObject) {
+        
+        NSLog(@"%@---%@\n---\n%@",[self class],url,responseObject);
+
+        if ([responseObject[@"status"] isEqualToString:@"1"]) {
+            [SVProgressHUD showSuccessWithStatus:responseObject[@"message"]];
+        }else{
+            [SVProgressHUD showErrorWithStatus:responseObject[@"message"]];
+        }
+    } failure:^(NSError *error) {
+        
+    }];
 }
 
 - (NSString*)weekdayStringFromDate:(NSDate*)inputDate {
