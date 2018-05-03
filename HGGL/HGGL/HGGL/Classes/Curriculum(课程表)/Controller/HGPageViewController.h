@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface HGPageViewController : UIPageViewController
-@property (nonatomic,strong) NSMutableArray *controllerArray;
+@property (nonatomic,strong) NSMutableArray <UIViewController *>*controllerArray;
 @property (nonatomic,copy) void(^indexChangeBlock)(NSInteger index);
 -(void)changeVCWithIndex:(NSInteger )index;
 @end
