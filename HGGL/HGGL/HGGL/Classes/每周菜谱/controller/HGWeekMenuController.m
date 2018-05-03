@@ -454,6 +454,7 @@
 
         if ([responseObject[@"status"] isEqualToString:@"1"]) {
             [SVProgressHUD showSuccessWithStatus:responseObject[@"message"]];
+            self.dinnerBtn.enabled = NO;
         }else{
             [SVProgressHUD showErrorWithStatus:responseObject[@"message"]];
         }
