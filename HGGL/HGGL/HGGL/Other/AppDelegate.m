@@ -10,6 +10,8 @@
 #import "HGLoginController.h"
 #import "HGSourceViewController.h"
 #import "HGNavigationController.h"
+#import "HGAutoLoginController.h"
+
 @interface AppDelegate ()
 
 @end
@@ -29,8 +31,14 @@
 -(void)setWindow
 {
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
-    HGLoginController *vc = [[HGLoginController alloc]init];
-    self.window.rootViewController = vc;
+    BOOL autoLogin = [HGUserDefaults boolForKey:@"autoLogin"];
+    if (autoLogin) {
+        HGAutoLoginController *vc = [[HGAutoLoginController alloc]init];
+        self.window.rootViewController = vc;
+    }else{
+        HGLoginController *vc = [[HGLoginController alloc]init];
+        self.window.rootViewController = vc;
+    }
     [self.window makeKeyAndVisible];
     [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleLightContent];
 }

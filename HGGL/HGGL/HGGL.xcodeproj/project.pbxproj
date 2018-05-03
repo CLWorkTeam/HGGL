@@ -55,6 +55,7 @@
 		AD9164FD2083264100416124 /* HGItemCertController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9164FC2083264100416124 /* HGItemCertController.m */; };
 		AD9165052083272F00416124 /* HGContactUSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9165042083272F00416124 /* HGContactUSViewController.m */; };
 		ADB0CC6320998B3100425214 /* HGInfoChangeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADB0CC6220998B3100425214 /* HGInfoChangeCell.m */; };
+		ADB0CC66209B0E8200425214 /* HGAutoLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADB0CC65209B0E8200425214 /* HGAutoLoginController.m */; };
 		ADBD8DF1207DE89D0021B600 /* HGMyPointController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBD8DF0207DE89D0021B600 /* HGMyPointController.m */; };
 		ADBD8DF4207DEEFD0021B600 /* HGMyPointCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBD8DF3207DEEFD0021B600 /* HGMyPointCell.m */; };
 		ADBDC789206BC72500D32390 /* HGBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBDC788206BC72500D32390 /* HGBaseController.m */; };
@@ -486,6 +487,8 @@
 		AD9165042083272F00416124 /* HGContactUSViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGContactUSViewController.m; sourceTree = "<group>"; };
 		ADB0CC6120998B3100425214 /* HGInfoChangeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGInfoChangeCell.h; sourceTree = "<group>"; };
 		ADB0CC6220998B3100425214 /* HGInfoChangeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGInfoChangeCell.m; sourceTree = "<group>"; };
+		ADB0CC64209B0E8200425214 /* HGAutoLoginController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGAutoLoginController.h; sourceTree = "<group>"; };
+		ADB0CC65209B0E8200425214 /* HGAutoLoginController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGAutoLoginController.m; sourceTree = "<group>"; };
 		ADBD8DEF207DE89D0021B600 /* HGMyPointController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGMyPointController.h; sourceTree = "<group>"; };
 		ADBD8DF0207DE89D0021B600 /* HGMyPointController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGMyPointController.m; sourceTree = "<group>"; };
 		ADBD8DF2207DEEFD0021B600 /* HGMyPointCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGMyPointCell.h; sourceTree = "<group>"; };
@@ -1422,6 +1425,8 @@
 			children = (
 				AD6BE22F206B6B1800028673 /* HGLoginController.h */,
 				AD6BE230206B6B1800028673 /* HGLoginController.m */,
+				ADB0CC64209B0E8200425214 /* HGAutoLoginController.h */,
+				ADB0CC65209B0E8200425214 /* HGAutoLoginController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -3246,6 +3251,7 @@
 				CE4CAD462084A437001F711F /* Role.m in Sources */,
 				CEAD19A6207C9DA1008F1696 /* CurrView.m in Sources */,
 				CE4CAD512084A463001F711F /* MessageLayout.m in Sources */,
+				ADB0CC66209B0E8200425214 /* HGAutoLoginController.m in Sources */,
 				CE4CAD6C2085DBF2001F711F /* HGPageContentViewController.m in Sources */,
 				CEAD1AD8207DF42B008F1696 /* ResearchViewController.m in Sources */,
 				CEAD1A69207DE5AD008F1696 /* ProInfoTableViewCell.m in Sources */,
