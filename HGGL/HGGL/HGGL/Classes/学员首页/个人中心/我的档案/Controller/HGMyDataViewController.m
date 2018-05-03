@@ -78,6 +78,7 @@
             NSArray *tempAry = responseObject[@"data"][@"projectList"];
             self.dataAry = [HGMydataModel mj_objectArrayWithKeyValuesArray:tempAry];
             [self.tableV reloadData];
+            self.tableV.backgroundView = nil;
         }
     } failure:^(NSError *error) {
         [self.tableV.mj_header endRefreshing];

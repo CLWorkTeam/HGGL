@@ -71,6 +71,7 @@
             NSArray *tempAry = responseObject[@"data"];
             self.dataAry = [HGTeacherMyClassModel mj_objectArrayWithKeyValuesArray:tempAry];
             [self.tableV reloadData];
+            self.tableV.backgroundView = nil;
         }
     } failure:^(NSError *error) {
         [self.tableV.mj_header endRefreshing];

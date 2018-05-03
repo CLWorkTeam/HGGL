@@ -81,6 +81,7 @@
             self.courseAry = [HGItemDataModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"courseWareList"]];
             self.videoAry = [HGItemDataModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"videoList"]];
             [self.tableV reloadData];
+            self.tableV.backgroundView = nil;
         }
     } failure:^(NSError *error) {
 //        [self.tableV.mj_header endRefreshing];

@@ -54,6 +54,7 @@
 		AD9164F5208323D300416124 /* HGMyDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9164F4208323D300416124 /* HGMyDataViewController.m */; };
 		AD9164FD2083264100416124 /* HGItemCertController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9164FC2083264100416124 /* HGItemCertController.m */; };
 		AD9165052083272F00416124 /* HGContactUSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9165042083272F00416124 /* HGContactUSViewController.m */; };
+		ADB0CC6320998B3100425214 /* HGInfoChangeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADB0CC6220998B3100425214 /* HGInfoChangeCell.m */; };
 		ADBD8DF1207DE89D0021B600 /* HGMyPointController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBD8DF0207DE89D0021B600 /* HGMyPointController.m */; };
 		ADBD8DF4207DEEFD0021B600 /* HGMyPointCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBD8DF3207DEEFD0021B600 /* HGMyPointCell.m */; };
 		ADBDC789206BC72500D32390 /* HGBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBDC788206BC72500D32390 /* HGBaseController.m */; };
@@ -483,6 +484,8 @@
 		AD9164FC2083264100416124 /* HGItemCertController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGItemCertController.m; sourceTree = "<group>"; };
 		AD9165032083272F00416124 /* HGContactUSViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGContactUSViewController.h; sourceTree = "<group>"; };
 		AD9165042083272F00416124 /* HGContactUSViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGContactUSViewController.m; sourceTree = "<group>"; };
+		ADB0CC6120998B3100425214 /* HGInfoChangeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGInfoChangeCell.h; sourceTree = "<group>"; };
+		ADB0CC6220998B3100425214 /* HGInfoChangeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGInfoChangeCell.m; sourceTree = "<group>"; };
 		ADBD8DEF207DE89D0021B600 /* HGMyPointController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGMyPointController.h; sourceTree = "<group>"; };
 		ADBD8DF0207DE89D0021B600 /* HGMyPointController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGMyPointController.m; sourceTree = "<group>"; };
 		ADBD8DF2207DEEFD0021B600 /* HGMyPointCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGMyPointCell.h; sourceTree = "<group>"; };
@@ -1609,6 +1612,31 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		ADB0CC5E20998AFF00425214 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				ADF6FCAE2098ACC9005E27E6 /* HGInfoChangeController.h */,
+				ADF6FCAF2098ACC9005E27E6 /* HGInfoChangeController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		ADB0CC5F20998B0C00425214 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				ADB0CC6120998B3100425214 /* HGInfoChangeCell.h */,
+				ADB0CC6220998B3100425214 /* HGInfoChangeCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		ADB0CC6020998B1400425214 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		ADBD8DEA207DE86F0021B600 /* 我的成绩单 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1686,8 +1714,9 @@
 		ADF6FCAD2098ACAA005E27E6 /* 个人信息修改 */ = {
 			isa = PBXGroup;
 			children = (
-				ADF6FCAE2098ACC9005E27E6 /* HGInfoChangeController.h */,
-				ADF6FCAF2098ACC9005E27E6 /* HGInfoChangeController.m */,
+				ADB0CC6020998B1400425214 /* Model */,
+				ADB0CC5F20998B0C00425214 /* View */,
+				ADB0CC5E20998AFF00425214 /* Controller */,
 			);
 			path = "个人信息修改";
 			sourceTree = "<group>";
@@ -3244,6 +3273,7 @@
 				CE4CAD862085E319001F711F /* CurrCollectionViewController.m in Sources */,
 				CE4CAD482084A437001F711F /* Memeber.m in Sources */,
 				CE864448206F9675002FE9E7 /* MessageInfoController.m in Sources */,
+				ADB0CC6320998B3100425214 /* HGInfoChangeCell.m in Sources */,
 				CE4CAD632085C493001F711F /* HGRecipSendTableViewController.m in Sources */,
 				CEAD19C1207DA8F8008F1696 /* ImageRightBut.m in Sources */,
 				AD5F5F29208F059A00F68471 /* HGStudentContactCell.m in Sources */,

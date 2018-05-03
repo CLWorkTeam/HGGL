@@ -70,6 +70,7 @@
             //           NSArray *tempAry = @[@{@"noticeId":@"1",@"publisher":@"我问问",@"releaseTimeStr":@"2012-23-12",@"noticeTitle":@"测试"},@{@"noticeId":@"1",@"publisher":@"我问问",@"releaseTimeStr":@"2012-23-12",@"noticeTitle":@"测试"},@{@"noticeId":@"1",@"publisher":@"我问问",@"releaseTimeStr":@"2012-23-12",@"noticeTitle":@"测试"},@{@"noticeId":@"1",@"publisher":@"我问问",@"releaseTimeStr":@"2012-23-12",@"noticeTitle":@"测试"}];
             self.dataAry = [HGContactModel mj_objectArrayWithKeyValuesArray:tempAry];
             [self.tableV reloadData];
+            self.tableV.backgroundView = nil;
         }
     } failure:^(NSError *error) {
         [self.tableV.mj_header endRefreshing];
