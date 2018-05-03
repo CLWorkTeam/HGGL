@@ -8,6 +8,15 @@
 
 #import "HGBaseController.h"
 
+typedef void(^HGHomeBlock)(NSInteger);
+
 @interface HGStudentHomeController :HGBaseController
+
+@property (nonatomic,strong) NSArray *secondSectionAry;
+@property (nonatomic,strong) NSArray *secondSectionColors;
+@property (nonatomic,copy) HGHomeBlock block;
+@property (nonatomic,strong) UITableView *tableV;
+@property (nonatomic,copy) NSString *project_id;
+
 
 @end

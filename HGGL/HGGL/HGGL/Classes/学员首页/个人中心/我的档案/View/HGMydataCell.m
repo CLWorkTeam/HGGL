@@ -35,22 +35,22 @@
 
 - (void)setupSubviews{
     
-    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(10, 15, HGScreenWidth, 15)];
-    label.font = [UIFont systemFontOfSize:14];
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(WIDTH_PT(10), HEIGHT_PT(15), HGScreenWidth, HEIGHT_PT(15))];
+    label.font = [UIFont systemFontOfSize:FONT_PT(14)];
     label.textAlignment = NSTextAlignmentLeft;
     label.textColor = [UIColor blackColor];
     self.titleLab = label;
     [self.contentView addSubview:label];
     
-    UILabel *label1 = [[UILabel alloc]initWithFrame:CGRectMake(10, label.maxY+15, HGScreenWidth, 15)];
-    label1.font = [UIFont systemFontOfSize:14];
+    UILabel *label1 = [[UILabel alloc]initWithFrame:CGRectMake(WIDTH_PT(10), label.maxY+HEIGHT_PT(15), HGScreenWidth, HEIGHT_PT(15))];
+    label1.font = [UIFont systemFontOfSize:FONT_PT(14)];
     label1.textAlignment = NSTextAlignmentLeft;
     label1.textColor = [UIColor grayColor];
     self.descLab = label1;
     [self.contentView addSubview:label1];
     
-    UIView *lineV = [[UIView alloc]initWithFrame:CGRectMake(10, 74, HGScreenWidth-20, 1)];
-    lineV.backgroundColor = [UIColor grayColor];
+    UIView *lineV = [[UIView alloc]initWithFrame:CGRectMake(WIDTH_PT(10), HEIGHT_PT(74), HGScreenWidth-WIDTH_PT(20), 1)];
+    lineV.backgroundColor = [UIColor lightGrayColor];
     [self.contentView addSubview:lineV];
 
 }

@@ -8,16 +8,20 @@
 
 #import "HGMyPointController.h"
 #import "HGMyPointCell.h"
+#import "HGMyPointModel.h"
 
 @interface HGMyPointController ()<UITableViewDelegate,UITableViewDataSource>
 
-@property (nonatomic,strong) UIView *titleView;
+@property (nonatomic,strong) UIView *headerView;
+@property (nonatomic,strong) UIView *footerView;
+
 
 @property (nonatomic,strong) UITableView *tableV;
 
 @property (nonatomic,strong) NSArray *nameAry;//培训班数组
 @property (nonatomic,strong) NSArray *pointAry;//成绩ary
 
+@property (nonatomic,strong) NSArray *dataAry;
 
 
 @end
@@ -29,18 +33,25 @@
     // Do any additional setup after loading the view.
     self.name = @"我的成绩单";
     self.rightBtn.hidden = YES;
-    self.nameAry = @[@"北京海关培训班",@"大连海关培训班",@"呼和浩特海关培训班"];
-    self.pointAry = @[@"100",@"90",@"95"];
-    [self setupSubviews];
+//    self.nameAry = @[@"北京海关培训班",@"大连海关培训班",@"呼和浩特海关培训班"];
+//    self.pointAry = @[@"100",@"90",@"95"];
+    [self addHeaderView];
+    NSString *type = [HGUserDefaults objectForKey:HGUserType];
+    if ([type isEqualToString:@"3"]) { //学员
+        [self addFooterView];   //学员才显示总成绩
+    }
+    [self addTableview];
+    [self.tableV.mj_header beginRefreshing];
+
 }
-- (void)setupSubviews{
+- (void)addHeaderView{
     
-    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, self.bar.maxY, HGScreenWidth, 60)];
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, self.bar.maxY, HGScreenWidth, HEIGHT_PT(60))];
     view.backgroundColor = [UIColor whiteColor];
-    self.titleView = view;
+    self.headerView = view;
     [self.view addSubview:view];
     
-    UIView *view1 = [[UIView alloc]initWithFrame:CGRectMake(15, 15, HGScreenWidth-30, 45)];
+    UIView *view1 = [[UIView alloc]initWithFrame:CGRectMake(WIDTH_PT(15), HEIGHT_PT(15), HGScreenWidth-WIDTH_PT(30), HEIGHT_PT(45))];
     view1.backgroundColor = HGColor(247, 218, 248, 0.8);
     view1.layer.borderWidth = 1.5;
     view1.layer.borderColor = HGColor(249, 202, 168, 1).CGColor;
@@ -49,7 +60,7 @@
     UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, view1.width/3*2, view1.height)];
     label.text = @"班级名称";
     label.backgroundColor = [UIColor clearColor];
-    label.font = [UIFont boldSystemFontOfSize:20];
+    label.font = [UIFont boldSystemFontOfSize:FONT_PT(20)];
     label.textAlignment = NSTextAlignmentCenter;
     label.textColor = HGMainColor;
     [view1 addSubview:label];
@@ -61,46 +72,109 @@
     UILabel *label1 = [[UILabel alloc]initWithFrame:CGRectMake(lineV.maxX, 0, view1.width/3*1 - 1.5, view1.height)];
     label1.text = @"总成绩";
     label1.backgroundColor = [UIColor clearColor];
-    label1.font = [UIFont boldSystemFontOfSize:20];
+    label1.font = [UIFont boldSystemFontOfSize:FONT_PT(20)];
     label1.textAlignment = NSTextAlignmentCenter;
     label1.textColor = HGMainColor;
     [view1 addSubview:label1];
 
-    [self addTableview];
 }
+
+- (void)addFooterView{
+    
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, HGScreenHeight-HEIGHT_PT(60), HGScreenWidth, HEIGHT_PT(60))];
+    view.backgroundColor = [UIColor whiteColor];
+    self.footerView = view;
+    [self.view addSubview:view];
+    
+    UIView *view1 = [[UIView alloc]initWithFrame:CGRectMake(WIDTH_PT(15), 0, HGScreenWidth-WIDTH_PT(30), HEIGHT_PT(45))];
+    view1.backgroundColor = HGColor(247, 218, 248, 0.8);
+    view1.layer.borderWidth = 1.5;
+    view1.layer.borderColor = HGColor(249, 202, 168, 1).CGColor;
+    [view addSubview:view1];
+    
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, view1.width/3*2, view1.height)];
+    label.text = @"总成绩";
+    label.backgroundColor = [UIColor clearColor];
+    label.font = [UIFont boldSystemFontOfSize:FONT_PT(20)];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.textColor = HGMainColor;
+    [view1 addSubview:label];
+    
+    UIView *lineV = [[UIView alloc]initWithFrame:CGRectMake(label.maxX, 0, 1.5, view1.height)];
+    lineV.backgroundColor = HGColor(249, 202, 168, 1);
+    [view1 addSubview:lineV];
+    
+    UILabel *label1 = [[UILabel alloc]initWithFrame:CGRectMake(lineV.maxX, 0, view1.width/3*1 - 1.5, view1.height)];
+    label1.text = @"0";
+    label1.backgroundColor = [UIColor clearColor];
+    label1.font = [UIFont boldSystemFontOfSize:FONT_PT(20)];
+    label1.textAlignment = NSTextAlignmentCenter;
+    label1.textColor = HGMainColor;
+    [view1 addSubview:label1];
+    
+}
+
 
 - (void)addTableview{
     
-    UITableView *tableV = [[UITableView alloc]initWithFrame:CGRectMake(0,self.titleView.maxY , HGScreenWidth, HGScreenHeight - self.titleView.maxY) style:UITableViewStylePlain];
+    UITableView *tableV = [[UITableView alloc]initWithFrame:CGRectMake(0,self.headerView.maxY , HGScreenWidth, HGScreenHeight - self.headerView.maxY) style:UITableViewStylePlain];
+    NSString *type = [HGUserDefaults objectForKey:HGUserType];
+    if ([type isEqualToString:@"3"]) { //学员
+        tableV.frame = CGRectMake(0,self.headerView.maxY , HGScreenWidth, self.footerView.y - self.headerView.maxY);
+    }
+    
     tableV.separatorStyle = UITableViewCellSeparatorStyleNone;
-//    tableV.separatorColor = HGColor(249, 202, 168, 1);
-//    tableV.separatorInset = UIEdgeInsetsZero;
     tableV.backgroundColor = [UIColor whiteColor];
-//    tableV.layer.borderColor = HGColor(249, 202, 168, 1).CGColor;
-//    tableV.layer.borderWidth = 1.5;
-    tableV.rowHeight = 50;
+    tableV.showsVerticalScrollIndicator = NO;
+    tableV.rowHeight = HEIGHT_PT(50);
     tableV.delegate = self;
     tableV.dataSource = self;
     self.tableV = tableV;
     [self.view addSubview:tableV];
     
-    //    WeakSelf;
-    //    self.tableV.mj_header = [HGRefresh loadNewRefreshWithRefreshBlock:^{
-    //        NSLog(@"321312");
-    //        [weakSelf.tableV.mj_header endRefreshing];
-    //    }];
-    //
-    //    self.tableV.mj_footer = [HGRefresh loadMoreRefreshWithRefreshBlock:^{
-    //        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-    //            [weakSelf.tableV.mj_footer endRefreshingWithNoMoreData];
-    //        });
-    //    }];
+    self.tableV.mj_header = [HGRefresh loadNewRefreshWithRefreshBlock:^{
+        NSLog(@"321312");
+        [self requestData];
+    }];
 }
+
+- (void)requestData{
+
+    NSString *url = [HGURL stringByAppendingString:@"Notice/getLearningOnCampus.do"];
+    NSString *userid = [HGUserDefaults objectForKey:HGUserID];
+    [HGHttpTool POSTWithURL:url parameters:@{@"user_id":userid} success:^(id responseObject) {
+        
+        NSLog(@"%@---%@\n---\n%@",[self class],url,responseObject);
+
+        [self.tableV.mj_header endRefreshing];
+        
+        if ([responseObject[@"status"] isEqualToString:@"0"]) {
+            self.dataAry = @[];
+            [self.tableV reloadData];
+            WeakSelf;
+            HGNoDataView *nodataView = [[HGNoDataView alloc]init];
+            nodataView.label.text = @"无数据";
+            nodataView.block = ^{
+                [weakSelf.tableV.mj_header beginRefreshing];
+            };
+            self.tableV.backgroundView = nodataView;
+        }else{
+            NSArray *tempAry = responseObject[@"data"];
+            //           NSArray *tempAry = @[@{@"noticeId":@"1",@"publisher":@"我问问",@"releaseTimeStr":@"2012-23-12",@"noticeTitle":@"测试"},@{@"noticeId":@"1",@"publisher":@"我问问",@"releaseTimeStr":@"2012-23-12",@"noticeTitle":@"测试"},@{@"noticeId":@"1",@"publisher":@"我问问",@"releaseTimeStr":@"2012-23-12",@"noticeTitle":@"测试"},@{@"noticeId":@"1",@"publisher":@"我问问",@"releaseTimeStr":@"2012-23-12",@"noticeTitle":@"测试"}];
+            self.dataAry = [HGMyPointModel mj_objectArrayWithKeyValuesArray:tempAry];
+            [self.tableV reloadData];
+            self.tableV.backgroundView = nil;
+        }
+    } failure:^(NSError *error) {
+        [self.tableV.mj_header endRefreshing];
+    }];
+}
+
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    if (self.nameAry.count<10) {
-        return 10;
+    if (self.nameAry.count<9) {
+        return 9;
     }
     return self.nameAry.count;
 }
@@ -116,15 +190,10 @@
     }
 
     if (indexPath.row<self.nameAry.count) {
-        cell.lineV.hidden = NO;
-        cell.nameLab.text = self.nameAry[indexPath.row];
-        cell.pointLab.text = self.pointAry[indexPath.row];
-
+        cell.model = self.dataAry[indexPath.row];
     }else{
-        cell.lineV.hidden = YES;
-        cell.nameLab.text = @"";
-        cell.pointLab.text = @"";
-        if (indexPath.row!=9) {
+        cell.model = nil;
+        if (indexPath.row!=8) {
             cell.bottomLayer.hidden = YES;
         }
     }

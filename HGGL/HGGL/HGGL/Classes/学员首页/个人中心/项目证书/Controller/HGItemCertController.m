@@ -29,7 +29,7 @@
     [nodataBtn setTitle:@"暂无数据，点击刷新" forState:UIControlStateNormal];
     [nodataBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
     nodataBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
-    nodataBtn.titleLabel.font = [UIFont systemFontOfSize:16];
+    nodataBtn.titleLabel.font = [UIFont systemFontOfSize:FONT_PT(16)];
     [nodataBtn addTarget:self action:@selector(requestData:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:nodataBtn];
 }

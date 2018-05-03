@@ -40,36 +40,36 @@
 
 - (void)setupSubviews{
     
-    UIImageView *imageV =[[UIImageView alloc]initWithFrame:CGRectMake(10, 12, 20, 20)];
+    UIImageView *imageV =[[UIImageView alloc]initWithFrame:CGRectMake(WIDTH_PT(10), HEIGHT_PT(12), WIDTH_PT(20), HEIGHT_PT(20))];
     imageV.contentMode = UIViewContentModeScaleAspectFit;
     self.imageV = imageV;
     [self.contentView addSubview:imageV];
     
     
-    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(imageV.maxX + 5,imageV.y, HGScreenWidth-imageV.maxX - 10, 15)];
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(imageV.maxX + WIDTH_PT(5),imageV.y, HGScreenWidth-imageV.maxX - WIDTH_PT(10), HEIGHT_PT(15))];
     label.textColor = [UIColor colorWithHexString:@"#333333"];
-    label.font = [UIFont systemFontOfSize:14];
+    label.font = [UIFont systemFontOfSize:FONT_PT(14)];
     self.titleLab = label;
     [self.contentView addSubview:label];
     
-    UILabel *label1 = [[UILabel alloc]initWithFrame:CGRectMake(10, 20, HGScreenWidth-40, 15)];
+    UILabel *label1 = [[UILabel alloc]initWithFrame:CGRectMake(WIDTH_PT(10), HEIGHT_PT(20), HGScreenWidth-WIDTH_PT(40), HEIGHT_PT(15))];
     label1.textColor = [UIColor colorWithHexString:@"#333333"];
-    label1.font = [UIFont systemFontOfSize:14];
+    label1.font = [UIFont systemFontOfSize:FONT_PT(14)];
     label1.text = @"v1.0";
     [label1 sizeToFit];
-    label1.maxX = HGScreenWidth - 10;
-    label1.y = (44-label1.height)/2;
+    label1.maxX = HGScreenWidth - WIDTH_PT(10);
+    label1.y = (HEIGHT_PT(44)-label1.height)/2;
     self.versionLab = label1;
     [self.contentView addSubview:label1];
     
-    UIImageView *imageV1 =[[UIImageView alloc]initWithFrame:CGRectMake(10, 7, 30, 30)];
+    UIImageView *imageV1 =[[UIImageView alloc]initWithFrame:CGRectMake(WIDTH_PT(10), HEIGHT_PT(7), WIDTH_PT(30), HEIGHT_PT(30))];
     imageV1.image = [UIImage imageNamed:@"icon_right"];
     imageV1.contentMode = UIViewContentModeScaleAspectFit;
-    imageV1.maxX = HGScreenWidth-5;
+    imageV1.maxX = HGScreenWidth-WIDTH_PT(5);
     self.arrowImageV = imageV1;
     [self.contentView addSubview:imageV1];
 
-    UIView *lineV = [[UIView alloc]initWithFrame:CGRectMake(10, 43, HGScreenWidth-20, 1)];
+    UIView *lineV = [[UIView alloc]initWithFrame:CGRectMake(WIDTH_PT(10), HEIGHT_PT(43), HGScreenWidth-WIDTH_PT(20), 1)];
     lineV.backgroundColor = [UIColor lightGrayColor];
     [self.contentView addSubview:lineV];
 }
@@ -78,7 +78,7 @@
     _titleStr = titleStr;
     self.titleLab.text = titleStr;
     [self.titleLab sizeToFit];
-    self.titleLab.y = (44-self.titleLab.height)/2;
+    self.titleLab.y = (HEIGHT_PT(44)-self.titleLab.height)/2;
     if ([titleStr isEqualToString:@"版本"]) {
         self.arrowImageV.hidden = YES;
         self.versionLab.hidden = NO;
@@ -90,7 +90,6 @@
 }
 
 - (UIImage *)imageWithName:(NSString *)name{
-//    @[@"版本",@"个人信息及修改",@"密码修改",@"我的下载",@"我的档案",@"我的成绩单",@"项目证书",@"联系我们",@"退出当前账号"]
     NSDictionary *imageDic = @{@"版本":@"icon_version",@"个人信息及修改":@"icon_s_person",@"密码修改":@"icon_password",@"我的下载":@"icon_my_download",@"我的档案":@"icon_my_history",@"我的成绩单":@"icon_my_schedule",@"项目证书":@"icon_my_certificate",@"联系我们":@"icon_contact_us",@"退出当前账号":@"icon_exit",@"我的班级":@"icon_my_download"};
     
     return [UIImage imageNamed:imageDic[name]];

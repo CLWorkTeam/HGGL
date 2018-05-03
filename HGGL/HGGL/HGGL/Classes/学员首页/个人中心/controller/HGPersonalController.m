@@ -9,6 +9,13 @@
 #import "HGPersonalController.h"
 #import "HGPersionCenterCell.h"
 #import "HGLoginController.h"
+#import "HGContactUSViewController.h"
+#import "HGScrollBaseController.h"
+#import "HGMyDataViewController.h"
+#import "HGTeacherMyClassController.h"
+#import "HGMyPointController.h"
+#import "HGItemCertController.h"
+#import "HGInfoChangeController.h"
 
 @interface HGPersonalController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -38,7 +45,7 @@
     UITableView *tableV = [[UITableView alloc]initWithFrame:CGRectMake(0,self.bar.maxY, HGScreenWidth, HGScreenHeight - self.bar.maxY) style:UITableViewStylePlain];
     tableV.separatorStyle = UITableViewCellSeparatorStyleNone;
     tableV.backgroundColor = [UIColor whiteColor];
-    tableV.rowHeight = 44;
+    tableV.rowHeight = HEIGHT_PT(44);
     tableV.delegate = self;
     tableV.dataSource = self;
     self.tableV = tableV;
@@ -66,6 +73,34 @@
     if ([title isEqualToString:@"退出当前账号"]) {
         HGLoginController *vc = [[HGLoginController alloc]init];
         HGKeywindow.rootViewController = vc;
+    }
+    if ([title isEqualToString:@"联系我们"]) {
+        HGContactUSViewController *vc =[[HGContactUSViewController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    if([title isEqualToString:@"密码修改"]){
+        HGScrollBaseController *vc = [[HGScrollBaseController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    if ([title isEqualToString:@"我的档案"]) {
+        HGMyDataViewController *vc = [[HGMyDataViewController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    if ([title isEqualToString:@"我的班级"]) {
+        HGTeacherMyClassController *vc = [[HGTeacherMyClassController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    if ([title isEqualToString:@"我的成绩单"]) {
+        HGMyPointController *vc = [[HGMyPointController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    if ([title isEqualToString:@"项目证书"]) {
+        HGItemCertController *vc = [[HGItemCertController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    if ([title isEqualToString:@"个人信息及修改"]) {
+        HGInfoChangeController *vc = [[HGInfoChangeController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 

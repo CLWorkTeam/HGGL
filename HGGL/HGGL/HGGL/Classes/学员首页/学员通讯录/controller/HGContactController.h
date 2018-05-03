@@ -10,4 +10,8 @@
 
 @interface HGContactController : HGBaseController
 
+@property (nonatomic,copy) NSString *project_id;
+@property (nonatomic,strong) UITableView *tableV;
+
+
 @end

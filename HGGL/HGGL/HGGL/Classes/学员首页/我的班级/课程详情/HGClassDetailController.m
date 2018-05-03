@@ -27,6 +27,8 @@
     [SVProgressHUD showWithStatus:@"加载中..."];
     NSString *url = [HGURL stringByAppendingString:@"Course/getCourseInfo.do"];
     [HGHttpTool POSTWithURL:url parameters:@{@"course_id":self.course_id} success:^(id responseObject) {
+        NSLog(@"%@---%@\n---\n%@",[self class],url,responseObject);
+        [SVProgressHUD dismiss];
         if ([responseObject[@"status"] isEqualToString:@"1"]) {
             self.dataDic = responseObject[@"data"];
             [self.tableV reloadData];
@@ -42,7 +44,7 @@
     UITableView *tableV = [[UITableView alloc]initWithFrame:CGRectMake(0,self.bar.maxY , HGScreenWidth, HGScreenHeight - self.bar.maxY) style:UITableViewStyleGrouped];
     tableV.separatorStyle = UITableViewCellSeparatorStyleNone;
     tableV.backgroundColor = [UIColor whiteColor];
-    tableV.rowHeight = 30;
+    tableV.rowHeight = HEIGHT_PT(30);
     tableV.delegate = self;
     tableV.dataSource = self;
     tableV.bounces = NO;
@@ -62,8 +64,8 @@
 }
 
 - (UIView *)headerView{
-    UILabel *titleLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, HGScreenWidth, 40)];
-    titleLab.font = [UIFont boldSystemFontOfSize:16];
+    UILabel *titleLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, HGScreenWidth, HEIGHT_PT(40))];
+    titleLab.font = [UIFont boldSystemFontOfSize:FONT_PT(16)];
     titleLab.textColor = [UIColor blackColor];
     titleLab.textAlignment = NSTextAlignmentCenter;
     titleLab.text = self.dataDic[@"course_name"];
@@ -81,8 +83,8 @@
     for (UIView  *subview in cell.contentView.subviews) {
         [subview removeFromSuperview];
     }
-    UILabel *titleLab = [[UILabel alloc]initWithFrame:CGRectMake(30, 5, HGScreenWidth, 20)];
-    titleLab.font = [UIFont systemFontOfSize:16];
+    UILabel *titleLab = [[UILabel alloc]initWithFrame:CGRectMake(WIDTH_PT(30), HEIGHT_PT(5), HGScreenWidth, HEIGHT_PT(20))];
+    titleLab.font = [UIFont systemFontOfSize:FONT_PT(16)];
     titleLab.textColor = [UIColor colorWithHexString:@"#333333"];
     [cell.contentView addSubview:titleLab];
     if (indexPath.section == 0) {
@@ -99,13 +101,13 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section==0) {
-        return 30;
+        return HEIGHT_PT(30);
     }else if (indexPath.section==1){
         NSDictionary *teacherDic = self.dataDic[@"course_teacher"][indexPath.row];
         NSString *text = [NSString stringWithFormat:@"%@:%@",teacherDic[@"teacherName"],teacherDic[@"teacherInfo"]];
-        return [TextFrame frameOfText:text With:[UIFont systemFontOfSize:16] Andwidth:HGScreenWidth].height+10;
+        return [TextFrame frameOfText:text With:[UIFont systemFontOfSize:FONT_PT(16)] Andwidth:HGScreenWidth].height+HEIGHT_PT(10);
     }else{
-        return 30;
+        return HEIGHT_PT(30);
     }
 }
 
@@ -115,8 +117,8 @@
     backV.backgroundColor = [UIColor whiteColor];
     
     
-    UILabel *titleLab = [[UILabel alloc]initWithFrame:CGRectMake(20, 0, HGScreenWidth, 20)];
-    titleLab.font = [UIFont boldSystemFontOfSize:16];
+    UILabel *titleLab = [[UILabel alloc]initWithFrame:CGRectMake(WIDTH_PT(20), 0, HGScreenWidth, HEIGHT_PT(20))];
+    titleLab.font = [UIFont boldSystemFontOfSize:FONT_PT(16)];
     titleLab.textColor = [UIColor blackColor];
     if (section==0) {
         titleLab.text = @"课程简介：";
@@ -132,7 +134,7 @@
 
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 20;
+    return HEIGHT_PT(20);
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{

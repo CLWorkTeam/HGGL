@@ -36,7 +36,7 @@
     UILabel *alertLab = [[UILabel alloc]init];
     alertLab.text = @"暂无数据";
     alertLab.textAlignment = NSTextAlignmentCenter;
-    alertLab.font = [UIFont systemFontOfSize:16];
+    alertLab.font = [UIFont systemFontOfSize:FONT_PT(16)];
     alertLab.textColor = [UIColor lightGrayColor];
     self.label = alertLab;
     [self addSubview:alertLab];

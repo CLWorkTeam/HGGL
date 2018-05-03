@@ -12,7 +12,6 @@
 
 @interface HGContactController ()<UITableViewDelegate,UITableViewDataSource>
 
-@property (nonatomic,strong) UITableView *tableV;
 @property (nonatomic,strong) NSArray *dataAry;
 
 @end
@@ -34,25 +33,26 @@
     UITableView *tableV = [[UITableView alloc]initWithFrame:CGRectMake(0,self.bar.maxY, HGScreenWidth, HGScreenHeight - self.bar.maxY - HGTabbarH) style:UITableViewStylePlain];
     tableV.separatorStyle = UITableViewCellSeparatorStyleNone;
     tableV.backgroundColor = [UIColor whiteColor];
-    tableV.rowHeight = 120;
+    tableV.rowHeight = HEIGHT_PT(120);
     tableV.delegate = self;
     tableV.dataSource = self;
     self.tableV = tableV;
     [self.view addSubview:tableV];
     
-    WeakSelf;
     self.tableV.mj_header = [HGRefresh loadNewRefreshWithRefreshBlock:^{
-        [weakSelf requestData];
+        [self requestData];
     }];
 }
 
 
 - (void)requestData{
-    [SVProgressHUD showWithStatus:@"请求中...."];
+
     NSString *url = [HGURL stringByAppendingString:@"Mentee/getMenteeList.do"];
-    NSString *userid = [HGUserDefaults objectForKey:HGProjectID];
-    [HGHttpTool POSTWithURL:url parameters:@{@"project_id":userid} success:^(id responseObject) {
+    NSString *projectid = [HGUserDefaults objectForKey:HGProjectID];
+    [HGHttpTool POSTWithURL:url parameters:@{@"project_id":self.project_id?self.project_id:projectid} success:^(id responseObject) {
         
+        NSLog(@"%@---%@\n---\n%@",[self class],url,responseObject);
+
         [self.tableV.mj_header endRefreshing];
         
         if ([responseObject[@"status"] isEqualToString:@"0"]) {
@@ -70,6 +70,7 @@
             //           NSArray *tempAry = @[@{@"noticeId":@"1",@"publisher":@"我问问",@"releaseTimeStr":@"2012-23-12",@"noticeTitle":@"测试"},@{@"noticeId":@"1",@"publisher":@"我问问",@"releaseTimeStr":@"2012-23-12",@"noticeTitle":@"测试"},@{@"noticeId":@"1",@"publisher":@"我问问",@"releaseTimeStr":@"2012-23-12",@"noticeTitle":@"测试"},@{@"noticeId":@"1",@"publisher":@"我问问",@"releaseTimeStr":@"2012-23-12",@"noticeTitle":@"测试"}];
             self.dataAry = [HGContactModel mj_objectArrayWithKeyValuesArray:tempAry];
             [self.tableV reloadData];
+            self.tableV.backgroundView = nil;
         }
     } failure:^(NSError *error) {
         [self.tableV.mj_header endRefreshing];
@@ -96,9 +97,24 @@
     HGContactModel *model = self.dataAry[indexPath.row];
     if (model.studentPhone) {
         NSString *str= [NSString stringWithFormat:@"tel:%@",model.studentPhone];
-        UIWebView *callWebview = [[UIWebView alloc] init];
-        [callWebview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:str]]];
-        [self.view addSubview:callWebview];
+        if ([str containsString:@" "]) {
+            str = [str stringByReplacingOccurrencesOfString:@" " withString:@""];
+        }
+        BOOL isOK;
+        if ([model.studentPhone containsString:@"+"]) {//有+号，去掉+号再看是不是纯数字
+           NSString *tempStr = [model.studentPhone stringByReplacingOccurrencesOfString:@"+" withString:@""];
+            isOK = [tempStr mj_isPureInt];
+        }else{
+            isOK = [model.studentPhone mj_isPureInt];
+        }
+        
+        if (isOK) {
+            UIWebView *callWebview = [[UIWebView alloc] init];
+            [callWebview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:str]]];
+            [self.view addSubview:callWebview];
+        }else{
+            [SVProgressHUD showErrorWithStatus:@"号码不正确！"];
+        }
     }
 }
 

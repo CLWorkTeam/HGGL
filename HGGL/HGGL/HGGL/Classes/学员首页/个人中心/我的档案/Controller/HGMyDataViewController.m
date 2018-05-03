@@ -10,6 +10,7 @@
 #import "HGMydataModel.h"
 #import "HGNoDataView.h"
 #import "HGMydataCell.h"
+#import "HGScrollBaseController.h"
 
 @interface HGMyDataViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -37,29 +38,30 @@
     UITableView *tableV = [[UITableView alloc]initWithFrame:CGRectMake(0,self.bar.maxY, HGScreenWidth, HGScreenHeight - self.bar.maxY) style:UITableViewStylePlain];
     tableV.separatorStyle = UITableViewCellSeparatorStyleNone;
     tableV.backgroundColor = [UIColor whiteColor];
-    tableV.rowHeight = 75;
+    tableV.rowHeight = HEIGHT_PT(75);
     tableV.delegate = self;
     tableV.dataSource = self;
     self.tableV = tableV;
     [self.view addSubview:tableV];
     
-    WeakSelf;
     self.tableV.mj_header = [HGRefresh loadNewRefreshWithRefreshBlock:^{
-        [weakSelf requestData];
+        [self requestData];
     }];
 }
 
 
 - (void)requestData{
-    [SVProgressHUD showWithStatus:@"请求中...."];
+
     NSString *type = [HGUserDefaults objectForKey:HGUserType];
     NSString *url = [HGURL stringByAppendingString:@"User/getStaff.do?"];
     NSString *userid = [HGUserDefaults objectForKey:HGUserID];
-    if (![type isEqualToString:@"1"]) { //教职工
+    if ([type isEqualToString:@"3"]) { //学员
         url = [HGURL stringByAppendingString:@"User/getProfile.do"];
     }
     [HGHttpTool POSTWithURL:url parameters:@{@"user_id":userid} success:^(id responseObject) {
         
+        NSLog(@"%@---%@\n---\n%@",[self class],url,responseObject);
+
         [self.tableV.mj_header endRefreshing];
 
         if ([responseObject[@"status"] isEqualToString:@"0"]) {
@@ -76,6 +78,7 @@
             NSArray *tempAry = responseObject[@"data"][@"projectList"];
             self.dataAry = [HGMydataModel mj_objectArrayWithKeyValuesArray:tempAry];
             [self.tableV reloadData];
+            self.tableV.backgroundView = nil;
         }
     } failure:^(NSError *error) {
         [self.tableV.mj_header endRefreshing];
@@ -104,6 +107,14 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 0.1;
 }
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    HGMydataModel *model = self.dataAry[indexPath.row];
+    HGScrollBaseController *vc = [[HGScrollBaseController alloc]init];
+    vc.project_id = model.project_id;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

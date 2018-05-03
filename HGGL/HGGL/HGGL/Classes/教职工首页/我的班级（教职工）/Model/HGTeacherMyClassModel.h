@@ -1,0 +1,24 @@
+//
+//  HGTeacherMyClassModel.h
+//  HGGL
+//
+//  Created by taikang on 2018/4/25.
+//  Copyright © 2018年 HGGL. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+@interface HGTeacherMyClassModel : NSObject
+
+@property (nonatomic,copy) NSString *project_id;
+@property (nonatomic,copy) NSString *project_serial_num;
+@property (nonatomic,copy) NSString *project_name;
+@property (nonatomic,copy) NSString *project_start;
+@property (nonatomic,copy) NSString *project_end;
+@property (nonatomic,copy) NSString *running_status;
+@property (nonatomic,copy) NSString *project_contact;
+@property (nonatomic,copy) NSString *contact_phone;
+//@property (nonatomic,copy) NSString *course_hour;
+
+
+@end

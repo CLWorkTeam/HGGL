@@ -34,25 +34,26 @@
     UITableView *tableV = [[UITableView alloc]initWithFrame:CGRectMake(0,self.bar.maxY, HGScreenWidth, HGScreenHeight - self.bar.maxY - HGTabbarH) style:UITableViewStylePlain];
     tableV.separatorStyle = UITableViewCellSeparatorStyleNone;
     tableV.backgroundColor = [UIColor whiteColor];
-    tableV.rowHeight = 90;
+    tableV.rowHeight = HEIGHT_PT(90);
     tableV.delegate = self;
     tableV.dataSource = self;
     self.tableV = tableV;
     [self.view addSubview:tableV];
     
-    WeakSelf;
     self.tableV.mj_header = [HGRefresh loadNewRefreshWithRefreshBlock:^{
-        [weakSelf requestData];
+        [self requestData];
     }];
 }
 
 
 - (void)requestData{
-    [SVProgressHUD showWithStatus:@"请求中...."];
+
     NSString *url = [HGURL stringByAppendingString:@"Notice/getLearningOnCampus.do"];
     NSString *userid = [HGUserDefaults objectForKey:HGProjectID];
     [HGHttpTool POSTWithURL:url parameters:@{@"project_id":userid} success:^(id responseObject) {
         
+        NSLog(@"%@---%@\n---\n%@",[self class],url,responseObject);
+
         [self.tableV.mj_header endRefreshing];
         
         if ([responseObject[@"status"] isEqualToString:@"0"]) {
@@ -70,6 +71,7 @@
             //           NSArray *tempAry = @[@{@"noticeId":@"1",@"publisher":@"我问问",@"releaseTimeStr":@"2012-23-12",@"noticeTitle":@"测试"},@{@"noticeId":@"1",@"publisher":@"我问问",@"releaseTimeStr":@"2012-23-12",@"noticeTitle":@"测试"},@{@"noticeId":@"1",@"publisher":@"我问问",@"releaseTimeStr":@"2012-23-12",@"noticeTitle":@"测试"},@{@"noticeId":@"1",@"publisher":@"我问问",@"releaseTimeStr":@"2012-23-12",@"noticeTitle":@"测试"}];
             self.dataAry = [HGSchoolFCModel mj_objectArrayWithKeyValuesArray:tempAry];
             [self.tableV reloadData];
+            self.tableV.backgroundView = nil;
         }
     } failure:^(NSError *error) {
         [self.tableV.mj_header endRefreshing];

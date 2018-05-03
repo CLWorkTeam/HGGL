@@ -36,20 +36,20 @@
 
 - (void)setupSubviews{
     
-    UIImageView *imageV = [[UIImageView alloc]initWithFrame:CGRectMake(10, 5, HGScreenWidth-20, 80)];
+    UIImageView *imageV = [[UIImageView alloc]initWithFrame:CGRectMake(WIDTH_PT(10), HEIGHT_PT(5), HGScreenWidth-WIDTH_PT(20), HEIGHT_PT(80))];
     self.imageV = imageV;
     imageV.layer.masksToBounds = YES;
     imageV.layer.cornerRadius = 10;
     [self.contentView addSubview:imageV];
     
-    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, imageV.maxY, HGScreenWidth, 15)];
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, imageV.maxY, HGScreenWidth, HEIGHT_PT(15))];
     label.textColor = [UIColor colorWithHexString:@"#333333"];
-    label.font = [UIFont systemFontOfSize:14];
+    label.font = [UIFont systemFontOfSize:FONT_PT(14)];
     label.textAlignment = NSTextAlignmentCenter;
     self.label = label;
     [self.contentView addSubview:label];
     
-    UIView *lineV = [[UIView alloc]initWithFrame:CGRectMake(0, 99, HGScreenWidth, 1)];
+    UIView *lineV = [[UIView alloc]initWithFrame:CGRectMake(0, HEIGHT_PT(99), HGScreenWidth, 1)];
     lineV.backgroundColor = [UIColor grayColor];
     [self.contentView addSubview:lineV];
 }

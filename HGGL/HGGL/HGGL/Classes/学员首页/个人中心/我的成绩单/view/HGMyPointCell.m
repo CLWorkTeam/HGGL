@@ -8,6 +8,14 @@
 
 #import "HGMyPointCell.h"
 
+@interface HGMyPointCell ()
+
+@property (nonatomic,strong) UILabel *nameLab;
+@property (nonatomic,strong) UILabel *pointLab;
+@property (nonatomic,strong) UIView *lineV;
+
+@end
+
 @implementation HGMyPointCell
 
 - (void)awakeFromNib {
@@ -28,7 +36,7 @@
 
 - (void)setupSubviews{
     
-    UIView *view1 = [[UIView alloc]initWithFrame:CGRectMake(15, 0, HGScreenWidth-30, 50)];
+    UIView *view1 = [[UIView alloc]initWithFrame:CGRectMake(WIDTH_PT(15), 0, HGScreenWidth-WIDTH_PT(30), HEIGHT_PT(50))];
     view1.backgroundColor = [UIColor whiteColor];
     [self.contentView addSubview:view1];
     
@@ -58,7 +66,7 @@
     
     UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, view1.width/3*2, view1.height)];
     label.backgroundColor = [UIColor clearColor];
-    label.font = [UIFont boldSystemFontOfSize:18];
+    label.font = [UIFont boldSystemFontOfSize:FONT_PT(18)];
     label.textAlignment = NSTextAlignmentCenter;
     label.textColor = HGMainColor;
     self.nameLab = label;
@@ -71,12 +79,28 @@
     
     UILabel *label1 = [[UILabel alloc]initWithFrame:CGRectMake(lineV.maxX, 0, view1.width/3*1 - 1.5, view1.height)];
     label1.backgroundColor = [UIColor clearColor];
-    label1.font = [UIFont boldSystemFontOfSize:18];
+    label1.font = [UIFont boldSystemFontOfSize:FONT_PT(18)];
     label1.textAlignment = NSTextAlignmentCenter;
     label1.textColor = HGMainColor;
     self.pointLab = label1;
     [view1 addSubview:label1];
 
+}
+
+-(void)setModel:(HGMyPointModel *)model{
+    
+    if (model==nil) {
+        _model = model;
+        self.nameLab.text = @"";
+        self.pointLab.text = @"";
+        self.lineV.hidden = YES;
+        return;
+    }
+    
+    _model = model;
+    self.nameLab.text = model.project_name;
+    self.pointLab.text = model.project_score;
+    self.lineV.hidden = NO;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

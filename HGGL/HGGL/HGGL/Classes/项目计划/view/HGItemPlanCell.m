@@ -45,31 +45,31 @@
     
     UILabel *titleLab = [[UILabel alloc]init];
     titleLab.textColor = HGMainColor;
-    titleLab.font = [UIFont systemFontOfSize:18];
+    titleLab.font = [UIFont systemFontOfSize:FONT_PT(18)];
     self.titleLab = titleLab;
     [backV addSubview:titleLab];
     
     UILabel *moneyLab = [[UILabel alloc]init];
     moneyLab.textColor = [UIColor colorWithHexString:@"#666666"];
-    moneyLab.font = [UIFont systemFontOfSize:16];
+    moneyLab.font = [UIFont systemFontOfSize:FONT_PT(16)];
     self.moneyLab = moneyLab;
     [backV addSubview:moneyLab];
 
     UILabel *daysLab = [[UILabel alloc]init];
     daysLab.textColor = [UIColor colorWithHexString:@"#666666"];
-    daysLab.font = [UIFont systemFontOfSize:16];
+    daysLab.font = [UIFont systemFontOfSize:FONT_PT(16)];
     self.daysLab = daysLab;
     [backV addSubview:daysLab];
 
     UILabel *numberLab = [[UILabel alloc]init];
     numberLab.textColor = [UIColor colorWithHexString:@"#666666"];
-    numberLab.font = [UIFont systemFontOfSize:16];
+    numberLab.font = [UIFont systemFontOfSize:FONT_PT(16)];
     self.numberLab = numberLab;
     [backV addSubview:numberLab];
 
     UILabel *timeLab = [[UILabel alloc]init];
     timeLab.textColor = [UIColor colorWithHexString:@"#666666"];
-    timeLab.font = [UIFont systemFontOfSize:16];
+    timeLab.font = [UIFont systemFontOfSize:FONT_PT(16)];
     self.timeLab = timeLab;
     [backV addSubview:timeLab];
 
@@ -86,12 +86,12 @@
 
 -(void)layoutSubviews{
     [super layoutSubviews];
-    self.backV.frame = CGRectMake(10, 15, HGScreenWidth-20, self.height-10);
-    self.titleLab.frame = CGRectMake(10, 15, self.backV.width-20, 15);
-    self.moneyLab.frame = CGRectMake(10, self.titleLab.maxY+20, self.backV.width/3 + 30, self.titleLab.height);
-    self.daysLab.frame = CGRectMake(self.moneyLab.maxX, self.moneyLab.y, self.backV.width/3-15, self.moneyLab.height);
-    self.numberLab.frame = CGRectMake(self.daysLab.maxX, self.moneyLab.y, self.backV.width/3-15-10, self.moneyLab.height);
-    self.timeLab.frame = CGRectMake(10, self.moneyLab.maxY+15, self.backV.width-20, 15);
+    self.backV.frame = CGRectMake(WIDTH_PT(10), HEIGHT_PT(15), HGScreenWidth-WIDTH_PT(20), self.height-HEIGHT_PT(10));
+    self.titleLab.frame = CGRectMake(WIDTH_PT(10), HEIGHT_PT(15), self.backV.width-WIDTH_PT(20), HEIGHT_PT(15));
+    self.moneyLab.frame = CGRectMake(WIDTH_PT(10), self.titleLab.maxY+HEIGHT_PT(20), self.backV.width/3 + WIDTH_PT(30), self.titleLab.height);
+    self.daysLab.frame = CGRectMake(self.moneyLab.maxX, self.moneyLab.y, self.backV.width/3-HEIGHT_PT(15), self.moneyLab.height);
+    self.numberLab.frame = CGRectMake(self.daysLab.maxX, self.moneyLab.y, self.backV.width/3-HEIGHT_PT(15)-HEIGHT_PT(10), self.moneyLab.height);
+    self.timeLab.frame = CGRectMake(WIDTH_PT(10), self.moneyLab.maxY+HEIGHT_PT(15), self.backV.width-WIDTH_PT(20), HEIGHT_PT(15));
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

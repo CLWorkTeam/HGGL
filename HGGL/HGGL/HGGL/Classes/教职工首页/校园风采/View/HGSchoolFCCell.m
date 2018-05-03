@@ -37,27 +37,27 @@
 }
 - (void)setupSubviews{
     
-    UIView *backV = [[UIView alloc]initWithFrame:CGRectMake(10, 10, HGScreenWidth-20, 80)];
+    UIView *backV = [[UIView alloc]initWithFrame:CGRectMake(WIDTH_PT(10), HEIGHT_PT(10), HGScreenWidth-WIDTH_PT(20), HEIGHT_PT(80))];
     backV.backgroundColor = HGGrayGroundColor;
     backV.layer.masksToBounds = YES;
     backV.layer.cornerRadius = 5;
     [self.contentView addSubview:backV];
     
-    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(10, 15, HGScreenWidth-40, 15)];
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(WIDTH_PT(10), HEIGHT_PT(15), HGScreenWidth-WIDTH_PT(40), HEIGHT_PT(15))];
     label.textColor = [UIColor colorWithHexString:@"#333333"];
-    label.font = [UIFont systemFontOfSize:14];
+    label.font = [UIFont systemFontOfSize:FONT_PT(14)];
     self.label = label;
     [backV addSubview:label];
 
-    UILabel *label1 = [[UILabel alloc]initWithFrame:CGRectMake(10, 20, HGScreenWidth-40, 15)];
+    UILabel *label1 = [[UILabel alloc]initWithFrame:CGRectMake(WIDTH_PT(10), HEIGHT_PT(20), HGScreenWidth-WIDTH_PT(40), HEIGHT_PT(15))];
     label1.textColor = [UIColor grayColor];
-    label1.font = [UIFont systemFontOfSize:14];
+    label1.font = [UIFont systemFontOfSize:FONT_PT(14)];
     self.descLab = label1;
     [backV addSubview:label1];
     
-    UILabel *label2 = [[UILabel alloc]initWithFrame:CGRectMake(10, 20, HGScreenWidth-40, 15)];
+    UILabel *label2 = [[UILabel alloc]initWithFrame:CGRectMake(WIDTH_PT(10), HEIGHT_PT(20), HGScreenWidth-WIDTH_PT(40), HEIGHT_PT(15))];
     label2.textColor = [UIColor grayColor];
-    label2.font = [UIFont systemFontOfSize:12];
+    label2.font = [UIFont systemFontOfSize:FONT_PT(12)];
     label2.textAlignment = NSTextAlignmentRight;
     self.timeLab = label2;
     [backV addSubview:label2];
@@ -69,10 +69,10 @@
     [self.label sizeToFit];
     self.descLab.text = model.publisher;
     [self.descLab sizeToFit];
-    self.descLab.maxY = 80 - 10;
+    self.descLab.maxY = HEIGHT_PT(80) - HEIGHT_PT(10);
     self.timeLab.text = model.releaseTimeStr;
     [self.timeLab sizeToFit];
-    self.timeLab.maxX = HGScreenWidth - 40;
+    self.timeLab.maxX = HGScreenWidth - WIDTH_PT(40);
     self.timeLab.y = self.descLab.y;
 }
 

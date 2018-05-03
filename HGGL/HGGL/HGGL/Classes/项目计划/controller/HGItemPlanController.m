@@ -46,10 +46,10 @@
 
 - (void)addTableview{
     
-    UITableView *tableV = [[UITableView alloc]initWithFrame:CGRectMake(0,self.headerV.maxY+10 , HGScreenWidth, HGScreenHeight - self.headerV.maxY-10) style:UITableViewStyleGrouped];
+    UITableView *tableV = [[UITableView alloc]initWithFrame:CGRectMake(0,self.headerV.maxY+HEIGHT_PT(10) , HGScreenWidth, HGScreenHeight - self.headerV.maxY-HEIGHT_PT(10)) style:UITableViewStyleGrouped];
     tableV.separatorStyle = UITableViewCellSeparatorStyleNone;
     tableV.backgroundColor = [UIColor whiteColor];
-    tableV.rowHeight = 120;
+    tableV.rowHeight = HEIGHT_PT(120);
     tableV.delegate = self;
     tableV.dataSource = self;
     self.tableV = tableV;
@@ -70,8 +70,8 @@
         param = @{@"year":year,@"month":month};
     }
     [HGHttpTool POSTWithURL:url parameters:param success:^(id responseObject) {
-        NSLog(@"%@",responseObject);
-        
+        NSLog(@"%@---%@\n---\n%@",[self class],url,responseObject);
+
         [self.tableV.mj_header endRefreshing];
 
         if ([responseObject[@"status"] isEqualToString:@"0"]) {
@@ -93,7 +93,7 @@
 
 - (void)addHeaderView{
     
-    UIView *headerV = [[UIView alloc]initWithFrame:CGRectMake(0, self.bar.maxY, HGScreenWidth, 60)];
+    UIView *headerV = [[UIView alloc]initWithFrame:CGRectMake(0, self.bar.maxY, HGScreenWidth, HEIGHT_PT(60))];
     headerV.backgroundColor =[UIColor whiteColor];
     self.headerV = headerV;
     [self.view addSubview:headerV];
@@ -104,8 +104,8 @@
     [btn1 setTitle:@"年度计划" forState:UIControlStateNormal];
     [btn1 setTitleColor:HGMainColor forState:UIControlStateNormal];
     [btn1 setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
-    btn1.titleLabel.font = [UIFont systemFontOfSize:16];
-    btn1.frame = CGRectMake(10, 10, 80, 40);
+    btn1.titleLabel.font = [UIFont systemFontOfSize:FONT_PT(16)];
+    btn1.frame = CGRectMake(WIDTH_PT(10), HEIGHT_PT(10), WIDTH_PT(80), HEIGHT_PT(40));
     btn1.layer.cornerRadius = 5;
     btn1.layer.masksToBounds = YES;
     btn1.selected = YES;
@@ -120,8 +120,8 @@
     [btn2 setTitle:@"月度计划" forState:UIControlStateNormal];
     [btn2 setTitleColor:HGMainColor forState:UIControlStateNormal];
     [btn2 setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
-    btn2.titleLabel.font = [UIFont systemFontOfSize:16];
-    btn2.frame = CGRectMake(btn1.maxX+10, btn1.y, btn1.width, btn1.height);
+    btn2.titleLabel.font = [UIFont systemFontOfSize:FONT_PT(16)];
+    btn2.frame = CGRectMake(btn1.maxX+WIDTH_PT(10), btn1.y, btn1.width, btn1.height);
     btn2.layer.cornerRadius = 5;
     btn2.layer.masksToBounds = YES;
     btn2.tag = 1002;
@@ -132,8 +132,8 @@
     UIButton *btn3 = [UIButton buttonWithType:UIButtonTypeCustom];
     [btn3 setTitle:self.yearTime forState:UIControlStateNormal];
     [btn3 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    btn3.titleLabel.font = [UIFont systemFontOfSize:14];
-    btn3.frame = CGRectMake(HGScreenWidth-100-10, headerV.height-30,100, 30);
+    btn3.titleLabel.font = [UIFont systemFontOfSize:FONT_PT(14)];
+    btn3.frame = CGRectMake(HGScreenWidth-WIDTH_PT(100)-WIDTH_PT(10), headerV.height-HEIGHT_PT(30),WIDTH_PT(100), HEIGHT_PT(30));
     btn3.layer.cornerRadius = 3;
     btn3.layer.masksToBounds = YES;
     btn3.layer.borderColor = HGMainColor.CGColor;
@@ -143,7 +143,7 @@
     [headerV addSubview:btn3];
 
     
-    UIView *grayV = [[UIView alloc]initWithFrame:CGRectMake(0, headerV.maxY, HGScreenWidth, 10)];
+    UIView *grayV = [[UIView alloc]initWithFrame:CGRectMake(0, headerV.maxY, HGScreenWidth, HEIGHT_PT(10))];
     grayV.backgroundColor = HGGrayColor;
     [self.view addSubview:grayV];
 }

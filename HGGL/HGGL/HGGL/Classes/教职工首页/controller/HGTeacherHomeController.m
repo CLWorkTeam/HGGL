@@ -36,7 +36,7 @@
     self.menuAry=@[@"行政办公",@"项目计划",@"项目信息",@"信息共享",@"科研信息",@"师资信息",@"学员信息",@"每周菜谱",@"校园风采"];
  self.colorAry=@[@"#80be1e",@"#9d76ec",@"#cbc31e",@"#dfb1dd",@"#f2936f",@"#a91f9e",@"#7cdaa1",@"#6ccbfb",@"#25f8ca"];
     
-    UIView *backV = [[UIView alloc]initWithFrame:CGRectMake(0, 0, HGScreenWidth, 64)];
+    UIView *backV = [[UIView alloc]initWithFrame:CGRectMake(0, 0, HGScreenWidth, 44+HGStautsBarH)];
     backV.backgroundColor = HGMainColor;
     [self.view addSubview:backV];
     
@@ -61,13 +61,15 @@
     [messageBtn addTarget:self action:@selector(clickMessage:) forControlEvents:UIControlEventTouchUpInside];
     [backV addSubview:messageBtn];
     
-    UIImageView *imageV =[[UIImageView alloc]initWithFrame:CGRectMake(0, backV.maxY, HGScreenWidth, 150)];
+    UIImageView *imageV =[[UIImageView alloc]initWithFrame:CGRectMake(0, backV.maxY, HGScreenWidth, HEIGHT_PT(150))];
     self.imageV = imageV;
     [self.view addSubview:imageV];
     
     NSString *url = [HGURL stringByAppendingString:@"Banner/getBannerInfo.do"];
     NSString *type = [HGUserDefaults objectForKey:HGUserType];
     [HGHttpTool POSTWithURL:url parameters:@{@"type":type} success:^(id responseObject) {
+        NSLog(@"%@---%@\n---\n%@",[self class],url,responseObject);
+
         if ([responseObject[@"status"] isEqualToString:@"1"]) {
             NSString *resultUrl = [responseObject[@"data"] firstObject][@"imageUrl"];
             NSString *imgUrl = [NSString stringWithFormat:@"%@%@",HGURL,resultUrl];

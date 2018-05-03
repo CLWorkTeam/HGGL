@@ -12,6 +12,9 @@
 		AD0396CE20731DD40082C817 /* HGContactController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD0396CD20731DD40082C817 /* HGContactController.m */; };
 		AD0396D220731DEB0082C817 /* HGClassController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD0396D120731DEB0082C817 /* HGClassController.m */; };
 		AD0396D520731E400082C817 /* HGPersonalController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD0396D420731E400082C817 /* HGPersonalController.m */; };
+		AD38EC6320931002004F5E79 /* hg_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = AD38EC6120931002004F5E79 /* hg_logo.png */; };
+		AD38EC6420931002004F5E79 /* hg_login_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = AD38EC6220931002004F5E79 /* hg_login_bg.png */; };
+		AD38EC6620931154004F5E79 /* icon_sign_out.png in Resources */ = {isa = PBXBuildFile; fileRef = AD38EC6520931154004F5E79 /* icon_sign_out.png */; };
 		AD472FEF206CB26A0024BDBB /* HGWeekMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD472FEE206CB26A0024BDBB /* HGWeekMenuController.m */; };
 		AD5F5F06208DA9B700F68471 /* HGMydataCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5F5F05208DA9B700F68471 /* HGMydataCell.m */; };
 		AD5F5F09208DAAA700F68471 /* HGMydataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5F5F08208DAAA700F68471 /* HGMydataModel.m */; };
@@ -25,6 +28,11 @@
 		AD5F5F26208EF99300F68471 /* HGPersionCenterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5F5F25208EF99300F68471 /* HGPersionCenterCell.m */; };
 		AD5F5F29208F059A00F68471 /* HGStudentContactCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5F5F28208F059A00F68471 /* HGStudentContactCell.m */; };
 		AD5F5F2C208F05AF00F68471 /* HGContactModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5F5F2B208F05AF00F68471 /* HGContactModel.m */; };
+		AD6944A620904A5500B06531 /* HGMyPointModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD6944A520904A5500B06531 /* HGMyPointModel.m */; };
+		AD6944AD20904E1300B06531 /* HGTeacherMyClassController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD6944AC20904E1300B06531 /* HGTeacherMyClassController.m */; };
+		AD6944B020904E4600B06531 /* HGTeacherMyClassCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD6944AF20904E4600B06531 /* HGTeacherMyClassCell.m */; };
+		AD6944B320904E5A00B06531 /* HGTeacherMyClassModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD6944B220904E5A00B06531 /* HGTeacherMyClassModel.m */; };
+		AD6944B72090517E00B06531 /* HGScrollBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD6944B62090517E00B06531 /* HGScrollBaseController.m */; };
 		AD6BE231206B6B1800028673 /* HGLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD6BE230206B6B1800028673 /* HGLoginController.m */; };
 		AD6BE233206B777200028673 /* WechatIMG8.png in Resources */ = {isa = PBXBuildFile; fileRef = AD6BE232206B777200028673 /* WechatIMG8.png */; };
 		AD6BE23A206B7CBB00028673 /* HGTeacherHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD6BE239206B7CBB00028673 /* HGTeacherHomeController.m */; };
@@ -46,6 +54,7 @@
 		AD9164F5208323D300416124 /* HGMyDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9164F4208323D300416124 /* HGMyDataViewController.m */; };
 		AD9164FD2083264100416124 /* HGItemCertController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9164FC2083264100416124 /* HGItemCertController.m */; };
 		AD9165052083272F00416124 /* HGContactUSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9165042083272F00416124 /* HGContactUSViewController.m */; };
+		ADB0CC6320998B3100425214 /* HGInfoChangeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADB0CC6220998B3100425214 /* HGInfoChangeCell.m */; };
 		ADBD8DF1207DE89D0021B600 /* HGMyPointController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBD8DF0207DE89D0021B600 /* HGMyPointController.m */; };
 		ADBD8DF4207DEEFD0021B600 /* HGMyPointCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBD8DF3207DEEFD0021B600 /* HGMyPointCell.m */; };
 		ADBDC789206BC72500D32390 /* HGBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBDC788206BC72500D32390 /* HGBaseController.m */; };
@@ -59,6 +68,12 @@
 		ADDD575E2089B746005A38EA /* NSDictionary+Value.m in Sources */ = {isa = PBXBuildFile; fileRef = ADDD575C2089B746005A38EA /* NSDictionary+Value.m */; };
 		ADDD57672089BFC1005A38EA /* NSDate+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = ADDD57652089BFC1005A38EA /* NSDate+Additions.m */; };
 		ADDD576A2089CD32005A38EA /* HGNoDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADDD57692089CD32005A38EA /* HGNoDataView.m */; };
+		ADF2F05B20943D0600C787F0 /* HGItemDataCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF2F05A20943D0600C787F0 /* HGItemDataCell.m */; };
+		ADF2F05E2094478D00C787F0 /* HGItemDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF2F05D2094478D00C787F0 /* HGItemDataModel.m */; };
+		ADF6FCA620989AFB005E27E6 /* HGWeekMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF6FCA520989AFB005E27E6 /* HGWeekMenuCell.m */; };
+		ADF6FCA920989B0E005E27E6 /* HGWeekMenuModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF6FCA820989B0E005E27E6 /* HGWeekMenuModel.m */; };
+		ADF6FCAC20989CD7005E27E6 /* HGMenuFoodModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF6FCAB20989CD7005E27E6 /* HGMenuFoodModel.m */; };
+		ADF6FCB02098ACC9005E27E6 /* HGInfoChangeController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF6FCAF2098ACC9005E27E6 /* HGInfoChangeController.m */; };
 		CE1E1F31208BA2A40098B1E1 /* HGCRoomHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1E1F30208BA2A40098B1E1 /* HGCRoomHeader.m */; };
 		CE1E1F37208BA3CA0098B1E1 /* HGUCRoomModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1E1F36208BA3CA0098B1E1 /* HGUCRoomModel.m */; };
 		CE1E1F3A208BA3DE0098B1E1 /* HGCRoomModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1E1F39208BA3DE0098B1E1 /* HGCRoomModel.m */; };
@@ -399,6 +414,9 @@
 		AD0396D120731DEB0082C817 /* HGClassController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGClassController.m; sourceTree = "<group>"; };
 		AD0396D320731E400082C817 /* HGPersonalController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGPersonalController.h; sourceTree = "<group>"; };
 		AD0396D420731E400082C817 /* HGPersonalController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGPersonalController.m; sourceTree = "<group>"; };
+		AD38EC6120931002004F5E79 /* hg_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hg_logo.png; sourceTree = "<group>"; };
+		AD38EC6220931002004F5E79 /* hg_login_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hg_login_bg.png; sourceTree = "<group>"; };
+		AD38EC6520931154004F5E79 /* icon_sign_out.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_sign_out.png; sourceTree = "<group>"; };
 		AD472FED206CB26A0024BDBB /* HGWeekMenuController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGWeekMenuController.h; sourceTree = "<group>"; };
 		AD472FEE206CB26A0024BDBB /* HGWeekMenuController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGWeekMenuController.m; sourceTree = "<group>"; };
 		AD5F5F04208DA9B700F68471 /* HGMydataCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGMydataCell.h; sourceTree = "<group>"; };
@@ -425,6 +443,16 @@
 		AD5F5F28208F059A00F68471 /* HGStudentContactCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGStudentContactCell.m; sourceTree = "<group>"; };
 		AD5F5F2A208F05AF00F68471 /* HGContactModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGContactModel.h; sourceTree = "<group>"; };
 		AD5F5F2B208F05AF00F68471 /* HGContactModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGContactModel.m; sourceTree = "<group>"; };
+		AD6944A420904A5500B06531 /* HGMyPointModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGMyPointModel.h; sourceTree = "<group>"; };
+		AD6944A520904A5500B06531 /* HGMyPointModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGMyPointModel.m; sourceTree = "<group>"; };
+		AD6944AB20904E1300B06531 /* HGTeacherMyClassController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGTeacherMyClassController.h; sourceTree = "<group>"; };
+		AD6944AC20904E1300B06531 /* HGTeacherMyClassController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGTeacherMyClassController.m; sourceTree = "<group>"; };
+		AD6944AE20904E4600B06531 /* HGTeacherMyClassCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGTeacherMyClassCell.h; sourceTree = "<group>"; };
+		AD6944AF20904E4600B06531 /* HGTeacherMyClassCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGTeacherMyClassCell.m; sourceTree = "<group>"; };
+		AD6944B120904E5A00B06531 /* HGTeacherMyClassModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGTeacherMyClassModel.h; sourceTree = "<group>"; };
+		AD6944B220904E5A00B06531 /* HGTeacherMyClassModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGTeacherMyClassModel.m; sourceTree = "<group>"; };
+		AD6944B52090517E00B06531 /* HGScrollBaseController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGScrollBaseController.h; sourceTree = "<group>"; };
+		AD6944B62090517E00B06531 /* HGScrollBaseController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGScrollBaseController.m; sourceTree = "<group>"; };
 		AD6BE22F206B6B1800028673 /* HGLoginController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGLoginController.h; sourceTree = "<group>"; };
 		AD6BE230206B6B1800028673 /* HGLoginController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGLoginController.m; sourceTree = "<group>"; };
 		AD6BE232206B777200028673 /* WechatIMG8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WechatIMG8.png; sourceTree = "<group>"; };
@@ -456,6 +484,8 @@
 		AD9164FC2083264100416124 /* HGItemCertController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGItemCertController.m; sourceTree = "<group>"; };
 		AD9165032083272F00416124 /* HGContactUSViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGContactUSViewController.h; sourceTree = "<group>"; };
 		AD9165042083272F00416124 /* HGContactUSViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGContactUSViewController.m; sourceTree = "<group>"; };
+		ADB0CC6120998B3100425214 /* HGInfoChangeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGInfoChangeCell.h; sourceTree = "<group>"; };
+		ADB0CC6220998B3100425214 /* HGInfoChangeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGInfoChangeCell.m; sourceTree = "<group>"; };
 		ADBD8DEF207DE89D0021B600 /* HGMyPointController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGMyPointController.h; sourceTree = "<group>"; };
 		ADBD8DF0207DE89D0021B600 /* HGMyPointController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGMyPointController.m; sourceTree = "<group>"; };
 		ADBD8DF2207DEEFD0021B600 /* HGMyPointCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGMyPointCell.h; sourceTree = "<group>"; };
@@ -482,6 +512,18 @@
 		ADDD57662089BFC1005A38EA /* NSDate+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Additions.h"; sourceTree = "<group>"; };
 		ADDD57682089CD32005A38EA /* HGNoDataView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGNoDataView.h; sourceTree = "<group>"; };
 		ADDD57692089CD32005A38EA /* HGNoDataView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGNoDataView.m; sourceTree = "<group>"; };
+		ADF2F05920943D0600C787F0 /* HGItemDataCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGItemDataCell.h; sourceTree = "<group>"; };
+		ADF2F05A20943D0600C787F0 /* HGItemDataCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGItemDataCell.m; sourceTree = "<group>"; };
+		ADF2F05C2094478D00C787F0 /* HGItemDataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGItemDataModel.h; sourceTree = "<group>"; };
+		ADF2F05D2094478D00C787F0 /* HGItemDataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGItemDataModel.m; sourceTree = "<group>"; };
+		ADF6FCA420989AFB005E27E6 /* HGWeekMenuCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGWeekMenuCell.h; sourceTree = "<group>"; };
+		ADF6FCA520989AFB005E27E6 /* HGWeekMenuCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGWeekMenuCell.m; sourceTree = "<group>"; };
+		ADF6FCA720989B0E005E27E6 /* HGWeekMenuModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGWeekMenuModel.h; sourceTree = "<group>"; };
+		ADF6FCA820989B0E005E27E6 /* HGWeekMenuModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGWeekMenuModel.m; sourceTree = "<group>"; };
+		ADF6FCAA20989CD7005E27E6 /* HGMenuFoodModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGMenuFoodModel.h; sourceTree = "<group>"; };
+		ADF6FCAB20989CD7005E27E6 /* HGMenuFoodModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGMenuFoodModel.m; sourceTree = "<group>"; };
+		ADF6FCAE2098ACC9005E27E6 /* HGInfoChangeController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGInfoChangeController.h; sourceTree = "<group>"; };
+		ADF6FCAF2098ACC9005E27E6 /* HGInfoChangeController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGInfoChangeController.m; sourceTree = "<group>"; };
 		CE1E1F2F208BA2A40098B1E1 /* HGCRoomHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGCRoomHeader.h; sourceTree = "<group>"; };
 		CE1E1F30208BA2A40098B1E1 /* HGCRoomHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGCRoomHeader.m; sourceTree = "<group>"; };
 		CE1E1F35208BA3CA0098B1E1 /* HGUCRoomModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGUCRoomModel.h; sourceTree = "<group>"; };
@@ -1147,6 +1189,7 @@
 		AD0396BF20731CF70082C817 /* 个人中心 */ = {
 			isa = PBXGroup;
 			children = (
+				ADF6FCAD2098ACAA005E27E6 /* 个人信息修改 */,
 				AD9164FE208326B700416124 /* 联系我们 */,
 				AD9164F72083261500416124 /* 项目证书 */,
 				AD9164EE2083238100416124 /* 我的档案 */,
@@ -1255,6 +1298,8 @@
 		AD472FEB206CB23B0024BDBB /* view */ = {
 			isa = PBXGroup;
 			children = (
+				ADF6FCA420989AFB005E27E6 /* HGWeekMenuCell.h */,
+				ADF6FCA520989AFB005E27E6 /* HGWeekMenuCell.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1262,6 +1307,10 @@
 		AD472FEC206CB2400024BDBB /* model */ = {
 			isa = PBXGroup;
 			children = (
+				ADF6FCA720989B0E005E27E6 /* HGWeekMenuModel.h */,
+				ADF6FCA820989B0E005E27E6 /* HGWeekMenuModel.m */,
+				ADF6FCAA20989CD7005E27E6 /* HGMenuFoodModel.h */,
+				ADF6FCAB20989CD7005E27E6 /* HGMenuFoodModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -1312,6 +1361,52 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		AD6944A720904DD900B06531 /* 我的班级（教职工） */ = {
+			isa = PBXGroup;
+			children = (
+				AD6944AA20904DF100B06531 /* Model */,
+				AD6944A920904DEC00B06531 /* View */,
+				AD6944A820904DE700B06531 /* Controller */,
+			);
+			path = "我的班级（教职工）";
+			sourceTree = "<group>";
+		};
+		AD6944A820904DE700B06531 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				AD6944AB20904E1300B06531 /* HGTeacherMyClassController.h */,
+				AD6944AC20904E1300B06531 /* HGTeacherMyClassController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		AD6944A920904DEC00B06531 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AD6944AE20904E4600B06531 /* HGTeacherMyClassCell.h */,
+				AD6944AF20904E4600B06531 /* HGTeacherMyClassCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		AD6944AA20904DF100B06531 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AD6944B120904E5A00B06531 /* HGTeacherMyClassModel.h */,
+				AD6944B220904E5A00B06531 /* HGTeacherMyClassModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		AD6944B42090514600B06531 /* 滑动通用 */ = {
+			isa = PBXGroup;
+			children = (
+				AD6944B52090517E00B06531 /* HGScrollBaseController.h */,
+				AD6944B62090517E00B06531 /* HGScrollBaseController.m */,
+			);
+			path = "滑动通用";
+			sourceTree = "<group>";
+		};
 		AD6BE22B206B6ADC00028673 /* 登录 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1334,6 +1429,8 @@
 		AD6BE234206B7C8100028673 /* 教职工首页 */ = {
 			isa = PBXGroup;
 			children = (
+				AD6944B42090514600B06531 /* 滑动通用 */,
+				AD6944A720904DD900B06531 /* 我的班级（教职工） */,
 				AD5F5F17208DDE4400F68471 /* 校园风采 */,
 				AD6BE237206B7CA500028673 /* model */,
 				AD6BE236206B7CA100028673 /* view */,
@@ -1393,6 +1490,8 @@
 		AD9164E92083211E00416124 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				ADF2F05920943D0600C787F0 /* HGItemDataCell.h */,
+				ADF2F05A20943D0600C787F0 /* HGItemDataCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1400,6 +1499,8 @@
 		AD9164EA2083212200416124 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				ADF2F05C2094478D00C787F0 /* HGItemDataModel.h */,
+				ADF2F05D2094478D00C787F0 /* HGItemDataModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1511,6 +1612,31 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		ADB0CC5E20998AFF00425214 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				ADF6FCAE2098ACC9005E27E6 /* HGInfoChangeController.h */,
+				ADF6FCAF2098ACC9005E27E6 /* HGInfoChangeController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		ADB0CC5F20998B0C00425214 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				ADB0CC6120998B3100425214 /* HGInfoChangeCell.h */,
+				ADB0CC6220998B3100425214 /* HGInfoChangeCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		ADB0CC6020998B1400425214 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		ADBD8DEA207DE86F0021B600 /* 我的成绩单 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1542,6 +1668,8 @@
 		ADBD8DED207DE8830021B600 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				AD6944A420904A5500B06531 /* HGMyPointModel.h */,
+				AD6944A520904A5500B06531 /* HGMyPointModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -1581,6 +1709,16 @@
 				ADBDC797206BD29400D32390 /* HGItemPlanModel.m */,
 			);
 			path = model;
+			sourceTree = "<group>";
+		};
+		ADF6FCAD2098ACAA005E27E6 /* 个人信息修改 */ = {
+			isa = PBXGroup;
+			children = (
+				ADB0CC6020998B1400425214 /* Model */,
+				ADB0CC5F20998B0C00425214 /* View */,
+				ADB0CC5E20998AFF00425214 /* Controller */,
+			);
+			path = "个人信息修改";
 			sourceTree = "<group>";
 		};
 		CE1E1F2C208BA19B0098B1E1 /* Cells */ = {
@@ -1854,6 +1992,9 @@
 		CE769DFF206A5797000F931F /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				AD38EC6520931154004F5E79 /* icon_sign_out.png */,
+				AD38EC6220931002004F5E79 /* hg_login_bg.png */,
+				AD38EC6120931002004F5E79 /* hg_logo.png */,
 				AD804C11206B941000299A08 /* WechatIMG79.jpeg */,
 				CE769E06206A57B1000F931F /* bg_date.png */,
 				CE769E3B206A57B8000F931F /* bg_pop_bottom.png */,
@@ -2841,6 +2982,7 @@
 				CE769E7A206A57BA000F931F /* icon_delete.png in Resources */,
 				AD804C0D206B8FBF00299A08 /* icon_new_share.png in Resources */,
 				CE769E84206A57BA000F931F /* bg_pop_bottom.png in Resources */,
+				AD38EC6620931154004F5E79 /* icon_sign_out.png in Resources */,
 				CE769E71206A57BA000F931F /* bg_tab_box.9.png in Resources */,
 				AD804C08206B8FBF00299A08 /* icon_new_menu.png in Resources */,
 				CE769E75206A57BA000F931F /* icon_my_schedule.png in Resources */,
@@ -2848,6 +2990,7 @@
 				CE769E64206A57BA000F931F /* icon_tab_personal_unpress.png in Resources */,
 				CE769E60206A57BA000F931F /* icon_class.png in Resources */,
 				CE769E51206A57BA000F931F /* icon_notification_send.png in Resources */,
+				AD38EC6320931002004F5E79 /* hg_logo.png in Resources */,
 				CE769E5C206A57BA000F931F /* icon_return.png in Resources */,
 				CE769E5F206A57BA000F931F /* icon_tab_active.png in Resources */,
 				AD804C0C206B8FBF00299A08 /* icon_new_project.png in Resources */,
@@ -2855,6 +2998,7 @@
 				CE769E58206A57BA000F931F /* icon_s_person.png in Resources */,
 				CE769E5E206A57BA000F931F /* icon_password.png in Resources */,
 				AD804C12206B941000299A08 /* WechatIMG79.jpeg in Resources */,
+				AD38EC6420931002004F5E79 /* hg_login_bg.png in Resources */,
 				CE769E70206A57BA000F931F /* icon_message.png in Resources */,
 				CE769E49206A57BA000F931F /* icon_report.png in Resources */,
 				CE769E5A206A57BA000F931F /* icon_add.png in Resources */,
@@ -2965,8 +3109,11 @@
 				CEAD1A37207DE4DF008F1696 /* ProjectAuditViewController.m in Sources */,
 				CEAD1A8F207DF34C008F1696 /* MenteeFrame.m in Sources */,
 				CEAD1B2C207F4639008F1696 /* RecViewController.m in Sources */,
+				AD6944B72090517E00B06531 /* HGScrollBaseController.m in Sources */,
+				AD6944AD20904E1300B06531 /* HGTeacherMyClassController.m in Sources */,
 				ADDD57672089BFC1005A38EA /* NSDate+Additions.m in Sources */,
 				CE4CAD452084A437001F711F /* MessagePopLayout.m in Sources */,
+				ADF6FCB02098ACC9005E27E6 /* HGInfoChangeController.m in Sources */,
 				CE4CAD4F2084A463001F711F /* PopView.m in Sources */,
 				CE1E1F67208DFCA40098B1E1 /* HGSRBModel.m in Sources */,
 				CE769EA0206A5DAC000F931F /* HGNavigationController.m in Sources */,
@@ -2988,6 +3135,7 @@
 				CEAD19AD207C9DA1008F1696 /* ClassShowTableViewCell.m in Sources */,
 				AD5F5F2C208F05AF00F68471 /* HGContactModel.m in Sources */,
 				CEAD1A8E207DF34C008F1696 /* MenteeParama.m in Sources */,
+				ADF6FCAC20989CD7005E27E6 /* HGMenuFoodModel.m in Sources */,
 				CEAD1B2D207F4639008F1696 /* TaskTableViewController.m in Sources */,
 				CEAD1A67207DE5AD008F1696 /* AuditHeaderVIew.m in Sources */,
 				CEAD1ADB207DF42B008F1696 /* ResearchParama.m in Sources */,
@@ -3044,8 +3192,10 @@
 				CE4CAD472084A437001F711F /* RoleMember.m in Sources */,
 				CE1E1F4F208CE9720098B1E1 /* HGGRRModel.m in Sources */,
 				CEAD1AFE207DF5E4008F1696 /* PMissionViewController.m in Sources */,
+				ADF2F05E2094478D00C787F0 /* HGItemDataModel.m in Sources */,
 				CEAD1B0A207DF6F7008F1696 /* PMissionFrame.m in Sources */,
 				CEAD1A4E207DE59D008F1696 /* ProjectListParama.m in Sources */,
+				ADF2F05B20943D0600C787F0 /* HGItemDataCell.m in Sources */,
 				CEAD1A07207DE022008F1696 /* IntroTableViewCell.m in Sources */,
 				CE769E94206A598A000F931F /* HGTabBarViewController.m in Sources */,
 				CE913321208A3C4F00780113 /* HGRSTableViewCell.m in Sources */,
@@ -3080,6 +3230,7 @@
 				CEAD1B2F207F4639008F1696 /* RecTableViewController.m in Sources */,
 				CEAD1B4E207F464F008F1696 /* ClassRoom.m in Sources */,
 				CE4CAD9F208847DC001F711F /* HGCRModel.m in Sources */,
+				AD6944B020904E4600B06531 /* HGTeacherMyClassCell.m in Sources */,
 				CEAD1B0D207DF709008F1696 /* PMissionTableViewCell.m in Sources */,
 				CEAD19A8207C9DA1008F1696 /* ClassNumCollectionViewCell.m in Sources */,
 				CEAD1A90207DF34C008F1696 /* MenteeProject.m in Sources */,
@@ -3091,6 +3242,7 @@
 				AD804C18206B95D500299A08 /* TKButton.m in Sources */,
 				CEAD1A12207DE04F008F1696 /* TeacherListTableViewCell.m in Sources */,
 				CE4CAD8D208724C9001F711F /* HGCourseInfoFrame.m in Sources */,
+				AD6944B320904E5A00B06531 /* HGTeacherMyClassModel.m in Sources */,
 				CE4CAD462084A437001F711F /* Role.m in Sources */,
 				CEAD19A6207C9DA1008F1696 /* CurrView.m in Sources */,
 				CE4CAD512084A463001F711F /* MessageLayout.m in Sources */,
@@ -3101,6 +3253,7 @@
 				AD5F5F16208DD50F00F68471 /* HGItemCertModel.m in Sources */,
 				CEAD1ADA207DF42B008F1696 /* ResearchInfoTableViewController.m in Sources */,
 				CEAD19A2207C9DA1008F1696 /* CurrBut.m in Sources */,
+				AD6944A620904A5500B06531 /* HGMyPointModel.m in Sources */,
 				CE4CAD832085E318001F711F /* ElseTableViewController.m in Sources */,
 				ADDD57582089B4BA005A38EA /* NSNull+Safe.m in Sources */,
 				AD5F5F09208DAAA700F68471 /* HGMydataModel.m in Sources */,
@@ -3120,6 +3273,7 @@
 				CE4CAD862085E319001F711F /* CurrCollectionViewController.m in Sources */,
 				CE4CAD482084A437001F711F /* Memeber.m in Sources */,
 				CE864448206F9675002FE9E7 /* MessageInfoController.m in Sources */,
+				ADB0CC6320998B3100425214 /* HGInfoChangeCell.m in Sources */,
 				CE4CAD632085C493001F711F /* HGRecipSendTableViewController.m in Sources */,
 				CEAD19C1207DA8F8008F1696 /* ImageRightBut.m in Sources */,
 				AD5F5F29208F059A00F68471 /* HGStudentContactCell.m in Sources */,
@@ -3163,6 +3317,7 @@
 				CEAD1A35207DE4DF008F1696 /* ProjectAuditDetailViewController.m in Sources */,
 				CEAD19AC207C9DA1008F1696 /* TabImageView.m in Sources */,
 				CEAD19A3207C9DA1008F1696 /* ClassRoomCollectionViewCell.m in Sources */,
+				ADF6FCA920989B0E005E27E6 /* HGWeekMenuModel.m in Sources */,
 				CEAD1B4C207F464F008F1696 /* HistoryParma.m in Sources */,
 				CEAD1A9E207DF356008F1696 /* MenteeListTableViewController.m in Sources */,
 				CEAD19CB207DA9EB008F1696 /* TeachToolBar.m in Sources */,
@@ -3171,6 +3326,7 @@
 				ADBD8DF4207DEEFD0021B600 /* HGMyPointCell.m in Sources */,
 				CE86444B206F9675002FE9E7 /* MessageTableViewCell.m in Sources */,
 				AD5F5F0C208DB92600F68471 /* HGStudentItemModel.m in Sources */,
+				ADF6FCA620989AFB005E27E6 /* HGWeekMenuCell.m in Sources */,
 				CEAD1AF6207DF44F008F1696 /* BlackLogViewController.m in Sources */,
 				AD5F5F26208EF99300F68471 /* HGPersionCenterCell.m in Sources */,
 				CEAD19D7207DDD5D008F1696 /* BaseInfoTableViewController.m in Sources */,
