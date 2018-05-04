@@ -26,6 +26,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.name = @"个人信息及修改";
+    self.rightBtn.hidden = YES;
     self.titleAry = @[@"用户名：",@"真实姓名：",@"性别：",@"手机：",@"邮箱：",@"身份证：",@"部门：",@"职位："];
     NSString *type = [HGUserDefaults objectForKey:HGUserType];
     if ([type isEqualToString:@"3"]) {//学员
