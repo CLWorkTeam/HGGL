@@ -159,7 +159,7 @@
             self.tableV.backgroundView = nodataView;
         }else{
             NSArray *tempAry = responseObject[@"data"];
-            //           NSArray *tempAry = @[@{@"noticeId":@"1",@"publisher":@"我问问",@"releaseTimeStr":@"2012-23-12",@"noticeTitle":@"测试"},@{@"noticeId":@"1",@"publisher":@"我问问",@"releaseTimeStr":@"2012-23-12",@"noticeTitle":@"测试"},@{@"noticeId":@"1",@"publisher":@"我问问",@"releaseTimeStr":@"2012-23-12",@"noticeTitle":@"测试"},@{@"noticeId":@"1",@"publisher":@"我问问",@"releaseTimeStr":@"2012-23-12",@"noticeTitle":@"测试"}];
+//                       NSArray *tempAry = @[@{@"project_id":@"1",@"project_name":@"问",@"project_score":@"98"},@{@"project_id":@"1",@"project_name":@"问问",@"project_score":@"20"},@{@"project_id":@"1",@"project_name":@"daqwe问问",@"project_score":@"2232"},@{@"project_id":@"1",@"project_name":@"weq",@"project_score":@"2012"}];
             self.dataAry = [HGMyPointModel mj_objectArrayWithKeyValuesArray:tempAry];
             [self.tableV reloadData];
             self.tableV.backgroundView = nil;
@@ -172,8 +172,8 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    if (self.dataAry.count<10) {
-        return 10;
+    if (self.dataAry.count<15) {
+        return 15;
     }
     return self.dataAry.count;
 }
@@ -188,13 +188,16 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
 
-    if (self.dataAry.count<10) {
+    if (self.dataAry.count<15) {
         if (indexPath.row<self.dataAry.count) {
             cell.model = self.dataAry[indexPath.row];
+            cell.bottomLayer.hidden = NO;
         }else{
             cell.model = nil;
-            if (indexPath.row!=9) {
+            if (indexPath.row!=14) {
                 cell.bottomLayer.hidden = YES;
+            }else{
+                cell.bottomLayer.hidden = NO;
             }
         }
     }else{

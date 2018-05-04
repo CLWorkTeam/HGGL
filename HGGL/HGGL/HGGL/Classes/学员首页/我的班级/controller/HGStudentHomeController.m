@@ -159,7 +159,7 @@
             [btn changeTitleFrame:CGRectMake(WIDTH_PT(30), HEIGHT_PT(7), w-WIDTH_PT(30), HEIGHT_PT(25))];
             btn.backgroundColor = self.secondSectionColors[i];
             [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-            btn.titleLabel.font = [UIFont systemFontOfSize:FONT_PT(13)];
+            btn.titleLabel.font = [UIFont systemFontOfSize:FONT_PT(14)];
             btn.titleLabel.textAlignment = NSTextAlignmentCenter;
             btn.layer.masksToBounds = YES;
             btn.layer.cornerRadius = 5;
@@ -180,7 +180,7 @@
         [btn changeImageFrame:CGRectMake(WIDTH_PT(5), HEIGHT_PT(7), WIDTH_PT(25), HEIGHT_PT(25))];
         [btn changeTitleFrame:CGRectMake(WIDTH_PT(30), HEIGHT_PT(7), w-WIDTH_PT(30), HEIGHT_PT(25))];
         [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        btn.titleLabel.font = [UIFont systemFontOfSize:FONT_PT(13)];
+        btn.titleLabel.font = [UIFont systemFontOfSize:FONT_PT(14)];
         btn.titleLabel.textAlignment = NSTextAlignmentCenter;
         btn.layer.masksToBounds = YES;
         btn.layer.cornerRadius = 5;
@@ -211,7 +211,7 @@
         [btn changeTitleFrame:CGRectMake(WIDTH_PT(30), HEIGHT_PT(7), w-WIDTH_PT(30), HEIGHT_PT(25))];
         btn.backgroundColor = HGColor(57, 207, 189, 1);
         [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        btn.titleLabel.font = [UIFont systemFontOfSize:FONT_PT(13)];
+        btn.titleLabel.font = [UIFont systemFontOfSize:FONT_PT(14)];
         btn.titleLabel.textAlignment = NSTextAlignmentCenter;
         btn.layer.masksToBounds = YES;
         btn.layer.cornerRadius = 5;
@@ -233,6 +233,7 @@
     btn.frame = CGRectMake(gap, (h + gap)*2, HGScreenWidth - 2*gap, h);
     btn.layer.masksToBounds = YES;
     btn.layer.cornerRadius = 5;
+    btn.titleLabel.font = [UIFont systemFontOfSize:FONT_PT(14)];
     [btn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
     [cell.contentView addSubview:btn];
     

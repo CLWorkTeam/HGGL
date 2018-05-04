@@ -176,7 +176,7 @@
 - (void)addNextButton{
     
     UIButton *nextBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    nextBtn.frame = CGRectMake(0,HGScreenHeight-HEIGHT_PT(50), HGScreenWidth ,HEIGHT_PT(50));
+    nextBtn.frame = CGRectMake(0,HGScreenHeight-HEIGHT_PT(50)-HGSafeBottom, HGScreenWidth ,HEIGHT_PT(50));
     [nextBtn setTitle:@"订餐" forState:UIControlStateNormal];
     [nextBtn setBackgroundImage:[UIImage imageWithColor:HGMainColor] forState:UIControlStateNormal];
     [nextBtn setTitleColor:[UIColor colorWithHexString:@"#ffffff"] forState:UIControlStateNormal];
