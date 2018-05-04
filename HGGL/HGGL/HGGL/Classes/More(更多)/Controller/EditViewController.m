@@ -24,54 +24,50 @@
 
 @implementation EditViewController
 //设置NavItemBtn
--(void)setupLeftNavItem{
-    UIButton *but = [UIButton buttonWithType:UIButtonTypeCustom];
-    [but sizeToFit];
-    but.width = 20;
-    [but setImage:[UIImage imageNamed:@"return_normal"] forState:UIControlStateNormal];
-    [but addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *letfBut = [[UIBarButtonItem alloc]initWithCustomView:but];
-    self.navigationItem.leftBarButtonItem = letfBut;
-}
+//-(void)setupLeftNavItem{
+//    UIButton *but = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [but sizeToFit];
+//    but.width = 20;
+//    [but setImage:[UIImage imageNamed:@"return_normal"] forState:UIControlStateNormal];
+//    [but addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+//    UIBarButtonItem *letfBut = [[UIBarButtonItem alloc]initWithCustomView:but];
+//    self.navigationItem.leftBarButtonItem = letfBut;
+//}
 //返回前一页
--(void)back
-{
-    [self.navigationController popViewControllerAnimated:YES];
-}
+//-(void)back
+//{
+//    [self.navigationController popViewControllerAnimated:YES];
+//}
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
-    self.navigationItem.title = @"账号密码修改";
+//    self.navigationItem.title = @"账号密码修改";
+    self.name = @"密码修改";
+    self.rightBtn.hidden = YES;
 
-    [self setupLeftNavItem];
-    self.view.backgroundColor = [UIColor whiteColor];
+//    [self setupLeftNavItem];
+//    self.view.backgroundColor = [UIColor whiteColor];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillChangeFrameNotification object:nil];
+    
     UIView *content = [[UIView alloc]init];
-    content.bounds = CGRectMake(0, 0, HGScreenWidth, 40*5+10*4);
-    self.content.backgroundColor = [UIColor redColor];
-    content.center = CGPointMake(HGScreenWidth/2, HGScreenHeight/2);
+    content.frame = CGRectMake(0, self.bar.maxY+HEIGHT_PT(40), HGScreenWidth, HEIGHT_PT(40)*3+HEIGHT_PT(10)*2);
+//    content.center = CGPointMake(HGScreenWidth/2, HGScreenHeight/2);
     [self.view addSubview:content];
     self.content = content;
-    UITextField *account = [[UITextField alloc]init];
-    account.borderStyle = UITextBorderStyleRoundedRect;
-    account.placeholder = [NSString stringWithFormat:@"用户名:         %@",[HGUserDefaults stringForKey:@"account"]] ;
-    account.userInteractionEnabled = NO;
-    [account setValue:[UIColor grayColor] forKeyPath:@"_placeholderLabel.textColor"];
-    account.leftViewMode = UITextFieldViewModeAlways;
-    [account setValue:[UIFont boldSystemFontOfSize:16] forKeyPath:@"_placeholderLabel.font"];
-    //account.backgroundColor = [UIColor redColor];
-    self.account = account;
-    CGFloat W = HGScreenWidth - 40;
-    account.frame = CGRectMake(20, 0,W , 40);
-    [self.content addSubview:account];
+    self.content.backgroundColor = [UIColor whiteColor];
+
+    CGFloat W = HGScreenWidth - WIDTH_PT(40);
     UITextField *oldPW = [[UITextField alloc]init];
-    oldPW.placeholder = @"原始密码";
+    oldPW.placeholder = @"旧密码";
     oldPW.delegate = self;
     oldPW.autocapitalizationType = UITextAutocapitalizationTypeNone;
     oldPW.borderStyle = UITextBorderStyleRoundedRect;
     oldPW.returnKeyType =UIReturnKeyDone;
+    oldPW.secureTextEntry = YES;
     self.oldPW = oldPW;
-    oldPW.frame = CGRectMake(20, CGRectGetMaxY(account.frame)+10, W, 40);
-   // [oldPW addTarget:self action:@selector(oldPWend) forControlEvents:UIControlEventEditingDidEnd];
+    oldPW.frame = CGRectMake(WIDTH_PT(20), 0,W , HEIGHT_PT(40));
+    
+    
     [self.content addSubview:oldPW];
     UITextField *newPW = [[UITextField alloc]init];
     newPW.placeholder = @"新密码";
@@ -79,24 +75,30 @@
     newPW.autocapitalizationType = UITextAutocapitalizationTypeNone;
     newPW.returnKeyType = UIReturnKeyDone;
     newPW.borderStyle = UITextBorderStyleRoundedRect;
+    newPW.secureTextEntry = YES;
     self.UP1 = newPW;
-    newPW.frame = CGRectMake(20, CGRectGetMaxY(oldPW.frame)+10, W, 40);
+    newPW.frame = CGRectMake(WIDTH_PT(20), CGRectGetMaxY(oldPW.frame)+HEIGHT_PT(10), W, HEIGHT_PT(40));
     [self.content addSubview:newPW];
+    
     UITextField *newPWA = [[UITextField alloc]init];
-    newPWA.placeholder =@"请再次输入新密码";
+    newPWA.placeholder =@"确认密码";
     newPWA.returnKeyType = UIReturnKeyDone;
     newPWA.autocapitalizationType = UITextAutocapitalizationTypeNone;
     newPWA.borderStyle  = UITextBorderStyleRoundedRect;
     newPWA.delegate = self;
+    newPWA.secureTextEntry = YES;
     self.UP2 = newPWA;
-    newPWA.frame = CGRectMake(20, CGRectGetMaxY(newPW.frame)+10, W, 40);
+    newPWA.frame = CGRectMake(WIDTH_PT(20), CGRectGetMaxY(newPW.frame)+HEIGHT_PT(10), W, HEIGHT_PT(40));
     [self.content addSubview:newPWA];
+    
     UIButton *but = [UIButton buttonWithType:UIButtonTypeCustom ];
-    but.frame = CGRectMake(20, CGRectGetMaxY(newPWA.frame)+10, W, 40);
-    [but setTitle:@"修改" forState:UIControlStateNormal];
-    [self.content addSubview:but];
-    //but.backgroundColor = [UIColor redColor];
-    [but setBackgroundImage:[UIImage resizableImageWithName:@"red_btn_normal"] forState:UIControlStateNormal];
+    but.frame = CGRectMake(WIDTH_PT(20), self.content.maxY + HEIGHT_PT(50), W, HEIGHT_PT(40));
+    [but setTitle:@"提交" forState:UIControlStateNormal];
+    [but setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    but.layer.masksToBounds = YES;
+    but.layer.cornerRadius = 5;
+    [self.view addSubview:but];
+    [but setBackgroundImage:[UIImage imageWithColor:HGMainColor] forState:UIControlStateNormal];
     [but addTarget:self action:@selector(clickBut:) forControlEvents:UIControlEventTouchUpInside];
     
     
@@ -108,11 +110,12 @@
 }
 -(void)clickBut:(UIButton *)but
 {
-    NSString *PW = [HGUserDefaults objectForKey:@"passWord"];
+    NSString *PW = [HGUserDefaults objectForKey:HGUserPassWord];
     if (self.UP1.text.length == 0&&self.UP2.text.length == 0) {
         [SVProgressHUD showErrorWithStatus:@"密码不能为空"];
-    }else
-    {
+    }else if(self.UP1.text.length<4 || self.UP1.text.length>20){
+        [SVProgressHUD showErrorWithStatus:@"密码为4-20位"];
+    }else{
         if ([self.oldPW.text isEqualToString:PW]&&[self.UP1.text isEqualToString:self.UP2.text]) {
             NSString *url = [HGURL stringByAppendingString:@"User/pwdChange.do"];
             NSString *user_id = [HGUserDefaults objectForKey:HGUserID];
@@ -122,7 +125,6 @@
                 NSString *status = [responseObject objectForKey:@"status"];
                 if ([status isEqualToString:@"1"]) {
                     [SVProgressHUD  showSuccessWithStatus:[responseObject objectForKey:@"message"]];
-                    [HGUserDefaults setObject:self.UP1.text forKey:@"passWord"];
                     HGLoginController *login = [[HGLoginController alloc]init];
                     [self presentViewController:login animated:YES completion:nil];
                 }else if ([status isEqualToString:@"-1"])
@@ -134,15 +136,13 @@
                 }
             } failure:^(NSError *error) {
                 HGLog(@"%@",error);
-                [SVProgressHUD showErrorWithStatus:@"请检查网络连接设置"];
-                
             }];
         }else if (![self.oldPW.text isEqualToString:PW])
         {
             [SVProgressHUD showErrorWithStatus:@"原始密码输入有误"];
         }else if (![self.UP1.text isEqualToString:self.UP2.text])
         {
-            [SVProgressHUD showErrorWithStatus:@"两次新密码输入不相同，请重新输入"];
+            [SVProgressHUD showErrorWithStatus:@"确认密码与新密码不一致"];
         }
     }
 
