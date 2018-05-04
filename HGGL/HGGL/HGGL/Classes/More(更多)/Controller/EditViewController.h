@@ -6,8 +6,10 @@
 //  Copyright (c) 2015年 sinosoft. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+//#import <UIKit/UIKit.h>
 
-@interface EditViewController : UIViewController
+#import "HGBaseController.h"
+
+@interface EditViewController : HGBaseController
 -(void)backLogin;
 @end

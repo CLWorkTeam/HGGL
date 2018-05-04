@@ -18,8 +18,8 @@
 
 @property (nonatomic,strong) UITableView *tableV;
 
-@property (nonatomic,strong) NSArray *nameAry;//培训班数组
-@property (nonatomic,strong) NSArray *pointAry;//成绩ary
+//@property (nonatomic,strong) NSArray *nameAry;//培训班数组
+//@property (nonatomic,strong) NSArray *pointAry;//成绩ary
 
 @property (nonatomic,strong) NSArray *dataAry;
 
@@ -60,7 +60,7 @@
     UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, view1.width/3*2, view1.height)];
     label.text = @"班级名称";
     label.backgroundColor = [UIColor clearColor];
-    label.font = [UIFont boldSystemFontOfSize:FONT_PT(20)];
+    label.font = [UIFont boldSystemFontOfSize:FONT_PT(18)];
     label.textAlignment = NSTextAlignmentCenter;
     label.textColor = HGMainColor;
     [view1 addSubview:label];
@@ -72,7 +72,7 @@
     UILabel *label1 = [[UILabel alloc]initWithFrame:CGRectMake(lineV.maxX, 0, view1.width/3*1 - 1.5, view1.height)];
     label1.text = @"总成绩";
     label1.backgroundColor = [UIColor clearColor];
-    label1.font = [UIFont boldSystemFontOfSize:FONT_PT(20)];
+    label1.font = [UIFont boldSystemFontOfSize:FONT_PT(18)];
     label1.textAlignment = NSTextAlignmentCenter;
     label1.textColor = HGMainColor;
     [view1 addSubview:label1];
@@ -81,7 +81,7 @@
 
 - (void)addFooterView{
     
-    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, HGScreenHeight-HEIGHT_PT(60), HGScreenWidth, HEIGHT_PT(60))];
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, HGScreenHeight-HEIGHT_PT(60)-HGSafeBottom, HGScreenWidth, HEIGHT_PT(60))];
     view.backgroundColor = [UIColor whiteColor];
     self.footerView = view;
     [self.view addSubview:view];
@@ -95,7 +95,7 @@
     UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, view1.width/3*2, view1.height)];
     label.text = @"总成绩";
     label.backgroundColor = [UIColor clearColor];
-    label.font = [UIFont boldSystemFontOfSize:FONT_PT(20)];
+    label.font = [UIFont boldSystemFontOfSize:FONT_PT(18)];
     label.textAlignment = NSTextAlignmentCenter;
     label.textColor = HGMainColor;
     [view1 addSubview:label];
@@ -107,7 +107,7 @@
     UILabel *label1 = [[UILabel alloc]initWithFrame:CGRectMake(lineV.maxX, 0, view1.width/3*1 - 1.5, view1.height)];
     label1.text = @"0";
     label1.backgroundColor = [UIColor clearColor];
-    label1.font = [UIFont boldSystemFontOfSize:FONT_PT(20)];
+    label1.font = [UIFont boldSystemFontOfSize:FONT_PT(18)];
     label1.textAlignment = NSTextAlignmentCenter;
     label1.textColor = HGMainColor;
     [view1 addSubview:label1];
@@ -133,7 +133,6 @@
     [self.view addSubview:tableV];
     
     self.tableV.mj_header = [HGRefresh loadNewRefreshWithRefreshBlock:^{
-        NSLog(@"321312");
         [self requestData];
     }];
 }
@@ -173,10 +172,10 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    if (self.nameAry.count<9) {
-        return 9;
+    if (self.dataAry.count<10) {
+        return 10;
     }
-    return self.nameAry.count;
+    return self.dataAry.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -189,13 +188,17 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
 
-    if (indexPath.row<self.nameAry.count) {
-        cell.model = self.dataAry[indexPath.row];
-    }else{
-        cell.model = nil;
-        if (indexPath.row!=8) {
-            cell.bottomLayer.hidden = YES;
+    if (self.dataAry.count<10) {
+        if (indexPath.row<self.dataAry.count) {
+            cell.model = self.dataAry[indexPath.row];
+        }else{
+            cell.model = nil;
+            if (indexPath.row!=9) {
+                cell.bottomLayer.hidden = YES;
+            }
         }
+    }else{
+        cell.model = self.dataAry[indexPath.row];
     }
     if (indexPath.row==0) {
         cell.topLayer.hidden = NO;

@@ -64,6 +64,9 @@
     textF1.clearButtonMode = UITextFieldViewModeAlways;
     [textF1 setSecureTextEntry:YES];
     [self.view addSubview:textF1];
+    if ([HGUserDefaults boolForKey:@"autoLogin"]) {
+        textF1.text = [HGUserDefaults objectForKey:HGUserPassWord];
+    }
     self.pwTextField = textF1;
 
     UIButton *loginBtn =[UIButton buttonWithType:UIButtonTypeCustom];
@@ -87,6 +90,7 @@
     [autoBtn changeImageFrame:CGRectMake(0, 0, WIDTH_PT(21), HEIGHT_PT(21))];
     [autoBtn changeTitleFrame:CGRectMake(WIDTH_PT(30), 0, WIDTH_PT(170), HEIGHT_PT(21))];
     [autoBtn addTarget:self action:@selector(autoLogin:) forControlEvents:UIControlEventTouchUpInside];
+    autoBtn.selected = [HGUserDefaults boolForKey:@"autoLogin"];
     [self.view addSubview:autoBtn];
     
 }
@@ -141,6 +145,8 @@
 
 - (void)autoLogin:(anyButton *)sender{
     sender.selected = !sender.isSelected;
+    [HGUserDefaults setBool:sender.isSelected forKey:@"autoLogin"];
+    [HGUserDefaults synchronize];
 }
 
 - (void)didReceiveMemoryWarning {

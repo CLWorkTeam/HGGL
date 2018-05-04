@@ -16,6 +16,7 @@
 #import "HGMyPointController.h"
 #import "HGItemCertController.h"
 #import "HGInfoChangeController.h"
+#import "EditViewController.h"
 
 @interface HGPersonalController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -79,7 +80,7 @@
         [self.navigationController pushViewController:vc animated:YES];
     }
     if([title isEqualToString:@"密码修改"]){
-        HGScrollBaseController *vc = [[HGScrollBaseController alloc]init];
+        EditViewController *vc = [[EditViewController alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
     }
     if ([title isEqualToString:@"我的档案"]) {

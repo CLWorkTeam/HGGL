@@ -50,7 +50,7 @@
     self.textF = textF;
     [self.contentView addSubview:textF];
     
-    UIView *btnView = [[UIView alloc]initWithFrame:CGRectMake(label.maxX + WIDTH_PT(10), textF.y, WIDTH_PT(105), textF.height)];
+    UIView *btnView = [[UIView alloc]initWithFrame:CGRectMake(label.maxX + WIDTH_PT(10), textF.y, WIDTH_PT(110), textF.height)];
     btnView.backgroundColor = [UIColor whiteColor];
     self.btnView = btnView;
     [self.contentView addSubview:btnView];
@@ -63,7 +63,7 @@
     [nanBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [nanBtn.titleLabel setFont:[UIFont systemFontOfSize:FONT_PT(15)]];
     [nanBtn changeImageFrame:CGRectMake(0, (btnView.height-HEIGHT_PT(18))/2, WIDTH_PT(18), HEIGHT_PT(18))];
-    [nanBtn changeTitleFrame:CGRectMake(WIDTH_PT(30), (btnView.height-HEIGHT_PT(18))/2, WIDTH_PT(20), HEIGHT_PT(18))];
+    [nanBtn changeTitleFrame:CGRectMake(WIDTH_PT(22), (btnView.height-HEIGHT_PT(18))/2, WIDTH_PT(20), HEIGHT_PT(18))];
     nanBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
     [nanBtn addTarget:self action:@selector(nanClick:) forControlEvents:UIControlEventTouchUpInside];
     self.nanBtn = nanBtn;
@@ -77,7 +77,7 @@
     [nvBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [nvBtn.titleLabel setFont:[UIFont systemFontOfSize:FONT_PT(15)]];
     [nvBtn changeImageFrame:CGRectMake(0, (btnView.height-HEIGHT_PT(18))/2, WIDTH_PT(18), HEIGHT_PT(18))];
-    [nvBtn changeTitleFrame:CGRectMake(WIDTH_PT(30), (btnView.height-HEIGHT_PT(18))/2, WIDTH_PT(20), HEIGHT_PT(18))];
+    [nvBtn changeTitleFrame:CGRectMake(WIDTH_PT(22), (btnView.height-HEIGHT_PT(18))/2, WIDTH_PT(20), HEIGHT_PT(18))];
     nvBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
     [nvBtn addTarget:self action:@selector(nanClick:) forControlEvents:UIControlEventTouchUpInside];
     self.nvBtn = nvBtn;

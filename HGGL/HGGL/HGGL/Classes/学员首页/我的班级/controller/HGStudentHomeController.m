@@ -17,6 +17,7 @@
 #import "HGContactUSViewController.h"
 #import "HGStudentItemModel.h"
 #import "HGClassDetailController.h"
+#import "HGWebController.h"
 
 @interface HGStudentHomeController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -260,7 +261,7 @@
     titleV.layer.mask = maskLayer;
 
     UILabel *titleLab = [[UILabel alloc]initWithFrame:CGRectMake(WIDTH_PT(10), 0, WIDTH_PT(100), HEIGHT_PT(10))];
-    titleLab.font = [UIFont boldSystemFontOfSize:FONT_PT(18)];
+    titleLab.font = [UIFont boldSystemFontOfSize:FONT_PT(16)];
     titleLab.text = @"基本信息";
     titleLab.textColor = HGColor(82,118, 215, 1);
     [titleLab sizeToFit];
@@ -274,28 +275,28 @@
     [contentV addSubview:whiteV];
     
     UILabel *classLab = [[UILabel alloc]initWithFrame:CGRectMake(WIDTH_PT(10), HEIGHT_PT(15), WIDTH_PT(100), HEIGHT_PT(10))];
-    classLab.font = [UIFont boldSystemFontOfSize:FONT_PT(18)];
+    classLab.font = [UIFont boldSystemFontOfSize:FONT_PT(16)];
     classLab.text = @"班级简介:";
     classLab.textColor = [UIColor blackColor];
     [classLab sizeToFit];
     [whiteV addSubview:classLab];
     
-    UILabel *classDescLab = [[UILabel alloc]initWithFrame:CGRectMake(WIDTH_PT(10), classLab.maxY+HEIGHT_PT(8), WIDTH_PT(100), HEIGHT_PT(10))];
-    classDescLab.font = [UIFont systemFontOfSize:FONT_PT(16)];
-    classDescLab.text = self.infoDic[@"project_info"];
+    UILabel *classDescLab = [[UILabel alloc]initWithFrame:CGRectMake(WIDTH_PT(10), classLab.maxY+HEIGHT_PT(10), WIDTH_PT(100), HEIGHT_PT(10))];
+    classDescLab.font = [UIFont systemFontOfSize:FONT_PT(15)];
+    classDescLab.text = [self.infoDic[@"project_info"] length]?self.infoDic[@"project_info"]:@"暂无简介";
     classDescLab.textColor = [UIColor lightGrayColor];
     [classDescLab sizeToFit];
     [whiteV addSubview:classDescLab];
 
 
-    UILabel *timeLab = [[UILabel alloc]initWithFrame:CGRectMake(classLab.x, classLab.maxY+HEIGHT_PT(40), WIDTH_PT(100), HEIGHT_PT(10))];
-    timeLab.font = [UIFont boldSystemFontOfSize:FONT_PT(18)];
+    UILabel *timeLab = [[UILabel alloc]initWithFrame:CGRectMake(classLab.x, classLab.maxY+HEIGHT_PT(45), WIDTH_PT(100), HEIGHT_PT(10))];
+    timeLab.font = [UIFont boldSystemFontOfSize:FONT_PT(16)];
     timeLab.text = @"培训时间:";
     timeLab.textColor = [UIColor blackColor];
     [timeLab sizeToFit];
     [whiteV addSubview:timeLab];
     
-    UILabel *timeDescLab = [[UILabel alloc]initWithFrame:CGRectMake(timeLab.maxX + WIDTH_PT(5), timeLab.y+HEIGHT_PT(2), WIDTH_PT(100), HEIGHT_PT(10))];
+    UILabel *timeDescLab = [[UILabel alloc]initWithFrame:CGRectMake(timeLab.maxX + WIDTH_PT(5), timeLab.y, WIDTH_PT(100), HEIGHT_PT(10))];
     timeDescLab.font = [UIFont systemFontOfSize:FONT_PT(16)];
     timeDescLab.text = [NSString stringWithFormat:@"%@~%@",self.infoDic[@"project_start"],self.infoDic[@"project_end"]];
     timeDescLab.textColor = [UIColor colorWithHexString:@"#333333"];
@@ -304,13 +305,13 @@
 
     
     UILabel *numLab = [[UILabel alloc]initWithFrame:CGRectMake(classLab.x, timeLab.maxY+HEIGHT_PT(10), WIDTH_PT(100), HEIGHT_PT(10))];
-    numLab.font = [UIFont boldSystemFontOfSize:FONT_PT(18)];
+    numLab.font = [UIFont boldSystemFontOfSize:FONT_PT(16)];
     numLab.text = @"培训人数:";
     numLab.textColor = [UIColor blackColor];
     [numLab sizeToFit];
     [whiteV addSubview:numLab];
     
-    UILabel *numDescLab = [[UILabel alloc]initWithFrame:CGRectMake(numLab.maxX + WIDTH_PT(5), numLab.y+HEIGHT_PT(2), WIDTH_PT(100), HEIGHT_PT(10))];
+    UILabel *numDescLab = [[UILabel alloc]initWithFrame:CGRectMake(numLab.maxX + WIDTH_PT(5), numLab.y, WIDTH_PT(100), HEIGHT_PT(10))];
     numDescLab.font = [UIFont systemFontOfSize:FONT_PT(16)];
     numDescLab.text = self.infoDic[@"project_Num"];
     numDescLab.textColor = [UIColor colorWithHexString:@"#333333"];
@@ -318,20 +319,20 @@
     [whiteV addSubview:numDescLab];
     
     UILabel *teacherLab = [[UILabel alloc]initWithFrame:CGRectMake(classLab.x, numLab.maxY+HEIGHT_PT(10), WIDTH_PT(100), HEIGHT_PT(10))];
-    teacherLab.font = [UIFont boldSystemFontOfSize:FONT_PT(18)];
+    teacherLab.font = [UIFont boldSystemFontOfSize:FONT_PT(16)];
     teacherLab.text = @"班主任:";
     teacherLab.textColor = [UIColor blackColor];
     [teacherLab sizeToFit];
     [whiteV addSubview:teacherLab];
     
-    UILabel *teacherDescLab = [[UILabel alloc]initWithFrame:CGRectMake(numDescLab.x , teacherLab.y+HEIGHT_PT(2), WIDTH_PT(100), HEIGHT_PT(10))];
+    UILabel *teacherDescLab = [[UILabel alloc]initWithFrame:CGRectMake(numDescLab.x , teacherLab.y, WIDTH_PT(100), HEIGHT_PT(10))];
     teacherDescLab.font = [UIFont systemFontOfSize:FONT_PT(16)];
     teacherDescLab.text = self.infoDic[@"project_manager"];
     teacherDescLab.textColor = [UIColor colorWithHexString:@"#333333"];
     [teacherDescLab sizeToFit];
     [whiteV addSubview:teacherDescLab];
     
-    UILabel *teacherPhoneLab = [[UILabel alloc]initWithFrame:CGRectMake(teacherDescLab.maxX + WIDTH_PT(25), teacherLab.y+HEIGHT_PT(2), WIDTH_PT(100), HEIGHT_PT(10))];
+    UILabel *teacherPhoneLab = [[UILabel alloc]initWithFrame:CGRectMake(teacherDescLab.maxX + WIDTH_PT(25), teacherLab.y, WIDTH_PT(100), HEIGHT_PT(10))];
     teacherPhoneLab.font = [UIFont systemFontOfSize:FONT_PT(16)];
     teacherPhoneLab.text = self.infoDic[@"project_manager_tel"];
     teacherPhoneLab.textColor = [UIColor colorWithHexString:@"#333333"];
@@ -366,7 +367,7 @@
     titleV.layer.mask = maskLayer;
     
     UILabel *titleLab = [[UILabel alloc]initWithFrame:CGRectMake(WIDTH_PT(10), 0, WIDTH_PT(100), HEIGHT_PT(10))];
-    titleLab.font = [UIFont boldSystemFontOfSize:FONT_PT(18)];
+    titleLab.font = [UIFont boldSystemFontOfSize:FONT_PT(16)];
     titleLab.text = @"项目课程";
     titleLab.textColor = HGColor(82,118, 215, 1);
     [titleLab sizeToFit];
@@ -552,7 +553,13 @@
         [self.navigationController pushViewController:vc animated:YES];
     }
     if ([sender.titleLabel.text isEqualToString:@"学员手册"]) {
-        HGMyDataViewController *vc = [[HGMyDataViewController alloc]init];
+        if ([self.infoDic[@"project_manualUrl"] isNull]) {
+            [SVProgressHUD showErrorWithStatus:@"资源地址无效"];
+            return;
+        }
+        HGWebController *vc = [[HGWebController alloc]init];
+        vc.url = self.infoDic[@"project_manualUrl"];
+        vc.titleStr = [self.infoDic[@"project_manualName"] isNull]?@"学员手册":self.infoDic[@"project_manualName"];
         [self.navigationController pushViewController:vc animated:YES];
     }
     if ([sender.titleLabel.text isEqualToString:@"餐饮签退"]) {
