@@ -10,6 +10,6 @@
 @class ProjectList;
 @interface BaseTableViewController : UITableViewController
 @property (nonatomic,copy) NSString *project_id;
-@property (nonatomic,strong) ProjectList *PL;
+//@property (nonatomic,strong) ProjectList *PL;
 @property (nonatomic,copy) void (^butBlock)(id vc);
 @end

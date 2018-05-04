@@ -10,8 +10,8 @@
 #import "ProInfoTableViewCell.h"
 #import "HeaderView.h"
 #import "HGHttpTool.h"
-////#import "MBProgressHUD+Extend.h"
-#import "ProjectList.h"
+//#import "ProjectList.h"
+#import "HGProjectListModel.h"
 #import "ProjectInfoViewController.h"
 #import "ProjectListParama.h"
 #import "MJRefresh.h"
@@ -33,9 +33,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"项目列表";
-    ProjectListParama *parama = [[ProjectListParama alloc]init];
-    parama.project_type = @"";
-    self.parama = parama;
+    
     [self setRefresh];
     //self.tableView.bounces = NO;
     //topView.backgroundColor = [UIColor redColor];
@@ -47,18 +45,23 @@
     __weak typeof(self)weakSelf = self;
     
     self.tableView.mj_header = [HGRefresh loadNewRefreshWithRefreshBlock:^{
-        [weakSelf postWithParama:weakSelf.parama];
+        [weakSelf loadNew];
     }];
     [self.tableView.mj_header beginRefreshing];
     
     self.tableView.mj_footer = [HGRefresh loadMoreRefreshWithRefreshBlock:^{
         NSInteger i = [weakSelf.parama.page integerValue ];
         weakSelf.parama.page = [NSString stringWithFormat:@"%ld",++i];
-        [weakSelf loadMoreData:weakSelf.parama];
+        [weakSelf loadMore];
     }];
 }
--(void)postWithParama:(ProjectListParama *)parama
+-(void)refresh
 {
+    [self.tableView.mj_header beginRefreshing];
+}
+-(void)loadNew
+{
+    ProjectListParama *parama = self.parama;
     if (_isRefreshing) {
         return;
     }
@@ -66,37 +69,37 @@
     NSString *url = [HGURL stringByAppendingString:@"Project/getProjects.do"];
     parama.page = @"1";
     NSString *user_id = [HGUserDefaults objectForKey:HGUserID];
-    NSMutableDictionary *par =[NSMutableDictionary dictionaryWithDictionary:parama.keyValues];
+    NSMutableDictionary *par =[NSMutableDictionary dictionaryWithDictionary:parama.mj_keyValues];
     [par setValue:user_id forKey:@"tokenval"];
     [HGHttpTool POSTWithURL:url parameters:par success:^(id responseObject) {
         _isRefreshing = NO;
         [self.tableView.mj_header endRefreshing];
-//        HGLog(@"%@",parama.keyValues);
+        [self.array removeAllObjects];
         NSArray *array = [NSArray array];
         array = [responseObject objectForKey:@"data"];
         NSString *status = [responseObject objectForKey:@"status"];
         if([status isEqualToString:@"0"])
         {
-//            [SVProgressHUD showErrorWithStatus:[responseObject objectForKey:@"message"]];
             [SVProgressHUD showErrorWithStatus:[responseObject objectForKey:@"message"]];
         }else{
-//            NSInteger i = [self.parama.page integerValue ];
-//            self.parama.page = [NSString stringWithFormat:@"%ld",++i];
-            [self.array removeAllObjects];
+
+            
             for (NSDictionary *dict in array) {
-                ProjectList *pro = [ProjectList initWithDict:dict];
+                HGProjectListModel *pro = [HGProjectListModel initWithDict:dict];
                 [self.array  addObject:pro];
             }
-            [self.tableView reloadData];
+            
         }
+        [self.tableView reloadData];
     } failure:^(NSError *error) {
         _isRefreshing = NO;
         [self.tableView.mj_header endRefreshing];
         HGLog(@"%@",error);
     }];
 }
--(void)loadMoreData:(ProjectListParama *)parama
+-(void)loadMore
 {
+    ProjectListParama *parama = self.parama;
     if (_isRefreshing) {
         return;
     }
@@ -114,13 +117,14 @@
         NSString *status = [responseObject objectForKey:@"status"];
         if([status isEqualToString:@"0"])
         {
-//            [SVProgressHUD showErrorWithStatus:[responseObject objectForKey:@"message"]];
             [SVProgressHUD showErrorWithStatus:[responseObject objectForKey:@"message"]];
+            NSInteger i = [self.parama.page integerValue ];
+            self.parama.page = [NSString stringWithFormat:@"%ld",--i];
         }else{
 //            NSInteger i = [self.parama.page integerValue ];
 //            self.parama.page = [NSString stringWithFormat:@"%ld",++i];
             for (NSDictionary *dict in array) {
-                ProjectList *pro = [ProjectList initWithDict:dict];
+                HGProjectListModel *pro = [HGProjectListModel initWithDict:dict];
                 [self.array  addObject:pro];
             }
             [self.tableView reloadData];
@@ -128,6 +132,8 @@
     } failure:^(NSError *error) {
         _isRefreshing = NO;
         [self.tableView.mj_footer endRefreshing];
+        NSInteger i = [self.parama.page integerValue ];
+        self.parama.page = [NSString stringWithFormat:@"%ld",--i];
         HGLog(@"%@",error);
     }];
 }
@@ -175,64 +181,24 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return minH*3+CellHMargin*4;
+    return 30*2;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ProjectInfoViewController *vc = [[ProjectInfoViewController alloc]init];
-    vc.PL = [self.array objectAtIndex:indexPath.row];
-    vc.project_id = vc.PL.project_id;
+    HGProjectListModel *model = [self.array objectAtIndex:indexPath.row];
+    vc.project_id = model.project_id;
     if (_projectListBlock) {
         _projectListBlock(vc);
     }
-    //[self.navigationController pushViewController:vc animated:YES];
 }
-//-(void)scrollViewDidScroll:(UIScrollView *)scrollView
-//{
-//    self.tableView.contentSize = CGSizeMake(HGScreenWidth, 100*66+49);
-//}
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+{
+    return .1;
 }
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    return [[UIView alloc]init];
 }
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

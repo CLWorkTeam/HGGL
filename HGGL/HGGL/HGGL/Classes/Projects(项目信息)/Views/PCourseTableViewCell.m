@@ -15,43 +15,56 @@
 #define Width 65
 //#define Hmargin 5
 //#define Hight [TextFrame frameOfText:@"学习经历" With:[UIFont systemFontOfSize:14] Andwidth:Width].height
-@implementation PCourseTableViewCell
+@interface PCourseTableViewCell ()
+@property (nonatomic,weak) UIImageView *ima;
+@property (nonatomic,weak) UILabel *courseName;
+@property (nonatomic,weak) UILabel *teacherName;
+@end
 
+@implementation PCourseTableViewCell
+-(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        [self setUpAllSubViews];
+        self.backgroundColor = [UIColor clearColor];
+    }
+    return self;
+}
+-(void)setUpAllSubViews
+{
+    UIImageView *ima = [[UIImageView alloc]init];
+    self.ima = ima;
+    ima.contentMode = UIViewContentModeCenter;
+    ima.image = [UIImage imageNamed:@"point"];
+    [self.contentView addSubview:ima];
+    
+    UILabel *courseName = [HGLable  lableWithAlignment:NSTextAlignmentLeft Font:HGFont Color:[UIColor blackColor]];
+    courseName.font = [UIFont fontWithName:@"Helvetica-Bold" size:HGFont];
+    
+    [self.contentView addSubview:courseName];
+    self.courseName = courseName;
+    
+    UILabel *teacherName = [HGLable lableWithAlignment:NSTextAlignmentLeft Font:HGFont Color:[UIColor blackColor]];
+    self.teacherName = teacherName;
+    [self.contentView addSubview:teacherName];
+}
 -(void)setPC:(PCourse *)PC
 {
     _PC = PC;
-    UIImageView *ima = [[UIImageView alloc]init];
-    CGFloat NH = [TextFrame frameOfText:@"呵呵大" With:[UIFont fontWithName:@"Helvetica-Bold" size:HGFont] Andwidth:(HGScreenWidth-2*CellWMargin)].height;
-    ima.frame = CGRectMake(0, NH/2-CellWMargin/2+CellHMargin, CellWMargin, CellWMargin);
-    ima.contentMode = UIViewContentModeCenter;
-    ima.image = [UIImage imageNamed:@"point"];
-    //ima.backgroundColor = [UIColor redColor];
-    [self.contentView addSubview:ima];
-    CGFloat W = 40;
-    CGFloat LWidth = HGScreenWidth - 2*CellWMargin-2*CellHMargin;
-    UILabel *courseName = [HGLable  lableWithAlignment:NSTextAlignmentLeft Font:HGFont Color:[UIColor blackColor]];
-    courseName.font = [UIFont fontWithName:@"Helvetica-Bold" size:HGFont];
-    courseName.text = PC.course_name;
-    [self.contentView addSubview:courseName];
-    courseName.frame = CGRectMake(CellWMargin, CellHMargin, HGScreenWidth - 2*CellWMargin, PC.CnameH);
-    UILabel *teacherName = [HGLable lableWithAlignment:NSTextAlignmentLeft Font:HGFont Color:[UIColor blackColor]];
-    teacherName.text = @"教师:";
     
-    teacherName.frame = CGRectMake(CellWMargin, CGRectGetMaxY(courseName.frame)+CellHMargin, W, minH);
-    [self.contentView addSubview:teacherName];
-    UILabel *teacherNameV = [HGLable lableWithAlignment:NSTextAlignmentLeft Font:HGFont Color:[UIColor blackColor]];
-    teacherNameV.text = PC.course_teacher;
-    teacherNameV.frame = CGRectMake(CGRectGetMaxX(teacherName.frame)+CellHMargin, CGRectGetMaxY(courseName.frame)+CellHMargin, 65, minH);
-    [self.contentView addSubview:teacherNameV];
-    UILabel *time = [HGLable lableWithAlignment:NSTextAlignmentLeft Font:14 Color:[UIColor blackColor]];
-    time.text = @"时间:";
-    time.frame = CGRectMake(CGRectGetMaxX(teacherNameV.frame)+CellHMargin, CGRectGetMaxY(courseName.frame)+CellHMargin,W, minH);
-    [self.contentView addSubview:time];
-    UILabel *timeV = [HGLable lableWithAlignment:NSTextAlignmentLeft Font:14 Color:[UIColor blackColor ]];
-    timeV.text = PC.course_start;
-    timeV.frame = CGRectMake(CGRectGetMaxX(time.frame)+CellHMargin, CGRectGetMaxY(courseName.frame)+CellHMargin, LWidth-2*W, minH);
-    [self.contentView addSubview:timeV];
+    self.courseName.text = PC.course_name;
+    self.teacherName.text = [NSString stringWithFormat:@"教师：%@",PC.course_teacher];
     
+    
+}
+-(void)layoutSubviews
+{
+    [super layoutSubviews];
+    
+    CGFloat H = 30;
+    self.ima.frame = CGRectMake(0, H/2-CellWMargin/2, CellWMargin, CellWMargin);
+    self.courseName.frame = CGRectMake(CellWMargin, 0, HGScreenWidth - 2*CellWMargin, H);
+    self.teacherName.frame = CGRectMake(CellWMargin, CGRectGetMaxY(self.courseName.frame), self.courseName.width, H);
 }
 +(instancetype)cellWithTabView:(UITableView *)view
 {
@@ -59,12 +72,8 @@
     PCourseTableViewCell *cell = [view dequeueReusableCellWithIdentifier:ID];
     if (cell == nil) {
         cell = [[PCourseTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];
-    }else
-    {
-        for (UIView *view in cell.contentView.subviews) {
-            [view removeFromSuperview];
-        }
     }
+//    cell.selectionStyle = UITableViewCellSeparatorStyleNone;
     return cell;
 }
 @end

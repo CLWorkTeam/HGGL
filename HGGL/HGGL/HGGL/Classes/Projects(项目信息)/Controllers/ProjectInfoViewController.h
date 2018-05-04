@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-@class ProjectList;
+@class HGProjectListModel;
 @interface ProjectInfoViewController : UIViewController
 @property (nonatomic,copy) NSString *project_id;
-@property (nonatomic,strong) ProjectList *PL;
+@property (nonatomic,strong) HGProjectListModel *PL;
 @end

@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface ProjectListViewController : UIViewController
+@interface ProjectListViewController :UIViewController
 
 @end

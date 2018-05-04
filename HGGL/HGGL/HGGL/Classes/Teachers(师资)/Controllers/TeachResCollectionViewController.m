@@ -96,7 +96,7 @@ static NSString * const reuseIdentifier = @"Cell";
 {
     //设置流水布局
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
-    layout.itemSize = CGSizeMake(HGScreenWidth, HGScreenHeight-64-43);
+    layout.itemSize = CGSizeMake(HGScreenWidth, HGScreenHeight-HGHeaderH-43);
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     layout.minimumLineSpacing = 0;
     

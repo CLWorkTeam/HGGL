@@ -12,6 +12,7 @@
 #import "PCourse.h"
 #import "PCourseTableViewCell.h"
 #import "TextFrame.h"
+#import "HGClassDetailController.h"
 @interface PCourseTableViewController ()
 @property (nonatomic,strong) NSMutableArray *arr;
 @property (nonatomic,copy) NSString *error;
@@ -27,9 +28,9 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSString *url = [HGURL stringByAppendingString:@"Project/getProjectCourseList.do"];
-    NSString *user_id = [HGUserDefaults objectForKey:HGUserID];
-    [HGHttpTool POSTWithURL:url parameters:@{@"project_id":self.project_id,@"tokenval":user_id} success:^(id responseObject) {
+    NSString *url = [HGURL stringByAppendingString:@"Course/getProjectCourseList.do"];
+//    NSString *user_id = [HGUserDefaults objectForKey:HGUserID];
+    [HGHttpTool POSTWithURL:url parameters:@{@"project_id":self.project_id} success:^(id responseObject) {
         NSArray *array = [NSArray array];
         array = [responseObject objectForKey:@"data"];
         NSString *status = [responseObject objectForKey:@"status"];
@@ -45,6 +46,7 @@
             [self.tableView reloadData];
         }
     } failure:^(NSError *error) {
+        [SVProgressHUD dismiss];
         HGLog(@"%@",error);
     }];
     
@@ -88,12 +90,29 @@
     
     return cell;
 }
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    HGClassDetailController *vc = [[HGClassDetailController alloc]init];
+    
+    PCourse *PC = [self.arr objectAtIndex:indexPath.row];
+    vc.course_id = PC.course_id;
+    if (_jumpVCBlock) {
+        _jumpVCBlock(vc);
+    }
+}
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    PCourse *pc = [self.arr   objectAtIndex:indexPath.row];
-    return pc.cellH>=(2*minH+3*CellHMargin)?pc.cellH:(2*minH+3*CellHMargin);
+    
+    return 60;
 }
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 
+{
+    return .1;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    return [[UIView alloc]init];
+}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

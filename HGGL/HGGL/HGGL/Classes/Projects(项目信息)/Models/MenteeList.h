@@ -10,39 +10,43 @@
 
 @interface MenteeList : NSObject
 //：学员id
-@property (nonatomic,copy)NSString *mentee_id;
+@property (nonatomic,copy)NSString *mentee_id;//
+//：学员照片
+@property (nonatomic,copy)NSString *mentee_pic;//
 //：学员姓名
-@property (nonatomic,copy)NSString *mentee_name;
+@property (nonatomic,copy)NSString *mentee_name;//
 //：学员性别
-@property (nonatomic,copy)NSString *mentee_sex;
+@property (nonatomic,copy)NSString *mentee_sex;//
 //：学员联系电话
-@property (nonatomic,copy)NSString *mentee_tel;
+@property (nonatomic,copy)NSString *mentee_tel;//
 //：学员民族
-@property (nonatomic,copy)NSString *mentee_nation;
+@property (nonatomic,copy)NSString *mentee_nation;//
 //：学员出生日期
-@property (nonatomic,copy)NSString *mentee_birthday;
+@property (nonatomic,copy)NSString *mentee_birthday;//
 //：学员年龄
-@property (nonatomic,copy)NSString *mentee_age;
+@property (nonatomic,copy)NSString *mentee_age;//
 //：学员身份证号
-@property (nonatomic,copy)NSString *mentee_idCard;
+@property (nonatomic,copy)NSString *mentee_idCard;//
 //：学员邮箱
-@property (nonatomic,copy)NSString *mentee_email;
+@property (nonatomic,copy)NSString *mentee_email;//
 //：学员单位
-@property (nonatomic,copy)NSString *mentee_workUnit;
+@property (nonatomic,copy)NSString *mentee_workUnit;//
+//：学员部门
+@property (nonatomic,copy)NSString *mentee_department;//
 //：学员职务
-@property (nonatomic,copy)NSString *mentee_duty;
+@property (nonatomic,copy)NSString *mentee_duty;//
 //：学员学历
-//@property (nonatomic,copy)NSString *mentee_education;
+@property (nonatomic,copy)NSString *mentee_education;//
 //：学员学位
-@property (nonatomic,copy)NSString *mentee_degree;
+@property (nonatomic,copy)NSString *mentee_degree;//
 //：学员政治面貌
-@property (nonatomic,copy)NSString *mentee_politicsStatus;
+@property (nonatomic,copy)NSString *mentee_politicsStatus;//
 //：学员籍贯
 @property (nonatomic,copy)NSString *mentee_place;
 //：学员备注
-@property (nonatomic,copy)NSString *mentee_note;
+@property (nonatomic,copy)NSString *mentee_note;//
 //：学员所在组
-@property (nonatomic,copy)NSString *mentee_group;
+@property (nonatomic,copy)NSString *mentee_group;//
 //单位/职务高度
 @property (nonatomic,assign) CGFloat unitDutyH;
 //cell高度

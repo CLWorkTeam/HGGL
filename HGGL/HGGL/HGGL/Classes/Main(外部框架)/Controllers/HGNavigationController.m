@@ -19,6 +19,8 @@
 
 +(void)initialize
 {
+//    UINavigationBar *bar = [UINavigationBar appearance];
+//    bar.barTintColor = HGMainColor;
     UIBarButtonItem *butItem = [UIBarButtonItem appearance];
     NSMutableDictionary *attribute = [NSMutableDictionary dictionary];
     attribute[NSFontAttributeName] = [UIFont systemFontOfSize:FONT_PT(14)];
@@ -98,17 +100,15 @@
     // self.navigationBar.tintColor = [UIColor clearColor];
     //[self.navigationBar setBackgroundColor:[UIColor redColor]];
     if (!self.viewControllers.count) {
-//        HGBarBut *left = [HGBarBut initWithColor:nil andSelColor:nil andTColor:[UIColor whiteColor] andFont:[UIFont systemFontOfSize:10]];
-//        [left setImage:[UIImage imageNamed:@"icon_schedule"] forState:UIControlStateNormal];
-//        //self.but = left;
-////        [left setTitle:@"当日课表" forState:UIControlStateNormal];
-//        [left setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-//        left.frame = CGRectMake(0, 0, 50, 40);
-//        //left.imageView.bounds = CGRectMake(0, 0,left.height*0.86 , left.height*0.68);
-//        [left addTarget:self action:@selector(leftButClick:) forControlEvents:UIControlEventTouchUpInside];
-//        //[self.navigationBar addSubview:left];
-//        UIBarButtonItem *letfBut = [[UIBarButtonItem alloc]initWithCustomView:left];
-//        
+        
+//        if ([viewController isKindOfClass:NSClassFromString(@"HGTeacherHomeController")]||[viewController isKindOfClass:NSClassFromString(@"HGStudentHomeController")]) {
+//
+//        }else
+//        {
+//
+//        }
+        
+//
 //        HGBarBut *right = [HGBarBut initWithColor:HGColor(205,0,36,1) andSelColor:HGColor(190, 31, 25,1) andTColor:[UIColor whiteColor] andFont:[UIFont systemFontOfSize:10]];
 //        [right setImage:[UIImage imageNamed:@"icon_message"] forState:UIControlStateNormal];
 //        //self.but = left;
@@ -126,6 +126,15 @@
     }else{
         //[self.but removeFromSuperview];
         viewController.hidesBottomBarWhenPushed = YES;
+        self.navigationBarHidden = NO;
+//        HGBarBut *left = [HGBarBut initWithColor:nil andSelColor:nil andTColor:[UIColor whiteColor] andFont:[UIFont systemFontOfSize:10]];
+        UIButton *left = [UIButton buttonWithType:UIButtonTypeCustom];
+        [left setImage:[UIImage imageNamed:@"return_normal"] forState:UIControlStateNormal];
+        [left setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        left.frame = CGRectMake(0, 0, 50, HGNavgationBarH);
+        [left addTarget:self action:@selector(leftButClick:) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem *letfBut = [[UIBarButtonItem alloc]initWithCustomView:left];
+        viewController.navigationItem.leftBarButtonItem = letfBut;
         
     }
     
@@ -140,18 +149,11 @@
 }
 -(void)leftButClick:(UIButton *)but
 {
-    
-    //    if (!but.highlighted) {
-    //        but.backgroundColor = HGColor(205,0,36);
-    //
-    //    }else
-    //    {
-    //        but.backgroundColor = HGColor(190, 31, 25);
-    //
-    //    }
-//    CurrViewController *curr = [[CurrViewController alloc]init];
-//    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:curr];
-//    [self presentViewController:nav animated:YES completion:nil];
+    if (self.topViewController.presentingViewController) {
+        [self.topViewController dismissViewControllerAnimated:YES completion:nil];
+    } else {
+        [self.topViewController.navigationController popViewControllerAnimated:YES];
+    }
 }
 -(void)rightButClick
 {

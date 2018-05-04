@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface HGSourceViewController : UIViewController
+#import "HGBaseController.h"
+@interface HGSourceViewController : HGBaseController
 
 @end

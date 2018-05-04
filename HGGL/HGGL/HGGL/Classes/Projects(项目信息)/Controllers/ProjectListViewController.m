@@ -17,6 +17,7 @@
 @property (nonatomic,strong) ProjectTime *header;
 @property (nonatomic,weak) CurrImageView *curr;
 @property (nonatomic,weak) HeaderView *top;
+@property (nonatomic,strong) ProjectListParama *parama;
 @end
 
 @implementation ProjectListViewController
@@ -25,10 +26,10 @@
     if (_header == nil) {
         _header = [[ProjectTime alloc]init];
         __weak typeof(self) weakSelf = self;
-        _header.popBlock = ^(NSString *start,NSString *end)
+        _header.parama = self.parama;
+        _header.popBlock = ^(ProjectListParama *parama)
         {
-            weakSelf.top.parama.project_start = start;
-            weakSelf.top.parama.project_end = end;
+            weakSelf.parama = parama;
             if (weakSelf.top.clickBut) {
                 weakSelf.top.clickBut(weakSelf.top.parama);
             }
@@ -40,6 +41,7 @@
 {
     if (_table == nil) {
         _table = [[ProjectInfoTableViewController alloc]init];
+        _table.parama = self.parama;
         __weak typeof(self)weakSelf = self;
         _table.projectListBlock = ^(id vc)
         {
@@ -51,27 +53,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navigationItem.title = @"项目信息";
-    
-    [self setTableView];
+    self.navigationController.navigationBarHidden = NO;
+    self.title = @"项目信息";
+    self.parama = [[ProjectListParama alloc]init];
+    self.parama.str = @"";
+    self.parama.project_end = @"";
+    self.parama.project_type = @"";
+    self.parama.project_start = @"";
+    self.parama.project_status = @"";
+    self.parama.page = @"1";
+    self.parama.pageSize = @"10";
     [self setHeader];
-    [self setupLeftNavItem];
+    [self setTableView];
+//    [self setupLeftNavItem];
 }
-//设置NavItemBtn
--(void)setupLeftNavItem{
-    UIButton *but = [UIButton buttonWithType:UIButtonTypeCustom];
-    [but sizeToFit];
-    but.width = 20;
-    [but setImage:[UIImage imageNamed:@"return_normal"] forState:UIControlStateNormal];
-    [but addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *letfBut = [[UIBarButtonItem alloc]initWithCustomView:but];
-    self.navigationItem.leftBarButtonItem = letfBut;
-}
-//返回前一页
--(void)back
-{
-    [self.navigationController popViewControllerAnimated:YES];
-}
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -81,24 +78,25 @@
 {
     HeaderView *header = [[HeaderView alloc]init];
     self.top = header;
-    header.frame = CGRectMake(0, 64, HGScreenWidth, 70);
+    header.parama = self.parama;
+    header.frame = CGRectMake(0, HGHeaderH, HGScreenWidth, 70);
     __weak typeof(self)weakSelf = self;
     header.timeBlock = ^(BOOL isSelected){
         if (isSelected) {
-            self.header.frame = CGRectMake(0, 134, HGScreenWidth, 50);
-            self.curr.frame = CGRectMake(0, 120+64, HGScreenWidth, HGScreenHeight-70-64);
-            [self.view addSubview:self.header];
+            weakSelf.header.frame = CGRectMake(0,weakSelf.top.maxY , HGScreenWidth, 40);
+            weakSelf.curr.frame = CGRectMake(0, weakSelf.header.maxY, HGScreenWidth, HGScreenHeight-weakSelf.header.maxY);
+            [weakSelf.view addSubview:weakSelf.header];
         }else
         {
             [self.header removeFromSuperview];
-            self.curr.frame = CGRectMake(0, 70+64, HGScreenWidth, HGScreenHeight-70-64);
+            self.curr.frame = CGRectMake(0, weakSelf.top.maxY, HGScreenWidth, HGScreenHeight-weakSelf.top.maxY);
         }
         
     };
     header.clickBut = ^(ProjectListParama *parama)
     {
-        weakSelf.table.parama = parama;
-        [weakSelf.table postWithParama:parama];
+        weakSelf.parama = parama;
+        [weakSelf.table refresh];
     };
     header.backgroundColor = HGColor(244, 244, 244,1);
     [self.view addSubview:header];
@@ -106,7 +104,7 @@
 }
 -(void)setTableView
 {
-    CurrImageView *table = [CurrImageView showInRect:CGRectMake(0, 70+64, HGScreenWidth, HGScreenHeight-70-64)];
+    CurrImageView *table = [CurrImageView showInRect:CGRectMake(0, self.top.maxY, HGScreenWidth, HGScreenHeight-self.top.maxY)];
     [self.view addSubview:table];
     _curr = table;
     table.contentView = self.table.tableView;

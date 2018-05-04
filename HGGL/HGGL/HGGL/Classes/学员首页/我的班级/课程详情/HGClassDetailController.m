@@ -23,6 +23,7 @@
     // Do any additional setup after loading the view.
     self.name = @"课程详情";
     self.rightBtn.hidden = YES;
+    self.navigationController.navigationBarHidden = YES;
     [self addTableview];
     [SVProgressHUD showWithStatus:@"加载中..."];
     NSString *url = [HGURL stringByAppendingString:@"Course/getCourseInfo.do"];

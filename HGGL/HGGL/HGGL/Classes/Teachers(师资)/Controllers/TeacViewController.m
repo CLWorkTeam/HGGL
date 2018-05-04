@@ -77,13 +77,13 @@
 {
     TeachToolBar *toolBar = [[TeachToolBar alloc]init];
     toolBar.arr = [NSArray arrayWithObjects:@"基本信息",@"课程信息",@"授课记录", nil];
-    toolBar.frame = CGRectMake(0, 64, self.view.bounds.size.width, 43);
+    toolBar.frame = CGRectMake(0, HGHeaderH, self.view.bounds.size.width, 43);
     self.toolBar = toolBar;
     [self.view addSubview:toolBar];
 }
 -(void)setBottom
 {
-    CurrImageView *bottom = [CurrImageView showInRect:CGRectMake(0, 107, HGScreenWidth, HGScreenHeight - 107)];
+    CurrImageView *bottom = [CurrImageView showInRect:CGRectMake(0, HGHeaderH+self.toolBar.height, HGScreenWidth, HGScreenHeight - HGHeaderH-self.toolBar.height)];
     
     [self.view addSubview:bottom];
     bottom.contentView = self.tcv.collectionView;

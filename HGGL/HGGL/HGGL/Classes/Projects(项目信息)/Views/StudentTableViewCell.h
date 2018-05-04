@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-@class MenteeList;
+@class HGMenteeModel;
 @interface StudentTableViewCell : UITableViewCell
-@property (nonatomic,strong) MenteeList *men;
+@property (nonatomic,strong) HGMenteeModel *men;
 +(instancetype)cellWithTabView:(UITableView *)view;
 @end

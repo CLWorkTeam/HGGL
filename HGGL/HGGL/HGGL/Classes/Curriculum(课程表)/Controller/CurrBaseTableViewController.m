@@ -33,6 +33,7 @@
     [super viewDidLoad];
     self.navigationItem.title = @"课程详情";
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+//    self.navigationController.navigationBarHidden = NO;
     [self getCourseInfo];
 //    CurrFrame *CF = [[CurrFrame alloc]init];
 //    CF.course_classroom = self.course_classroom;

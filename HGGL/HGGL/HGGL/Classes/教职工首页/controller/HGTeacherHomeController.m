@@ -15,7 +15,8 @@
 #import "HGMyDataViewController.h"
 #import "HGSchoolFCController.h"
 #import "HGPersonalController.h"
-
+#import "HGSourceViewController.h"
+#import "ProjectListViewController.h"
 @interface HGTeacherHomeController ()
 
 @property (nonatomic,strong) NSArray *menuAry;
@@ -30,7 +31,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navigationController.navigationBarHidden = YES;
+    
     self.view.backgroundColor = [UIColor whiteColor];
     
     self.menuAry=@[@"行政办公",@"项目计划",@"项目信息",@"信息共享",@"科研信息",@"师资信息",@"学员信息",@"每周菜谱",@"校园风采"];
@@ -87,7 +88,12 @@
 
     [self addMenuBtn];
 }
-
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    self.navigationController.navigationBarHidden = YES;
+}
 //点击个人中心
 - (void)clickPersion{
     
@@ -150,6 +156,25 @@
     }else if ([title isEqualToString:@"校园风采"]){
         HGSchoolFCController *vc =[[HGSchoolFCController alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
+    }else if ([title isEqualToString:@"信息共享"])
+    {
+        HGSourceViewController *source = [[HGSourceViewController alloc]init];
+        [self.navigationController pushViewController:source animated:YES];
+        
+    }else if ([title isEqualToString:@"项目信息"])
+    {
+        ProjectListViewController *project = [[ProjectListViewController alloc]init];
+        [self.navigationController pushViewController:project animated:YES];
+        
+    }else if ([title isEqualToString:@"科研信息"])
+    {
+        
+    }else if ([title isEqualToString:@"师资信息"])
+    {
+        
+    }else if ([title isEqualToString:@"学员信息"])
+    {
+        
     }
 
 }
