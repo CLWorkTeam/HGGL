@@ -27,10 +27,11 @@
             success(responseObject);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [SVProgressHUD showErrorWithStatus:@"请求失败，稍后重试"];
         if (failure) {
             failure(error);
         }
-        [SVProgressHUD showErrorWithStatus:@"请求失败，稍后重试"];
+        
     }];
     
 }

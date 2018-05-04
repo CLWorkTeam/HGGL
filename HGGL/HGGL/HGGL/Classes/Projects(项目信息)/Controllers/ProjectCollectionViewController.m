@@ -33,7 +33,7 @@
             }
         };
         _base.project_id = self.project_id;
-        _base.PL = self.PL;
+//        _base.PL = self.PL;
     }
     return _base;
 }
@@ -49,6 +49,12 @@
 {
     if (_pc == nil) {
         _pc = [[PCourseTableViewController alloc]init];
+        __weak typeof (self)weakSelf = self;
+        _pc.jumpVCBlock = ^(id vc) {
+            if (weakSelf. VCBlock) {
+                weakSelf .VCBlock(vc);
+            }
+        };
         _pc.project_id = self.project_id;
     }
     return _pc;
@@ -67,7 +73,7 @@ static NSString * const reuseIdentifier1 = @"header";
 {
     //设置流水布局
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
-    layout.itemSize = CGSizeMake(HGScreenWidth, HGScreenHeight-64-43);
+    layout.itemSize = CGSizeMake(HGScreenWidth, HGScreenHeight-HGHeaderH-43);
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     layout.minimumLineSpacing = 0;
     

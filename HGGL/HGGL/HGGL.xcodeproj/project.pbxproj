@@ -383,6 +383,10 @@
 		CEAD1B5B207F465A008F1696 /* HisTime.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAD1B51207F4658008F1696 /* HisTime.m */; };
 		CEAD1B5C207F465A008F1696 /* RecTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAD1B53207F4659008F1696 /* RecTableViewCell.m */; };
 		CEAD1B5D207F465A008F1696 /* RecTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAD1B57207F465A008F1696 /* RecTopView.m */; };
+		CEF2DB2F209B0FC900FAAE72 /* HGProjectListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF2DB2E209B0FC900FAAE72 /* HGProjectListModel.m */; };
+		CEF2DB32209B219F00FAAE72 /* HGProjectBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF2DB31209B219F00FAAE72 /* HGProjectBaseModel.m */; };
+		CEF2DB35209B220E00FAAE72 /* HGPBRemarkModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF2DB34209B220E00FAAE72 /* HGPBRemarkModel.m */; };
+		CEF2DB38209B2F4900FAAE72 /* HGMenteeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF2DB37209B2F4900FAAE72 /* HGMenteeModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1073,6 +1077,14 @@
 		CEAD1B56207F4659008F1696 /* HistoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryTableViewCell.h; sourceTree = "<group>"; };
 		CEAD1B57207F465A008F1696 /* RecTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecTopView.m; sourceTree = "<group>"; };
 		CEAD1B58207F465A008F1696 /* HistroyTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistroyTopView.h; sourceTree = "<group>"; };
+		CEF2DB2D209B0FC900FAAE72 /* HGProjectListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGProjectListModel.h; sourceTree = "<group>"; };
+		CEF2DB2E209B0FC900FAAE72 /* HGProjectListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGProjectListModel.m; sourceTree = "<group>"; };
+		CEF2DB30209B219F00FAAE72 /* HGProjectBaseModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGProjectBaseModel.h; sourceTree = "<group>"; };
+		CEF2DB31209B219F00FAAE72 /* HGProjectBaseModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGProjectBaseModel.m; sourceTree = "<group>"; };
+		CEF2DB33209B220D00FAAE72 /* HGPBRemarkModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGPBRemarkModel.h; sourceTree = "<group>"; };
+		CEF2DB34209B220E00FAAE72 /* HGPBRemarkModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGPBRemarkModel.m; sourceTree = "<group>"; };
+		CEF2DB36209B2F4900FAAE72 /* HGMenteeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGMenteeModel.h; sourceTree = "<group>"; };
+		CEF2DB37209B2F4900FAAE72 /* HGMenteeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGMenteeModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2502,6 +2514,12 @@
 				CEAD1A41207DE59C008F1696 /* ProjectList.m */,
 				CEAD1A40207DE59C008F1696 /* ProjectListParama.h */,
 				CEAD1A47207DE59D008F1696 /* ProjectListParama.m */,
+				CEF2DB2D209B0FC900FAAE72 /* HGProjectListModel.h */,
+				CEF2DB2E209B0FC900FAAE72 /* HGProjectListModel.m */,
+				CEF2DB30209B219F00FAAE72 /* HGProjectBaseModel.h */,
+				CEF2DB31209B219F00FAAE72 /* HGProjectBaseModel.m */,
+				CEF2DB33209B220D00FAAE72 /* HGPBRemarkModel.h */,
+				CEF2DB34209B220E00FAAE72 /* HGPBRemarkModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -2546,6 +2564,8 @@
 				CEAD1A8A207DF34C008F1696 /* MenteeParama.m */,
 				CEAD1A85207DF34B008F1696 /* MenteeProject.h */,
 				CEAD1A8C207DF34C008F1696 /* MenteeProject.m */,
+				CEF2DB36209B2F4900FAAE72 /* HGMenteeModel.h */,
+				CEF2DB37209B2F4900FAAE72 /* HGMenteeModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -2580,12 +2600,12 @@
 		CEAD1AA4207DF418008F1696 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				CEAD1AA5207DF418008F1696 /* PersonInfoTableViewController.m */,
-				CEAD1AA6207DF418008F1696 /* MoreTableViewController.h */,
+				CEAD1AAA207DF418008F1696 /* EditViewController.h */,
 				CEAD1AA7207DF418008F1696 /* EditViewController.m */,
+				CEAD1AA6207DF418008F1696 /* MoreTableViewController.h */,
 				CEAD1AA8207DF418008F1696 /* MoreTableViewController.m */,
 				CEAD1AA9207DF418008F1696 /* PersonInfoTableViewController.h */,
-				CEAD1AAA207DF418008F1696 /* EditViewController.h */,
+				CEAD1AA5207DF418008F1696 /* PersonInfoTableViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -3135,6 +3155,7 @@
 				CEAD19AD207C9DA1008F1696 /* ClassShowTableViewCell.m in Sources */,
 				AD5F5F2C208F05AF00F68471 /* HGContactModel.m in Sources */,
 				CEAD1A8E207DF34C008F1696 /* MenteeParama.m in Sources */,
+				CEF2DB38209B2F4900FAAE72 /* HGMenteeModel.m in Sources */,
 				ADF6FCAC20989CD7005E27E6 /* HGMenuFoodModel.m in Sources */,
 				CEAD1B2D207F4639008F1696 /* TaskTableViewController.m in Sources */,
 				CEAD1A67207DE5AD008F1696 /* AuditHeaderVIew.m in Sources */,
@@ -3184,6 +3205,7 @@
 				CEAD1A04207DE01A008F1696 /* CSTableViewCell.m in Sources */,
 				CEAD19FB207DDF1C008F1696 /* TeacIntroInfo.m in Sources */,
 				CEAD1A6C207DE5AD008F1696 /* PStudentTableViewCell.m in Sources */,
+				CEF2DB32209B219F00FAAE72 /* HGProjectBaseModel.m in Sources */,
 				CEAD19E3207DDE9A008F1696 /* CourseTableViewCell.m in Sources */,
 				CEAD1A3E207DE4DF008F1696 /* ConformViewController.m in Sources */,
 				CE9133182089D22200780113 /* HGRSHeader.m in Sources */,
@@ -3205,6 +3227,7 @@
 				CE864455206FA992002FE9E7 /* HGCPWViewController.m in Sources */,
 				CE1E1F58208DBE2A0098B1E1 /* HGOrderModel.m in Sources */,
 				CEAD1B48207F464F008F1696 /* History.m in Sources */,
+				CEF2DB35209B220E00FAAE72 /* HGPBRemarkModel.m in Sources */,
 				CEAD1B18207DFB5F008F1696 /* ImageLeftBut.m in Sources */,
 				CEAD1A38207DE4DF008F1696 /* ProjectInfoViewController.m in Sources */,
 				CEAD1A71207DEB33008F1696 /* HGWebViewController.m in Sources */,
@@ -3230,6 +3253,7 @@
 				CEAD1B2F207F4639008F1696 /* RecTableViewController.m in Sources */,
 				CEAD1B4E207F464F008F1696 /* ClassRoom.m in Sources */,
 				CE4CAD9F208847DC001F711F /* HGCRModel.m in Sources */,
+				CEF2DB2F209B0FC900FAAE72 /* HGProjectListModel.m in Sources */,
 				AD6944B020904E4600B06531 /* HGTeacherMyClassCell.m in Sources */,
 				CEAD1B0D207DF709008F1696 /* PMissionTableViewCell.m in Sources */,
 				CEAD19A8207C9DA1008F1696 /* ClassNumCollectionViewCell.m in Sources */,

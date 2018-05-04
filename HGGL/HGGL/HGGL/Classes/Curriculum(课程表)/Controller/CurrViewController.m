@@ -94,11 +94,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = HGColor(231, 231, 231,1);
-    //NSLog(@"%@",[TimerTransform AllDayOfThisWeek:@"2015.6.1"]);
-    //[self setTitle];
-    UIColor *color = [UIColor whiteColor];
-    NSDictionary * dict=[NSDictionary dictionaryWithObject:color forKey:NSForegroundColorAttributeName];
-    self.navigationController. navigationBar.titleTextAttributes = dict;
+    self.navigationController.navigationBarHidden = NO;
     
     [self setTitle];
     [self setCurrView];

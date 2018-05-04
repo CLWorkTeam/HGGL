@@ -11,5 +11,6 @@
 @interface ProjectInfoTableViewController : UITableViewController
 @property (nonatomic,copy) void (^projectListBlock) (id vc);
 @property (nonatomic,strong) ProjectListParama *parama;
--(void)postWithParama:(ProjectListParama *)parama;
+//-(void)postWithParama:(ProjectListParama *)parama;
+-(void)refresh;
 @end

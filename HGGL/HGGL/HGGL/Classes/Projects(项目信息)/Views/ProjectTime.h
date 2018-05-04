@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ProjectListParama.h"
 @interface ProjectTime : UIView
-@property (nonatomic,copy) void (^popBlock)(NSString *start,NSString *end);
+@property (nonatomic,copy) void (^popBlock)(ProjectListParama *parama);
+@property (nonatomic,strong) ProjectListParama *parama;
 @property (nonatomic,copy) void (^cancleBlock)();
 @end

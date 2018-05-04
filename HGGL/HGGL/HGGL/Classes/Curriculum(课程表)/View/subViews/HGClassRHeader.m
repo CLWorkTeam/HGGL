@@ -169,14 +169,18 @@
         
     }];
     
-    
 }
+
 -(void)showTimeView:(BOOL)isStart
 {
     HcdDateTimePickerView *dateTimePickerView = [[HcdDateTimePickerView alloc] initWithDatePickerMode:DatePickerDateMode defaultDateTime:[[NSDate alloc]initWithTimeIntervalSinceNow:0]];
     dateTimePickerView.clickedOkBtn = ^(NSString * datetimeStr){
+        NSDateFormatter *fomatter = [[NSDateFormatter alloc]init];
+        [fomatter setDateFormat:@"yyyy-MM-dd"];
+        NSDate *date = [fomatter dateFromString:datetimeStr];
+        datetimeStr = [fomatter stringFromDate:date];
         if (isStart) {
-//            NSString *date = [self.formatter stringFromDate:self.datePicker.date];
+            
             UIButton *but = (UIButton *)self.buttonArray[1];
             [but setTitle:datetimeStr forState:UIControlStateNormal];
             self.parama.startTime = datetimeStr;

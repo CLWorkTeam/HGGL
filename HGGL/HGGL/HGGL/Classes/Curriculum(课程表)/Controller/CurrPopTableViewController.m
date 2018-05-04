@@ -110,12 +110,12 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ProjectInfoViewController *vc = [[ProjectInfoViewController alloc]init];
-    vc.PL = [self.array objectAtIndex:indexPath.row];
-    vc.project_id = vc.PL.project_id;
-    if (_currPPopBlock) {
-        _currPPopBlock(vc);
-    }
+//    ProjectInfoViewController *vc = [[ProjectInfoViewController alloc]init];
+//    vc.PL = [self.array objectAtIndex:indexPath.row];
+//    vc.project_id = vc.PL.project_id;
+//    if (_currPPopBlock) {
+//        _currPPopBlock(vc);
+//    }
     
 }
 /*

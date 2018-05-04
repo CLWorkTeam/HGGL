@@ -9,6 +9,7 @@
 #import "StudentTableViewController.h"
 #import "HGHttpTool.h"
 #import "MenteeList.h"
+#import "HGMenteeModel.h"
 ////#import "MBProgressHUD+Extend.h"
 #import "StudentTableViewCell.h"
 #import "TextFrame.h"
@@ -30,10 +31,15 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSString *url = [HGURL stringByAppendingString:@"Mentee/getMenteeList.do"];
+    UIView *whiteLine = [[UIView alloc]init];
+    whiteLine.backgroundColor = [UIColor whiteColor];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    whiteLine.height = 20;
+    self.tableView.tableHeaderView = whiteLine;
+    NSString *url = [HGURL stringByAppendingString:@"Mentee/getMenteeList2.do"];
     //HGLog(@"///%@",self.project_id);
-    NSString *user_id = [HGUserDefaults objectForKey:HGUserID];
-    [HGHttpTool POSTWithURL:url parameters:@{@"project_id":self.project_id,@"tokenval":user_id} success:^(id responseObject) {
+//    NSString *user_id = [HGUserDefaults objectForKey:HGUserID];
+    [HGHttpTool POSTWithURL:url parameters:@{@"project_id":self.project_id,@"str":@"",@"mentee_sex":@"2",@"page":@"1",@"pageSize":@"10000"} success:^(id responseObject) {
         NSArray *array = [NSArray array];
         HGLog(@"====%@",self.project_id);
         array = [responseObject objectForKey:@"data"];
@@ -44,12 +50,13 @@
         }else{
             
             for (NSDictionary *dict in array) {
-                MenteeList *mentee = [MenteeList initWithDict:dict];
+                HGMenteeModel *mentee = [HGMenteeModel initWithDict:dict];
                 [self.arr addObject:mentee];
             }}
-        HGLog(@"student%d",self.arr.count);
+        
         [self.tableView reloadData];
     } failure:^(NSError *error) {
+        [SVProgressHUD dismiss];
         HGLog(@"%@",error);
     }];
     // Uncomment the following line to preserve selection between presentations.
@@ -97,8 +104,16 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    MenteeList *men = [self.arr   objectAtIndex:indexPath.row];
-    return men.cellH>=(2*minH+3*CellHMargin)?men.cellH:(2*minH+3*CellHMargin);
+    return 140;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+
+{
+    return .1;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    return [[UIView alloc]init];
 }
 /*
 // Override to support conditional editing of the table view.

@@ -11,6 +11,6 @@
 @interface ProjectCollectionViewController : UICollectionViewController
 @property (nonatomic,copy) NSString *project_id;
 @property (nonatomic,copy) void(^VCChange)(NSInteger tag);
-@property (nonatomic,strong) ProjectList *PL;
+//@property (nonatomic,strong) ProjectList *PL;
 @property (nonatomic,strong) void (^VCBlock)(id vc);
 @end

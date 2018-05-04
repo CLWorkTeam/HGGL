@@ -7,7 +7,7 @@
 //
 
 #import "ProInfoTableViewCell.h"
-#import "ProjectList.h"
+#import "HGProjectListModel.h"
 #import "TextFrame.h"
 //#define margin  8
 //#define heigh 25
@@ -21,19 +21,7 @@
 
 @end
 @implementation ProInfoTableViewCell
-+(instancetype)cellWithTabView:(UITableView *)view
-{
-    static NSString *ID = @"cell";
-    ProInfoTableViewCell *cell = [view dequeueReusableCellWithIdentifier:ID];
-    if (cell == nil) {
-        cell = [[ProInfoTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];
-    }else{
-        for (UIView *view in cell.contentView.subviews) {
-            [view removeFromSuperview];
-        }
-    }
-    return cell;
-}
+
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
@@ -44,63 +32,91 @@
 }
 -(void)setUpAllSubViews
 {
-}
--(void)setPro:(ProjectList *)pro
-{
-    _pro = pro;
+    
     //项目名称
     UILabel *proName = [[UILabel alloc]init];
-    proName.font = Font;
-    proName.frame = CGRectMake(CellWMargin, CellHMargin, HGScreenWidth - stateW-2*CellWMargin-CellHMargin,minH);
-    //proName.backgroundColor = [UIColor redColor];
-    proName.text = pro.project_name;
+    proName.font = [UIFont fontWithName:@"Helvetica-Bold" size:14];
+    
+    proName.textAlignment = NSTextAlignmentLeft;
+    proName.textColor = [UIColor blackColor];
     _proName = proName;
     [self.contentView addSubview:proName];
     
-    //显示项目类型
     UILabel *proType = [[UILabel alloc]init];
     proType.font = Font;
     proType.frame = CGRectMake(CellWMargin, 2*CellHMargin+minH, (HGScreenWidth-2*CellWMargin-CellHMargin)/2, minH);
-    proType.text = pro.project_type;
+    proName.textAlignment = NSTextAlignmentLeft;
+    proName.textColor = [UIColor blackColor];
     _proType = proType;
-    //proAdmin.backgroundColor = [UIColor orangeColor];
     [self.contentView addSubview:proType];
     
-    //显示项目当前状态
     UILabel *proState = [[UILabel alloc]init];
     proState.font = Font;
     proState.textAlignment = NSTextAlignmentRight;
     proState.frame = CGRectMake(HGScreenWidth-stateW-CellWMargin, CellHMargin, stateW, minH);
     _proState = proState;
-    proState.text = pro.running_status;
-    //proState.backgroundColor = [UIColor yellowColor];
     [self.contentView addSubview:proState];
     
-//    UILabel *tel = [[UILabel alloc]init];
-//    tel.font = Font;
-//    tel .frame = CGRectMake((HGScreenWidth-2*CellWMargin-CellHMargin)/2, minH+2*CellHMargin, (HGScreenWidth-2*CellWMargin-CellHMargin)/2, minH);
-//    tel.textAlignment = NSTextAlignmentRight;
-//    //tel.backgroundColor = [UIColor redColor];
-//    tel.text = pro.project_manager_tel;
-//    //tel.text = pro.project_manager_tel;
-//    [self.contentView addSubview:tel];
     
-    //显示项目运行周期
-    UILabel *proRun = [[UILabel alloc] init];
-    proRun.font = Font;
-    proRun.frame = CGRectMake(CellWMargin, minH*2+3*CellHMargin, stateW, minH);
-    proRun.text = @"运行周期";
-    [self.contentView addSubview:proRun];
     UILabel *proDate = [[UILabel alloc]init];
     proDate.font = Font;
     proDate.frame = CGRectMake(CellWMargin+stateW+CellHMargin,minH*2+3*CellHMargin, HGScreenWidth-2*CellWMargin-CellHMargin-stateW, minH );
     _proDate = proDate;
-    
-    NSString *str = [NSString stringWithFormat:@"%@-%@",pro.project_start,pro.project_end];
     proDate.textAlignment = NSTextAlignmentRight;
-    proDate.text = str;
-    //proDate.backgroundColor = [UIColor greenColor];
     [self.contentView addSubview:proDate];
     
+}
+-(void)setPro:(HGProjectListModel *)pro
+{
+    _pro = pro;
+    //项目名称
+    self.proName.text = pro.project_name;
+    //显示项目当前状态
+    self.proState.text = pro.running_status;
+    
+    //显示项目类型
+    
+    self.proType.text = [NSString stringWithFormat:@"%@ %@",pro.project_contact,pro.contact_phone];
+    
+    
+
+    
+    //显示项目运行周期
+    
+    NSString *str = [NSString stringWithFormat:@"%@-%@",pro.project_start,pro.project_end];
+    self.proDate.text = str;
+}
+-(void)layoutSubviews
+{
+    [super layoutSubviews];
+    
+    CGFloat H = 30;
+    
+    CGFloat Wmar = 10;
+    
+    CGFloat Wmargin = 5;
+    
+    [self.proState sizeToFit];
+    
+    self.proState.frame = CGRectMake(self.width-Wmar-self.proState.width, 0, self.proState.width, H);
+    
+    self.proName.frame = CGRectMake(Wmar, 0 , self.width-2*Wmar-Wmargin-self.proState.width,H);
+    
+    [self.proDate sizeToFit];
+    
+    self.proDate.frame = CGRectMake(self.width-Wmar-self.proDate.width, self.proName.maxY, self.proDate.width, H);
+    
+    self.proType.frame = CGRectMake(Wmar, self.proDate.y, self.width-2*Wmar-Wmargin-self.proDate.width, H);
+    
+}
++(instancetype)cellWithTabView:(UITableView *)view
+{
+    static NSString *ID = @"ProInfoTableViewCell";
+    ProInfoTableViewCell *cell = [view dequeueReusableCellWithIdentifier:ID];
+    if (cell == nil) {
+        cell = [[ProInfoTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];
+    }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    return cell;
 }
 @end

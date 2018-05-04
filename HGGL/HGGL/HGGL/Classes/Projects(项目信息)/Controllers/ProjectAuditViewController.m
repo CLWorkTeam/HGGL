@@ -28,14 +28,14 @@
     if (_header == nil) {
         _header = [[ProjectTime alloc]init];
         __weak typeof(self) weakSelf = self;
-        _header.popBlock = ^(NSString *start,NSString *end)
-        {
-            weakSelf.top.parama.project_start = start;
-            weakSelf.top.parama.project_end = end;
-            if (weakSelf.top.clickBut) {
-                weakSelf.top.clickBut(weakSelf.top.parama);
-            }
-        };
+//        _header.popBlock = ^(NSString *start,NSString *end)
+//        {
+//            weakSelf.top.parama.project_start = start;
+//            weakSelf.top.parama.project_end = end;
+//            if (weakSelf.top.clickBut) {
+//                weakSelf.top.clickBut(weakSelf.top.parama);
+//            }
+//        };
     }
     return _header;
 }

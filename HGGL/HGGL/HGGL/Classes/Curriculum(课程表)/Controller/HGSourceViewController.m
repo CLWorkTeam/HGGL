@@ -17,9 +17,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+    self.navigationController.navigationBarHidden = NO;
     self.title = @"信息共享";
-    
-
     [self setContent];
     
 }

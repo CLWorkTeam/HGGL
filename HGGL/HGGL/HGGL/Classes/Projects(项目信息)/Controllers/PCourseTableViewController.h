@@ -11,5 +11,5 @@
 @interface PCourseTableViewController : UITableViewController
 @property (nonatomic,copy) NSString *project_id;
 -(void)showError;
-
+@property (nonatomic,copy) void(^jumpVCBlock)(id vc);
 @end

@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-@class ProjectList;
+@class HGProjectListModel;
 @interface ProInfoTableViewCell : UITableViewCell
 +(instancetype)cellWithTabView:(UITableView *)view;
-@property (nonatomic,strong) ProjectList *pro;
+@property (nonatomic,strong) HGProjectListModel *pro;
 @end

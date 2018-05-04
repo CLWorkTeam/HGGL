@@ -11,11 +11,11 @@
 #import "UIView+Frame.h"
 #import "CurrImageView.h"
 #import "ProjectCollectionViewController.h"
-#import "CollHeaderView.h"
+#import "TeachToolBar.h"
 #import "ProjectList.h"
 @interface ProjectInfoViewController ()
 @property (nonatomic,strong)ProjectCollectionViewController *tcv;
-@property (nonatomic,weak)  CollHeaderView *toolBar;
+@property (nonatomic,weak)  TeachToolBar *toolBar;
 @end
 
 @implementation ProjectInfoViewController
@@ -29,7 +29,7 @@
             [weakself.navigationController pushViewController:vc animated:YES];
         };
         _tcv.project_id = self.project_id;
-        _tcv.PL = self.PL;
+//        _tcv.PL = self.PL;
     }
     return _tcv;
 }
@@ -75,14 +75,26 @@
 }
 -(void)setToolBar
 {
-    CollHeaderView *toolBar = [[CollHeaderView alloc]init];
-    toolBar.frame = CGRectMake(0, 64, self.view.bounds.size.width, 43);
+    UIView *content = [[UIView alloc]init];
+
+    
+    
+    TeachToolBar *toolBar = [[TeachToolBar alloc]init];
+    toolBar.arr = [NSArray arrayWithObjects:@"基本信息",@"学员信息",@"课程信息", nil];
+    toolBar.frame = CGRectMake(0, HGHeaderH, self.view.bounds.size.width, 43);
     self.toolBar = toolBar;
     [self.view addSubview:toolBar];
+    
+    UIView *grayLine = [[UIView alloc]init];
+    grayLine.backgroundColor = HGGrayColor;
+    [content addSubview:grayLine];
+    grayLine.frame = CGRectMake(0, self.toolBar.maxY, self.view.width, 10);
+    [self.view addSubview:grayLine];
+    
 }
 -(void)setBottom
 {
-    CurrImageView *bottom = [CurrImageView showInRect:CGRectMake(0, 107, HGScreenWidth, HGScreenHeight - 107)];
+    CurrImageView *bottom = [CurrImageView showInRect:CGRectMake(0, HGHeaderH+self.toolBar.height+10, HGScreenWidth, HGScreenHeight - (HGHeaderH+self.toolBar.height+10))];
     
     [self.view addSubview:bottom];
     bottom.contentView = self.tcv.collectionView;
