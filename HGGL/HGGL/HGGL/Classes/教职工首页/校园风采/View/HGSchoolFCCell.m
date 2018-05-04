@@ -11,8 +11,9 @@
 @interface HGSchoolFCCell ()
 
 @property (nonatomic,strong) UILabel *label;
-@property (nonatomic,strong) UILabel *descLab;
-@property (nonatomic,strong) UILabel *timeLab;
+@property (nonatomic,strong) UIImageView *imageV;
+//@property (nonatomic,strong) UILabel *descLab;
+//@property (nonatomic,strong) UILabel *timeLab;
 
 
 @end
@@ -37,11 +38,17 @@
 }
 - (void)setupSubviews{
     
-    UIView *backV = [[UIView alloc]initWithFrame:CGRectMake(WIDTH_PT(10), HEIGHT_PT(10), HGScreenWidth-WIDTH_PT(20), HEIGHT_PT(80))];
+    UIView *backV = [[UIView alloc]initWithFrame:CGRectMake(WIDTH_PT(10), HEIGHT_PT(10), HGScreenWidth-WIDTH_PT(20), HEIGHT_PT(150))];
     backV.backgroundColor = HGGrayGroundColor;
     backV.layer.masksToBounds = YES;
     backV.layer.cornerRadius = 5;
     [self.contentView addSubview:backV];
+    
+    UIImageView *imageV = [[UIImageView alloc]initWithFrame:CGRectMake(WIDTH_PT(5), HEIGHT_PT(5), backV.width-WIDTH_PT(10), HEIGHT_PT(115))];
+    self.imageV = imageV;
+    imageV.contentMode = UIViewContentModeScaleToFill;
+    [backV addSubview:imageV];
+    
     
     UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(WIDTH_PT(10), HEIGHT_PT(15), HGScreenWidth-WIDTH_PT(40), HEIGHT_PT(15))];
     label.textColor = [UIColor colorWithHexString:@"#333333"];
@@ -49,31 +56,38 @@
     self.label = label;
     [backV addSubview:label];
 
-    UILabel *label1 = [[UILabel alloc]initWithFrame:CGRectMake(WIDTH_PT(10), HEIGHT_PT(20), HGScreenWidth-WIDTH_PT(40), HEIGHT_PT(15))];
-    label1.textColor = [UIColor grayColor];
-    label1.font = [UIFont systemFontOfSize:FONT_PT(14)];
-    self.descLab = label1;
-    [backV addSubview:label1];
-    
-    UILabel *label2 = [[UILabel alloc]initWithFrame:CGRectMake(WIDTH_PT(10), HEIGHT_PT(20), HGScreenWidth-WIDTH_PT(40), HEIGHT_PT(15))];
-    label2.textColor = [UIColor grayColor];
-    label2.font = [UIFont systemFontOfSize:FONT_PT(12)];
-    label2.textAlignment = NSTextAlignmentRight;
-    self.timeLab = label2;
-    [backV addSubview:label2];
+//    UILabel *label1 = [[UILabel alloc]initWithFrame:CGRectMake(WIDTH_PT(10), HEIGHT_PT(20), HGScreenWidth-WIDTH_PT(40), HEIGHT_PT(15))];
+//    label1.textColor = [UIColor grayColor];
+//    label1.font = [UIFont systemFontOfSize:FONT_PT(14)];
+//    self.descLab = label1;
+//    [backV addSubview:label1];
+//
+//    UILabel *label2 = [[UILabel alloc]initWithFrame:CGRectMake(WIDTH_PT(10), HEIGHT_PT(20), HGScreenWidth-WIDTH_PT(40), HEIGHT_PT(15))];
+//    label2.textColor = [UIColor grayColor];
+//    label2.font = [UIFont systemFontOfSize:FONT_PT(12)];
+//    label2.textAlignment = NSTextAlignmentRight;
+//    self.timeLab = label2;
+//    [backV addSubview:label2];
 }
 
 -(void)setModel:(HGSchoolFCModel *)model{
     _model = model;
+    [self.imageV sd_setImageWithURL:[NSURL URLWithString:model.picUrl]  completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+        if (error) {
+            self.imageV.image = [UIImage imageNamed:@"icon_big_default"];
+        }
+    }];
+
     self.label.text = model.noticeTitle;
     [self.label sizeToFit];
-    self.descLab.text = model.publisher;
-    [self.descLab sizeToFit];
-    self.descLab.maxY = HEIGHT_PT(80) - HEIGHT_PT(10);
-    self.timeLab.text = model.releaseTimeStr;
-    [self.timeLab sizeToFit];
-    self.timeLab.maxX = HGScreenWidth - WIDTH_PT(40);
-    self.timeLab.y = self.descLab.y;
+    self.label.y = self.imageV.maxY+HEIGHT_PT(5);
+//    self.descLab.text = model.publisher;
+//    [self.descLab sizeToFit];
+//    self.descLab.maxY = HEIGHT_PT(80) - HEIGHT_PT(10);
+//    self.timeLab.text = model.releaseTimeStr;
+//    [self.timeLab sizeToFit];
+//    self.timeLab.maxX = HGScreenWidth - WIDTH_PT(40);
+//    self.timeLab.y = self.descLab.y;
 }
 
 

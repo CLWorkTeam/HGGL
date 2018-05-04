@@ -34,7 +34,7 @@
     UITableView *tableV = [[UITableView alloc]initWithFrame:CGRectMake(0,self.bar.maxY, HGScreenWidth, HGScreenHeight - self.bar.maxY - HGTabbarH) style:UITableViewStylePlain];
     tableV.separatorStyle = UITableViewCellSeparatorStyleNone;
     tableV.backgroundColor = [UIColor whiteColor];
-    tableV.rowHeight = HEIGHT_PT(90);
+    tableV.rowHeight = HEIGHT_PT(160);
     tableV.delegate = self;
     tableV.dataSource = self;
     self.tableV = tableV;
@@ -58,10 +58,15 @@
         
         if ([responseObject[@"status"] isEqualToString:@"0"]) {
             self.dataAry = @[];
+            
+//            NSDictionary *dict = @{@"noticeId":@"1",@"publisher":@"1",@"releaseTimeStr":@"1",@"noticeTitle":@"test",@"picUrl":[HGURL stringByAppendingString:@"/user_base/site/180331141456027.jpg"]};
+//            HGSchoolFCModel *model = [HGSchoolFCModel mj_objectWithKeyValues:dict];
+//            self.dataAry=@[model,model];
+            
             [self.tableV reloadData];
             WeakSelf;
             HGNoDataView *nodataView = [[HGNoDataView alloc]init];
-            nodataView.label.text = @"无数据";
+            nodataView.label.text = @"无班级风采信息";
             nodataView.block = ^{
                 [weakSelf.tableV.mj_header beginRefreshing];
             };
