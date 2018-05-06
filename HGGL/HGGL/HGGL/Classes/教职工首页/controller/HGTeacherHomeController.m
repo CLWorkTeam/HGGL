@@ -67,7 +67,7 @@
     
     UIImageView *imageV =[[UIImageView alloc]initWithFrame:CGRectMake(0, backV.maxY, HGScreenWidth, HEIGHT_PT(150))];
     if (HGScreenWidth>320) {
-        imageV.height = 200;
+        imageV.height = HEIGHT_PT(200);
     }
     self.imageV = imageV;
     [self.view addSubview:imageV];
