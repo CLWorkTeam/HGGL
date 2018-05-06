@@ -106,6 +106,10 @@
     }
     
     UIImageView *imageV =[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, HGScreenWidth, HEIGHT_PT(150))];
+    if (HGScreenWidth>320) {
+        imageV.height = HEIGHT_PT(200);
+    }
+    self.imageV = imageV;
     [cell.contentView addSubview:imageV];
     
     NSString *url = [HGURL stringByAppendingString:@"Banner/getBannerInfo.do"];
@@ -493,6 +497,9 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section==0) {
+        if (HGScreenWidth>320) {
+            return HEIGHT_PT(200);
+        }
         return HEIGHT_PT(150);
     }else if (indexPath.section==1){
         if (self.secondSectionAry.count) {
