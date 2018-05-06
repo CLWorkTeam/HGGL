@@ -20,6 +20,7 @@
 #import "TeachListViewController.h"
 #import "MenteeListViewController.h"
 #import "ResearchViewController.h"
+#import "MessageListController.h"
 @interface HGTeacherHomeController ()
 
 @property (nonatomic,strong) NSArray *menuAry;
@@ -38,7 +39,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     self.menuAry=@[@"行政办公",@"项目计划",@"项目信息",@"信息共享",@"科研信息",@"师资信息",@"学员信息",@"每周菜谱",@"校园风采"];
- self.colorAry=@[@"#80be1e",@"#9d76ec",@"#cbc31e",@"#dfb1dd",@"#f2936f",@"#a91f9e",@"#7cdaa1",@"#6ccbfb",@"#25f8ca"];
+    self.colorAry=@[@"#80be1e",@"#9d76ec",@"#cbc31e",@"#dfb1dd",@"#f2936f",@"#a91f9e",@"#7cdaa1",@"#6ccbfb",@"#25f8ca"];
     
     UIView *backV = [[UIView alloc]initWithFrame:CGRectMake(0, 0, HGScreenWidth, 44+HGStautsBarH)];
     backV.backgroundColor = HGMainColor;
@@ -93,6 +94,11 @@
     }];
 
     [self addMenuBtn];
+}
+-(void)clickMessage:(UIButton *)button
+{
+    MessageListController *message = [[MessageListController alloc]init];
+    [self.navigationController pushViewController:message animated:YES];
 }
 -(void)viewWillAppear:(BOOL)animated
 {

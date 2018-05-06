@@ -7,7 +7,7 @@
 //
 
 #import "HGBaseController.h"
-
+#import "MessageListController.h"
 @interface HGBaseController ()
 
 @property (nonatomic,strong) UILabel *titleLab;
@@ -54,7 +54,7 @@
     
     UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [rightBtn setImage:[UIImage imageNamed:@"icon_message"] forState:UIControlStateNormal];
-    [rightBtn addTarget:self action:@selector(backTo) forControlEvents:UIControlEventTouchUpInside];
+    [rightBtn addTarget:self action:@selector(message) forControlEvents:UIControlEventTouchUpInside];
     rightBtn.frame = CGRectMake(HGScreenWidth - 50, HGStautsBarH, 35 , 44);
     rightBtn.imageView.contentMode = UIViewContentModeScaleAspectFit;
     self.rightBtn = rightBtn;
@@ -68,7 +68,11 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-
+-(void)message
+{
+    MessageListController *message = [[MessageListController alloc]init];
+    [self.navigationController pushViewController:message animated:YES];
+}
 
 -(void)viewWillDisappear:(BOOL)animated
 {

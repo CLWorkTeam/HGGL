@@ -83,7 +83,7 @@
     self.navigationItem.title = @"发送消息";
     [self setSubView];
 
-    [self setupLeftNavItem];
+//    [self setupLeftNavItem];
 }
 //设置NavItemBtn
 -(void)setupLeftNavItem{

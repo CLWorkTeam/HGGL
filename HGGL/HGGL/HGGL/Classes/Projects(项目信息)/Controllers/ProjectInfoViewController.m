@@ -53,7 +53,7 @@
     [super viewDidLoad];
     self.navigationItem.title = @"项目详情";
     self.view.backgroundColor = [UIColor whiteColor];
-    [self setupLeftNavItem];
+//    [self setupLeftNavItem];
     // Do any additional setup after loading the view.
     [self setToolBar];
     [self setBottom];
