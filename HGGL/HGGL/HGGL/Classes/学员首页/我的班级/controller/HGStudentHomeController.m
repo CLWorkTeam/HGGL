@@ -73,9 +73,7 @@
 {
     MessageListController *list = [[MessageListController   alloc]init];
     
-    HGNavigationController *nav = [[HGNavigationController alloc]initWithRootViewController:list];
-    
-    [self presentViewController:nav animated:YES completion:nil];
+    [self.navigationController pushViewController:list animated:YES];
 }
 - (void)addTableview{
     

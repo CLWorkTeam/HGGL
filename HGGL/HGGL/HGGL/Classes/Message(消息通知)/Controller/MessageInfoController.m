@@ -29,7 +29,7 @@
     title.font = [UIFont fontWithName:@"Helvetica-Bold" size:14];
     title.text = self.msg_name;
     CGFloat titleH = [TextFrame frameOfText:self.msg_name With:[UIFont systemFontOfSize:14] Andwidth:HGScreenWidth-2*15].height;
-    title.frame = CGRectMake(margin, 84, HGScreenWidth-2*15, titleH);
+    title.frame = CGRectMake(margin, HGHeaderH+20, HGScreenWidth-2*15, titleH);
     [self.view addSubview:title];
     UILabel *content = [HGLable lableWithAlignment:NSTextAlignmentLeft Font:14 Color:[UIColor blackColor]];
     //content.backgroundColor = [UIColor lightGrayColor];
@@ -44,23 +44,9 @@
     publisher.frame = CGRectMake(HGScreenWidth - 150-margin, CGRectGetMaxY(content.frame), 150, 40);
     [self.view addSubview:publisher];
     
-    //    UINavigationBar *bar = [[UINavigationBar alloc]initWithFrame:CGRectMake(0,0, HGScreenWidth, 64)];
-    //bar.barStyle = 0;
-    UIBarButtonItem *back = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStyleDone target:self action:@selector(clickBack)];
-    ////    [bar pushNavigationItem:self.navigationItem animated:YES];
-    //self.navigationController.navigationBar.barTintColor =HGColor(205,0,36);
-    ////    [self.view addSubview:bar];
-    self.navigationItem.leftBarButtonItem = back;
+   
 }
--(void)clickBack
-{
-    if (self.navigationController.topViewController) {
-        [self.navigationController popViewControllerAnimated:YES];
-//        MessageListController *mes = (MessageListController *)self.navigationController.topViewController;
-//        [mes setRefresh];
-    }
-    //[self dismissViewControllerAnimated:YES completion:nil];
-}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

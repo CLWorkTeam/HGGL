@@ -36,7 +36,7 @@
     [super viewDidLoad];
     
     self.navigationItem.title = @"项目详情";
-    [self setupLeftNavItem];
+//    [self setupLeftNavItem];
     HGLog(@"self.project_id = %@", self.project_id);
     NSString *str = [HGURL stringByAppendingString:@""];
     NSURL *urlStr = [NSURL URLWithString:[NSString stringWithFormat:@"%@?projectId=%@", str, self.project_id]];

@@ -29,7 +29,7 @@
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"项目管理";
-    [self setupLeftNavItem];
+//    [self setupLeftNavItem];
     [self setSubView];
 }
 //设置NavItemBtn

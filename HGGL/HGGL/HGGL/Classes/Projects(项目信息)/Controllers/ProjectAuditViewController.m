@@ -73,7 +73,7 @@
     // Do any additional setup after loading the view.
     self.title = @"项目审批";
     self.view.backgroundColor = [UIColor whiteColor];
-    [self setupLeftNavItem];
+//    [self setupLeftNavItem];
     [self setHeader];
     [self setTableView];
     

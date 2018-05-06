@@ -66,7 +66,7 @@
     UILabel *name = [HGLable lableWithAlignment:NSTextAlignmentLeft Font:HGFont Color:[UIColor blackColor]];
     name.font = [UIFont fontWithName:@"Helvetica-Bold" size:HGFont];
     name.text = mes.msg_name;
-    CGFloat nameW = HGScreenWidth-2*CellWMargin-minH/2*43/22;
+    CGFloat nameW = HGScreenWidth-2*CellWMargin-minH*43/22;
 
     
     name.frame = CGRectMake(CellWMargin, CellHMargin, nameW, minH);
@@ -74,7 +74,7 @@
     if (![mes.msg_status intValue]) {
         UIImageView *image = [[UIImageView alloc]init];
         image.image = [UIImage imageNamed:@"new"];
-        image.frame = CGRectMake(CGRectGetMaxX(name.frame), CellHMargin, minH/2*43/22, minH/2);
+        image.frame = CGRectMake(CGRectGetMaxX(name.frame), CellHMargin/2, minH*43/22, minH);
         //image.backgroundColor = [UIColor redColor];
         [self.contentView addSubview:image];
     }

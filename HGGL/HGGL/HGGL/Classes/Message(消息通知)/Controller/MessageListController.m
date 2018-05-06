@@ -44,14 +44,7 @@
     self.navigationItem.title = @"消息通知";
     UIColor *color = [UIColor whiteColor];
     
-    NSDictionary * dict=[NSDictionary dictionaryWithObject:color forKey:NSForegroundColorAttributeName];
-    self.navigationController.navigationBar.titleTextAttributes = dict;
-    UIBarButtonItem *back = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStyleDone target:self action:@selector(clickBack)];
-    
-    self.navigationItem.leftBarButtonItem = back;
-    
-    self.navigationController.navigationBar.barTintColor =HGMainColor;
-  //  self.navigationItem.title = @"消息通知";
+
     MessageParama *parama = [[MessageParama alloc]init];
     NSString *user_id = [HGUserDefaults objectForKey:HGUserID];
     parama.user_id = user_id;
@@ -154,10 +147,7 @@
     }];
 
 }
--(void)clickBack
-{
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -218,10 +208,6 @@
         if ([[responseObject objectForKey:@"status"] integerValue] == 1 ) {
             mes.msg_status = @"1";
             [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-        }else
-        {
-           [SVProgressHUD showErrorWithStatus:[responseObject objectForKey:@"message"]];
-            
         }
     } failure:^(NSError *error) {
         HGLog(@"%@",error);

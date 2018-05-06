@@ -55,7 +55,7 @@
 //    self.acc = acc;
 //    self.array = acc.baseArr;
     self.navigationItem.title = @"个人信息修改";
-    [self setupLeftNavItem];
+//    [self setupLeftNavItem];
     
     NSString *account = [HGUserDefaults stringForKey:@"account1"];
     NSString *pw = [HGUserDefaults stringForKey:@"passWord1"];
