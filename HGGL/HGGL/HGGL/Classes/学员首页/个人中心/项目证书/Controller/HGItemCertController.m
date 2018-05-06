@@ -36,7 +36,7 @@
 
 - (void)requestData:(UIButton *)sender{
     [SVProgressHUD showWithStatus:@"请求中...."];
-    [SVProgressHUD dismissWithDelay:2.0];
+    [SVProgressHUD dismissWithDelay:1.0];
 }
 
 - (void)didReceiveMemoryWarning {

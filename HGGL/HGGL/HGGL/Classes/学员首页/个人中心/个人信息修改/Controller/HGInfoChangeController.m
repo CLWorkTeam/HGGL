@@ -153,7 +153,11 @@
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     [param setObject:userID forKey:@"user_id"];
     [param setObject:self.dataDic[@"真实姓名："] forKey:@"real_name"];
-    [param setObject:self.dataDic[@"性别："] forKey:@"user_sex"];
+    if ([self.dataDic[@"性别："] isEqualToString:@"男"]) {
+        [param setObject:@"1" forKey:@"user_sex"];
+    }else{
+        [param setObject:@"0" forKey:@"user_sex"];
+    }
     [param setObject:self.dataDic[@"手机："] forKey:@"user_tel"];
     [param setObject:self.dataDic[@"邮箱："] forKey:@"user_email"];
     [param setObject:self.dataDic[@"身份证："] forKey:@"user_idCard"];

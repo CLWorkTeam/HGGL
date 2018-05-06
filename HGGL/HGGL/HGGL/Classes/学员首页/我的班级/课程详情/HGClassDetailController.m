@@ -45,10 +45,10 @@
     UITableView *tableV = [[UITableView alloc]initWithFrame:CGRectMake(0,self.bar.maxY , HGScreenWidth, HGScreenHeight - self.bar.maxY) style:UITableViewStyleGrouped];
     tableV.separatorStyle = UITableViewCellSeparatorStyleNone;
     tableV.backgroundColor = [UIColor whiteColor];
-    tableV.rowHeight = HEIGHT_PT(30);
+//    tableV.rowHeight = HEIGHT_PT(30);
     tableV.delegate = self;
     tableV.dataSource = self;
-    tableV.bounces = NO;
+//    tableV.bounces = NO;
     self.tableV = tableV;
     [self.view addSubview:tableV];
 }
@@ -65,7 +65,7 @@
 }
 
 - (UIView *)headerView{
-    UILabel *titleLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, HGScreenWidth, HEIGHT_PT(40))];
+    UILabel *titleLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, HGScreenWidth, HEIGHT_PT(60))];
     titleLab.font = [UIFont boldSystemFontOfSize:FONT_PT(16)];
     titleLab.textColor = [UIColor blackColor];
     titleLab.textAlignment = NSTextAlignmentCenter;
@@ -84,8 +84,9 @@
     for (UIView  *subview in cell.contentView.subviews) {
         [subview removeFromSuperview];
     }
-    UILabel *titleLab = [[UILabel alloc]initWithFrame:CGRectMake(WIDTH_PT(30), HEIGHT_PT(5), HGScreenWidth, HEIGHT_PT(20))];
+    UILabel *titleLab = [[UILabel alloc]initWithFrame:CGRectMake(WIDTH_PT(30), HEIGHT_PT(5), HGScreenWidth-WIDTH_PT(60), HEIGHT_PT(20))];
     titleLab.font = [UIFont systemFontOfSize:FONT_PT(16)];
+    titleLab.numberOfLines = 0;
     titleLab.textColor = [UIColor colorWithHexString:@"#333333"];
     [cell.contentView addSubview:titleLab];
     if (indexPath.section == 0) {
@@ -96,19 +97,28 @@
     }else{
         titleLab.text = self.dataDic[@"remark"];
     }
-    
+    [titleLab sizeToFit];
     return cell;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section==0) {
-        return HEIGHT_PT(30);
+//        return HEIGHT_PT(30);
+        if ([self.dataDic[@"course_info"] isNull]) {
+            return HEIGHT_PT(30);
+        }
+       return [TextFrame frameOfText:self.dataDic[@"course_info"] With:[UIFont systemFontOfSize:FONT_PT(16)] Andwidth:HGScreenWidth-WIDTH_PT(60)].height+HEIGHT_PT(10);
     }else if (indexPath.section==1){
         NSDictionary *teacherDic = self.dataDic[@"course_teacher"][indexPath.row];
         NSString *text = [NSString stringWithFormat:@"%@:%@",teacherDic[@"teacherName"],teacherDic[@"teacherInfo"]];
-        return [TextFrame frameOfText:text With:[UIFont systemFontOfSize:FONT_PT(16)] Andwidth:HGScreenWidth].height+HEIGHT_PT(10);
+        return [TextFrame frameOfText:text With:[UIFont systemFontOfSize:FONT_PT(16)] Andwidth:HGScreenWidth-WIDTH_PT(60)].height+HEIGHT_PT(10);
     }else{
-        return HEIGHT_PT(30);
+//        return HEIGHT_PT(30);
+        if ([self.dataDic[@"remark"] isNull]) {
+            return HEIGHT_PT(30);
+        }
+        return [TextFrame frameOfText:self.dataDic[@"remark"] With:[UIFont systemFontOfSize:FONT_PT(16)] Andwidth:HGScreenWidth-WIDTH_PT(60)].height+HEIGHT_PT(10);
+
     }
 }
 

@@ -31,7 +31,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"我的成绩单";
+    self.name = @"成绩单";
+    self.rightBtn.hidden = YES;
     
     UIView *contentView = [[UIView alloc]init];
     self.contentView = contentView;

@@ -15,6 +15,9 @@
 @interface HGLoginController ()
 @property (nonatomic,weak) UITextField *accountTextField;
 @property (nonatomic,weak) UITextField *pwTextField;
+@property (nonatomic,strong) anyButton *autoBtn;
+
+
 @end
 
 @implementation HGLoginController
@@ -35,7 +38,7 @@
     label.font = [UIFont systemFontOfSize:18];
     [backV addSubview:label];
 
-    UIImageView *bgImageV = [[UIImageView alloc]initWithFrame:CGRectMake(0, backV.maxY, HGScreenWidth, HGScreenHeight-HEIGHT_PT(200))];
+    UIImageView *bgImageV = [[UIImageView alloc]initWithFrame:CGRectMake(0, backV.maxY, HGScreenWidth, HGScreenHeight-HEIGHT_PT(200)-HGSafeBottom)];
     bgImageV.image = [UIImage imageNamed:@"hg_login_bg"];
     bgImageV.userInteractionEnabled = YES;
     [self.view addSubview:bgImageV];
@@ -91,6 +94,7 @@
     [autoBtn changeTitleFrame:CGRectMake(WIDTH_PT(30), 0, WIDTH_PT(170), HEIGHT_PT(21))];
     [autoBtn addTarget:self action:@selector(autoLogin:) forControlEvents:UIControlEventTouchUpInside];
     autoBtn.selected = [HGUserDefaults boolForKey:@"autoLogin"];
+    self.autoBtn = autoBtn;
     [self.view addSubview:autoBtn];
     
 }
@@ -124,6 +128,7 @@
         [HGUserDefaults setObject:dict[@"user_name"] forKey:HGUserName];
         [HGUserDefaults setObject:dict[@"user_type"] forKey:HGUserType];
         [HGUserDefaults setObject:dict[@"real_name"] forKey:HGRealName];
+        [HGUserDefaults setBool:self.autoBtn.isSelected forKey:@"autoLogin"];
         if (![dict[@"project_id"] isNull]) {
             [HGUserDefaults setObject:dict[@"project_id"] forKey:HGProjectID];
         }
@@ -145,8 +150,8 @@
 
 - (void)autoLogin:(anyButton *)sender{
     sender.selected = !sender.isSelected;
-    [HGUserDefaults setBool:sender.isSelected forKey:@"autoLogin"];
-    [HGUserDefaults synchronize];
+//    [HGUserDefaults setBool:sender.isSelected forKey:@"autoLogin"];
+//    [HGUserDefaults synchronize];
 }
 
 - (void)didReceiveMemoryWarning {
