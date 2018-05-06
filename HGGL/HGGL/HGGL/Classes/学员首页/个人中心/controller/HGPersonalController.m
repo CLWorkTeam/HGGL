@@ -93,6 +93,7 @@
     }
     if ([title isEqualToString:@"我的成绩单"]) {
         HGMyPointController *vc = [[HGMyPointController alloc]init];
+        vc.user_id =[HGUserDefaults objectForKey:HGUserID];
         [self.navigationController pushViewController:vc animated:YES];
     }
     if ([title isEqualToString:@"项目证书"]) {

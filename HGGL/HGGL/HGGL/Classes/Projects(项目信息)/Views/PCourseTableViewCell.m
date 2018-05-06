@@ -8,7 +8,8 @@
 
 #import "PCourseTableViewCell.h"
 #import "HGLable.h"
-#import "PCourse.h"
+//#import "PCourse.h"
+#import "HGPCourseModel.h"
 #import "TextFrame.h"
 //#define margin 15
 //#define labHeigh 25
@@ -48,7 +49,7 @@
     self.teacherName = teacherName;
     [self.contentView addSubview:teacherName];
 }
--(void)setPC:(PCourse *)PC
+-(void)setPC:(HGPCourseModel *)PC
 {
     _PC = PC;
     
@@ -73,7 +74,7 @@
     if (cell == nil) {
         cell = [[PCourseTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];
     }
-//    cell.selectionStyle = UITableViewCellSeparatorStyleNone;
+    cell.selectionStyle = UITableViewCellSeparatorStyleNone;
     return cell;
 }
 @end

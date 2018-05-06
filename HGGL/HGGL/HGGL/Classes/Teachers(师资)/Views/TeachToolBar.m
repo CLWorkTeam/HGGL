@@ -89,14 +89,7 @@
 -(void)clickbutWith:(NSInteger) tag
 {
     UIButton *but = [self.butArr objectAtIndex:tag];
-    _selectedBut.selected = !_selectedBut.selected;
-    but.selected = !but.selected;
-    _selectedBut = but;
-    CGFloat w = (self.bounds.size.width-10)/self.arr.count;
-    [UIView animateWithDuration:0.5 animations:^{
-        self.ima.x = but.tag*w;
-        
-    }];
+    [self clickBut:but];
 
 }
 -(void)layoutSubviews

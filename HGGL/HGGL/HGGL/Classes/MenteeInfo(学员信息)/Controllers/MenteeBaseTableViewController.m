@@ -9,15 +9,18 @@
 #import "MenteeBaseTableViewController.h"
 #import "BaseTableViewCell.h"
 #import "HGHttpTool.h"
-//#import "MBProgressHUD+Extend.h"
+#import "HGMenteeSelCell.h"
 #import "Mentee.h"
+#import "HGMenteeListModel.h"
 #import "MenteeFrame.h"
 #import "BaseHeaderView.h"
 #import "TextFrame.h"
+#import "ProjectInfoViewController.h"
 @interface MenteeBaseTableViewController ()
-@property (nonatomic,strong) MenteeFrame *MF;
+@property (nonatomic,strong) HGMenteeListModel *MF;
 @property (nonatomic,strong) NSArray *array;
 @property (nonatomic,strong) NSArray *arr;
+@property (nonatomic,copy) NSString *error;
 @end
 
 @implementation MenteeBaseTableViewController
@@ -26,7 +29,7 @@
     if (_arr == nil) {
         //        NSString *path = [[NSBundle mainBundle] pathForResource:@"TeacherPro.plist" ofType:nil];
         //        _arr = [NSArray arrayWithContentsOfFile:path];
-        _arr = [NSArray arrayWithObjects:@[@"工作单位:",@"职务:",@"学历学位:",@"政治面貌:"],@[@"民族:",@"生日:",@"年龄:",@"身份证号码",@"籍贯"],@[@"邮箱:",@"备注:"],nil];
+        _arr = [NSArray arrayWithObjects:@[@"关区:",@"部门:",@"职务:"],@[@"邮箱地址:",@"生日日期:",@"年龄:",@"证件号码:",@"民族:",@"备注"],@[@"当前所在项目:"],nil];
     }
     return _arr;
 }
@@ -35,50 +38,58 @@
     self.tableView.bounces = NO;
     //self.tableView.userInteractionEnabled = NO;
     //    self.tableView.style = UITableViewStyleGrouped;
-    [self setHeader];
-    MenteeFrame *baseFrame = [[MenteeFrame alloc]init];
-    baseFrame.baseInfo = self.mentee;
-    self.MF = baseFrame;
-    self.array = self.MF.baseArr;
+//    [self setHeader];
+    NSString *url = [HGURL stringByAppendingString:@"Mentee/getBaseInfo.do"];
+    NSString *user_id = [HGUserDefaults stringForKey:HGUserID];
+    [SVProgressHUD showWithStatus:@"请稍后..."];
+    [HGHttpTool POSTWithURL:url parameters:@{@"student_id":self.mentee_id} success:^(id responseObject) {
+        [SVProgressHUD dismiss];
+        NSDictionary *dict = [responseObject objectForKey:@"data"];
+        
+        NSString *status = [responseObject objectForKey:@"status"];
+        
+        HGLog(@"-----%@",dict[@"teacher_sex"]);
+        
+        if([status isEqualToString:@"0"])
+        {
+            self.error = [responseObject objectForKey:@"message"];
+        }else{
+            HGMenteeListModel *info = [HGMenteeListModel initWithDict:dict];
+            self.MF = info;
+            self.array = info.menteeArray;
+            
+            [self.tableView reloadData];
+            [self setHeader];
+            
+        }
+    } failure:^(NSError *error) {
+        [SVProgressHUD dismiss];
+        HGLog(@"%@",error);
+    }];
     
-//    NSString *url = [HGURL stringByAppendingString:@"Teacher/getTeacherInfo.do"];
-//    [HGHttpTool POSTWithURL:url parameters:@{@"mentee_id":self.mentee_id} success:^(id responseObject) {
-//        
-//        NSDictionary *dict = [responseObject objectForKey:@"data"];
-//        NSString *status = [responseObject objectForKey:@"status"];
-//        if([status isEqualToString:@"0"])
-//        {
-//            [SVProgressHUD showErrorWithStatus:[responseObject objectForKey:@"message"]];
-//        }else{
-//            Mentee *info = [Mentee initWithDict:dict];
-//            MenteeFrame *baseFrame = [[MenteeFrame alloc]init];
-//            baseFrame.baseInfo = info;
-//            self.MF = baseFrame;
-//            self.array = self.MF.baseArr;
-//            
-//            [self.tableView reloadData];
-//            [self setHeader];}
-//    } failure:^(NSError *error) {
-//        HGLog(@"%@",error);
-//    }];
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 -(void)setHeader
 {
     BaseHeaderView *header = [[BaseHeaderView alloc]initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 120)];
-    header.nameS = self.mentee.mentee_name;
-    header.telS = self.mentee.mentee_tel;
-    header.sexS = self.mentee.mentee_sex;
+    header.nameS = self.MF.student_name;
+    header.telS = self.MF.student_tel;
+    header.sexS = self.MF.student_sex;
     self.tableView.tableHeaderView = header;
 }
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)showError
+{    if (self.error.length) {
+    //    [SVProgressHUD showErrorWithStatus:self.error];
+    [SVProgressHUD showErrorWithStatus:self.error];
 }
+}
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *header = [[UIView alloc]init];
+    header.backgroundColor = HGGrayColor;
+    return header;
+}
+
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return 10;
@@ -98,18 +109,59 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    BaseTableViewCell *cell = [BaseTableViewCell cellWithTabView:self.tableView];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.name = [[self.arr objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-    cell.nameV = [[self.array objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-    //HGLog(@"%@--%@",cell.name,cell.nameV);
-    return cell;
+    if (indexPath.section == 2) {
+        HGMenteeSelCell *cell = [HGMenteeSelCell cellWithTabView:tableView];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.name = [[self.arr objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+        cell.nameV = [[self.array objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+        return cell;
+    }else
+    {
+        BaseTableViewCell *cell = [BaseTableViewCell cellWithTabView:self.tableView];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.name = [[self.arr objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+        cell.nameV = [[self.array objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+        //HGLog(@"%@--%@",cell.name,cell.nameV);
+        return cell;
+    }
+    
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    HGLog(@"%ld   %ld",indexPath.section,indexPath.row);
-    NSNumber *num = [[self.MF.frameArr objectAtIndex:indexPath.section]objectAtIndex:indexPath.row];
-    return num.floatValue>=(minH+2*CellHMargin)?num.floatValue:(minH+2*CellHMargin);
+//    HGLog(@"%ld   %ld",indexPath.section,indexPath.row);
+//    NSNumber *num = [[self.MF.frameArr objectAtIndex:indexPath.section]objectAtIndex:indexPath.row];
+//    return num.floatValue>=(minH+2*CellHMargin)?num.floatValue:(minH+2*CellHMargin);
+    return minH+2*CellHMargin;
+    
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 2) {
+        ProjectInfoViewController *pinfo = [[ProjectInfoViewController alloc]init];
+        pinfo.project_id = self.MF.projectId;
+        if (_PushBlock) {
+            _PushBlock(pinfo);
+        }
+    }
+}
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    UIView *footer = [[UIView alloc]init];
+    if (section == 2) {
+        footer.backgroundColor = HGGrayColor;
+    }
+    
+    
+    return footer;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    if (section == 2) {
+        return 10;
+    }else
+    {
+        return .1;
+    }
     
 }
 

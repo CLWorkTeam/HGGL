@@ -93,8 +93,9 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSNumber *num = [self.frameArr objectAtIndex:indexPath.row];
-    return num.floatValue>=(minH+2*CellHMargin)?num.floatValue:(minH+2*CellHMargin);
+//    NSNumber *num = [self.frameArr objectAtIndex:indexPath.row];
+//    return num.floatValue>=(minH+2*CellHMargin)?num.floatValue:(minH+2*CellHMargin);
+    return minH+2*CellHMargin;
 }
 /*
 // Override to support conditional editing of the table view.

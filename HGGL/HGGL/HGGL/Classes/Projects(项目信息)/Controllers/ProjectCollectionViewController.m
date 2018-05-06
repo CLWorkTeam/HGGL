@@ -73,7 +73,7 @@ static NSString * const reuseIdentifier1 = @"header";
 {
     //设置流水布局
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
-    layout.itemSize = CGSizeMake(HGScreenWidth, HGScreenHeight-HGHeaderH-43);
+    layout.itemSize = CGSizeMake(HGScreenWidth, HGScreenHeight-HGHeaderH-53);
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     layout.minimumLineSpacing = 0;
     

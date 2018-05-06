@@ -133,10 +133,11 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSNumber *num = [[self.acc.frameArr objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-    CGFloat H = num.floatValue;
-//    HGLog(@"====%f",H);
-    return H>=(minH+CellHMargin+CellHMargin)?H:(minH+2*CellHMargin);
+//    NSNumber *num = [[self.acc.frameArr objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+//    CGFloat H = num.floatValue;
+////    HGLog(@"====%f",H);
+//    return H>=(minH+CellHMargin+CellHMargin)?H:(minH+2*CellHMargin);
+    return minH+2*CellHMargin;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

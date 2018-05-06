@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-@class PCourse;
+@class HGPCourseModel;
 @interface PCourseTableViewCell : UITableViewCell
-@property (nonatomic,strong) PCourse *PC;
+@property (nonatomic,strong) HGPCourseModel *PC;
 +(instancetype)cellWithTabView:(UITableView *)view;
 @end

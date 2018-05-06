@@ -9,7 +9,8 @@
 #import "PCourseTableViewController.h"
 #import "HGHttpTool.h"
 ////#import "MBProgressHUD+Extend.h"
-#import "PCourse.h"
+//#import "PCourse.h"
+#import "HGPCourseModel.h"
 #import "PCourseTableViewCell.h"
 #import "TextFrame.h"
 #import "HGClassDetailController.h"
@@ -40,7 +41,7 @@
         }else
         {
             for (NSDictionary *dict in array) {
-                PCourse *pc = [PCourse initWithDict:dict];
+                HGPCourseModel *pc = [HGPCourseModel initWithDict:dict];
                 [self.arr addObject:pc];
             }
             [self.tableView reloadData];
@@ -94,7 +95,7 @@
 {
     HGClassDetailController *vc = [[HGClassDetailController alloc]init];
     
-    PCourse *PC = [self.arr objectAtIndex:indexPath.row];
+    HGPCourseModel *PC = [self.arr objectAtIndex:indexPath.row];
     vc.course_id = PC.course_id;
     if (_jumpVCBlock) {
         _jumpVCBlock(vc);

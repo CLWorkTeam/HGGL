@@ -1,38 +1,34 @@
 //
-//  HGMyPointController.m
+//  HGScoreListViewController.m
 //  HGGL
 //
-//  Created by taikang on 2018/4/11.
+//  Created by 陈磊 on 2018/5/5.
 //  Copyright © 2018年 HGGL. All rights reserved.
 //
 
-#import "HGMyPointController.h"
+#import "HGScoreListViewController.h"
 #import "HGMyPointCell.h"
 #import "HGMyPointModel.h"
-
-@interface HGMyPointController ()<UITableViewDelegate,UITableViewDataSource>
-
+@interface HGScoreListViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UIView *headerView;
 @property (nonatomic,strong) UIView *footerView;
 
-
+@property (nonatomic,weak) UIView *contentView;
 @property (nonatomic,strong) UITableView *tableV;
 
 //@property (nonatomic,strong) NSArray *nameAry;//培训班数组
 //@property (nonatomic,strong) NSArray *pointAry;//成绩ary
 
 @property (nonatomic,strong) NSArray *dataAry;
-
-
 @end
 
-@implementation HGMyPointController
+@implementation HGScoreListViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"我的成绩单";
-    
+    self.view.backgroundColor = [UIColor whiteColor];
     UIView *contentView = [[UIView alloc]init];
     self.contentView = contentView;
     contentView.backgroundColor = [UIColor whiteColor];
@@ -44,7 +40,7 @@
     }
     [self addTableview];
     [self.tableV.mj_header beginRefreshing];
-
+    
 }
 - (void)addHeaderView{
     
@@ -78,7 +74,7 @@
     label1.textAlignment = NSTextAlignmentCenter;
     label1.textColor = HGMainColor;
     [view1 addSubview:label1];
-
+    
 }
 
 - (void)addFooterView{
@@ -141,20 +137,20 @@
 -(void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
-    self.contentView.frame = CGRectMake(0, HGHeaderH, self.view.width, self.view.height-HGHeaderH-HGSafeBottom);
+    self.contentView.frame = CGRectMake(0, 0, self.view.width, self.view.height);
     self.headerView.frame = CGRectMake(0, 0, self.contentView.width, HEIGHT_PT(60));
     self.footerView.frame = CGRectMake(0, self.contentView.height-HEIGHT_PT(60), self.contentView.width, HEIGHT_PT(60));
     self.tableV.frame = CGRectMake(0,self.headerView.maxY , self.contentView.width, self.contentView.height - self.headerView.height-self.footerView.height);
     
 }
 - (void)requestData{
-
+    
     NSString *url = [HGURL stringByAppendingString:@"Notice/getLearningOnCampus.do"];
     
     [HGHttpTool POSTWithURL:url parameters:@{@"user_id":self.user_id} success:^(id responseObject) {
         
         NSLog(@"%@---%@\n---\n%@",[self class],url,responseObject);
-
+        
         [self.tableV.mj_header endRefreshing];
         
         if ([responseObject[@"status"] isEqualToString:@"0"]) {
@@ -192,12 +188,12 @@
     
     static NSString *ID = @"PointCell";
     HGMyPointCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
-
+    
     if (cell==nil) {
         cell = [[HGMyPointCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-
+    
     if (self.dataAry.count<10) {
         if (indexPath.row<self.dataAry.count) {
             cell.model = self.dataAry[indexPath.row];
@@ -216,12 +212,7 @@
         cell.topLayer.hidden = YES;
     }
     return cell;
-
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    
 }
 
 /*

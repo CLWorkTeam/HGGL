@@ -12,5 +12,6 @@
 @property (nonatomic,strong) TeacherListParama *parama;
 @property (nonatomic,copy) void (^teacherListBlock) (id vc);
 -(void)postWithParama:(TeacherListParama *)parama;
-
+@property (nonatomic,copy) void(^endEditBlock)();
+-(void)refresh;
 @end

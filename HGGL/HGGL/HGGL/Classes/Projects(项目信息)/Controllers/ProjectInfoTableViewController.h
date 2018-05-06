@@ -13,4 +13,5 @@
 @property (nonatomic,strong) ProjectListParama *parama;
 //-(void)postWithParama:(ProjectListParama *)parama;
 -(void)refresh;
+@property (nonatomic,copy) void(^endEditBlock)();
 @end

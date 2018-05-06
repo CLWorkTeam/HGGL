@@ -17,6 +17,9 @@
 #import "HGPersonalController.h"
 #import "HGSourceViewController.h"
 #import "ProjectListViewController.h"
+#import "TeachListViewController.h"
+#import "MenteeListViewController.h"
+#import "ResearchViewController.h"
 @interface HGTeacherHomeController ()
 
 @property (nonatomic,strong) NSArray *menuAry;
@@ -168,13 +171,18 @@
         
     }else if ([title isEqualToString:@"科研信息"])
     {
+        ResearchViewController *resa = [[ResearchViewController alloc]init];
+        [self.navigationController pushViewController:resa animated:YES];
         
     }else if ([title isEqualToString:@"师资信息"])
     {
+        TeachListViewController *project = [[TeachListViewController alloc]init];
+        [self.navigationController pushViewController:project animated:YES];
         
     }else if ([title isEqualToString:@"学员信息"])
     {
-        
+        MenteeListViewController *mentee = [[MenteeListViewController alloc]init];
+        [self.navigationController pushViewController:mentee animated:YES];
     }
 
 }

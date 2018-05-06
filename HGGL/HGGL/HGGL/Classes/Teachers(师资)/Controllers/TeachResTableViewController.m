@@ -33,11 +33,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"教师列表";
-    TeacherListParama *parama = [[TeacherListParama alloc]init];
-//    parama.teacher_area = @"";
-    parama.teacher_type = @"";
-    parama.teacher_sex = @"2";
-    self.parama = parama;
+    
     [self setRefresh];
     //self.tableView.bounces = NO;
     //topView.backgroundColor = [UIColor redColor];
@@ -55,30 +51,36 @@
     __weak typeof(self)weakSelf = self;
     
     self.tableView.mj_header = [HGRefresh loadNewRefreshWithRefreshBlock:^{
-        [weakSelf postWithParama:weakSelf.parama];
+        [weakSelf loadNew];
     }];
     [self.tableView.mj_header beginRefreshing];
     
     self.tableView.mj_footer =[HGRefresh loadMoreRefreshWithRefreshBlock:^{
         NSInteger i = [weakSelf.parama.page integerValue ];
         weakSelf.parama.page = [NSString stringWithFormat:@"%ld",++i];
-        [weakSelf loadMoreData:weakSelf.parama];
+        [weakSelf loadMore];
     }];
 }
--(void)postWithParama:(TeacherListParama *)parama
+-(void)refresh
+{
+    [self.tableView.mj_header beginRefreshing];
+}
+-(void)loadNew
 {
     if (_isRefreshing) {
         return;
     }
     _isRefreshing = YES;
+    TeacherListParama *parama = self.parama;
     parama.page = @"1";
     NSString *url = [HGURL stringByAppendingString:@"Teacher/getTeacherList.do"];
-    NSString *user_id = [HGUserDefaults objectForKey:HGUserID];
-    NSMutableDictionary *par =[NSMutableDictionary dictionaryWithDictionary:parama.keyValues];
-    [par setValue:user_id forKey:@"tokenval"];
+//    NSString *user_id = [HGUserDefaults objectForKey:HGUserID];
+    NSMutableDictionary *par =[NSMutableDictionary dictionaryWithDictionary:parama.mj_keyValues];
+//    [par setValue:user_id forKey:@"tokenval"];
     [HGHttpTool POSTWithURL:url parameters:par success:^(id responseObject) {
         _isRefreshing = NO;
         [self.tableView.mj_header endRefreshing];
+        [self.arr removeAllObjects];
         HGLog(@"%@",parama.keyValues);
         NSArray *array = [NSArray array];
         array = [responseObject objectForKey:@"data"];
@@ -102,20 +104,20 @@
         HGLog(@"%@",error);
     }];
 }
--(void)loadMoreData:(TeacherListParama *)parama;
+-(void)loadMore;
 {
     if (_isRefreshing) {
         return;
     }
     _isRefreshing = YES;
-    
+    TeacherListParama *parama = self.parama;
     NSString *url = [HGURL stringByAppendingString:@"Teacher/getTeacherList.do"];
     NSString *user_id = [HGUserDefaults objectForKey:HGUserID];
-    NSMutableDictionary *par =[NSMutableDictionary dictionaryWithDictionary:parama.keyValues];
+    NSMutableDictionary *par =[NSMutableDictionary dictionaryWithDictionary:parama.mj_keyValues];
     [par setValue:user_id forKey:@"tokenval"];
     [HGHttpTool POSTWithURL:url parameters:par success:^(id responseObject) {
         _isRefreshing = NO;
-        HGLog(@"%@",parama.keyValues);
+//        HGLog(@"%@",parama.keyValues);
         [self.tableView.mj_footer endRefreshing];
         NSArray *array = [NSArray array];
         array = [responseObject objectForKey:@"data"];
@@ -124,6 +126,8 @@
         {
 //            [SVProgressHUD showErrorWithStatus:[responseObject objectForKey:@"message"]];
             [SVProgressHUD showErrorWithStatus:[responseObject objectForKey:@"message"]];
+            NSInteger i = [self.parama.page integerValue ];
+            self.parama.page = [NSString stringWithFormat:@"%ld",--i];
         }else{
             
             for (NSDictionary *dict in array) {
@@ -136,6 +140,8 @@
     } failure:^(NSError *error) {
         _isRefreshing = NO;
         [self.tableView.mj_footer endRefreshing];
+        NSInteger i = [self.parama.page integerValue ];
+        self.parama.page = [NSString stringWithFormat:@"%ld",--i];
         HGLog(@"%@",error);
     }];
 }
@@ -180,7 +186,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 3*minH+4*5;
+    return 90+20;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -190,6 +196,21 @@
     if (_teacherListBlock) {
         _teacherListBlock(vc);
     }
+}
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if (_endEditBlock) {
+        _endEditBlock();
+    }
+}
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    return  [[UIView alloc]init];
+    
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return .1;
 }
 /*
 // Override to support conditional editing of the table view.

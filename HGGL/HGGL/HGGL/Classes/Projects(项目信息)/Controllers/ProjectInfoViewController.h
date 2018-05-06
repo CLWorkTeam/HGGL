@@ -10,5 +10,5 @@
 @class HGProjectListModel;
 @interface ProjectInfoViewController : UIViewController
 @property (nonatomic,copy) NSString *project_id;
-@property (nonatomic,strong) HGProjectListModel *PL;
+//@property (nonatomic,strong) HGProjectListModel *PL;
 @end

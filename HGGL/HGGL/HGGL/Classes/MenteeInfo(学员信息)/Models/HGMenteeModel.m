@@ -24,6 +24,7 @@
     
     return self;
 }
+
 +(instancetype)initWithDict:(NSDictionary *)dict
 {
     return [[[self alloc] init] initWithDict:dict];

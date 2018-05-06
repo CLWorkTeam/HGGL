@@ -10,5 +10,5 @@
 @class Mentee;
 @interface MenteeViewController : UIViewController
 @property (nonatomic,copy) NSString  *mentee_id;
-@property (nonatomic,strong) Mentee *mentee;
+//@property (nonatomic,strong) Mentee *mentee;
 @end

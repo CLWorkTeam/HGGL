@@ -47,6 +47,11 @@
         {
             [weakSelf.navigationController pushViewController:vc animated:YES];
         };
+        _table.endEditBlock = ^{
+            
+            [weakSelf.view endEditing:YES];
+            
+        };
     }
     return _table;
 }

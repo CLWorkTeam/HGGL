@@ -13,5 +13,10 @@
 @property (nonatomic,copy)NSString *remark;//备注
 @property (nonatomic,copy)NSString *department;//部门
 @property (nonatomic,copy)NSString *staff;//职工
+@property (nonatomic,assign) CGRect titleF;
+@property (nonatomic,assign) CGRect remarkF;
+@property (nonatomic,assign) CGRect departmentF;
+@property (nonatomic,assign) CGRect staffF;
+@property (nonatomic,assign) CGFloat cellH;
 +(instancetype)initWithDict:(NSDictionary *)dict;
 @end

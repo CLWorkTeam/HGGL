@@ -28,10 +28,15 @@
         [self setValuesForKeysWithDictionary:dict];
     }
     [self creatArray];
-    for (NSDictionary *dict in self.remarkList) {
-        HGPBRemarkModel *model = [HGPBRemarkModel initWithDict:dict];
-        [self.remarkArray addObject:model];
+    if (self.remarkList.count) {
+        HGPBRemarkModel *model1 = [HGPBRemarkModel initWithDict:@{@"title":@"资源名称",@"remark":@"备注",@"staff":@"姓名",@"department":@"部门"}];
+        [self.remarkArray addObject:model1];
+        for (NSDictionary *dict in self.remarkList) {
+            HGPBRemarkModel *model = [HGPBRemarkModel initWithDict:dict];
+            [self.remarkArray addObject:model];
+        }
     }
+    
     return self;
 }
 -(void)creatArray

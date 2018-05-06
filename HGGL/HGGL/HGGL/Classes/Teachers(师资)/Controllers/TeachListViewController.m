@@ -1,31 +1,30 @@
 //
-//  MenteeListViewController.m
+//  TeachListViewController.m
 //  SYDX_2
 //
-//  Created by Lei on 15/9/9.
+//  Created by Lei on 15/9/10.
 //  Copyright (c) 2015年 sinosoft. All rights reserved.
 //
 
-#import "MenteeListViewController.h"
-#import "MenteeListViewController.h"
-#import "MenteeListHeader.h"
-#import "MenteeListTableViewController.h"
+#import "TeachListViewController.h"
+#import "TeacherListHeader.h"
+#import "TeachResTableViewController.h"
 #import "CurrImageView.h"
-#import "MenteeParama.h"
-@interface MenteeListViewController ()
-@property (nonatomic,strong)MenteeListTableViewController *table;
-@property (nonatomic,weak) MenteeListHeader *header;
-@property (nonatomic,strong) MenteeParama *parama;
+#import "TeacherListParama.h"
+@interface TeachListViewController ()
+@property (nonatomic,strong) TeachResTableViewController *table;
+@property (nonatomic,weak) TeacherListHeader *header;
+@property (nonatomic,strong) TeacherListParama *parama;
 @end
 
-@implementation MenteeListViewController
--(MenteeListTableViewController *)table
+@implementation TeachListViewController
+-(TeachResTableViewController *)table
 {
     if (_table == nil) {
-        _table = [[MenteeListTableViewController  alloc]init];
+        _table = [[TeachResTableViewController alloc]init];
         _table.parama = self.parama;
-        __weak typeof(self)weakSelf = self;
-        _table.menteeBlock = ^(id vc)
+        __weak typeof(self) weakSelf = self;
+        _table.teacherListBlock = ^(id vc)
         {
             [weakSelf.navigationController pushViewController:vc animated:YES];
         };
@@ -37,17 +36,18 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"学员信息";
-    self.view.backgroundColor = [UIColor whiteColor];
-    MenteeParama *parma = [[MenteeParama alloc]init];
-    parma.mentee_sex = @"2";
+    self.navigationItem.title = @"师资信息";
+    
+    TeacherListParama *parma = [[TeacherListParama alloc]init];
+    parma.teacher_Type = @"1";
     parma.str = @"";
     parma.page = @"1";
     parma.pageSize = @"10";
     self.parama = parma;
     [self setHeader];
     [self setTableView];
-    
+//    [self setupLeftNavItem];
+    // Do any additional setup after loading the view.
 }
 //设置NavItemBtn
 -(void)setupLeftNavItem{
@@ -67,17 +67,18 @@
 
 -(void)setHeader
 {
-    MenteeListHeader *header = [[MenteeListHeader alloc]init];
+    TeacherListHeader *header = [[TeacherListHeader alloc]init];
+    self.header = header;
     header.parama = self.parama;
     header.frame = CGRectMake(0, HGHeaderH, HGScreenWidth, 40+43+10+20);
     __weak typeof(self)weakSelf = self;
-    header.butClick = ^(MenteeParama *parama)
+    header.butClick = ^(TeacherListParama *parama)
     {
         weakSelf.table.parama = parama;
         [weakSelf.table refresh];
     };
-    self.header = header;
-//    header.backgroundColor = HGColor(244, 244, 244,1);
+    //header.backgroundColor = [UIColor whiteColor];
+//    header.backgroundColor = HGColor(244, 244, 244, 1);
     [self.view addSubview:header];
     
 }

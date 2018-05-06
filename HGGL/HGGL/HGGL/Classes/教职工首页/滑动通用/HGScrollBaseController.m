@@ -105,6 +105,7 @@
             vc.block = ^(NSInteger tag) {
                 if (tag==1) {
                     HGMyPointController *vc = [[HGMyPointController alloc]init];
+                    vc.user_id = [HGUserDefaults objectForKey:HGUserID];
                     [weakSelf.navigationController pushViewController:vc animated:YES];
                 }else{
                     

@@ -9,7 +9,7 @@
 #import "MenteeProTableViewController.h"
 #import "MPTableViewCell.h"
 #import "HGHttpTool.h"
-////#import "MBProgressHUD+Extend.h"
+#import "ProjectInfoViewController.h"
 #import "MenteeProject.h"
 #import "TextFrame.h"
 @interface MenteeProTableViewController ()
@@ -28,13 +28,11 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //self.navigationItem.title = @"参与项目信息";
-    
     self.tableView.bounces = NO;
     //topView.backgroundColor = [UIColor redColor];
     NSString *url = [HGURL stringByAppendingString:@"Mentee/getMenteePro.do"];
     NSString *user_id = [HGUserDefaults objectForKey:HGUserID];
-    [HGHttpTool POSTWithURL:url parameters:@{@"mentee_id":self.mentee_id,@"tokenval":user_id} success:^(id responseObject) {
+    [HGHttpTool POSTWithURL:url parameters:@{@"student_id":self.mentee_id} success:^(id responseObject) {
         NSArray *array = [NSArray array];
         array = [responseObject objectForKey:@"data"];
         NSString *status = [responseObject objectForKey:@"status"];
@@ -53,11 +51,7 @@
     } failure:^(NSError *error) {
         HGLog(@"%@",error);
     }];
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 -(void)showError
 {
@@ -75,13 +69,11 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 #warning Potentially incomplete method implementation.
-    // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 #warning Incomplete method implementation.
-    // Return the number of rows in the section.
     return self.arr.count;
 }
 
@@ -97,51 +89,27 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    MenteeProject *mp = [self.arr objectAtIndex:indexPath.row] ;
-    return (mp.cellH+CellHMargin*3)>=(2*minH+3*CellHMargin*3)?(mp.cellH+CellHMargin*3):(2*minH+CellHMargin*3);
+//    MenteeProject *mp = [self.arr objectAtIndex:indexPath.row] ;
+//    return (mp.cellH+CellHMargin*3)>=(2*minH+3*CellHMargin*3)?(mp.cellH+CellHMargin*3):(2*minH+CellHMargin*3);
+    return 60;
 }
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    return  [[UIView alloc]init];
+    
 }
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return .1;
 }
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    ProjectInfoViewController *pinfo = [[ProjectInfoViewController alloc]init];
+    MenteeProject *model = [self.arr objectAtIndex:indexPath.row];
+    pinfo.project_id = model.project_id;
+    if (_PushBlock) {
+        _PushBlock(pinfo);
+    }
 }
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 @end

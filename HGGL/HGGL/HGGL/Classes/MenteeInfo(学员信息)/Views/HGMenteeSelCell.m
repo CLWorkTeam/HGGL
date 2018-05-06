@@ -1,24 +1,21 @@
 //
-//  BaseTableViewCell.m
-//  SYDX_2
+//  HGMenteeSelCell.m
+//  HGGL
 //
-//  Created by mac on 15-6-29.
-//  Copyright (c) 2015年 sinosoft. All rights reserved.
+//  Created by 陈磊 on 2018/5/5.
+//  Copyright © 2018年 HGGL. All rights reserved.
 //
 
-#import "BaseTableViewCell.h"
+#import "HGMenteeSelCell.h"
 #import "TextFrame.h"
 #define minH  [TextFrame frameOfText:@"备注:" With:[UIFont systemFontOfSize:HGFont] Andwidth:60].height
 #define cellHigh minH+2*CellHMargin
-#define keyWidth 70
-//#define keyHigh [TextFrame frameOfText:@"工作单位" With:[UIFont systemFontOfSize:14] Andwidth:keyWidth].height
-//#define magin 8
-@interface BaseTableViewCell()
+@interface HGMenteeSelCell ()
 @property (nonatomic,weak) UILabel *key;
 @property (nonatomic,weak) UILabel *value;
-
+@property (nonatomic,weak) UIImageView  *ima;
 @end
-@implementation BaseTableViewCell
+@implementation HGMenteeSelCell
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -29,7 +26,7 @@
 }
 -(void)setUpAllSubviews
 {
-
+    
     UILabel *key = [[UILabel alloc]init];
     key.textAlignment = NSTextAlignmentLeft;
     key.textColor = [UIColor blackColor];
@@ -39,24 +36,29 @@
     
     
     UILabel *value = [[UILabel alloc]init];
-//    value.numberOfLines = 0;
-    value.textAlignment = NSTextAlignmentRight;
+    value.textAlignment = NSTextAlignmentLeft;
     value.textColor = [UIColor blackColor];
     value.font = [UIFont systemFontOfSize:HGFont];
     self.value = value;
-    
     [self.contentView addSubview:value];
+    
+    UIImageView  *ima = [[UIImageView alloc]init];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"icon_right" ofType:@"png"];
+    ima.image = [UIImage imageWithContentsOfFile:path];
+    self.ima = ima;
+    [self.contentView addSubview:ima];
+    
 }
 -(void)setName:(NSString *)name
 {
-   // NSLog(@"arr");
+    // NSLog(@"arr");
     _name = name;
     
     
     self.key.text = name;
     
-
-
+    
+    
 }
 -(void)setNameV:(NSString *)nameV
 {
@@ -64,8 +66,8 @@
     self.value.text = nameV;
     
     
-
-
+    
+    
     
 }
 -(void)layoutSubviews
@@ -74,27 +76,25 @@
     [self.key sizeToFit];
     CGFloat mar = 5;
     self.key.frame = CGRectMake(CellWMargin, CellHMargin, self.key.width, minH);
-    CGSize size1 = [TextFrame frameOfText:self.nameV With:self.value.font Andwidth:self.width-self.key.width-2*CellWMargin-mar];
     
-    CGFloat he = ((size1.height+2*CellHMargin)>(minH+2*CellHMargin))?(size1.height+2*CellHMargin):(minH+2*CellHMargin);
-    if (he>cellHigh) {
-//        self.value.textAlignment = NSTextAlignmentLeft;
-    }
     self.value.frame = CGRectMake(self.key.maxX+mar, CellHMargin, self.width-2*CellWMargin-mar-self.key.width, minH);
     self.key.center = CGPointMake(self.key.center.x, self.height/2);
     self.value.center = CGPointMake(self.value.center.x, self.height/2);
     
+    self.ima.frame = CGRectMake(self.width-CellWMargin-self.key.height,self.height/2-self.key.height/2, self.key.height, self.key.height);
+    
 }
 +(instancetype)cellWithTabView:(UITableView *)view
 {
-    static NSString *ID = @"cell";
-    BaseTableViewCell *cell = [view dequeueReusableCellWithIdentifier:ID];
+    static NSString *ID = @"HGMenteeSelCell";
+    HGMenteeSelCell *cell = [view dequeueReusableCellWithIdentifier:ID];
     if (cell == nil) {
         //cell.backgroundColor = [UIColor whiteColor];
-        cell = [[BaseTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];
+        cell = [[HGMenteeSelCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
+    
     return cell;
 }
+
 @end

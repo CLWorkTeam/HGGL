@@ -11,91 +11,32 @@
 #import "HGLable.h"
 #import "ZKRCover.h"
 #import "CurrImageView.h"
-#import "PopTableViewController.h"
+#import "HGPopView.h"
 #import "ImageRightBut.h"
 @interface ResearchListHeader()<UISearchBarDelegate>
 @property (nonatomic,weak) UISearchBar *search;
 @property (nonatomic,weak) UILabel *lab;
 @property (nonatomic,weak) UIButton *but;
 @property (nonatomic,strong) NSArray *arr;
-@property (nonatomic,strong) PopTableViewController *pop;
-@property (nonatomic,strong) ResearchParama *parama;
-@property (nonatomic,strong) UIView *accessoryView;
+
+
+
 @end
 @implementation ResearchListHeader
--(ResearchParama *)parama
-{
-    if (_parama == nil) {
-        _parama = [[ResearchParama alloc]init];
-        _parama.user_id = [HGUserDefaults objectForKey:HGUserID];
-    }
-    return _parama;
-}
+
 -(NSArray *)arr
 {
     if (_arr == nil) {
-        _arr = [NSArray arrayWithObjects:@"全部",@"顺义区基地课题",@"上级党校立项课题",@"校内立项课题",@"其他课题", nil];
+        _arr = [NSArray arrayWithObjects:@"全部",@"调训项目",@"委托项目",@"集中工作", nil];
     }
     return _arr;
 }
--(UIView *)accessoryView
-{
-    if (_accessoryView == nil) {
-        UIView *accessoryView = [[UIView alloc]init];
-        accessoryView.frame = CGRectMake(0, 0, HGScreenWidth, 30);
-        accessoryView.backgroundColor = [UIColor lightGrayColor];
-        UIButton *cancle = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        cancle.backgroundColor = [UIColor redColor];
-        
-        cancle.titleLabel.font = [UIFont systemFontOfSize:14];
-        [cancle setTitle:@"取消" forState:UIControlStateNormal];
-        
-        [cancle addTarget:self action:@selector(cancleA) forControlEvents:UIControlEventTouchUpInside];
-        cancle.bounds = CGRectMake(0, 0, 60, 30);
-        cancle.center = CGPointMake(40, accessoryView.frame.size.height/2);
-        [accessoryView addSubview:cancle];
-        UIButton *sure = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        sure.backgroundColor = [UIColor redColor];
-        sure.titleLabel.font = [UIFont systemFontOfSize:14];
-        //self.Y = sure;
-        [sure setTitle:@"确定" forState:UIControlStateNormal];
-        [sure addTarget:self action:@selector(sureA) forControlEvents:UIControlEventTouchUpInside];
-        sure.bounds = CGRectMake(0, 0, 60, 30);
-        sure.center = CGPointMake(HGScreenWidth - 40, accessoryView.frame.size.height/2);
-        [accessoryView addSubview:sure];
-        [cancle setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [sure  setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [cancle.layer setMasksToBounds:YES];
-        [cancle.layer setCornerRadius:4];
-        [cancle setBackgroundImage:[UIImage resizableImageWithName:@"red_btn_normal"] forState:UIControlStateNormal];
-        [sure.layer setMasksToBounds:YES];
-        [sure.layer setCornerRadius:4];
-        [sure setBackgroundImage:[UIImage resizableImageWithName:@"red_btn_normal"] forState:UIControlStateNormal];
-        _accessoryView = accessoryView;
-        
-    }
-    return _accessoryView;
-}
--(void)cancleA
-{
-    [self endEditing:YES];
-    //[ZKRCover dismiss];
-    self.searchBar.text = @"";
-}
--(void)sureA
-{
-    self.parama.str = self.searchBar.text;
-    [self endEditing:YES];
-    if (_clickBut) {
-        _clickBut(self.parama);
-    }
-    [self endEditing:YES];
-}
+
 -(instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
         UISearchBar *search = [[UISearchBar alloc]init];
-        search.placeholder = @"请输入关键字如项目名称、委托单位等";
+        search.placeholder = @"请输入关键字如课题名称等";
         search.searchBarStyle = UISearchBarStyleMinimal;
         _searchBar = search;
         search.delegate = self;
@@ -105,18 +46,7 @@
     }
     return self;
 }
--(BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
-{
-    //    UISwipeGestureRecognizer *swipeDown = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(handelDiction:)];
-    //    swipeDown.direction = UISwipeGestureRecognizerDirectionDown;
-    //    swipeDown.delegate = self;
-    //    swipeDown.numberOfTouchesRequired = 1;
-    //    [self addGestureRecognizer:swipeDown];
-    //    //[swipeDown requireGestureRecognizerToFail:pan];
-    //    //[pan requireGestureRecognizerToFail:swipeDown];
-    
-    return YES;
-}
+
 -(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
     searchBar.showsCancelButton = YES;
     for(UIView *view in  [[[searchBar subviews] objectAtIndex:0] subviews]) {
@@ -133,6 +63,10 @@
     [self.searchBar becomeFirstResponder];
 }
 
+-(BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
+{
+    return YES;
+}
 //点击cancel时候
 -(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
@@ -140,12 +74,21 @@
     [searchBar resignFirstResponder];
     [searchBar endEditing:YES];
     searchBar.text = nil;
+    self.parama.str = searchBar.text;
+    [self endEditing:YES];
+    if (_clickBut) {
+        _clickBut(self.parama);
+    }
 }
 
 -(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar{
     [searchBar endEditing:YES];
-    
     searchBar.showsCancelButton = NO;
+    self.parama.str = searchBar.text;
+    [self endEditing:YES];
+    if (_clickBut) {
+        _clickBut(self.parama);
+    }
 }
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
@@ -176,67 +119,42 @@
 }
 -(void)clickType
 {
-    self.but.selected = !self.but.selected;
     
-    // but.selected = !but.selected;
-    if (self.but.selected) {
-        ZKRCover *cover = [ZKRCover show];
-        cover.dimBackGround = YES;
-        cover.ZKRCoverDismiss=^{
-            [CurrImageView dismiss];
-            self.but.selected = NO;
-        };
-        NSArray *arr = self.arr;
-        CGRect rect = CGRectMake(70, 64+40+30, 200, arr.count*44);
-        PopTableViewController *pop = [PopTableViewController setPopViewWith:rect And:arr];
-        self.pop = pop;
-        __weak typeof(self)weakSelf = self;
-        pop.selectedCell = ^(NSString *str){
-            
-            //HGLog(@"%@",str);
-            [self.but setTitle:str forState:UIControlStateNormal];
-            //[but setTitle:str forState:UIControlStateNormal];
-            //ProjectListParama  *parama = [[ProjectListParama alloc]init];
-            if ([str isEqualToString:@"全部"]) {
-                weakSelf.parama.research_type = @"";
-            }else if ([str isEqualToString:@"顺义区基地课题"])
-            {
-                weakSelf.parama.research_type = @"1";
-                //[but setTitle:@"工作流" forState:UIControlStateNormal];
-            }else if ([str isEqualToString:@"上级党校立项课题"])
-            {
-                weakSelf.parama.research_type = @"2";
-            }else if ([str isEqualToString:@"校内立项课题"])
-            {
-                weakSelf.parama.research_type = @"3";
-            }else if ([str isEqualToString:@"其他课题"])
-            {
-                weakSelf.parama.research_type = @"4";
-            }
-            
-            if (_clickBut) {
-                _clickBut(weakSelf.parama);
-            }
-            [CurrImageView dismiss];
-            [ZKRCover dismiss];
-            weakSelf.but.selected = NO;
-            weakSelf.pop = nil;
-        };
+    CGRect r = [self convertRect:self.but.frame toView:HGKeywindow];
+    CGRect rect = CGRectMake(r.origin.x, r.origin.y+r.size.height, r.size.width, 44*4);
+    
+    [HGPopView setPopViewWith:rect And:self.arr andShowKey:nil  selectBlock:^(NSString *str) {
         
-    }else
-    {
-        [CurrImageView   dismiss];
-    }
-    
+        [self.but setTitle:str forState:UIControlStateNormal];
+        
+        if ([str isEqual:@"全部"]) {
+            self.parama.research_type = @"";
+        }else if ([str isEqual:@"调训项目"])
+        {
+            self.parama.research_type = @"1";
+        }else if([str isEqual:@"委托项目"])
+        {
+            self.parama.research_type = @"2";
+        }else if ([str isEqual:@"集中工作"])
+        {
+            self.parama.research_type = @"3";
+        }
+        if ( _clickBut) {
+            _clickBut(self.parama);
+        }
+        
+    }];
 
 }
 -(void)layoutSubviews
 {
+    
     [super layoutSubviews];
-    self.searchBar.frame = CGRectMake(0, 5, HGScreenWidth, 30);
-    self.lab.frame = CGRectMake(0, CGRectGetMaxY(self.searchBar.frame), 70, 30);
-    self.but.bounds = CGRectMake(0, 0, 200, 30);
-    self.but.center = CGPointMake(CGRectGetMaxX(self.lab.frame)+100, 5+30+(self.height-30-6)/2);
-    //self.but.frame = CGRectMake(CGRectGetMaxX(self.lab.frame), CGRectGetMaxY(self.searchBar.frame), 200, 40);
+    CGFloat mar = 5;
+    self.searchBar.frame = CGRectMake(0, mar, HGScreenWidth, 30);
+    [self.lab sizeToFit];
+    self.lab.frame = CGRectMake(CellWMargin, CGRectGetMaxY(self.searchBar.frame)+mar, self.lab.width, 30);
+    self.but.frame = CGRectMake(self.lab.maxX+mar, self.lab.y,self.width-self.lab.maxX-mar-CellWMargin , 30);
+    
 }
 @end

@@ -10,4 +10,5 @@
 @class MenteeParama;
 @interface MenteeListHeader : UIView
 @property (nonatomic,copy) void (^butClick) (MenteeParama *parma);
+@property (nonatomic,strong) MenteeParama *parama;
 @end

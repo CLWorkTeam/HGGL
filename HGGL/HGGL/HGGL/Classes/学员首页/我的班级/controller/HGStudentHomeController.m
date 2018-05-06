@@ -546,6 +546,7 @@
     NSLog(@"%@",sender.titleLabel.text);
     if ([sender.titleLabel.text isEqualToString:@"成绩单"]) {
         HGMyPointController *vc = [[HGMyPointController alloc]init];
+        vc.user_id = [HGUserDefaults objectForKey:HGUserID];
         [self.navigationController pushViewController:vc animated:YES];
     }
     if ([sender.titleLabel.text isEqualToString:@"项目资料"]) {

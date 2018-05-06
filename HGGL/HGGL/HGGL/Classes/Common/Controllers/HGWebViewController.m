@@ -21,8 +21,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
-    self.navigationController.navigationBarHidden = YES;
-    [self setNav];
+//    self.navigationController.navigationBarHidden = YES;
+//    [self setNav];
     [self setWKWebView];
 }
 

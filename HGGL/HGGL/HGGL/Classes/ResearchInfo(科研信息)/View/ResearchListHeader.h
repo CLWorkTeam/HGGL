@@ -10,5 +10,6 @@
 @class ResearchParama;
 @interface ResearchListHeader : UIView
 @property (nonatomic,weak)UISearchBar *searchBar;
+@property (nonatomic,strong) ResearchParama *parama;
 @property (nonatomic,copy) void(^clickBut)(ResearchParama *parama);
 @end

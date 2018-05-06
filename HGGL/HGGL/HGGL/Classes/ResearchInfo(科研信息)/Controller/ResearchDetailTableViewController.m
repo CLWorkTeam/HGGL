@@ -291,8 +291,9 @@
 {
    
     if (indexPath.row<self.arr.count) {
-         NSNumber *num = [self.RF.frameArr objectAtIndex:indexPath.row];
-        return num.floatValue>=(minH+2*CellHMargin)?num.floatValue:(minH+2*CellHMargin);
+//         NSNumber *num = [self.RF.frameArr objectAtIndex:indexPath.row];
+//        return num.floatValue>=(minH+2*CellHMargin)?num.floatValue:(minH+2*CellHMargin);
+        return minH+2*CellHMargin;
     }else
     {
         if (self.line) {
@@ -606,6 +607,15 @@
     } failure:^(NSError *error) {
         HGLog(@"%@",error);
     }];
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    
+    return [[UIView alloc]init];
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return .1;
 }
 /*
 // Override to support conditional editing of the table view.

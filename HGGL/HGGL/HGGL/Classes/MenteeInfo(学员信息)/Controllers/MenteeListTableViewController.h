@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 @class MenteeParama;
 @interface MenteeListTableViewController : UITableViewController
--(void)postWithParame:(MenteeParama *)parama;
+//-(void)postWithParame:(MenteeParama *)parama;
 @property (nonatomic,strong) MenteeParama *parama;
 @property (nonatomic,copy) void (^menteeBlock) (id vc);
+@property (nonatomic,copy) void(^endEditBlock)();
+-(void)refresh;
 @end

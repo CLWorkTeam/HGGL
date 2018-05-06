@@ -75,7 +75,7 @@
 }
 -(void)setToolBar
 {
-    UIView *content = [[UIView alloc]init];
+//    UIView *content = [[UIView alloc]init];
 
     
     
@@ -87,9 +87,9 @@
     
     UIView *grayLine = [[UIView alloc]init];
     grayLine.backgroundColor = HGGrayColor;
-    [content addSubview:grayLine];
     grayLine.frame = CGRectMake(0, self.toolBar.maxY, self.view.width, 10);
     [self.view addSubview:grayLine];
+    
     
 }
 -(void)setBottom
@@ -99,25 +99,10 @@
     [self.view addSubview:bottom];
     bottom.contentView = self.tcv.collectionView;
 }
-//-(void)setNav
-//{
-//    UIBarButtonItem *back = [[UIBarButtonItem alloc]initWithTitle:@"主页" style:UIBarButtonItemStyleDone target:self action:@selector(clickBack)];
-//    self.navigationItem.leftBarButtonItem = back;
-//}
-//-(void)setImageView
-//{
-//    CurrImageView *topView = [CurrImageView  showInRect:CGRectMake(0, 134, HGScreenWidth, HGScreenHeight - 134)];
-//    
-//   
-//    topView.contentView = self.tableView.tableView;
-//
-//    [self.view addSubview:topView];
-//    
-//}
-//-(void)clickBack
-//{
-//    [self.navigationController popViewControllerAnimated:YES];
-//}
+
+
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

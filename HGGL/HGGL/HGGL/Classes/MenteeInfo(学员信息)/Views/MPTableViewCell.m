@@ -10,50 +10,66 @@
 #import "HGLable.h"
 #import "MenteeProject.h"
 #import "TextFrame.h"
-//#define contexFont [UIFont systemFontOfSize:14]
-//#define titleFont [UIFont systemFontOfSize:14]
+
 #define Width 65
-//#define Hight [TextFrame frameOfText:@"学习经历" With:[UIFont systemFontOfSize:14] Andwidth:Width].height
-//#define magin 7
-//#define Hmagin 5
+@interface MPTableViewCell ()
+@property (nonatomic,weak) UIImageView *ima;
+@property (nonatomic,weak) UILabel *name;
+@property (nonatomic,weak) UILabel *time;
+@end
 @implementation MPTableViewCell
 
-- (void)awakeFromNib {
-    // Initialization code
+-(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        [self setUpAllSubViews];
+        self.backgroundColor = [UIColor clearColor];
+    }
+    return self;
 }
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+-(void)setUpAllSubViews
+{
+    UIImageView *ima = [[UIImageView alloc]init];
+    self.ima = ima;
+    ima.contentMode = UIViewContentModeCenter;
+    ima.image = [UIImage imageNamed:@"point"];
+    [self.contentView addSubview:ima];
+    
+    UILabel *name = [HGLable  lableWithAlignment:NSTextAlignmentLeft Font:HGFont Color:[UIColor blackColor]];
+    name.font = [UIFont fontWithName:@"Helvetica-Bold" size:HGFont];
+    [self.contentView addSubview:name];
+    self.name = name;
+    
+    UILabel *time = [HGLable lableWithAlignment:NSTextAlignmentLeft Font:HGFont Color:[UIColor blackColor]];
+    self.time = time;
+    [self.contentView addSubview:time];
 }
 -(void)setMP:(MenteeProject *)MP
 {
     _MP = MP;
-    UILabel * PName = [HGLable lableWithAlignment:NSTextAlignmentLeft Font:HGFont Color:[UIColor blackColor]];
-    PName.text = MP.project_name;
-    PName.frame = CGRectMake(CellWMargin, CellHMargin, HGScreenWidth - 2*CellWMargin, MP.projectNameH);
-    [self.contentView addSubview:PName];
-    UILabel *time = [HGLable lableWithAlignment:NSTextAlignmentLeft Font:HGFont Color:[UIColor blackColor]];
-//    time.text = [NSString stringWithFormat:@"%@-%@",MP.project_star,MP.project_end];
-    time.frame = CGRectMake(CellWMargin, CGRectGetMaxY(PName.frame)+CellHMargin, (HGScreenWidth - 2*CellWMargin)*0.8, minH);
-    [self.contentView addSubview:time];
-//    UILabel *CT = [HGLable lableWithAlignment:NSTextAlignmentCenter Font:HGFont Color:[UIColor blackColor]];
-//    CT.text = MP.mentee_class;
-//    CT.frame = CGRectMake((HGScreenWidth - 2*CellWMargin)*0.8,CGRectGetMaxY(PName.frame)+CellHMargin ,(HGScreenWidth - 2*CellWMargin)*0.2 , minH);
-//    [self.contentView addSubview:CT];
+    
+    self.name.text = MP.project_name;
+    self.time.text = [NSString stringWithFormat:@"%@ - %@",MP.project_start,MP.project_end];
+    
+    
+}
+-(void)layoutSubviews
+{
+    [super layoutSubviews];
+    
+    CGFloat H = 30;
+    self.ima.frame = CGRectMake(0, H/2-CellWMargin/2, CellWMargin, CellWMargin);
+    self.name.frame = CGRectMake(CellWMargin, 0, HGScreenWidth - 2*CellWMargin, H);
+    self.time.frame = CGRectMake(CellWMargin, CGRectGetMaxY(self.name.frame), self.name.width, H);
 }
 +(instancetype)cellWithTabView:(UITableView *)view
 {
-    static NSString *ID = @"cell";
+    static NSString *ID = @"MPTableViewCell";
     MPTableViewCell *cell = [view dequeueReusableCellWithIdentifier:ID];
     if (cell == nil) {
         cell = [[MPTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];
-    }else{
-        for (UIView *view in cell.contentView.subviews) {
-            [view removeFromSuperview];
-        }
     }
+    cell.selectionStyle = UITableViewCellSeparatorStyleNone;
     return cell;
 }
 @end

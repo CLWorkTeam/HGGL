@@ -31,39 +31,32 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //self.navigationItem.title = @"科研列表";
-    ResearchParama *parama = [[ResearchParama alloc]init];
-    parama.user_id = [HGUserDefaults objectForKey:@"userID"];
-    self.parama = parama;
+   
     [self setRefresh];
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 -(void)setRefresh
 {
     __weak typeof(self)weakSelf = self;
     
     self.tableView.mj_header = [HGRefresh loadNewRefreshWithRefreshBlock:^{
-        [weakSelf postWithParama:weakSelf.parama];
+        [weakSelf loadNew];
     }];
     [self.tableView.mj_header beginRefreshing];
     
     self.tableView.mj_footer =[HGRefresh loadMoreRefreshWithRefreshBlock:^{
         NSInteger i = [weakSelf.parama.page integerValue ];
         weakSelf.parama.page = [NSString stringWithFormat:@"%ld",++i];
-        [weakSelf loadMoreData:weakSelf.parama];
+        [weakSelf loadMore];
     }];
 }
--(void)loadMoreData:(ResearchParama *)parama;
+-(void)loadMore
 {
     if (_isRefreshing) {
         return;
     }
     _isRefreshing = YES;
-    HGLog(@"%@",parama.keyValues);
+    ResearchParama *parama = self.parama;
     NSString *url = [HGURL stringByAppendingString:@"Research/getResearchList.do"];
     HGLog(@"%@",[HGUserDefaults objectForKey:HGUserID]);
     NSString *user_id = [HGUserDefaults objectForKey:HGUserID];
@@ -72,6 +65,47 @@
     [HGHttpTool POSTWithURL:url parameters:par success:^(id responseObject) {
         _isRefreshing = NO;
         [self.tableView.mj_footer endRefreshing];
+        NSArray *array = [NSArray array];
+        array = [responseObject objectForKey:@"data"];
+        NSString *status = [responseObject objectForKey:@"status"];
+        if([status isEqualToString:@"0"])
+        {
+            [SVProgressHUD showErrorWithStatus:[responseObject objectForKey:@"message"]];
+            NSInteger i = [self.parama.page integerValue ];
+            self.parama.page = [NSString stringWithFormat:@"%ld",--i];
+        }else{
+            
+            for (NSDictionary *dict in array) {
+                ResearchList *rl = [ResearchList initWithDict:dict];
+                [self.arr addObject:rl];
+            }
+            [self.tableView reloadData];
+        }
+    } failure:^(NSError *error) {
+        _isRefreshing = NO;
+        [self.tableView.mj_footer endRefreshing];
+        NSInteger i = [self.parama.page integerValue ];
+        self.parama.page = [NSString stringWithFormat:@"%ld",--i];
+        HGLog(@"%@",error);
+    }];
+}
+-(void)loadNew
+{
+    if (_isRefreshing) {
+        return;
+    }
+    ResearchParama *parama = self.parama;
+    _isRefreshing = YES;
+    self.parama.page = @"1";
+    NSString *url = [HGURL stringByAppendingString:@"Research/getResearchList.do"];
+    HGLog(@"%@",[HGUserDefaults objectForKey:HGUserID]);
+    
+    NSMutableDictionary *par =[NSMutableDictionary dictionaryWithDictionary:parama.keyValues];
+    
+    [HGHttpTool POSTWithURL:url parameters:par success:^(id responseObject) {
+        _isRefreshing = NO;
+        [self.tableView.mj_header endRefreshing];
+        [self.arr removeAllObjects];
         NSArray *array = [NSArray array];
         array = [responseObject objectForKey:@"data"];
         NSString *status = [responseObject objectForKey:@"status"];
@@ -84,53 +118,18 @@
                 ResearchList *rl = [ResearchList initWithDict:dict];
                 [self.arr addObject:rl];
             }
-            [self.tableView reloadData];
+            
         }
+        [self.tableView reloadData];
     } failure:^(NSError *error) {
         _isRefreshing = NO;
-        [self.tableView.mj_footer endRefreshing];
+        [self.tableView.mj_header endRefreshing];
         HGLog(@"%@",error);
     }];
 }
--(void)postWithParama:(ResearchParama *)parama
+-(void)refresh
 {
-    if (_isRefreshing) {
-        return;
-    }
-     HGLog(@"%@",parama.keyValues);
-    _isRefreshing = YES;
-    self.parama.page = @"1";
-    NSString *url = [HGURL stringByAppendingString:@"Research/getResearchList.do"];
-    HGLog(@"%@",[HGUserDefaults objectForKey:HGUserID]);
-    NSString *user_id = [HGUserDefaults objectForKey:HGUserID];
-    NSMutableDictionary *par =[NSMutableDictionary dictionaryWithDictionary:parama.keyValues];
-    [par setValue:user_id forKey:@"tokenval"];
-    [HGHttpTool POSTWithURL:url parameters:par success:^(id responseObject) {
-        _isRefreshing = NO;
-        [self.tableView.mj_header endRefreshing];
-        NSArray *array = [NSArray array];
-        array = [responseObject objectForKey:@"data"];
-        NSString *status = [responseObject objectForKey:@"status"];
-        if([status isEqualToString:@"0"])
-        {
-            [SVProgressHUD showErrorWithStatus:[responseObject objectForKey:@"message"]];
-        }else{
-            [self.arr removeAllObjects];
-            for (NSDictionary *dict in array) {
-                ResearchList *rl = [ResearchList initWithDict:dict];
-                [self.arr addObject:rl];
-            }
-            [self.tableView reloadData];
-        }
-    } failure:^(NSError *error) {
-        _isRefreshing = NO;
-        [self.tableView.mj_header endRefreshing];
-        HGLog(@"%@",error);
-    }];
-}
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [self.tableView.mj_header beginRefreshing];
 }
 
 #pragma mark - Table view data source
@@ -151,15 +150,12 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ResearchInfoTableViewCell *cell = [ResearchInfoTableViewCell cellWithTabView:self.tableView];
     cell.RL = [self.arr objectAtIndex:indexPath.row];
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    // Configure the cell...
-    
     return cell;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 4*minH+5*CellHMargin;
+    return 120;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -175,6 +171,14 @@
     
     
 }
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    return [[UIView alloc]init];
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return .1;
+}
+
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

@@ -10,5 +10,6 @@
 @class TeacherListParama;
 @interface TeacherListHeader : UIView
 @property (nonatomic,weak) UISearchBar *searchBar;
+@property (nonatomic,strong) TeacherListParama *parama;
 @property (nonatomic,copy) void (^butClick) (TeacherListParama *parama);
 @end

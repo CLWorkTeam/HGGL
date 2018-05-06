@@ -11,11 +11,13 @@
 #import "MenteeProTableViewController.h"
 #import "MenteeCollectionViewCell.h"
 #import "TeachCollectionViewCell.h"
+#import "HGScoreListViewController.h"
 #import "CurrImageView.h"
 @interface MenteeCollectionViewController ()
 @property (nonatomic,strong) NSArray *arr;
 @property (nonatomic,strong) MenteeBaseTableViewController *base;
 @property (nonatomic,strong) MenteeProTableViewController *pro;
+@property (nonatomic,strong) HGScoreListViewController *myPoint;
 @end
 
 @implementation MenteeCollectionViewController
@@ -25,15 +27,35 @@ static NSString * const reuseIdentifier = @"Cell";
 {
     if (_base == nil) {
         _base = [[MenteeBaseTableViewController alloc]init];
-        _base.mentee = self.mentee;
+        _base.mentee_id = self.mentee_id;
+        WeakSelf
+        _base.PushBlock = ^(id vc) {
+            if (weakSelf.pushBlock) {
+                weakSelf.pushBlock(vc);
+            };
+        };
     }
     return _base;
+}
+-(HGScoreListViewController *)myPoint
+{
+    if (_myPoint == nil) {
+        _myPoint = [[HGScoreListViewController alloc]init];
+        _myPoint.user_id = [HGUserDefaults objectForKey:HGUserID];
+    }
+    return _myPoint;
 }
 -(MenteeProTableViewController *)pro
 {
     if (_pro == nil) {
         _pro = [[MenteeProTableViewController  alloc]init];
         _pro.mentee_id = self.mentee_id;
+        WeakSelf
+        _pro.PushBlock = ^(id vc) {
+            if (weakSelf.pushBlock) {
+                weakSelf.pushBlock(vc);
+            };
+        };
     }
     return _pro;
 }
@@ -41,7 +63,7 @@ static NSString * const reuseIdentifier = @"Cell";
 
 {
     if (_arr == nil) {
-        _arr = [NSArray arrayWithObjects:self.base.tableView,self.pro.tableView, nil];
+        _arr = [NSArray arrayWithObjects:self.base.tableView,self.pro.tableView,self.myPoint.view, nil];
     }
     return _arr;
 }
@@ -49,7 +71,7 @@ static NSString * const reuseIdentifier = @"Cell";
 {
     //设置流水布局
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
-    layout.itemSize = CGSizeMake(HGScreenWidth, HGScreenHeight-64-43);
+    layout.itemSize = CGSizeMake(HGScreenWidth, HGScreenHeight-HGHeaderH-53);
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     layout.minimumLineSpacing = 0;
     
@@ -67,20 +89,7 @@ static NSString * const reuseIdentifier = @"Cell";
     
     // Do any additional setup after loading the view.
 }
-//- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-//    TeachCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-//    
-//    //cell.teacher_id = self.teacher_id;
-//    for (UIView *view in cell.ima.subviews) {
-//        if (view) {
-//            [view removeFromSuperview];
-//        }
-//    }
-//    UIView *view = [self.arr objectAtIndex:indexPath.row];
-//    //HGLog(@"%@",view);
-//    cell.content = view;
-//    return cell;
-//}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -94,15 +103,7 @@ static NSString * const reuseIdentifier = @"Cell";
     }
     
 }
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 #pragma mark <UICollectionViewDataSource>
 

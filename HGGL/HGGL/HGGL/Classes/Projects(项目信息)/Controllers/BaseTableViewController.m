@@ -16,6 +16,7 @@
 #import "TextFrame.h"
 #import "HGProjectBaseModel.h"
 #import "HGPBRemarkModel.h"
+#import "HGRemarkCell.h"
 ////#import "MBProgressHUD+Extend.h"
 @interface BaseTableViewController ()
 @property (nonatomic,strong) NSArray *arr;
@@ -86,7 +87,7 @@
         return self.model.contentArray.count;
     }else if (section == 1)
     {
-        return 0;
+        return self.model.remarkArray.count;
     }else
     {
         return 1;
@@ -116,7 +117,7 @@
         but.frame = CGRectMake(20, 10, HGScreenWidth - 20*2, 44);
         [cell addSubview:but];
         return cell;
-    }else {
+    }else if(indexPath.section == 0){
         
         BaseTableViewCell *cell = [BaseTableViewCell cellWithTabView:self.tableView];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -124,17 +125,34 @@
         cell.nameV = [self.model.contentArray objectAtIndex:indexPath.row];
         
         return cell;
+    }else
+    {
+        HGRemarkCell *cell = [HGRemarkCell cellWithTabView:tableView];
+        
+        if (indexPath.row == 0) {
+            cell.isFirst = YES;
+        }else
+        {
+            cell.isFirst = NO;
+        }
+        cell.model = self.model.remarkArray[indexPath.row];
+        return cell;
+        
     }
 
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == self.arr.count-1) {
+    if (indexPath.section == 2) {
         return 64;
+    }else if (indexPath.section == 0)
+    {
+        return minH+2*CellHMargin;
     }else
     {
-        return 30;
+        HGPBRemarkModel *model = self.model.remarkArray[indexPath.row];
+        return model.cellH;
     }
 }
 -(void)conform

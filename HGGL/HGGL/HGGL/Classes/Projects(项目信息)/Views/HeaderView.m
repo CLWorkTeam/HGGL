@@ -61,7 +61,7 @@
     
         //self.backgroundColor = [UIColor blackColor];
         search.searchBarStyle = UISearchBarStyleMinimal;
-        search.placeholder = @"请输入关键字如项目名称、项目编号等";
+        search.placeholder = @"请输入关键字如项目名称等";
         _searchBar = search;
 //        search.inputAccessoryView = self.accessoryView;
         search.delegate = self;
@@ -76,10 +76,7 @@
     }
     return self;
 }
--(BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
-{
-    return YES;
-}
+
 -(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
     searchBar.showsCancelButton = YES;
     for(UIView *view in  [[[searchBar subviews] objectAtIndex:0] subviews]) {
@@ -94,7 +91,10 @@
     //显示键盘
     [self.searchBar becomeFirstResponder];
 }
-
+-(BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
+{
+    return YES;
+}
 //点击cancel时候
 -(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
@@ -102,12 +102,21 @@
     [searchBar resignFirstResponder];
     [searchBar endEditing:YES];
     searchBar.text = nil;
+    self.parama.str = searchBar.text;
+    [self endEditing:YES];
+    if (_clickBut) {
+        _clickBut(self.parama);
+    }
 }
 
 -(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar{
     [searchBar endEditing:YES];
-    
     searchBar.showsCancelButton = NO;
+    self.parama.str = searchBar.text;
+    [self endEditing:YES];
+    if (_clickBut) {
+        _clickBut(self.parama);
+    }
 }
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {

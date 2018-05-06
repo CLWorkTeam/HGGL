@@ -11,6 +11,7 @@
 @interface ResearchInfoTableViewController : UITableViewController
 @property (nonatomic,copy) NSString *user_id;
 @property (nonatomic,strong) ResearchParama *parama;
--(void)postWithParama:(ResearchParama *)parama;
+//-(void)postWithParama:(ResearchParama *)parama;
+-(void)refresh;
 @property (nonatomic,copy) void (^researchBlock) (id vc);
 @end

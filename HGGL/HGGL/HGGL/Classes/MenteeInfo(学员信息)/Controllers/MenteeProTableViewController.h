@@ -10,5 +10,6 @@
 
 @interface MenteeProTableViewController : UITableViewController
 @property (nonatomic,copy) NSString  *mentee_id;
+@property (nonatomic,strong) void (^PushBlock)(id vc);
 -(void)showError;
 @end

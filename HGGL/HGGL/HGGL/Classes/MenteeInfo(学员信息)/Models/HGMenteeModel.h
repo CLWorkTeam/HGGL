@@ -17,5 +17,6 @@
 @property (nonatomic,copy) NSString *mentee_room;//房间
 @property (nonatomic,copy) NSString *mentee_district;//关区
 @property (nonatomic,copy) NSString *mentee_department;//部门
+
 +(instancetype)initWithDict:(NSDictionary *)dict;
 @end

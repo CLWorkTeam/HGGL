@@ -7,53 +7,105 @@
 //
 
 #import "MListTableViewCell.h"
-#import "Mentee.h"
+#import "HGMenteeModel.h"
 #import "HGLable.h"
 #import "TextFrame.h"
 //#define butH 25
 //#define margin 8
 @interface MListTableViewCell()
-
+@property (nonatomic,weak) UIView *grayView;
+@property (nonatomic,weak) UILabel *name;
+@property (nonatomic,weak) UILabel *sex;
+@property (nonatomic,weak) UILabel *tel;
+@property (nonatomic,weak) UILabel *part;
+@property (nonatomic,weak) UILabel *area;
 @end
 @implementation MListTableViewCell
-
--(void)setMentee:(Mentee *)mentee
+-(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        self.backgroundColor = [UIColor whiteColor];
+        [self setUpAllSubviews];
+        
+    }
+    return self;
+}
+-(void)setUpAllSubviews
+{
+    UIView *grayView = [[UIView alloc] init];
+    [self.contentView addSubview:grayView];
+    grayView.backgroundColor = HGGrayColor;
+    self.grayView = grayView;
+    grayView.layer.masksToBounds = YES;
+    grayView.layer.cornerRadius = 5;
+    
+    
+    
+    
+    UILabel *name = [HGLable lableWithAlignment:NSTextAlignmentLeft Font:HGFont Color:[UIColor blackColor]];
+    [self.grayView  addSubview:name];
+    self.name = name;
+    
+    UILabel *sex = [HGLable lableWithAlignment:NSTextAlignmentLeft Font:HGFont Color:[UIColor blackColor]];
+    [self.grayView  addSubview:sex];
+    self.sex = sex;
+    
+    UILabel *tel = [HGLable lableWithAlignment:NSTextAlignmentRight Font:HGFont Color:[UIColor blackColor]];
+    [self.grayView  addSubview:tel];
+    self.tel = tel;
+    
+    UILabel *part = [HGLable lableWithAlignment:NSTextAlignmentLeft Font:HGFont Color:[UIColor blackColor]];
+    [self.grayView  addSubview:part];
+    self.part = part;
+    
+    UILabel *area = [HGLable lableWithAlignment:NSTextAlignmentLeft Font:HGFont Color:[UIColor blackColor]];
+    [self.grayView  addSubview:area];
+    self.area = area;
+    
+    
+    
+    
+    
+    
+    
+}
+-(void)setMentee:(HGMenteeModel *)mentee
 {
     _mentee = mentee;
-    UILabel *name = [HGLable lableWithAlignment:NSTextAlignmentLeft Font:HGFont Color:[UIColor blackColor]];
-    name.text = mentee.mentee_name;
-    [self.contentView  addSubview:name];
-    name.frame = CGRectMake(CellWMargin, CellHMargin, HGScreenWidth*0.3-CellWMargin, minH);
-    UILabel *sex = [HGLable lableWithAlignment:NSTextAlignmentCenter Font:HGFont Color:[UIColor blackColor]];
-    sex.text = mentee.mentee_sex;
-    sex.frame = CGRectMake(CGRectGetMaxX(name.frame), CellHMargin, HGScreenWidth*0.2, minH);
-    [self.contentView addSubview:sex];
-    UILabel *tel = [HGLable lableWithAlignment:NSTextAlignmentLeft Font:HGFont Color:[UIColor blackColor]];
-    tel.text = mentee.mentee_tel;
-    tel.frame = CGRectMake(CGRectGetMaxX(sex.frame), CellHMargin, HGScreenWidth*0.5-CellWMargin, minH);
-    [self.contentView addSubview:tel];
-    UILabel *unit = [HGLable lableWithAlignment:NSTextAlignmentLeft Font:HGFont Color:[UIColor blackColor]];
-    unit.text = @"单位/职务:";
-    unit.frame = CGRectMake(CellWMargin, minH+2*CellHMargin, HGScreenWidth*0.3-CellWMargin, minH);
-    [self.contentView addSubview:unit];
+    self.name.text = mentee.mentee_name;
+    self.sex.text = mentee.mentee_sex;
+    self.tel.text = mentee.mentee_tel;
+    self.area.text = [NSString stringWithFormat:@"关区：%@",mentee.mentee_district];
+    self.part.text = [NSString stringWithFormat:@"部门：%@",mentee.mentee_department];;
     
-    UILabel *unitV = [HGLable lableWithAlignment:NSTextAlignmentLeft Font:14 Color:[UIColor blackColor]];
-    unitV.text = [NSString stringWithFormat:@"%@  %@", mentee.mentee_workUnit, mentee.mentee_duty];
-    unitV.frame = CGRectMake(CGRectGetMaxX(unit.frame), minH+CellHMargin*2, HGScreenWidth*0.7-CellWMargin, minH);
-    [self.contentView addSubview:unitV];
+}
+-(void)layoutSubviews
+{
+    [super layoutSubviews];
+    CGFloat WMargin = 10;
+    CGFloat WMar = 5;
+    CGFloat Hmar = 20;
+    CGFloat H = 30;
+    self.grayView.frame = CGRectMake(WMargin, 0, self.width-2*WMargin, self.height-Hmar);
+    //    [self.name sizeToFit];
+    self.name.frame = CGRectMake(WMar, 0, self.grayView.width/3-WMar, H);
+    [self.sex sizeToFit];
+    self.sex.width = 15;
+    self.sex.frame = CGRectMake(self.name.maxX+WMar, self.name.y, self.sex.width, H);
+    self.tel.frame = CGRectMake(self.sex.maxX+WMar, self.name.y, self.grayView.width-self.sex.width-self.name.width-4*WMar, H);
+    self.area.frame = CGRectMake(self.name.x, self.name.maxY, self.grayView.width-WMar*2, H);
+    self.part.frame = CGRectMake(self.name.x, self.area.maxY, self.area.width, H);
+    
     
 }
 +(instancetype)cellWithTabView:(UITableView *)view
 {
-    static NSString *ID = @"cell";
+    static NSString *ID = @"MListTableViewCell";
     MListTableViewCell *cell = [view dequeueReusableCellWithIdentifier:ID];
     if (cell == nil) {
         cell = [[MListTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];
-    }else{
-        for (UIView *view in cell.contentView.subviews) {
-            [view removeFromSuperview];
-        }
     }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 @end

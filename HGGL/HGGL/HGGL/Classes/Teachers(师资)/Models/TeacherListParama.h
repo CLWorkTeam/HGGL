@@ -14,9 +14,8 @@
 //：区范围
 //@property (nonatomic,copy)NSString *teacher_area;
 //：聘任类型
-@property (nonatomic,copy)NSString *teacher_type;
-//：教师性别
-@property (nonatomic,copy)NSString *teacher_sex;
+@property (nonatomic,copy)NSString *teacher_Type;
+
 //：当前的页码，从1开始【非必填】
 @property (nonatomic,copy)NSString *page;
 //：分页大小，默认每页10条【非必填】

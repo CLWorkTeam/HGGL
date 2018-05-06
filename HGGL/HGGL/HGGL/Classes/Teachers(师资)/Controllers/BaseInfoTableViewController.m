@@ -142,11 +142,19 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //HGLog(@"高度");
-    NSNumber *num = [[self.teachInfo.frameArr objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-    HGLog(@"%f",num.floatValue);
-    return num.floatValue>=(minH+2*CellHMargin)?num.floatValue:(minH+2*CellHMargin);
+//    NSNumber *num = [[self.teachInfo.frameArr objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+//    HGLog(@"%f",num.floatValue);
+    return minH+2*CellHMargin;
 }
-
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    return  [[UIView alloc]init];
+    
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return .1;
+}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

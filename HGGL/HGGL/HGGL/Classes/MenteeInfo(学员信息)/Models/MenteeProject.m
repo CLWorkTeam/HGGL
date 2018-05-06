@@ -14,14 +14,18 @@
 +(instancetype)MFWithDict:(NSDictionary *)dict
 {
     MenteeProject *MP = [[MenteeProject alloc]init];
-    MP.project_name = dict[@"project_name"];
-    MP.project_star = dict[@"project_star"];
-//    MP.project_end = dict[@"project_end"];
-    MP.mentee_class = dict[@"mentee_class"];
-    CGFloat h = [TextFrame frameOfText:MP.project_name With:[UIFont systemFontOfSize:HGFont] Andwidth:HGScreenWidth-Width-2*CellWMargin].height;
-    MP.projectNameH = h>=minH?h:minH;
-    //HGLog(@"22222%f",score.projectNameH);
-    MP.cellH = minH+MP.projectNameH+3*CellHMargin;
+    MP.project_name = (dict[@"project_name"]?dict[@"project_name"]:@"");
+    MP.project_start = (dict[@"project_start"]?dict[@"project_start"]:@"");
+    MP.project_end = (dict[@"project_end"]?dict[@"project_end"]:@"");
+    
+    MP.project_id = (dict[@"project_id"]?dict[@"project_id"]:@"");
+    MP.project_serial_num = (dict[@"project_serial_num"]?dict[@"project_serial_num"]:@"");
+    MP.running_status = (dict[@"running_status"]?dict[@"running_status"]:@"");
+    
+    MP.project_contact = (dict[@"project_contact"]?dict[@"project_contact"]:@"");
+    MP.contact_phone = (dict[@"contact_phone"]?dict[@"contact_phone"]:@"");
+    MP.course_hour = (dict[@"course_hour"]?dict[@"course_hour"]:@"");
+    
     return MP;
 }
 @end

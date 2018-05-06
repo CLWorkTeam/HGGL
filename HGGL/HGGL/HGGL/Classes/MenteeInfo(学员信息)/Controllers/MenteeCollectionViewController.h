@@ -12,4 +12,5 @@
 @property (nonatomic,copy) NSString  *mentee_id;
 @property (nonatomic,strong) Mentee *mentee;
 @property (nonatomic,copy) void(^VCChange)(NSInteger tag);
+@property (nonatomic,copy) void(^pushBlock)(id vc);
 @end

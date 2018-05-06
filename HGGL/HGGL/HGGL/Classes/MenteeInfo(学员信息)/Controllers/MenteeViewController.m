@@ -9,11 +9,11 @@
 #import "MenteeViewController.h"
 #import "MenteeCollectionViewController.h"
 #import "Mentee.h"
-#import "MenteeToolBar.h"
+#import "TeachToolBar.h"
 #import "CurrImageView.h"
 @interface MenteeViewController ()
 @property (nonatomic,strong) MenteeCollectionViewController *tcv;
-@property (nonatomic,weak) MenteeToolBar *toolBar;
+@property (nonatomic,weak) TeachToolBar *toolBar;
 @end
 
 @implementation MenteeViewController
@@ -21,7 +21,11 @@
 {
     if (_tcv == nil) {
         _tcv = [[MenteeCollectionViewController alloc] init];
-        _tcv.mentee = self.mentee;
+        WeakSelf
+        _tcv.pushBlock = ^(id vc) {
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        };
+//        _tcv.mentee = self.mentee;
         _tcv.mentee_id = self.mentee_id;
     }
     return _tcv;
@@ -34,7 +38,7 @@
     // Do any additional setup after loading the view.
     [self setToolBar];
     [self setBottom];
-    [self setupLeftNavItem];
+//    [self setupLeftNavItem];
     __weak typeof(self) weekSelf = self;
     //    self.tcv.PushVC = ^(id vc){
     //        [weekSelf.navigationController pushViewController:vc animated:YES];
@@ -69,14 +73,20 @@
 
 -(void)setToolBar
 {
-    MenteeToolBar *toolBar = [[MenteeToolBar alloc]init];
-    toolBar.frame = CGRectMake(0, 64, self.view.bounds.size.width, 43);
+    TeachToolBar *toolBar = [[TeachToolBar alloc]init];
+    toolBar.arr = [NSArray arrayWithObjects:@"基本信息",@"历史培训",@"成绩单", nil];
+    toolBar.frame = CGRectMake(0, HGHeaderH, self.view.bounds.size.width, 43);
     self.toolBar = toolBar;
     [self.view addSubview:toolBar];
+    
+    UIView *grayLine = [[UIView alloc]init];
+    grayLine.backgroundColor = HGGrayColor;
+    grayLine.frame = CGRectMake(0, self.toolBar.maxY, self.view.width, 10);
+    [self.view addSubview:grayLine];
 }
 -(void)setBottom
 {
-    CurrImageView *bottom = [CurrImageView showInRect:CGRectMake(0, 107, HGScreenWidth, HGScreenHeight - 107)];
+    CurrImageView *bottom = [CurrImageView showInRect:CGRectMake(0, HGHeaderH+self.toolBar.height+10, HGScreenWidth, HGScreenHeight - (HGHeaderH+self.toolBar.height+10))];
     
     [self.view addSubview:bottom];
     bottom.contentView = self.tcv.collectionView;

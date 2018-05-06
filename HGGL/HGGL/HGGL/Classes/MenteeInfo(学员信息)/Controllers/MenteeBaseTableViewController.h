@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 @class Mentee;
 @interface MenteeBaseTableViewController : UITableViewController
-@property (nonatomic,strong) Mentee *mentee;
+//@property (nonatomic,strong) Mentee *mentee;
+@property (nonatomic,copy) NSString  *mentee_id;
+@property (nonatomic,strong) void (^PushBlock)(id vc);
 @end
