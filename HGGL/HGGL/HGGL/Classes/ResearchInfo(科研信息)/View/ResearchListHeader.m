@@ -119,29 +119,33 @@
 }
 -(void)clickType
 {
-    
+    self.but.selected = !self.but.selected;
     CGRect r = [self convertRect:self.but.frame toView:HGKeywindow];
     CGRect rect = CGRectMake(r.origin.x, r.origin.y+r.size.height, r.size.width, 44*4);
     
     [HGPopView setPopViewWith:rect And:self.arr andShowKey:nil  selectBlock:^(NSString *str) {
-        
-        [self.but setTitle:str forState:UIControlStateNormal];
-        
-        if ([str isEqual:@"全部"]) {
-            self.parama.research_type = @"";
-        }else if ([str isEqual:@"调训项目"])
-        {
-            self.parama.research_type = @"1";
-        }else if([str isEqual:@"委托项目"])
-        {
-            self.parama.research_type = @"2";
-        }else if ([str isEqual:@"集中工作"])
-        {
-            self.parama.research_type = @"3";
+        self.but.selected = NO;
+        if (![str isEqualToString:@""]) {
+            [self.but setTitle:str forState:UIControlStateNormal];
+            
+            if ([str isEqual:@"全部"]) {
+                self.parama.research_type = @"";
+            }else if ([str isEqual:@"调训项目"])
+            {
+                self.parama.research_type = @"1";
+            }else if([str isEqual:@"委托项目"])
+            {
+                self.parama.research_type = @"2";
+            }else if ([str isEqual:@"集中工作"])
+            {
+                self.parama.research_type = @"3";
+            }
+            if ( _clickBut) {
+                _clickBut(self.parama);
+            }
         }
-        if ( _clickBut) {
-            _clickBut(self.parama);
-        }
+        
+        
         
     }];
 

@@ -182,17 +182,7 @@
 -(void)setTitle
 {
     
-//    UINavigationBar *bar = [[UINavigationBar alloc]initWithFrame:CGRectMake(0,0, HGScreenWidth, 64)];
-    //bar.barStyle = 0;
-    UIBarButtonItem *back = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStyleDone target:self action:@selector(clickBack)];
-    //[back setImage:[UIImage imageNamed:@"return_normal"]];
-////    [bar pushNavigationItem:self.navigationItem animated:YES];
-    self.navigationController.navigationBar.barTintColor =HGMainColor;
-////    [self.view addSubview:bar];
-    self.navigationItem.leftBarButtonItem = back;
-//    self.navigationItem.title = @"课程表";
-//    
-//    self.title = @"课程表";
+
     self.navigationItem.title = @"课程表";
     
 }

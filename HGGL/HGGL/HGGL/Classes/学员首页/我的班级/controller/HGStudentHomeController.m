@@ -18,7 +18,8 @@
 #import "HGStudentItemModel.h"
 #import "HGClassDetailController.h"
 #import "HGWebController.h"
-
+#import "HGSignOutPopView.h"
+#import "HGRASTableViewController.h"
 @interface HGStudentHomeController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong) UIImageView *imageV;
@@ -569,6 +570,8 @@
         [self.navigationController pushViewController:vc animated:YES];
     }
     if ([sender.titleLabel.text isEqualToString:@"餐饮签退"]) {
+        
+        [HGSignOutPopView show];
 
     }
 
@@ -577,7 +580,8 @@
     }
     
     if ([sender.titleLabel.text isEqualToString:@"查看接送站信息"]) {
-        
+        HGRASTableViewController *vc = [[HGRASTableViewController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 

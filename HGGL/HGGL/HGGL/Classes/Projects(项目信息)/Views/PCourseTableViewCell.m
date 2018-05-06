@@ -41,7 +41,6 @@
     
     UILabel *courseName = [HGLable  lableWithAlignment:NSTextAlignmentLeft Font:HGFont Color:[UIColor blackColor]];
     courseName.font = [UIFont fontWithName:@"Helvetica-Bold" size:HGFont];
-    
     [self.contentView addSubview:courseName];
     self.courseName = courseName;
     

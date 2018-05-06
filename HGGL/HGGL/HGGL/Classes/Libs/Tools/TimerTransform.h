@@ -13,5 +13,6 @@
 +(id)timerTransform:(NSString *)time;
 +(NSArray *)AllWeeksOfThisYear:(NSInteger)year;
 +(NSArray *)AllDayOfThisWeek:(NSString *)time;
++(NSString *)dayOfWeek:(NSDate *)date;
 //
 @end

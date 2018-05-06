@@ -119,6 +119,7 @@
     NSRange dayRange = [[NSCalendar currentCalendar] rangeOfUnit:NSCalendarUnitDay inUnit:NSCalendarUnitMonth forDate:date];
     return dayRange.length;
 }
+
 /**
  *获取指定年月的第一天是周几
  */

@@ -40,7 +40,7 @@
     self.imageView.center = CGPointMake(self.frame.size.width-CellHMargin-W/2, self.frame.size.height/2);
     self.titleLabel.bounds = CGRectMake(0, 0, TW, TH);
     self.titleLabel.center = CGPointMake(CellHMargin+TW/2, self.frame.size.height/2);
-    self.titleLabel.textAlignment = NSTextAlignmentCenter;
+//    self.titleLabel.textAlignment = self.contentVerticalAlignment;
 }
 
 
