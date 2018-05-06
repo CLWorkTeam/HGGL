@@ -80,7 +80,7 @@
         if ([responseObject[@"status"] isEqualToString:@"1"]) {
             NSString *resultUrl = [responseObject[@"data"] firstObject][@"imageUrl"];
             NSString *imgUrl = [NSString stringWithFormat:@"%@%@",HGURL,resultUrl];
-            [imageV sd_setImageWithURL:[NSURL URLWithString:imgUrl]  completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+            [imageV sd_setImageWithURL:[NSURL URLWithString:imgUrl] placeholderImage:[UIImage imageNamed:@"WechatIMG79.jpeg"]  completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
                 if (error) {
                     imageV.image = [UIImage imageNamed:@"WechatIMG79.jpeg"];
                 }

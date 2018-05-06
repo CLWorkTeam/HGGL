@@ -74,6 +74,8 @@
     if ([title isEqualToString:@"退出当前账号"]) {
         HGLoginController *vc = [[HGLoginController alloc]init];
         HGKeywindow.rootViewController = vc;
+        [HGUserDefaults setBool:NO forKey:@"autoLogin"];
+        [HGUserDefaults synchronize];
     }
     if ([title isEqualToString:@"联系我们"]) {
         HGContactUSViewController *vc =[[HGContactUSViewController alloc]init];
@@ -103,6 +105,9 @@
     if ([title isEqualToString:@"个人信息及修改"]) {
         HGInfoChangeController *vc = [[HGInfoChangeController alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
+    }
+    if ([title isEqualToString:@"我的下载"]) {
+        
     }
 }
 

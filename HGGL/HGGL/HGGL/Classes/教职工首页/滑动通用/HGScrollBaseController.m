@@ -90,6 +90,7 @@
     for (int i =0; i < 2; i++) {
         if (i == 0) {
             HGStudentHomeController *vc = [[HGStudentHomeController alloc]init];
+            [self addChildViewController:vc];
             vc.view.frame = CGRectMake(0, -HGHeaderH, HGScreenWidth, scroll.height+HGHeaderH);
             vc.bar.hidden = YES;
             vc.tableV.frame = CGRectMake(0, HGHeaderH,HGScreenWidth , scroll.height);
@@ -123,6 +124,7 @@
             vc.bar.hidden = YES;
             vc.project_id = self.project_id;
             [scroll addSubview:vc.view];
+            [self addChildViewController:vc];
 
         }
     }

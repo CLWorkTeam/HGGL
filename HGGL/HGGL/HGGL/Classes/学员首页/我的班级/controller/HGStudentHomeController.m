@@ -117,7 +117,7 @@
         if ([responseObject[@"status"] isEqualToString:@"1"]) {
             NSString *resultUrl = [responseObject[@"data"] firstObject][@"imageUrl"];
             NSString *imgUrl = [NSString stringWithFormat:@"%@%@",HGURL,resultUrl];
-            [imageV sd_setImageWithURL:[NSURL URLWithString:imgUrl]  completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+            [imageV sd_setImageWithURL:[NSURL URLWithString:imgUrl] placeholderImage:[UIImage imageNamed:@"WechatIMG79.jpeg"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
                 if (error) {
                     imageV.image = [UIImage imageNamed:@"WechatIMG79.jpeg"];
                 }
@@ -530,24 +530,30 @@
 
 - (void)btnClick:(anyButton *)sender{
     
-    if (self.secondSectionAry.count) {
-        NSString *title = sender.titleLabel.text;
-        NSInteger tag = 0;
-        if ([title isEqualToString:@"成绩单"]||[title isEqualToString:@"班级成绩单"]) {
-            tag = 1;
-        }else if ([title isEqualToString:@"接待确认单"]){
-            tag = 2;
-        }
-        if (self.block) {
-            self.block(tag);
-        }
-        return;
-    }
+//    if (self.secondSectionAry.count) {
+//        NSString *title = sender.titleLabel.text;
+//        NSInteger tag = 0;
+//        if ([title isEqualToString:@"成绩单"]||[title isEqualToString:@"班级成绩单"]) {
+//            tag = 1;
+//        }else if ([title isEqualToString:@"接待确认单"]){
+//            tag = 2;
+//        }
+//        if (self.block) {
+//            self.block(tag);
+//        }
+//        return;
+//    }
     
     NSLog(@"%@",sender.titleLabel.text);
-    if ([sender.titleLabel.text isEqualToString:@"成绩单"]) {
+    if ([sender.titleLabel.text isEqualToString:@"成绩单"]||[sender.titleLabel.text isEqualToString:@"班级成绩单"]) {
         HGMyPointController *vc = [[HGMyPointController alloc]init];
         vc.user_id = [HGUserDefaults objectForKey:HGUserID];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    if ([sender.titleLabel.text isEqualToString:@"接待确认单"]) {
+        HGWebController *vc = [[HGWebController alloc]init];
+        vc.url = @"https://www.baidu.com";
+        vc.titleStr = @"接待确认单";
         [self.navigationController pushViewController:vc animated:YES];
     }
     if ([sender.titleLabel.text isEqualToString:@"项目资料"]) {
@@ -565,10 +571,16 @@
         [self.navigationController pushViewController:vc animated:YES];
     }
     if ([sender.titleLabel.text isEqualToString:@"餐饮签退"]) {
-        HGContactUSViewController *vc = [[HGContactUSViewController alloc]init];
-        [self.navigationController pushViewController:vc animated:YES];
+
     }
 
+    if ([sender.titleLabel.text isEqualToString:@"填报接站信息"]) {
+        
+    }
+    
+    if ([sender.titleLabel.text isEqualToString:@"查看接送站信息"]) {
+        
+    }
 }
 
 - (void)clickClass:(UITapGestureRecognizer *)ges{

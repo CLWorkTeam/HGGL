@@ -8,7 +8,7 @@
 
 #import "HGBaseController.h"
 
-@interface HGMyPointController : UIViewController
+@interface HGMyPointController : HGBaseController
 @property (nonatomic,copy) NSString *user_id;
 @property (nonatomic,weak) UIView *contentView;
 @end
