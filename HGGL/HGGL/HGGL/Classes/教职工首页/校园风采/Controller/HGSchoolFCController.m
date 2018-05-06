@@ -34,7 +34,7 @@
     UITableView *tableV = [[UITableView alloc]initWithFrame:CGRectMake(0,self.bar.maxY, HGScreenWidth, HGScreenHeight - self.bar.maxY) style:UITableViewStylePlain];
     tableV.separatorStyle = UITableViewCellSeparatorStyleNone;
     tableV.backgroundColor = [UIColor whiteColor];
-    tableV.rowHeight = HEIGHT_PT(90);
+    tableV.rowHeight = HEIGHT_PT(160);
     tableV.delegate = self;
     tableV.dataSource = self;
     self.tableV = tableV;
@@ -61,7 +61,7 @@
             [self.tableV reloadData];
             WeakSelf;
             HGNoDataView *nodataView = [[HGNoDataView alloc]init];
-            nodataView.label.text = @"无数据";
+            nodataView.label.text = @"无校园风采信息";
             nodataView.block = ^{
                 [weakSelf.tableV.mj_header beginRefreshing];
             };

@@ -10,6 +10,7 @@
 #import "HGStudentHomeController.h"
 #import "HGContactController.h"
 #import "HGMyPointController.h"
+#import "HGWebController.h"
 
 @interface HGScrollBaseController ()<UIScrollViewDelegate>
 
@@ -103,12 +104,15 @@
             }
             WeakSelf;
             vc.block = ^(NSInteger tag) {
-                if (tag==1) {
+                if (tag==1) { //成绩单
                     HGMyPointController *vc = [[HGMyPointController alloc]init];
                     vc.user_id = [HGUserDefaults objectForKey:HGUserID];
                     [weakSelf.navigationController pushViewController:vc animated:YES];
-                }else{
-                    
+                }else{//接待确认单
+                    HGWebController *vc = [[HGWebController alloc]init];
+                    vc.url = @"https://www.baidu.com";
+                    vc.titleStr = @"接待确认单";
+                    [weakSelf.navigationController pushViewController:vc animated:YES];
                 }
             };
             [scroll addSubview:vc.view];

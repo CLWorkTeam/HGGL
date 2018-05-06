@@ -60,7 +60,7 @@
             [self.tableV reloadData];
             WeakSelf;
             HGNoDataView *nodataView = [[HGNoDataView alloc]init];
-            nodataView.label.text = @"无数据";
+            nodataView.label.text = @"无学员通讯录信息";
             nodataView.block = ^{
                 [weakSelf.tableV.mj_header beginRefreshing];
             };

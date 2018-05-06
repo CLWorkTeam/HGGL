@@ -64,18 +64,18 @@
         
         NSLog(@"%@---%@\n---\n%@",[self class],url,responseObject);
 
-//        [self.tableV.mj_header endRefreshing];
+        [self.tableV.mj_header endRefreshing];
         
         if ([responseObject[@"status"] isEqualToString:@"0"]) {
             self.courseAry = @[];
             self.videoAry = @[];
             [self.tableV reloadData];
-//            WeakSelf;
+            WeakSelf;
             HGNoDataView *nodataView = [[HGNoDataView alloc]init];
             nodataView.label.text = @"无数据";
-//            nodataView.block = ^{
-////                [weakSelf.tableV.mj_header beginRefreshing];
-//            };
+            nodataView.block = ^{
+                [weakSelf.tableV.mj_header beginRefreshing];
+            };
             self.tableV.backgroundView = nodataView;
         }else{
             self.courseAry = [HGItemDataModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"courseWareList"]];
@@ -84,7 +84,7 @@
             self.tableV.backgroundView = nil;
         }
     } failure:^(NSError *error) {
-//        [self.tableV.mj_header endRefreshing];
+        [self.tableV.mj_header endRefreshing];
     }];
 }
 

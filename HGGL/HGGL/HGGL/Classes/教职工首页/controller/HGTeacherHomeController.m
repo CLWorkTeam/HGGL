@@ -66,6 +66,9 @@
     [backV addSubview:messageBtn];
     
     UIImageView *imageV =[[UIImageView alloc]initWithFrame:CGRectMake(0, backV.maxY, HGScreenWidth, HEIGHT_PT(150))];
+    if (HGScreenWidth>320) {
+        imageV.height = 200;
+    }
     self.imageV = imageV;
     [self.view addSubview:imageV];
     
@@ -113,7 +116,7 @@
     CGFloat x = 0;
     CGFloat y = self.imageV.maxY;
     CGFloat w = HGScreenWidth/3;
-    CGFloat h = (HGScreenHeight-self.imageV.maxY)/3;
+    CGFloat h = w;//(HGScreenHeight-self.imageV.maxY)/3;
     UIImage *image = nil;
     NSString *title = nil;
     UIColor *color = nil;
