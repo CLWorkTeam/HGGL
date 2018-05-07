@@ -27,7 +27,7 @@
 
 - (void)login:(UIButton *)sender{
     
-    
+    [SVProgressHUD showWithStatus:@"登录中..."];
     NSString *account = [HGUserDefaults objectForKey:HGUserName];
     NSString *passWord = [HGUserDefaults objectForKey:HGUserPassWord];
     [HGHttpTool POSTWithURL:[HGURL stringByAppendingString:@"User/Login.do"] parameters:@{@"account":account,@"password":passWord} success:^(id responseObject) {
@@ -62,7 +62,8 @@
             HGKeywindow.rootViewController = vc;
         }
     } failure:^(NSError *error) {
-        
+        HGLoginController *vc =[[HGLoginController alloc]init];
+        HGKeywindow.rootViewController = vc;
     }];
 }
 
