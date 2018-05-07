@@ -60,9 +60,9 @@
     
     CGFloat h ;
     if (_dataAry.count<6) { //渠道
-        h = HEIGHT_PT(110) * _dataAry.count;
+        h = HEIGHT_PT(55) * _dataAry.count;
     }else{
-        h = HGScreenHeight - HEIGHT_PT(512);
+        h = HEIGHT_PT(300);
     }
     
     UITableView *tableV = [[UITableView alloc]initWithFrame:CGRectMake(0, HGScreenHeight, HGScreenWidth, h) style:UITableViewStylePlain];
@@ -110,13 +110,13 @@
         cell = [[TKSelectCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
-        UIView *lineV = [[UIView alloc]initWithFrame:CGRectMake(0, HEIGHT_PT(110)-HEIGHT_PT(1) , HGScreenWidth, HEIGHT_PT(1))];
+        UIView *lineV = [[UIView alloc]initWithFrame:CGRectMake(0, HEIGHT_PT(55)-HEIGHT_PT(1) , HGScreenWidth, HEIGHT_PT(1))];
         lineV.backgroundColor = [UIColor colorWithHexString:@"#eeeeee"];
         [cell.contentView addSubview:lineV];
     }
     
     cell.textLabel.text = _dataAry[indexPath.row];
-    cell.textLabel.font = [UIFont systemFontOfSize:FONT_PT(32)];
+    cell.textLabel.font = [UIFont systemFontOfSize:FONT_PT(16)];
     cell.textLabel.textColor = [UIColor colorWithHexString:@"#333333"];
     cell.textLabel.textAlignment = NSTextAlignmentCenter;
     
@@ -148,7 +148,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return HEIGHT_PT(110);
+    return HEIGHT_PT(55);
 }
 
 @end

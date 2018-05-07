@@ -70,12 +70,15 @@
 
 - (void)requestData{
     
+    [SVProgressHUD showWithStatus:@"加载中..."];
     NSString *url = [HGURL stringByAppendingString:@"/User/getInfo.do?"];
     NSString *userid = [HGUserDefaults objectForKey:HGUserID];
     [HGHttpTool POSTWithURL:url parameters:@{@"user_id":userid} success:^(id responseObject) {
         
         NSLog(@"%@---%@\n---\n%@",[self class],url,responseObject);
         
+        [SVProgressHUD dismiss];
+
         [self.tableV.mj_header endRefreshing];
         
         if ([responseObject[@"status"] isEqualToString:@"0"]) {

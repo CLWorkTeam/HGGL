@@ -12,7 +12,7 @@ typedef void(^HGInfoChangeBlock)(NSString* ,NSString*);
 
 @interface HGInfoChangeCell : UITableViewCell
 
-@property (nonatomic,copy) HGInfoChangeBlock block;//sex 0.男  1.女
+@property (nonatomic,copy) HGInfoChangeBlock block;//更新数据后的回调
 
 @property (nonatomic,strong) UILabel *titleLab;
 @property (nonatomic,strong) UITextField *textF;

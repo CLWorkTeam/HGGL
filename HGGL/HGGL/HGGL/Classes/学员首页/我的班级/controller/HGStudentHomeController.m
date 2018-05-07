@@ -20,6 +20,8 @@
 #import "HGWebController.h"
 #import "HGSignOutPopView.h"
 #import "HGRASTableViewController.h"
+#import "HGStationInfoController.h"
+
 @interface HGStudentHomeController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong) UIImageView *imageV;
@@ -583,7 +585,8 @@
     }
 
     if ([sender.titleLabel.text isEqualToString:@"填报接站信息"]) {
-        
+        HGStationInfoController *vc = [[HGStationInfoController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
     }
     
     if ([sender.titleLabel.text isEqualToString:@"查看接送站信息"]) {

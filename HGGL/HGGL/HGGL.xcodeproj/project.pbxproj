@@ -72,6 +72,8 @@
 		ADE534A6209FEB1700335159 /* HGStationInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE534A5209FEB1700335159 /* HGStationInfoController.m */; };
 		ADE534AB209FEC9300335159 /* TKSelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE534A7209FEC9200335159 /* TKSelectCell.m */; };
 		ADE534AC209FEC9300335159 /* TKSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE534A9209FEC9300335159 /* TKSelectView.m */; };
+		ADE534AF209FF17200335159 /* HGStationInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE534AE209FF17200335159 /* HGStationInfoCell.m */; };
+		ADE534B320A0492300335159 /* icon_splash.png in Resources */ = {isa = PBXBuildFile; fileRef = ADE534B220A0492300335159 /* icon_splash.png */; };
 		ADF2F05B20943D0600C787F0 /* HGItemDataCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF2F05A20943D0600C787F0 /* HGItemDataCell.m */; };
 		ADF2F05E2094478D00C787F0 /* HGItemDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF2F05D2094478D00C787F0 /* HGItemDataModel.m */; };
 		ADF6FCA620989AFB005E27E6 /* HGWeekMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF6FCA520989AFB005E27E6 /* HGWeekMenuCell.m */; };
@@ -538,6 +540,9 @@
 		ADE534A8209FEC9200335159 /* TKSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKSelectView.h; sourceTree = "<group>"; };
 		ADE534A9209FEC9300335159 /* TKSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKSelectView.m; sourceTree = "<group>"; };
 		ADE534AA209FEC9300335159 /* TKSelectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKSelectCell.h; sourceTree = "<group>"; };
+		ADE534AD209FF17200335159 /* HGStationInfoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGStationInfoCell.h; sourceTree = "<group>"; };
+		ADE534AE209FF17200335159 /* HGStationInfoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGStationInfoCell.m; sourceTree = "<group>"; };
+		ADE534B220A0492300335159 /* icon_splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_splash.png; sourceTree = "<group>"; };
 		ADF2F05920943D0600C787F0 /* HGItemDataCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGItemDataCell.h; sourceTree = "<group>"; };
 		ADF2F05A20943D0600C787F0 /* HGItemDataCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGItemDataCell.m; sourceTree = "<group>"; };
 		ADF2F05C2094478D00C787F0 /* HGItemDataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGItemDataModel.h; sourceTree = "<group>"; };
@@ -1791,6 +1796,8 @@
 				ADE534A7209FEC9200335159 /* TKSelectCell.m */,
 				ADE534A8209FEC9200335159 /* TKSelectView.h */,
 				ADE534A9209FEC9300335159 /* TKSelectView.m */,
+				ADE534AD209FF17200335159 /* HGStationInfoCell.h */,
+				ADE534AE209FF17200335159 /* HGStationInfoCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1932,6 +1939,7 @@
 				CE769DD3206A354F000F931F /* Classes */,
 				CE769DAA206A343E000F931F /* Assets.xcassets */,
 				CE769DAC206A343E000F931F /* LaunchScreen.storyboard */,
+				ADE534B220A0492300335159 /* icon_splash.png */,
 			);
 			path = HGGL;
 			sourceTree = "<group>";
@@ -3049,6 +3057,7 @@
 				CE769E76206A57BA000F931F /* icon_big_default.png in Resources */,
 				CE769E55206A57BA000F931F /* icon_video.png in Resources */,
 				CE769E8B206A57BA000F931F /* icon_small_manual.png in Resources */,
+				ADE534B320A0492300335159 /* icon_splash.png in Resources */,
 				CE769E53206A57BA000F931F /* icon_search.png in Resources */,
 				AD804C0F206B8FBF00299A08 /* icon_new_plan.png in Resources */,
 				CE769E6C206A57BA000F931F /* icon_minus.png in Resources */,
@@ -3455,6 +3464,7 @@
 				CEAD19A3207C9DA1008F1696 /* ClassRoomCollectionViewCell.m in Sources */,
 				ADF6FCA920989B0E005E27E6 /* HGWeekMenuModel.m in Sources */,
 				CEAD1B4C207F464F008F1696 /* HistoryParma.m in Sources */,
+				ADE534AF209FF17200335159 /* HGStationInfoCell.m in Sources */,
 				CEAD1A9E207DF356008F1696 /* MenteeListTableViewController.m in Sources */,
 				CEAD19CB207DA9EB008F1696 /* TeachToolBar.m in Sources */,
 				CE1E1F46208BAB180098B1E1 /* HGCRLayout.m in Sources */,

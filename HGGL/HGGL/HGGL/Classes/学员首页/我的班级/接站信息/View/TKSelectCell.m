@@ -25,7 +25,7 @@
     
     if (highlighted) {
         
-        self.textLabel.textColor = [UIColor colorWithHexString:@"#ef7800"];
+        self.textLabel.textColor = HGMainColor;
     }else{
         self.textLabel.textColor = [UIColor colorWithHexString:@"#333333"];
     }

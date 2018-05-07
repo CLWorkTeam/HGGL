@@ -38,7 +38,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"查看接送站信息"；
+    self.title = @"查看接送站信息";
     self.tableView.backgroundColor = [UIColor whiteColor];
     self.fillType = @"1";
     [self loadData];

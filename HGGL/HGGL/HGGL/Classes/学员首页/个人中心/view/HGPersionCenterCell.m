@@ -55,7 +55,8 @@
     UILabel *label1 = [[UILabel alloc]initWithFrame:CGRectMake(WIDTH_PT(10), HEIGHT_PT(20), HGScreenWidth-WIDTH_PT(40), HEIGHT_PT(15))];
     label1.textColor = [UIColor colorWithHexString:@"#333333"];
     label1.font = [UIFont systemFontOfSize:FONT_PT(14)];
-    label1.text = @"v1.0";
+//    label1.text = @"v1.0";
+    label1.text = [NSString stringWithFormat:@"v%@",[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"]];
     [label1 sizeToFit];
     label1.maxX = HGScreenWidth - WIDTH_PT(10);
     label1.y = (HEIGHT_PT(44)-label1.height)/2;
