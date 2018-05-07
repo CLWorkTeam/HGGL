@@ -73,7 +73,6 @@
 		ADE534AB209FEC9300335159 /* TKSelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE534A7209FEC9200335159 /* TKSelectCell.m */; };
 		ADE534AC209FEC9300335159 /* TKSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE534A9209FEC9300335159 /* TKSelectView.m */; };
 		ADE534AF209FF17200335159 /* HGStationInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE534AE209FF17200335159 /* HGStationInfoCell.m */; };
-		ADE534B320A0492300335159 /* icon_splash.png in Resources */ = {isa = PBXBuildFile; fileRef = ADE534B220A0492300335159 /* icon_splash.png */; };
 		ADF2F05B20943D0600C787F0 /* HGItemDataCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF2F05A20943D0600C787F0 /* HGItemDataCell.m */; };
 		ADF2F05E2094478D00C787F0 /* HGItemDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF2F05D2094478D00C787F0 /* HGItemDataModel.m */; };
 		ADF6FCA620989AFB005E27E6 /* HGWeekMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF6FCA520989AFB005E27E6 /* HGWeekMenuCell.m */; };
@@ -406,6 +405,7 @@
 		CEF2DB5D209FF43200FAAE72 /* HGScheduleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF2DB5C209FF43200FAAE72 /* HGScheduleTableViewCell.m */; };
 		CEF2DB60209FF50700FAAE72 /* HGScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF2DB5F209FF50700FAAE72 /* HGScheduleViewController.m */; };
 		CEF2DB63209FF55500FAAE72 /* HGScheduleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF2DB62209FF55500FAAE72 /* HGScheduleModel.m */; };
+		CEF2DB6520A04A7500FAAE72 /* icon_splash1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CEF2DB6420A04A7500FAAE72 /* icon_splash1.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -545,7 +545,6 @@
 		ADE534AA209FEC9300335159 /* TKSelectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKSelectCell.h; sourceTree = "<group>"; };
 		ADE534AD209FF17200335159 /* HGStationInfoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGStationInfoCell.h; sourceTree = "<group>"; };
 		ADE534AE209FF17200335159 /* HGStationInfoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGStationInfoCell.m; sourceTree = "<group>"; };
-		ADE534B220A0492300335159 /* icon_splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_splash.png; sourceTree = "<group>"; };
 		ADF2F05920943D0600C787F0 /* HGItemDataCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGItemDataCell.h; sourceTree = "<group>"; };
 		ADF2F05A20943D0600C787F0 /* HGItemDataCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGItemDataCell.m; sourceTree = "<group>"; };
 		ADF2F05C2094478D00C787F0 /* HGItemDataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGItemDataModel.h; sourceTree = "<group>"; };
@@ -1141,6 +1140,7 @@
 		CEF2DB5F209FF50700FAAE72 /* HGScheduleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGScheduleViewController.m; sourceTree = "<group>"; };
 		CEF2DB61209FF55500FAAE72 /* HGScheduleModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGScheduleModel.h; sourceTree = "<group>"; };
 		CEF2DB62209FF55500FAAE72 /* HGScheduleModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGScheduleModel.m; sourceTree = "<group>"; };
+		CEF2DB6420A04A7500FAAE72 /* icon_splash1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = icon_splash1.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1950,7 +1950,7 @@
 				CE769DD3206A354F000F931F /* Classes */,
 				CE769DAA206A343E000F931F /* Assets.xcassets */,
 				CE769DAC206A343E000F931F /* LaunchScreen.storyboard */,
-				ADE534B220A0492300335159 /* icon_splash.png */,
+				CEF2DB6420A04A7500FAAE72 /* icon_splash1.jpg */,
 			);
 			path = HGGL;
 			sourceTree = "<group>";
@@ -3072,7 +3072,6 @@
 				CE769E76206A57BA000F931F /* icon_big_default.png in Resources */,
 				CE769E55206A57BA000F931F /* icon_video.png in Resources */,
 				CE769E8B206A57BA000F931F /* icon_small_manual.png in Resources */,
-				ADE534B320A0492300335159 /* icon_splash.png in Resources */,
 				CE769E53206A57BA000F931F /* icon_search.png in Resources */,
 				AD804C0F206B8FBF00299A08 /* icon_new_plan.png in Resources */,
 				CE769E6C206A57BA000F931F /* icon_minus.png in Resources */,
@@ -3105,6 +3104,7 @@
 				CE769E56206A57BA000F931F /* bg_pop_middle.png in Resources */,
 				CE769DAE206A343E000F931F /* LaunchScreen.storyboard in Resources */,
 				AD804C10206B8FBF00299A08 /* icon_new_teacher.png in Resources */,
+				CEF2DB6520A04A7500FAAE72 /* icon_splash1.jpg in Resources */,
 				CE769E73206A57BA000F931F /* icon_contact_us.png in Resources */,
 				CE769E82206A57BA000F931F /* icon_tab_class.png in Resources */,
 				AD804C0B206B8FBF00299A08 /* icon_new_active.png in Resources */,
