@@ -41,7 +41,7 @@
 #define HGLog(...)
 #endif
 #define HGColor(r,g,b,a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0  blue:(b)/255.0  alpha:a]
-#define HGMainColor HGColor(87,117,213,1)
+#define HGMainColor HGColor(94,116,207,1)
 #define HGGrayColor HGColor(243,243,243,1)
 #define HGGrayGroundColor [UIColor colorWithHexString:@"f4f4f4"]
 //#define HGURL @"http://118.190.203.109:8080/zghg/"

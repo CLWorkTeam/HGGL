@@ -32,6 +32,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.name = @"个人中心";
+    self.rightBtn.hidden = YES;
     NSString *type = [HGUserDefaults objectForKey:HGUserType];
     self.listAry = @[@"版本",@"个人信息及修改",@"密码修改",@"我的班级",@"我的档案",@"退出当前账号"];
     if ([type isEqualToString:@"3"]) {  //学员没有返回按钮
