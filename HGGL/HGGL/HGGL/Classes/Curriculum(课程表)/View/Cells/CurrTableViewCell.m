@@ -59,7 +59,7 @@
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        self.contentView.backgroundColor = [UIColor blackColor];
+        self.contentView.backgroundColor = HGColor(232, 232, 232, 1);
     }
     return self;
 }
@@ -80,7 +80,7 @@
         //[but setBackgroundColor:[UIColor redColor]];
         but.backgroundColor = [UIColor whiteColor];
         [but setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        but.titleLabel.font = [UIFont systemFontOfSize:10];
+        but.titleLabel.font = [UIFont systemFontOfSize:12];
         [self.butArr addObject:but];
         [self.contentView addSubview:but];
         but.tag = i;
@@ -92,8 +92,8 @@
         if (i == 0) {
             but.frame = CGRectMake(HGSpace, HGSpace, ClassroomW, j*(CurrseH+HGSpace)-HGSpace);
             [but setTitle:cu.classroomName forState:UIControlStateNormal];
-            [but setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-            [but setBackgroundColor:[UIColor lightGrayColor]];
+//            [but setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+            [but setBackgroundColor:HGGrayColor];
             self.but = but;
             [but addTarget:self action:@selector(clickRoom:) forControlEvents:UIControlEventTouchUpInside];
         }else if (((i-1)/j == 0)) {
@@ -143,29 +143,7 @@
 }
 -(void)clickRoom:(CurrBut *)but
 {
-//    but.selected = !but.selected;
-//    if (but.selected) {
-//        ZKRCover *cover = [ZKRCover show];
-//        cover.dimBackGround = YES;
-//        CurrImageView *ima = [CurrImageView showInRect:CGRectMake(HGScreenWidth*0.1, HGScreenHeight*0.25, HGScreenWidth*0.8, HGScreenHeight*0.5)];
-//        [HGKeywindow addSubview:ima];
-//        //CurrPopTableViewController *CP = [[CurrPopTableViewController alloc]init];
-//        self.pop.course_classroom = but.titleLabel.text;
-//        self.pop.current_date = self.current_date;
-//        self.pop.tableView.backgroundColor = [UIColor whiteColor];
-//        ima.contentView = self.pop.tableView;
-//        cover.ZKRCoverDismiss = ^(){
-//
-//            [CurrImageView  dismiss];
-//            but.selected = NO;
-//            self.pop = nil;
-//
-//        };
-//
-//    }else{
-//        [CurrImageView dismiss];
-//        self.pop = nil;
-//    }
+
 
     
 }

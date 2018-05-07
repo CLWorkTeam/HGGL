@@ -258,9 +258,11 @@
     if (self.weekArray.count) {
         return;
     }
+    
     NSDateFormatter *fomatter = [[NSDateFormatter alloc]init];
     [fomatter setDateFormat:@"yyyy.MM.dd"];
-    NSString *currentDate = [fomatter stringFromDate:[NSDate date]];
+    NSDate *nextDate = [NSDate dateWithTimeInterval:24*60*60 sinceDate:[NSDate date]];
+    NSString *currentDate = [fomatter stringFromDate:nextDate];
     
     NSArray *arr = [TimerTransform AllDayOfThisWeek:currentDate];
     NSString *day;
@@ -301,7 +303,8 @@
 -(NSString *)getRightTime
 {
     [self getWeekArray];
-    NSString *datestr = [self.formatter stringFromDate:[NSDate date]];
+    NSDate *nextDate = [NSDate dateWithTimeInterval:24*60*60 sinceDate:[NSDate date]];
+    NSString *datestr = [self.formatter stringFromDate:nextDate];
     NSString *string = @"";
     for (NSString *str in self.weekArray) {
         if ([str containsString:datestr]) {

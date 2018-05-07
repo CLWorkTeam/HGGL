@@ -8,7 +8,7 @@
 
 #import "HGStudentHomeController.h"
 #import "HGNavigationController.h"
-#import "CurrViewController.h"
+#import "HGScheduleViewController.h"
 #import "MessageListController.h"
 #import "HGMyPointController.h"
 #import "HGItemDataController.h"
@@ -67,7 +67,7 @@
 
 -(void)schedule
 {
-    CurrViewController *curr = [[CurrViewController alloc]init];
+    HGScheduleViewController *curr = [[HGScheduleViewController alloc]init];
     [self.navigationController   pushViewController:curr animated:YES];
 }
 -(void)message

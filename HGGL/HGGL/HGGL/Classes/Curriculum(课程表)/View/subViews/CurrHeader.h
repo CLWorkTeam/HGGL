@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface CurrHeader : UIView
-
+@property (nonatomic,assign) BOOL isStudent;
 @end

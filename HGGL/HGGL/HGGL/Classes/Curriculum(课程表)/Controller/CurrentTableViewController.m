@@ -56,15 +56,16 @@
 //        return;
 //    }
 //    _isRefreshing = YES;
-    [self.currArr removeAllObjects];
-    [self.otherArr removeAllObjects];
-    [self.tableView reloadData];
+    
+//    [self.tableView reloadData];
     [SVProgressHUD showWithStatus:@"请稍后..."];
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
     NSString *url = [HGURL stringByAppendingString:@"Course/getCourseList.do"];
     [HGHttpTool POSTWithURL:url parameters:@{@"course_date":date} success:^(id responseObject) {
         [SVProgressHUD dismiss];
         NSArray *array = [NSArray array];
+        [self.currArr removeAllObjects];
+        [self.otherArr removeAllObjects];
 //        _isRefreshing = NO;
         array = [responseObject objectForKey:@"data"];
          HGLog(@"-----%@",array);
@@ -104,12 +105,9 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if (section == 0) {
-        return  40+HGSpace;
-    }else
-    {
-        return 10;
-    }
+    
+    return  42;
+    
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
@@ -124,26 +122,23 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 2;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
     
-    if (section == 0) {
-        return self.currArr.count;
-    }else
-    {
-        return self.otherArr.count;
-    }
+    
+    return self.currArr.count;
+    
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *ID1 = @"cell1";
     
-    if (indexPath.section == 0) {
+    
         
         CurrTableViewCell *cell = [CurrTableViewCell cellWithTabView:self.tableView];
         cell.cu = [self.currArr objectAtIndex:indexPath.row];
@@ -162,33 +157,18 @@
             }
         };
         return cell;
-    }else{
-        
-//        BaseTableViewCell *cell = [BaseTableViewCell cellWithTabView:self.tableView];
-        
-//        cell.name = cu.course_classroom;
-        CurrseList *cl = [self.otherArr objectAtIndex:indexPath.row];
-        UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:ID1];
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID1];
-        
-        cell.textLabel.text = cl.courseName;
-        return cell;
-        
-    }
+    
 
  
     
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0) {
+    
         Currse *cu = [self.currArr objectAtIndex:indexPath.row];
         NSInteger i = cu.course_style .integerValue;
-        return i*(45+HGSpace);
-    }else
-    {
-        return 45;
-    }
+        return i*(45+2*HGSpace);
+    
 }
 
 

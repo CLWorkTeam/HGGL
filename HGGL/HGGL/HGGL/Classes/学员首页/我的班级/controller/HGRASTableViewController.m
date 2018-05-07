@@ -38,7 +38,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"查看接送站信息"；
+    self.title = @"查看接送站信息";
     self.tableView.backgroundColor = [UIColor whiteColor];
     self.fillType = @"1";
     [self loadData];
@@ -47,13 +47,13 @@
 
 -(void)loadData
 {
-    NSString *url = [HGURL stringByAppendingString:@"Project/getBaseProject.do"];
+    NSString *url = [HGURL stringByAppendingString:@"Reception/getVehicle.do"];
     [SVProgressHUD showWithStatus:@"请稍后..."];
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
-    [HGHttpTool POSTWithURL:url parameters:@{@"user_id":[HGUserDefaults objectForKey:HGUserID],@"project_id":[HGUserDefaults objectForKey:HGProjectID],@"fillType":self.fillType} success:^(id responseObject) {
+    NSDictionary *parama = @{@"user_id":[HGUserDefaults objectForKey:HGUserID],@"project_id":[HGUserDefaults objectForKey:HGProjectID],@"fillType":self.fillType};
+    [HGHttpTool POSTWithURL:url parameters:parama success:^(id responseObject) {
         [SVProgressHUD dismiss];
-        
-        //        NSArray *array = [NSArray array];
+        self.model = nil;
         [self.valueArr removeAllObjects];
         NSDictionary *dict = [responseObject objectForKey:@"data"];
         NSString *status = [responseObject objectForKey:@"status"];
@@ -64,9 +64,9 @@
             
             self.model = [HGRASModel initWithDict:dict];
             [self.valueArr addObjectsFromArray:self.model.arr];
-             [self.tableView reloadData];
+            
         }
-       
+       [self.tableView reloadData];
     } failure:^(NSError *error) {
         [SVProgressHUD dismiss];
         HGLog(@"%@",error);

@@ -398,6 +398,9 @@
 		CEF2DB51209F433200FAAE72 /* HGRASTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF2DB50209F433200FAAE72 /* HGRASTableViewController.m */; };
 		CEF2DB54209F479400FAAE72 /* HGRASTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF2DB53209F479400FAAE72 /* HGRASTableViewCell.m */; };
 		CEF2DB57209F484400FAAE72 /* HGRASModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF2DB56209F484400FAAE72 /* HGRASModel.m */; };
+		CEF2DB5D209FF43200FAAE72 /* HGScheduleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF2DB5C209FF43200FAAE72 /* HGScheduleTableViewCell.m */; };
+		CEF2DB60209FF50700FAAE72 /* HGScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF2DB5F209FF50700FAAE72 /* HGScheduleViewController.m */; };
+		CEF2DB63209FF55500FAAE72 /* HGScheduleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF2DB62209FF55500FAAE72 /* HGScheduleModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1118,6 +1121,12 @@
 		CEF2DB53209F479400FAAE72 /* HGRASTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGRASTableViewCell.m; sourceTree = "<group>"; };
 		CEF2DB55209F484400FAAE72 /* HGRASModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGRASModel.h; sourceTree = "<group>"; };
 		CEF2DB56209F484400FAAE72 /* HGRASModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGRASModel.m; sourceTree = "<group>"; };
+		CEF2DB5B209FF43200FAAE72 /* HGScheduleTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGScheduleTableViewCell.h; sourceTree = "<group>"; };
+		CEF2DB5C209FF43200FAAE72 /* HGScheduleTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGScheduleTableViewCell.m; sourceTree = "<group>"; };
+		CEF2DB5E209FF50700FAAE72 /* HGScheduleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGScheduleViewController.h; sourceTree = "<group>"; };
+		CEF2DB5F209FF50700FAAE72 /* HGScheduleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGScheduleViewController.m; sourceTree = "<group>"; };
+		CEF2DB61209FF55500FAAE72 /* HGScheduleModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGScheduleModel.h; sourceTree = "<group>"; };
+		CEF2DB62209FF55500FAAE72 /* HGScheduleModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGScheduleModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1804,6 +1813,8 @@
 				CE1E1F6C208DFDB70098B1E1 /* HGTRBTableViewCell.m */,
 				CE1E1F6E208F4DC80098B1E1 /* HGHoldTableViewCell.h */,
 				CE1E1F6F208F4DC80098B1E1 /* HGHoldTableViewCell.m */,
+				CEF2DB5B209FF43200FAAE72 /* HGScheduleTableViewCell.h */,
+				CEF2DB5C209FF43200FAAE72 /* HGScheduleTableViewCell.m */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -2268,6 +2279,8 @@
 				CE4CAD782085E315001F711F /* ElseTableViewController.m */,
 				CE4CAD7A2085E316001F711F /* CurrPopTableViewController.h */,
 				CE4CAD7B2085E316001F711F /* CurrPopTableViewController.m */,
+				CEF2DB5E209FF50700FAAE72 /* HGScheduleViewController.h */,
+				CEF2DB5F209FF50700FAAE72 /* HGScheduleViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2313,6 +2326,8 @@
 				CE1E1F66208DFCA40098B1E1 /* HGSRBModel.m */,
 				CE1E1F68208DFCEF0098B1E1 /* HGTRBModel.h */,
 				CE1E1F69208DFCEF0098B1E1 /* HGTRBModel.m */,
+				CEF2DB61209FF55500FAAE72 /* HGScheduleModel.h */,
+				CEF2DB62209FF55500FAAE72 /* HGScheduleModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3273,6 +3288,7 @@
 				CEAD1AFE207DF5E4008F1696 /* PMissionViewController.m in Sources */,
 				CEF2DB3E209C368400FAAE72 /* HGRemarkCell.m in Sources */,
 				ADF2F05E2094478D00C787F0 /* HGItemDataModel.m in Sources */,
+				CEF2DB60209FF50700FAAE72 /* HGScheduleViewController.m in Sources */,
 				CEAD1B0A207DF6F7008F1696 /* PMissionFrame.m in Sources */,
 				CEAD1A4E207DE59D008F1696 /* ProjectListParama.m in Sources */,
 				ADF2F05B20943D0600C787F0 /* HGItemDataCell.m in Sources */,
@@ -3365,6 +3381,7 @@
 				AD5F5F29208F059A00F68471 /* HGStudentContactCell.m in Sources */,
 				CE769DE3206A3559000F931F /* AppDelegate.m in Sources */,
 				CEAD1A4D207DE59D008F1696 /* PBaseFrame.m in Sources */,
+				CEF2DB5D209FF43200FAAE72 /* HGScheduleTableViewCell.m in Sources */,
 				ADBDC792206BCC0000D32390 /* TKWebProgressView.m in Sources */,
 				CEAD1A0A207DE02F008F1696 /* ScoreTableViewCell.m in Sources */,
 				CE4CAD662085C4D7001F711F /* HGMealViewController.m in Sources */,
@@ -3403,6 +3420,7 @@
 				CEAD1A35207DE4DF008F1696 /* ProjectAuditDetailViewController.m in Sources */,
 				CEF2DB44209CBD5700FAAE72 /* HGMenteeListModel.m in Sources */,
 				CEAD19AC207C9DA1008F1696 /* TabImageView.m in Sources */,
+				CEF2DB63209FF55500FAAE72 /* HGScheduleModel.m in Sources */,
 				CEAD19A3207C9DA1008F1696 /* ClassRoomCollectionViewCell.m in Sources */,
 				ADF6FCA920989B0E005E27E6 /* HGWeekMenuModel.m in Sources */,
 				CEAD1B4C207F464F008F1696 /* HistoryParma.m in Sources */,

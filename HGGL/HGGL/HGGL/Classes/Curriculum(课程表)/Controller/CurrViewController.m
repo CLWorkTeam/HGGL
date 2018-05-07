@@ -8,7 +8,7 @@
 
 #import "CurrViewController.h"
 #import "TimerTransform.h"
-#import "Date.h"
+//#import "Date.h"
 #import "CurrView.h"
 #import "CurrCollectionViewController.h"
 #import "CurrImageView.h"
@@ -18,7 +18,7 @@
 #import "CurrentTableViewController.h"
 #import "WeekToolBar.h"
 #import "HGHttpTool.h"
-//#import "MBProgressHUD+Extend.h"
+#import "HGPopView.h"
 #import "Currse.h"
 #import "CurrseList.h"
 @interface CurrViewController ()
@@ -26,11 +26,12 @@
 @property (nonatomic,weak) CurrView *topView;
 @property (nonatomic,strong) CurrCollectionViewController *curr;
 @property (nonatomic,weak) UILabel *lab;
-@property (nonatomic,strong) CurrTableViewController *popView;
+//@property (nonatomic,strong) CurrTableViewController *popView;
 @property (nonatomic,strong) CurrentTableViewController *current;
 @property (nonatomic,copy) NSString *course_date;
 @property (nonatomic,strong) NSMutableArray *arr;
 @property (nonatomic,weak) CurrImageView *currIma;
+
 @end
 
 @implementation CurrViewController
@@ -41,16 +42,16 @@
     }
     return _arr;
 }
--(CurrTableViewController *)popView
-{
-    if (_popView == nil) {
-        CurrTableViewController *tab = [[CurrTableViewController alloc]init];
-        tab.dateOfYear = self.date;
-        _popView = tab;
-        
-    }
-    return _popView;
-}
+//-(CurrTableViewController *)popView
+//{
+//    if (_popView == nil) {
+//        CurrTableViewController *tab = [[CurrTableViewController alloc]init];
+//        tab.dateOfYear = self.date;
+//        _popView = tab;
+//
+//    }
+//    return _popView;
+//}
 -(CurrentTableViewController *)current
 {
     if (_current == nil) {
@@ -73,9 +74,8 @@
         NSArray *arr = [TimerTransform AllWeeksOfThisYear:dc.year];
         NSMutableArray *array = [NSMutableArray array];
         for (NSDictionary *dict in arr) {
-            //NSLog(@"%@",dict);
-            Date *date = [Date dateWithDict:dict];
-            [array addObject:date];
+            NSDictionary *dict1 = [@{@"str":[NSString stringWithFormat:@"第%@周 %@-%@",dict[@"week"],dict[@"weekStar"],dict[@"weekEnd"]],@"weekStar":dict[@"weekStar"]} mutableCopy];
+            [array addObject:dict1];
             
         }
         _date = array;
@@ -93,7 +93,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = HGColor(231, 231, 231,1);
+    self.view.backgroundColor = [UIColor whiteColor];
     self.navigationController.navigationBarHidden = NO;
     
     [self setTitle];
@@ -120,21 +120,28 @@
 }
 -(void)setPopView
 {
-    CGRect weekToolBarF = [self.view convertRect:self.topView.but.frame toView:HGKeywindow];
-    CurrImageView *bigImageView = [CurrImageView showInRect:CGRectMake(weekToolBarF.origin.x, weekToolBarF.origin.y+weekToolBarF.size.height, weekToolBarF.size.width, 44*4)];
-    bigImageView.contentView = self.popView.tableView;
-    __weak typeof (self)weekSelf  = self ;
-    self.popView.selectCell = ^(Date *date)
-    {
-        weekSelf.topView.today = date.weekStar;
-        weekSelf.topView.weekOfYear = date;
-        [CurrImageView dismiss];
-        [ZKRCover dismiss];
-        weekSelf.topView.but.selected = NO;
-       
-    };
     
-    [HGKeywindow addSubview:bigImageView];
+    CGRect r = [self.topView convertRect:self.topView.but.frame toView:HGKeywindow];
+    
+    CGRect rect = CGRectMake(r.origin.x, r.origin.y+r.size.height, r.size.width, 8*44);
+    
+    [HGPopView setPopViewWith:rect And:self.date andShowKey:@"str"  selectBlock:^(NSDictionary *dict) {
+        
+        self.topView.but.selected = NO;
+        if ([dict isKindOfClass:[NSString class]]) {
+            
+            
+        }else
+        {
+            self.topView.today = dict[@"weekStar"];
+            self.topView.weekOfYear = dict[@"str"];
+//            [self.current postWith:dict[@"weekStar"]];
+        }
+        
+        
+        
+        
+    }];
 
     
 }
@@ -164,7 +171,8 @@
     NSDateComponents *dc = [TimerTransform timerTransform:today];
    
     NSInteger i = dc.weekOfYear;
-    currView.weekOfYear = [self.date objectAtIndex:i-1];
+    NSDictionary *dict  = [self.date objectAtIndex:i-1];
+    currView.weekOfYear = dict[@"str"];
     currView.frame = CGRectMake(0, 0, self.view.width, 90);
     UILabel *lab = [[UILabel alloc]init];
     lab.backgroundColor = [UIColor whiteColor];

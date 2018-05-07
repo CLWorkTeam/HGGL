@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-@class Date;
+//@class Date;
 @class WeekToolBar;
 @interface CurrView : UIView
-@property (nonatomic,strong) Date *weekOfYear;
+@property (nonatomic,copy) NSString *weekOfYear;
 @property (nonatomic,copy) NSString *today;
 @property (nonatomic,copy) void(^datePicker)();
 @property (nonatomic,assign)CGRect rect;

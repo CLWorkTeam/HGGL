@@ -7,7 +7,7 @@
 //
 
 #import "CurrView.h"
-#import "Date.h"
+//#import "Date.h"
 #import "TimerTransform.h"
 #import "WeekToolBar.h"
 #import "ZKRCover.h"
@@ -91,11 +91,11 @@
     }
     return _zhuLab;
 }
--(void)setWeekOfYear:(Date *)weekOfYear
+-(void)setWeekOfYear:(NSString *)weekOfYear
 {
     _weekOfYear = weekOfYear;
  
-    [self.but setTitle:[NSString stringWithFormat:@"第%@周 %@--%@",weekOfYear.week,weekOfYear.weekStar,weekOfYear.weekEnd] forState:UIControlStateNormal];
+    [self.but setTitle:[NSString stringWithFormat:@"%@",weekOfYear] forState:UIControlStateNormal];
 }
 -(void)setToday:(NSString *)today
 {
