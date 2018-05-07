@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "HGBaseController.h"
-@interface HGSourceViewController : HGBaseController
+@interface HGSourceViewController : UIViewController
 
 @end

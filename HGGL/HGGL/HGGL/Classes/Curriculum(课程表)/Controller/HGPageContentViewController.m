@@ -47,6 +47,10 @@
     WeakSelf
     bar.clickButtonBlock = ^(NSInteger index) {
         [weakSelf.pageVC changeVCWithIndex:index];
+        if (weakSelf.changePage) {
+            weakSelf.changePage(index);
+        }
+        
     };
     bar.frame = CGRectMake(0, 0, self.view.width, 40);
     [self.view addSubview:bar];

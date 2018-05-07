@@ -11,4 +11,5 @@
 @interface HGPageContentViewController : UIViewController
 @property (nonatomic,strong) NSArray *keyArray;
 @property (nonatomic,strong) NSArray *ControllerArray;
+@property (nonatomic,copy) void(^changePage)(NSInteger index);
 @end

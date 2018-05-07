@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 //    NSDictionary *option = [NSDictionary dictionaryWithObject:[NSNumber numberWithInteger:10] forKey:UIPageViewControllerOptionInterPageSpacingKey];
-    NSString *str = self.controllerArray.firstObject;
+    NSString *str = (NSString *)self.controllerArray.firstObject;
     Class c = NSClassFromString(str);
     UIViewController *vc = [[c alloc]init];
     [self setViewControllers:@[vc] direction:UIPageViewControllerNavigationDirectionReverse animated:NO completion:nil];

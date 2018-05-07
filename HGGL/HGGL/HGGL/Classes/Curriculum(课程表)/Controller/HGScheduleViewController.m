@@ -12,6 +12,7 @@
 #import "HGScheduleTableViewCell.h"
 #import "CurrView.h"
 #import "CurrImageView.h"
+#import "ImageRightBut.h"
 #import "WeekToolBar.h"
 //#import "Date.h"
 #import "CurrHeader.h"
@@ -20,8 +21,10 @@
 @property (nonatomic,strong) NSMutableArray *scheduleArray;
 @property (nonatomic,weak) UITableView *tableView;
 @property (nonatomic,weak) CurrView *topView;
-@property (nonatomic,weak) UILabel *lab;
+@property (nonatomic,weak) UIView  *midView;
 @property (nonatomic,strong) NSMutableArray *date;
+@property (nonatomic,weak) UIButton *projectBut;
+@property (nonatomic,copy) NSString *projectID;
 @end
 
 @implementation HGScheduleViewController
@@ -53,6 +56,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+    if (self.isTeacher) {
+        NSDictionary *dict = self.array.firstObject;
+        self.projectID = dict[@"project_id"];
+    }else
+    {
+        self.projectID = [HGUserDefaults objectForKey:HGProjectID];
+    }
+    
+    
     [self setTitle];
     [self setCurrView];
     [self setTabelView];
@@ -87,17 +99,90 @@
     NSDictionary *dict  = [self.date objectAtIndex:i-1];
     currView.weekOfYear = dict[@"str"];
     currView.frame = CGRectMake(0, HGHeaderH, self.view.width, 90);
+    [self.view addSubview:currView];
+    
+    UIView *teacherMidView = [[UIView alloc]init];
+    teacherMidView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:teacherMidView];
+    self.midView = teacherMidView;
     UILabel *lab = [[UILabel alloc]init];
     lab.backgroundColor = [UIColor whiteColor];
     lab.text = @"注:点击课程查看课程详细";
     lab.textColor = HGMainColor;
     lab.font = [UIFont systemFontOfSize:11];
     lab.textAlignment = NSTextAlignmentCenter;
-    lab.frame = CGRectMake(0, currView.maxY +2, HGScreenWidth, 10+8);
-    self.lab = lab;
-    [self.view addSubview:lab];
-    [self.view addSubview:currView];
+    lab.frame = CGRectMake(0, 2, HGScreenWidth, 18);
+    [teacherMidView addSubview:lab];
+    CGFloat  Y = currView.maxY ;
+    CGFloat H = 20;
+    if (self.isTeacher) {
+        
+        [self setProjectButton];
+        
+        H = 20+8*2+34;
+        
+        
+    }
+    teacherMidView.frame = CGRectMake(0, Y, HGScreenWidth, H);
+}
+-(void)setProjectButton
+{
+    CGFloat Hmar = 8;
+    CGFloat H = 34;
+    UILabel *lab = [[UILabel alloc]init];
+    lab.numberOfLines = 0;
+    lab.textAlignment = NSTextAlignmentCenter;
+    lab.textColor = [UIColor blackColor];
+    lab.font = [UIFont systemFontOfSize:HGFont];
+    lab.text = @"选择当前所在班级";
+    [lab sizeToFit];
+    lab.frame = CGRectMake(0, 22+Hmar, lab.width+2*10, H);
+    [self.midView addSubview:lab];
     
+    UIButton *but = [ImageRightBut initWithColor:nil andSelColor:nil andTColor:nil andFont:nil];
+    but.titleLabel.textAlignment = NSTextAlignmentCenter;
+    [but setImage:[UIImage imageNamed:@"ser_up"] forState:UIControlStateSelected];
+    [but setImage:[UIImage imageNamed:@"ser_down"] forState:UIControlStateNormal];
+    [but setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    NSDictionary *dict = self.array.firstObject;
+    [but setTitle:dict[@"project_name"] forState:UIControlStateNormal];
+    but.titleLabel.lineBreakMode = NSLineBreakByCharWrapping;
+    but.titleLabel.font = [UIFont systemFontOfSize:HGFont];
+    [but setBackgroundImage:[UIImage resizableImageWithName:@"search_box"] forState:UIControlStateNormal];
+    [but addTarget:self action:@selector(butClick:) forControlEvents:UIControlEventTouchUpInside];
+    but.frame = CGRectMake(lab.maxX, lab.y, HGScreenWidth-lab.width-5, H);
+    self.projectBut = but;
+    [self.midView addSubview:but];
+}
+-(void)butClick:(UIButton *)but
+{
+    but.selected = !but.selected;
+    
+    CGRect r = [self.midView convertRect:but.frame toView:HGKeywindow];
+    
+    CGRect rect = CGRectMake(r.origin.x, r.origin.y+r.size.height, r.size.width, 44*((self.array.count>4)?4:self.array.count));
+    
+    [HGPopView setPopViewWith:rect And:self.array andShowKey:@"project_name"  selectBlock:^(NSDictionary *dict) {
+        
+        self.projectBut.selected = NO;
+        
+        if ([dict isKindOfClass:[NSString class]]) {
+            
+            
+        }else
+        {
+            self.projectID = dict[@"project_id"];
+            
+            [but setTitle:dict[@"project_name"] forState:UIControlStateNormal];
+            
+            [self postWith:self.topView.today];
+            
+        }
+        
+        
+        
+        
+    }];
 }
 -(void)showPopView
 {
@@ -125,9 +210,8 @@
 //设置课程表界面的导航栏
 -(void)setTitle
 {
-    
-    
-    self.navigationItem.title = @"课程表";
+
+    self.navigationItem.title = @"班级课表";
     
 }
 
@@ -135,7 +219,7 @@
 -(void)setTabelView
 {
     UITableView *tableView = [[UITableView alloc] init];
-    tableView.frame = CGRectMake(0, self.lab.maxY, HGScreenWidth, HGScreenHeight-HGHeaderH-self.lab.height-self.topView.height);
+    tableView.frame = CGRectMake(0, self.midView.maxY, HGScreenWidth, HGScreenHeight-HGHeaderH-self.midView.height-self.topView.height);
     tableView.delegate = self;
     tableView.dataSource = self;
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -148,7 +232,7 @@
     [SVProgressHUD showWithStatus:@"请稍后..."];
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
     NSString *url = [HGURL stringByAppendingString:@"Course/getProjectCourse.do"];
-    [HGHttpTool POSTWithURL:url parameters:@{@"course_date":date,@"project_id":[HGUserDefaults objectForKey:HGProjectID]} success:^(id responseObject) {
+    [HGHttpTool POSTWithURL:url parameters:@{@"course_date":date,@"project_id":self.projectID} success:^(id responseObject) {
         [SVProgressHUD dismiss];
         [self.scheduleArray removeAllObjects];
         NSArray *array = [NSArray array];

@@ -149,11 +149,11 @@
     CGFloat y = 3;
 //
     [self.lab sizeToFit];
-    CGFloat width = self.lab.width+5*2;
+    CGFloat width = self.lab.width+10*2;
     CGFloat heigh = 34;
 
     self.lab.frame = CGRectMake(0, y, width, heigh);
-    _but.frame = CGRectMake(self.lab.maxX, y, self.width-self.lab.width-3, heigh);
+    _but.frame = CGRectMake(self.lab.maxX, y, self.width-self.lab.width-5, heigh);
     //self.rect = _but.frame;
     
 }

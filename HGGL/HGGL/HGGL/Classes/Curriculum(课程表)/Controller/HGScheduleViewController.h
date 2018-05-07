@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface HGScheduleViewController : UIViewController
-
+@property (nonatomic,assign) BOOL isTeacher;
+@property (nonatomic,strong) NSArray *array;
 @end
