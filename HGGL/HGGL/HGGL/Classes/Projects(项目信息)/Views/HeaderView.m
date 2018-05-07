@@ -190,6 +190,7 @@
 -(void)clickType:(UIButton *)button
 {
     CGRect r = [self convertRect:button.frame toView:HGKeywindow];
+    
     CGRect rect = CGRectMake(r.origin.x, r.origin.y+r.size.height, r.size.width, 44*4);
     
     [HGPopView setPopViewWith:rect And:self.arrType andShowKey:nil  selectBlock:^(NSString *str) {

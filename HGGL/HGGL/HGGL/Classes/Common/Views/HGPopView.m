@@ -78,15 +78,19 @@
     
     ZKRCover *cover =[ZKRCover show];
     cover.dimBackGround = YES;
-    cover.ZKRCoverDismiss = ^{
-        [HGPopView disMiss];
-    };
+    
     HGPopView *popView = [[HGPopView alloc]init];
     popView.frame = rect;
     popView.arr = arr;
     popView.showKey = showKey;
     [HGKeywindow addSubview:popView];
     popView.popBlock = selectBlock;
+    cover.ZKRCoverDismiss = ^{
+        if (popView.popBlock) {
+            popView.popBlock(@"");
+        }
+        [HGPopView disMiss];
+    };
     return popView;
 }
 +(void)disMiss

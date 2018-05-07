@@ -397,6 +397,10 @@
 		CEF2DB44209CBD5700FAAE72 /* HGMenteeListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF2DB43209CBD5700FAAE72 /* HGMenteeListModel.m */; };
 		CEF2DB47209D6C1400FAAE72 /* HGMenteeSelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF2DB46209D6C1400FAAE72 /* HGMenteeSelCell.m */; };
 		CEF2DB4A209D9D2600FAAE72 /* HGScoreListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF2DB49209D9D2600FAAE72 /* HGScoreListViewController.m */; };
+		CEF2DB4E209F00D300FAAE72 /* HGSignOutPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF2DB4D209F00D300FAAE72 /* HGSignOutPopView.m */; };
+		CEF2DB51209F433200FAAE72 /* HGRASTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF2DB50209F433200FAAE72 /* HGRASTableViewController.m */; };
+		CEF2DB54209F479400FAAE72 /* HGRASTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF2DB53209F479400FAAE72 /* HGRASTableViewCell.m */; };
+		CEF2DB57209F484400FAAE72 /* HGRASModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF2DB56209F484400FAAE72 /* HGRASModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1115,6 +1119,14 @@
 		CEF2DB46209D6C1400FAAE72 /* HGMenteeSelCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGMenteeSelCell.m; sourceTree = "<group>"; };
 		CEF2DB48209D9D2600FAAE72 /* HGScoreListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGScoreListViewController.h; sourceTree = "<group>"; };
 		CEF2DB49209D9D2600FAAE72 /* HGScoreListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGScoreListViewController.m; sourceTree = "<group>"; };
+		CEF2DB4C209F00D300FAAE72 /* HGSignOutPopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGSignOutPopView.h; sourceTree = "<group>"; };
+		CEF2DB4D209F00D300FAAE72 /* HGSignOutPopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGSignOutPopView.m; sourceTree = "<group>"; };
+		CEF2DB4F209F433200FAAE72 /* HGRASTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGRASTableViewController.h; sourceTree = "<group>"; };
+		CEF2DB50209F433200FAAE72 /* HGRASTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGRASTableViewController.m; sourceTree = "<group>"; };
+		CEF2DB52209F479400FAAE72 /* HGRASTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGRASTableViewCell.h; sourceTree = "<group>"; };
+		CEF2DB53209F479400FAAE72 /* HGRASTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGRASTableViewCell.m; sourceTree = "<group>"; };
+		CEF2DB55209F484400FAAE72 /* HGRASModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGRASModel.h; sourceTree = "<group>"; };
+		CEF2DB56209F484400FAAE72 /* HGRASModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGRASModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1176,15 +1188,10 @@
 			children = (
 				AD0396C020731D480082C817 /* HGStudentHomeController.h */,
 				AD0396C120731D480082C817 /* HGStudentHomeController.m */,
+				CEF2DB4F209F433200FAAE72 /* HGRASTableViewController.h */,
+				CEF2DB50209F433200FAAE72 /* HGRASTableViewController.m */,
 			);
 			path = controller;
-			sourceTree = "<group>";
-		};
-		AD0396BA20731B980082C817 /* view */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = view;
 			sourceTree = "<group>";
 		};
 		AD0396BB20731B9C0082C817 /* model */ = {
@@ -1192,6 +1199,8 @@
 			children = (
 				AD5F5F0A208DB92600F68471 /* HGStudentItemModel.h */,
 				AD5F5F0B208DB92600F68471 /* HGStudentItemModel.m */,
+				CEF2DB55209F484400FAAE72 /* HGRASModel.h */,
+				CEF2DB56209F484400FAAE72 /* HGRASModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -1203,7 +1212,7 @@
 				AD5F5F0D208DC60200F68471 /* 课程详情 */,
 				AD9164E72083210D00416124 /* 项目资料 */,
 				AD0396BB20731B9C0082C817 /* model */,
-				AD0396BA20731B980082C817 /* view */,
+				CEF2DB4B209F00A500FAAE72 /* views */,
 				AD0396B920731B8E0082C817 /* controller */,
 			);
 			path = "我的班级";
@@ -2911,6 +2920,17 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		CEF2DB4B209F00A500FAAE72 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				CEF2DB4C209F00D300FAAE72 /* HGSignOutPopView.h */,
+				CEF2DB4D209F00D300FAAE72 /* HGSignOutPopView.m */,
+				CEF2DB52209F479400FAAE72 /* HGRASTableViewCell.h */,
+				CEF2DB53209F479400FAAE72 /* HGRASTableViewCell.m */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -3202,6 +3222,7 @@
 				AD5F5F20208DDFD400F68471 /* HGSchoolFCCell.m in Sources */,
 				CEAD1B07207DF6E9008F1696 /* PMissionParama.m in Sources */,
 				CE1E1F6D208DFDB70098B1E1 /* HGTRBTableViewCell.m in Sources */,
+				CEF2DB51209F433200FAAE72 /* HGRASTableViewController.m in Sources */,
 				CEAD1B4A207F464F008F1696 /* room.m in Sources */,
 				CE4CAD722085E02D001F711F /* HGLibraryViewController.m in Sources */,
 				CEAD19D4207DAAA7008F1696 /* CourseTableViewController.m in Sources */,
@@ -3351,6 +3372,7 @@
 				CEAD1A81207DF33F008F1696 /* MenteeCollectionViewCell.m in Sources */,
 				CE4CAD3A2084A415001F711F /* MessageCollectionViewController.m in Sources */,
 				AD804C18206B95D500299A08 /* TKButton.m in Sources */,
+				CEF2DB54209F479400FAAE72 /* HGRASTableViewCell.m in Sources */,
 				CEAD1A12207DE04F008F1696 /* TeacherListTableViewCell.m in Sources */,
 				CE4CAD8D208724C9001F711F /* HGCourseInfoFrame.m in Sources */,
 				AD6944B320904E5A00B06531 /* HGTeacherMyClassModel.m in Sources */,
@@ -3366,6 +3388,7 @@
 				CEAD1ADA207DF42B008F1696 /* ResearchInfoTableViewController.m in Sources */,
 				CEAD19A2207C9DA1008F1696 /* CurrBut.m in Sources */,
 				AD6944A620904A5500B06531 /* HGMyPointModel.m in Sources */,
+				CEF2DB4E209F00D300FAAE72 /* HGSignOutPopView.m in Sources */,
 				CE4CAD832085E318001F711F /* ElseTableViewController.m in Sources */,
 				ADDD57582089B4BA005A38EA /* NSNull+Safe.m in Sources */,
 				AD5F5F09208DAAA700F68471 /* HGMydataModel.m in Sources */,
@@ -3466,6 +3489,7 @@
 				AD6BE231206B6B1800028673 /* HGLoginController.m in Sources */,
 				CE1E1F37208BA3CA0098B1E1 /* HGUCRoomModel.m in Sources */,
 				AD0396D220731DEB0082C817 /* HGClassController.m in Sources */,
+				CEF2DB57209F484400FAAE72 /* HGRASModel.m in Sources */,
 				CEAD1B4D207F464F008F1696 /* RoomFrame.m in Sources */,
 				CE864447206F9675002FE9E7 /* MessageListController.m in Sources */,
 				CE864449206F9675002FE9E7 /* MessageParama.m in Sources */,

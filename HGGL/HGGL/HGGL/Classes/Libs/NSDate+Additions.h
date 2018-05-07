@@ -48,7 +48,6 @@
 @property (nonatomic, readonly) NSInteger second; ///< Second component (0~59)
 
 @property (nonatomic, readonly) BOOL isToday;///<是否是今天
-
 ///给指定的日期获取对应月的天数
 + (NSInteger)getDaysWithDate: (NSDate*)date;
 /**

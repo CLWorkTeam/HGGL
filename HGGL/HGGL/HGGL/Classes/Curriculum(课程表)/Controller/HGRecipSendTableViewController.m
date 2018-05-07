@@ -108,16 +108,7 @@
         return;
         
     }
-//    HGRSParama *parama = [[HGRSParama alloc]init];
-//    parama.page = @"1";
-//    parama.pageSize = @"10";
-//    parama.fillType = @"";
-//    parama.carInfo = @"";
-//    NSDateFormatter *fomatter = [[NSDateFormatter alloc]init];
-//    [fomatter setDateFormat:@"yyyy-MM-dd"];
-//    parama.date = @"2018-04-20";
-//    parama.classId = @"";
-//    self.parama = parama;
+
     [SVProgressHUD showWithStatus:@"请稍后..."];
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
     parama.page = @"1";

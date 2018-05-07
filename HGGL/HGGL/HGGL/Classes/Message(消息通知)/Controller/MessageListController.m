@@ -202,7 +202,7 @@
     }
     
     
-    NSString *url = [HGURL stringByAppendingString:@"/MsgPush/setRead.do"];
+    NSString *url = [HGURL stringByAppendingString:@"MsgPush/setRead.do"];
     [HGHttpTool POSTWithURL:url parameters:@{@"msg_id":mes.msg_id,@"user_id":[HGUserDefaults objectForKey:HGUserID]} success:^(id responseObject) {
 //        NSString *status = ;
         if ([[responseObject objectForKey:@"status"] integerValue] == 1 ) {

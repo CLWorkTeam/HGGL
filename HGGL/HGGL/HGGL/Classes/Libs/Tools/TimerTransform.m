@@ -126,4 +126,22 @@
     {return nil;}
     
 }
++(NSString *)dayOfWeek:(NSDate *)date
+{
+//    NSDateFormatter *inputFormatter=[[NSDateFormatter alloc]init];
+//
+//    [inputFormatter setDateFormat:@"yyyy-MM-dd"];
+//
+//    NSDate *formatterDate=[inputFormatter dateFromString:dateString];
+    
+    NSDateFormatter *outputFormatter=[[NSDateFormatter alloc]init];
+    
+    [outputFormatter setDateFormat:@"EEEE-MMMM-d"];
+    
+    NSString *outputDateStr=[outputFormatter stringFromDate:date];
+    
+    NSArray *weekArray=[outputDateStr componentsSeparatedByString:@"-"];
+    
+    return [weekArray objectAtIndex:0];
+}
 @end
