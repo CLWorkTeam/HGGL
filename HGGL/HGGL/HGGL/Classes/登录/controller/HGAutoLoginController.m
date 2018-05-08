@@ -22,6 +22,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
+    UIImageView *imageV = [[UIImageView alloc]initWithFrame:self.view.bounds];
+    imageV.image = [UIImage imageNamed:@"icon_splash1.jpg"];
+    [self.view addSubview:imageV];
     [self login:nil];
 }
 
