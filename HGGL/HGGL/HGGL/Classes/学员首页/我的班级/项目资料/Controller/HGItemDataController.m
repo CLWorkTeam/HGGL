@@ -58,7 +58,7 @@
 
 - (void)requestData{
     
-    NSString *url = [HGURL stringByAppendingString:@"Notice/getLearningOnCampus.do"];
+    NSString *url = [HGURL stringByAppendingString:@"Project/getVideo.do"];
     NSString *project_id = [HGUserDefaults objectForKey:HGProjectID];
     [HGHttpTool POSTWithURL:url parameters:@{@"project_id":project_id} success:^(id responseObject) {
         
@@ -81,7 +81,17 @@
             self.courseAry = [HGItemDataModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"courseWareList"]];
             self.videoAry = [HGItemDataModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"videoList"]];
             [self.tableV reloadData];
-            self.tableV.backgroundView = nil;
+            if (self.courseAry.count==0&&self.videoAry.count==0) {
+                WeakSelf;
+                HGNoDataView *nodataView = [[HGNoDataView alloc]init];
+                nodataView.label.text = @"无数据";
+                nodataView.block = ^{
+                    [weakSelf.tableV.mj_header beginRefreshing];
+                };
+                self.tableV.backgroundView = nodataView;
+            }else{
+                self.tableV.backgroundView = nil;
+            }
         }
     } failure:^(NSError *error) {
         [self.tableV.mj_header endRefreshing];
