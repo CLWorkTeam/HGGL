@@ -15,6 +15,6 @@
 @property (nonatomic,copy) NSString *releaseTimeStr;
 @property (nonatomic,copy) NSString *noticeTitle;
 @property (nonatomic,copy) NSString *picUrl;
-
+@property (nonatomic,copy) NSString *noticeContent;
 
 @end
