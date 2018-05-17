@@ -101,6 +101,28 @@
     //[self.navigationBar setBackgroundColor:[UIColor redColor]];
     if (!self.viewControllers.count) {
         
+        if ([viewController isKindOfClass:NSClassFromString(@"HGWebViewController")]) {
+            
+//            viewController.hidesBottomBarWhenPushed = YES;
+            
+//            self.navigationBarHidden = NO;
+            
+            UIButton *left = [UIButton buttonWithType:UIButtonTypeCustom];
+            
+            [left setImage:[UIImage imageNamed:@"return_normal"] forState:UIControlStateNormal];
+            
+            [left setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            
+            left.frame = CGRectMake(0, 0, 60, HGNavgationBarH);
+            
+            [left addTarget:self action:@selector(leftButClick:) forControlEvents:UIControlEventTouchUpInside];
+            
+            UIBarButtonItem *letfBut = [[UIBarButtonItem alloc]initWithCustomView:left];
+            
+            viewController.navigationItem.leftBarButtonItem = letfBut;
+        }
+        
+        
 //        if ([viewController isKindOfClass:NSClassFromString(@"HGTeacherHomeController")]||[viewController isKindOfClass:NSClassFromString(@"HGStudentHomeController")]) {
 //
 //        }else
@@ -124,16 +146,23 @@
 //        viewController.navigationItem.leftBarButtonItem = letfBut;
 //        viewController.navigationItem.rightBarButtonItem = rightBut;
     }else{
-        //[self.but removeFromSuperview];
+        
         viewController.hidesBottomBarWhenPushed = YES;
+        
         self.navigationBarHidden = NO;
-//        HGBarBut *left = [HGBarBut initWithColor:nil andSelColor:nil andTColor:[UIColor whiteColor] andFont:[UIFont systemFontOfSize:10]];
+        
         UIButton *left = [UIButton buttonWithType:UIButtonTypeCustom];
+        
         [left setImage:[UIImage imageNamed:@"return_normal"] forState:UIControlStateNormal];
+        
         [left setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        
         left.frame = CGRectMake(0, 0, 60, HGNavgationBarH);
+        
         [left addTarget:self action:@selector(leftButClick:) forControlEvents:UIControlEventTouchUpInside];
+        
         UIBarButtonItem *letfBut = [[UIBarButtonItem alloc]initWithCustomView:left];
+        
         viewController.navigationItem.leftBarButtonItem = letfBut;
         
     }

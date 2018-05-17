@@ -153,7 +153,14 @@
 {
     [UMessage setAutoAlert:NO];
     if([[[UIDevice currentDevice] systemVersion]intValue] < 10){
-        [UMessage didReceiveRemoteNotification:userInfo];
+        UIApplicationState status = [UIApplication sharedApplication].applicationState;
+        if (status == 0) {
+            [UMessage didReceiveRemoteNotification:userInfo];
+        }else
+        {
+            [self pushToViewControllerWithTitl:userInfo[@"type"] andMessage:userInfo[@"aps"][@"alert"] with:userInfo[@"HGGL_url"] WithState:[UIApplication sharedApplication].applicationState];
+        }
+        
     }
     completionHandler(UIBackgroundFetchResultNewData);
 }
@@ -165,6 +172,7 @@
         [UMessage setAutoAlert:NO];
         //应用处于前台时的远程推送接受
         //必须加这句代码
+        
         [UMessage didReceiveRemoteNotification:userInfo];
     }else{
         //应用处于前台时的本地推送接受
@@ -178,7 +186,8 @@
     if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
         //应用处于后台时的远程推送接受
         //必须加这句代码
-        [UMessage didReceiveRemoteNotification:userInfo];
+//        [UMessage didReceiveRemoteNotification:userInfo];
+        [self pushToViewControllerWithTitl:userInfo[@"type"] andMessage:userInfo[@"aps"][@"alert"] with:userInfo[@"HGGL_url"] WithState:[UIApplication sharedApplication].applicationState];
     }else{
         //应用处于后台时的本地推送接受
     }
@@ -203,6 +212,15 @@
 //            ZKRNavigationController *nav = [[ZKRNavigationController alloc]initWithRootViewController:notice];
 //            [self.window.rootViewController  presentViewController:nav animated:NO completion:nil];
 //        }
+    UIViewController *vc = [self topViewControllerWithRootViewController:self.window.rootViewController];
+    
+    HGWebViewController *web = [[HGWebViewController alloc]init];
+    
+    web.titleStr = title;
+    
+    web.url = url;
+    
+    [vc presentViewController:web animated:YES completion:nil];
     
     
 }

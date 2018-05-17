@@ -693,6 +693,7 @@
 		CE4CAD9E208847DC001F711F /* HGCRModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGCRModel.m; sourceTree = "<group>"; };
 		CE4CADA0208860E1001F711F /* HGCRParama.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGCRParama.h; sourceTree = "<group>"; };
 		CE4CADA1208860E1001F711F /* HGCRParama.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGCRParama.m; sourceTree = "<group>"; };
+		CE60EBE920AD6FBD00FB8F87 /* HGGL.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HGGL.entitlements; sourceTree = "<group>"; };
 		CE769D9E206A343E000F931F /* HGGL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HGGL.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE769DAA206A343E000F931F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE769DAD206A343E000F931F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -2003,6 +2004,7 @@
 		CE769DA0206A343E000F931F /* HGGL */ = {
 			isa = PBXGroup;
 			children = (
+				CE60EBE920AD6FBD00FB8F87 /* HGGL.entitlements */,
 				CE769DDD206A3559000F931F /* Other */,
 				CE769DD3206A354F000F931F /* Classes */,
 				CE769DAA206A343E000F931F /* Assets.xcassets */,
@@ -3150,6 +3152,9 @@
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
+							com.apple.Push = {
+								enabled = 1;
+							};
 						};
 					};
 					CE769DB5206A343E000F931F = {
@@ -3834,14 +3839,15 @@
 			baseConfigurationReference = 05664ABAC06DC837ACFBE292 /* Pods-HGGL.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = HGGL/HGGL.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = MPD33YZFS3;
+				DEVELOPMENT_TEAM = PZTPK39JF7;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/HGGL/Other/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/HGGL/Other/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = cn.sinsoft.www.HGGL;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.sinsoft.HGGL;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -3854,15 +3860,17 @@
 			baseConfigurationReference = 0419CBCD7E29F89AEC25E965 /* Pods-HGGL.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = HGGL/HGGL.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = MPD33YZFS3;
+				DEVELOPMENT_TEAM = PZTPK39JF7;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/HGGL/Other/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/HGGL/Other/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = cn.sinsoft.www.HGGL;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.sinsoft.HGGL;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/**";
