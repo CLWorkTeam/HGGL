@@ -13,6 +13,7 @@
 @interface HGPageContentViewController ()
 @property (nonatomic,strong) HGPageViewController *pageVC;
 @property (nonatomic,weak) HGSelfAdaptationBar *bar;
+
 @end
 
 @implementation HGPageContentViewController
@@ -22,7 +23,9 @@
         NSDictionary *option = [NSDictionary dictionaryWithObject:[NSNumber numberWithInteger:0] forKey:UIPageViewControllerOptionInterPageSpacingKey];
         
         NSMutableArray *ar = [NSMutableArray arrayWithArray:self.ControllerArray];
+        
         _pageVC = [[HGPageViewController alloc]initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:option];
+        
         WeakSelf
         _pageVC.controllerArray = ar;
         _pageVC.indexChangeBlock = ^(NSInteger index) {

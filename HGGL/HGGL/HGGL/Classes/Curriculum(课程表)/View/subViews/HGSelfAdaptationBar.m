@@ -210,19 +210,22 @@
 }
 -(void)clickButtonWithTag:(NSInteger )tag
 {
-    UIButton *button = self.imageArray[tag];
-    [self clickButton:button];
+//
+    [self clickButtonWithOutBlock:tag];
 }
 -(void)clickButtonWithOutBlock:(NSInteger)tag
 {
+    
     UIButton *button = self.imageArray[tag];
+    if (button.tag == self.selectedButton.tag) {
+        return;
+    }
     
-    self.selectedButton.selected = !self.selectedButton.selected;
-    
+    self.selectedButton.selected = NO;
+    button.selected = YES;
     self.selectedButton = button;
     
-    button.selected = YES;
-    
+    //    UIButton *button = self.imageArray[tag];
     BOOL min = ((button.center.x+horMargin)>=(HGScreenWidth/2));
     BOOL max = ((self.contentView.width-button.center.x+horMargin)>=(HGScreenWidth/2));
     if (min&&max) {

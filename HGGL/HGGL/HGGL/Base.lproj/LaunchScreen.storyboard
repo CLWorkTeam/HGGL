@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
-    <device id="retina5_5" orientation="portrait">
+    <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -14,29 +14,29 @@
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="OvZ-mG-Dp6"/>
-                        <viewControllerLayoutGuide type="bottom" id="WK7-Fh-wmf"/>
+                        <viewControllerLayoutGuide type="top" id="bAl-D3-daj"/>
+                        <viewControllerLayoutGuide type="bottom" id="qOm-pC-HVG"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView autoresizesSubviews="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" image="icon_splash1.jpg" highlightedImage="icon_splash1.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="vdV-m1-PmL">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="vdV-m1-PmL" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="E4d-zg-YCD"/>
-                            <constraint firstItem="WK7-Fh-wmf" firstAttribute="top" secondItem="vdV-m1-PmL" secondAttribute="bottom" id="IB3-LY-qsO"/>
-                            <constraint firstItem="vdV-m1-PmL" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="NJd-gk-stf"/>
-                            <constraint firstAttribute="trailing" secondItem="vdV-m1-PmL" secondAttribute="trailing" id="vfz-no-bFV"/>
+                            <constraint firstAttribute="bottom" secondItem="vdV-m1-PmL" secondAttribute="bottom" id="MdS-uZ-9I4"/>
+                            <constraint firstAttribute="trailing" secondItem="vdV-m1-PmL" secondAttribute="trailing" id="Uml-B4-lVe"/>
+                            <constraint firstItem="vdV-m1-PmL" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="YDW-kt-rzV"/>
+                            <constraint firstItem="vdV-m1-PmL" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="wUw-u3-Kpd"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="52.173913043478265" y="374.18478260869568"/>
+            <point key="canvasLocation" x="52" y="373.89162561576359"/>
         </scene>
     </scenes>
     <resources>

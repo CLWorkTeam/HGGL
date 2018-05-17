@@ -79,6 +79,11 @@
 		ADF6FCA920989B0E005E27E6 /* HGWeekMenuModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF6FCA820989B0E005E27E6 /* HGWeekMenuModel.m */; };
 		ADF6FCAC20989CD7005E27E6 /* HGMenuFoodModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF6FCAB20989CD7005E27E6 /* HGMenuFoodModel.m */; };
 		ADF6FCB02098ACC9005E27E6 /* HGInfoChangeController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF6FCAF2098ACC9005E27E6 /* HGInfoChangeController.m */; };
+		CE05228420AD24A10085E540 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE05228320AD24A00085E540 /* SystemConfiguration.framework */; };
+		CE05228620AD24B20085E540 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = CE05228520AD24B10085E540 /* libsqlite3.tbd */; };
+		CE05228820AD24BF0085E540 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE05228720AD24BE0085E540 /* CoreTelephony.framework */; };
+		CE05228A20AD24E80085E540 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = CE05228920AD24E80085E540 /* libz.tbd */; };
+		CE05228C20AD24F70085E540 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE05228B20AD24F70085E540 /* UserNotifications.framework */; };
 		CE1E1F31208BA2A40098B1E1 /* HGCRoomHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1E1F30208BA2A40098B1E1 /* HGCRoomHeader.m */; };
 		CE1E1F37208BA3CA0098B1E1 /* HGUCRoomModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1E1F36208BA3CA0098B1E1 /* HGUCRoomModel.m */; };
 		CE1E1F3A208BA3DE0098B1E1 /* HGCRoomModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1E1F39208BA3DE0098B1E1 /* HGCRoomModel.m */; };
@@ -388,6 +393,18 @@
 		CEAD1B5B207F465A008F1696 /* HisTime.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAD1B51207F4658008F1696 /* HisTime.m */; };
 		CEAD1B5C207F465A008F1696 /* RecTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAD1B53207F4659008F1696 /* RecTableViewCell.m */; };
 		CEAD1B5D207F465A008F1696 /* RecTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAD1B57207F465A008F1696 /* RecTopView.m */; };
+		CEC78F4820A1822200E6DC17 /* TKDownLoadDataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC78F3C20A1821E00E6DC17 /* TKDownLoadDataBase.m */; };
+		CEC78F4920A1822200E6DC17 /* TKDownLoadDataBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC78F3E20A1821F00E6DC17 /* TKDownLoadDataBaseModel.m */; };
+		CEC78F4A20A1822200E6DC17 /* TKDownLoadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC78F3F20A1822000E6DC17 /* TKDownLoadOperation.m */; };
+		CEC78F4B20A1822200E6DC17 /* TKDownLoadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC78F4120A1822000E6DC17 /* TKDownLoadManager.m */; };
+		CEC78F4D20A1822200E6DC17 /* TKDownLoadModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC78F4420A1822100E6DC17 /* TKDownLoadModel.m */; };
+		CEC78F5520A29B2000E6DC17 /* HGMyDownLoadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC78F5420A29B2000E6DC17 /* HGMyDownLoadViewController.m */; };
+		CEC78F6320A428A400E6DC17 /* HGDownloadTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC78F6220A428A400E6DC17 /* HGDownloadTableViewCell.m */; };
+		CEC78F6620A47D0A00E6DC17 /* HGNoDataTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC78F6520A47D0A00E6DC17 /* HGNoDataTableViewCell.m */; };
+		CEC78F6920A53D0600E6DC17 /* HGDownloadedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC78F6820A53D0600E6DC17 /* HGDownloadedViewController.m */; };
+		CEC78F6C20A53D1700E6DC17 /* HGDownloadingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC78F6B20A53D1700E6DC17 /* HGDownloadingViewController.m */; };
+		CEC78F6F20A9345400E6DC17 /* MPPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC78F6D20A9345300E6DC17 /* MPPlayerViewController.m */; };
+		CEC78F7220A9387A00E6DC17 /* FullNavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC78F7020A9387A00E6DC17 /* FullNavViewController.m */; };
 		CEF2DB2F209B0FC900FAAE72 /* HGProjectListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF2DB2E209B0FC900FAAE72 /* HGProjectListModel.m */; };
 		CEF2DB32209B219F00FAAE72 /* HGProjectBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF2DB31209B219F00FAAE72 /* HGProjectBaseModel.m */; };
 		CEF2DB35209B220E00FAAE72 /* HGPBRemarkModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF2DB34209B220E00FAAE72 /* HGPBRemarkModel.m */; };
@@ -557,6 +574,11 @@
 		ADF6FCAB20989CD7005E27E6 /* HGMenuFoodModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGMenuFoodModel.m; sourceTree = "<group>"; };
 		ADF6FCAE2098ACC9005E27E6 /* HGInfoChangeController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGInfoChangeController.h; sourceTree = "<group>"; };
 		ADF6FCAF2098ACC9005E27E6 /* HGInfoChangeController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGInfoChangeController.m; sourceTree = "<group>"; };
+		CE05228320AD24A00085E540 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		CE05228520AD24B10085E540 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		CE05228720AD24BE0085E540 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		CE05228920AD24E80085E540 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		CE05228B20AD24F70085E540 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		CE1E1F2F208BA2A40098B1E1 /* HGCRoomHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGCRoomHeader.h; sourceTree = "<group>"; };
 		CE1E1F30208BA2A40098B1E1 /* HGCRoomHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGCRoomHeader.m; sourceTree = "<group>"; };
 		CE1E1F35208BA3CA0098B1E1 /* HGUCRoomModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGUCRoomModel.h; sourceTree = "<group>"; };
@@ -1106,6 +1128,30 @@
 		CEAD1B56207F4659008F1696 /* HistoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryTableViewCell.h; sourceTree = "<group>"; };
 		CEAD1B57207F465A008F1696 /* RecTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecTopView.m; sourceTree = "<group>"; };
 		CEAD1B58207F465A008F1696 /* HistroyTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistroyTopView.h; sourceTree = "<group>"; };
+		CEC78F3A20A1821C00E6DC17 /* TKDownLoadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKDownLoadManager.h; sourceTree = "<group>"; };
+		CEC78F3C20A1821E00E6DC17 /* TKDownLoadDataBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKDownLoadDataBase.m; sourceTree = "<group>"; };
+		CEC78F3D20A1821F00E6DC17 /* TKDownLoadDataBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKDownLoadDataBaseModel.h; sourceTree = "<group>"; };
+		CEC78F3E20A1821F00E6DC17 /* TKDownLoadDataBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKDownLoadDataBaseModel.m; sourceTree = "<group>"; };
+		CEC78F3F20A1822000E6DC17 /* TKDownLoadOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKDownLoadOperation.m; sourceTree = "<group>"; };
+		CEC78F4020A1822000E6DC17 /* TKDownLoadModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKDownLoadModel.h; sourceTree = "<group>"; };
+		CEC78F4120A1822000E6DC17 /* TKDownLoadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKDownLoadManager.m; sourceTree = "<group>"; };
+		CEC78F4420A1822100E6DC17 /* TKDownLoadModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKDownLoadModel.m; sourceTree = "<group>"; };
+		CEC78F4620A1822200E6DC17 /* TKDownLoadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKDownLoadOperation.h; sourceTree = "<group>"; };
+		CEC78F4E20A1872000E6DC17 /* TKDownLoadDataBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TKDownLoadDataBase.h; sourceTree = "<group>"; };
+		CEC78F5320A29B2000E6DC17 /* HGMyDownLoadViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGMyDownLoadViewController.h; sourceTree = "<group>"; };
+		CEC78F5420A29B2000E6DC17 /* HGMyDownLoadViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGMyDownLoadViewController.m; sourceTree = "<group>"; };
+		CEC78F6120A428A400E6DC17 /* HGDownloadTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGDownloadTableViewCell.h; sourceTree = "<group>"; };
+		CEC78F6220A428A400E6DC17 /* HGDownloadTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGDownloadTableViewCell.m; sourceTree = "<group>"; };
+		CEC78F6420A47D0A00E6DC17 /* HGNoDataTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGNoDataTableViewCell.h; sourceTree = "<group>"; };
+		CEC78F6520A47D0A00E6DC17 /* HGNoDataTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGNoDataTableViewCell.m; sourceTree = "<group>"; };
+		CEC78F6720A53D0600E6DC17 /* HGDownloadedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGDownloadedViewController.h; sourceTree = "<group>"; };
+		CEC78F6820A53D0600E6DC17 /* HGDownloadedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGDownloadedViewController.m; sourceTree = "<group>"; };
+		CEC78F6A20A53D1700E6DC17 /* HGDownloadingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGDownloadingViewController.h; sourceTree = "<group>"; };
+		CEC78F6B20A53D1700E6DC17 /* HGDownloadingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGDownloadingViewController.m; sourceTree = "<group>"; };
+		CEC78F6D20A9345300E6DC17 /* MPPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPlayerViewController.m; sourceTree = "<group>"; };
+		CEC78F6E20A9345300E6DC17 /* MPPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPlayerViewController.h; sourceTree = "<group>"; };
+		CEC78F7020A9387A00E6DC17 /* FullNavViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FullNavViewController.m; sourceTree = "<group>"; };
+		CEC78F7120A9387A00E6DC17 /* FullNavViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FullNavViewController.h; sourceTree = "<group>"; };
 		CEF2DB2D209B0FC900FAAE72 /* HGProjectListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGProjectListModel.h; sourceTree = "<group>"; };
 		CEF2DB2E209B0FC900FAAE72 /* HGProjectListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGProjectListModel.m; sourceTree = "<group>"; };
 		CEF2DB30209B219F00FAAE72 /* HGProjectBaseModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGProjectBaseModel.h; sourceTree = "<group>"; };
@@ -1148,6 +1194,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE05228C20AD24F70085E540 /* UserNotifications.framework in Frameworks */,
+				CE05228A20AD24E80085E540 /* libz.tbd in Frameworks */,
+				CE05228820AD24BF0085E540 /* CoreTelephony.framework in Frameworks */,
+				CE05228620AD24B20085E540 /* libsqlite3.tbd in Frameworks */,
+				CE05228420AD24A10085E540 /* SystemConfiguration.framework in Frameworks */,
 				A8E882BBE0F209897439D916 /* libPods-HGGL.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1181,6 +1232,11 @@
 		84DDEDCFD276ED7D03E879CE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CE05228B20AD24F70085E540 /* UserNotifications.framework */,
+				CE05228920AD24E80085E540 /* libz.tbd */,
+				CE05228720AD24BE0085E540 /* CoreTelephony.framework */,
+				CE05228520AD24B10085E540 /* libsqlite3.tbd */,
+				CE05228320AD24A00085E540 /* SystemConfiguration.framework */,
 				2A6879AA8A95174D1B2D03C4 /* libPods-HGGL.a */,
 			);
 			name = Frameworks;
@@ -1255,6 +1311,7 @@
 		AD0396BF20731CF70082C817 /* 个人中心 */ = {
 			isa = PBXGroup;
 			children = (
+				CEC78F5220A29B0D00E6DC17 /* 我的下载 */,
 				ADF6FCAD2098ACAA005E27E6 /* 个人信息修改 */,
 				AD9164FE208326B700416124 /* 联系我们 */,
 				AD9164F72083261500416124 /* 项目证书 */,
@@ -2089,6 +2146,7 @@
 		CE769DE9206A56A4000F931F /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				CEC78F3920A181E800E6DC17 /* Downloader */,
 				CE769DFC206A5702000F931F /* TimerTransform.h */,
 				CE769DFD206A5702000F931F /* TimerTransform.m */,
 				CE769DEB206A56C5000F931F /* HGHttpTool.h */,
@@ -2431,6 +2489,8 @@
 				CEAD19B7207C9EA9008F1696 /* BaseTableViewCell.m */,
 				CE9133132089BA8F00780113 /* HGPopView.h */,
 				CE9133142089BA8F00780113 /* HGPopView.m */,
+				CEC78F6420A47D0A00E6DC17 /* HGNoDataTableViewCell.h */,
+				CEC78F6520A47D0A00E6DC17 /* HGNoDataTableViewCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2943,6 +3003,66 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		CEC78F3920A181E800E6DC17 /* Downloader */ = {
+			isa = PBXGroup;
+			children = (
+				CEC78F4E20A1872000E6DC17 /* TKDownLoadDataBase.h */,
+				CEC78F3C20A1821E00E6DC17 /* TKDownLoadDataBase.m */,
+				CEC78F3D20A1821F00E6DC17 /* TKDownLoadDataBaseModel.h */,
+				CEC78F3E20A1821F00E6DC17 /* TKDownLoadDataBaseModel.m */,
+				CEC78F3A20A1821C00E6DC17 /* TKDownLoadManager.h */,
+				CEC78F4120A1822000E6DC17 /* TKDownLoadManager.m */,
+				CEC78F4020A1822000E6DC17 /* TKDownLoadModel.h */,
+				CEC78F4420A1822100E6DC17 /* TKDownLoadModel.m */,
+				CEC78F4620A1822200E6DC17 /* TKDownLoadOperation.h */,
+				CEC78F3F20A1822000E6DC17 /* TKDownLoadOperation.m */,
+			);
+			path = Downloader;
+			sourceTree = "<group>";
+		};
+		CEC78F5220A29B0D00E6DC17 /* 我的下载 */ = {
+			isa = PBXGroup;
+			children = (
+				CEC78F6020A3E90B00E6DC17 /* Models */,
+				CEC78F5F20A3E90200E6DC17 /* Views */,
+				CEC78F5E20A3E8F100E6DC17 /* Controllers */,
+			);
+			path = "我的下载";
+			sourceTree = "<group>";
+		};
+		CEC78F5E20A3E8F100E6DC17 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				CEC78F5320A29B2000E6DC17 /* HGMyDownLoadViewController.h */,
+				CEC78F5420A29B2000E6DC17 /* HGMyDownLoadViewController.m */,
+				CEC78F6720A53D0600E6DC17 /* HGDownloadedViewController.h */,
+				CEC78F6820A53D0600E6DC17 /* HGDownloadedViewController.m */,
+				CEC78F6A20A53D1700E6DC17 /* HGDownloadingViewController.h */,
+				CEC78F6B20A53D1700E6DC17 /* HGDownloadingViewController.m */,
+				CEC78F6E20A9345300E6DC17 /* MPPlayerViewController.h */,
+				CEC78F6D20A9345300E6DC17 /* MPPlayerViewController.m */,
+				CEC78F7120A9387A00E6DC17 /* FullNavViewController.h */,
+				CEC78F7020A9387A00E6DC17 /* FullNavViewController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		CEC78F5F20A3E90200E6DC17 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CEC78F6120A428A400E6DC17 /* HGDownloadTableViewCell.h */,
+				CEC78F6220A428A400E6DC17 /* HGDownloadTableViewCell.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		CEC78F6020A3E90B00E6DC17 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		CEF2DB4B209F00A500FAAE72 /* views */ = {
 			isa = PBXGroup;
 			children = (
@@ -3260,7 +3380,10 @@
 				AD6944AD20904E1300B06531 /* HGTeacherMyClassController.m in Sources */,
 				ADDD57672089BFC1005A38EA /* NSDate+Additions.m in Sources */,
 				CE4CAD452084A437001F711F /* MessagePopLayout.m in Sources */,
+				CEC78F4B20A1822200E6DC17 /* TKDownLoadManager.m in Sources */,
+				CEC78F6C20A53D1700E6DC17 /* HGDownloadingViewController.m in Sources */,
 				ADF6FCB02098ACC9005E27E6 /* HGInfoChangeController.m in Sources */,
+				CEC78F4A20A1822200E6DC17 /* TKDownLoadOperation.m in Sources */,
 				CE4CAD4F2084A463001F711F /* PopView.m in Sources */,
 				CE1E1F67208DFCA40098B1E1 /* HGSRBModel.m in Sources */,
 				CE769EA0206A5DAC000F931F /* HGNavigationController.m in Sources */,
@@ -3346,6 +3469,7 @@
 				CEAD1AFE207DF5E4008F1696 /* PMissionViewController.m in Sources */,
 				CEF2DB3E209C368400FAAE72 /* HGRemarkCell.m in Sources */,
 				ADF2F05E2094478D00C787F0 /* HGItemDataModel.m in Sources */,
+				CEC78F4920A1822200E6DC17 /* TKDownLoadDataBaseModel.m in Sources */,
 				CEF2DB60209FF50700FAAE72 /* HGScheduleViewController.m in Sources */,
 				CEAD1B0A207DF6F7008F1696 /* PMissionFrame.m in Sources */,
 				CEAD1A4E207DE59D008F1696 /* ProjectListParama.m in Sources */,
@@ -3362,6 +3486,7 @@
 				CEF2DB35209B220E00FAAE72 /* HGPBRemarkModel.m in Sources */,
 				CEAD1B18207DFB5F008F1696 /* ImageLeftBut.m in Sources */,
 				CEAD1A38207DE4DF008F1696 /* ProjectInfoViewController.m in Sources */,
+				CEC78F4D20A1822200E6DC17 /* TKDownLoadModel.m in Sources */,
 				CEAD1A71207DEB33008F1696 /* HGWebViewController.m in Sources */,
 				CE1E1F3A208BA3DE0098B1E1 /* HGCRoomModel.m in Sources */,
 				CE769E97206A5AF4000F931F /* HGTabbar.m in Sources */,
@@ -3371,6 +3496,7 @@
 				CEAD19FC207DDF1C008F1696 /* teacBaseInfo.m in Sources */,
 				CEAD1B2E207F4639008F1696 /* historyTableViewController.m in Sources */,
 				CE1E1F5E208DC63E0098B1E1 /* HGSOutTableViewCell.m in Sources */,
+				CEC78F6F20A9345400E6DC17 /* MPPlayerViewController.m in Sources */,
 				CE1E1F70208F4DC80098B1E1 /* HGHoldTableViewCell.m in Sources */,
 				CEAD19A0207C9DA1008F1696 /* Date.m in Sources */,
 				CEAD1AA2207DF356008F1696 /* MenteeViewController.m in Sources */,
@@ -3403,6 +3529,7 @@
 				AD6944B320904E5A00B06531 /* HGTeacherMyClassModel.m in Sources */,
 				CE4CAD462084A437001F711F /* Role.m in Sources */,
 				CEAD19A6207C9DA1008F1696 /* CurrView.m in Sources */,
+				CEC78F6620A47D0A00E6DC17 /* HGNoDataTableViewCell.m in Sources */,
 				CE4CAD512084A463001F711F /* MessageLayout.m in Sources */,
 				ADB0CC66209B0E8200425214 /* HGAutoLoginController.m in Sources */,
 				CE4CAD6C2085DBF2001F711F /* HGPageContentViewController.m in Sources */,
@@ -3431,6 +3558,7 @@
 				AD9164ED2083214B00416124 /* HGItemDataController.m in Sources */,
 				ADBDC789206BC72500D32390 /* HGBaseController.m in Sources */,
 				CE4CAD862085E319001F711F /* CurrCollectionViewController.m in Sources */,
+				CEC78F7220A9387A00E6DC17 /* FullNavViewController.m in Sources */,
 				CE4CAD482084A437001F711F /* Memeber.m in Sources */,
 				CE864448206F9675002FE9E7 /* MessageInfoController.m in Sources */,
 				ADB0CC6320998B3100425214 /* HGInfoChangeCell.m in Sources */,
@@ -3475,6 +3603,7 @@
 				CEAD1AB8207DF418008F1696 /* ZKRTextField.m in Sources */,
 				CEAD1ADD207DF42B008F1696 /* ResearchFrame.m in Sources */,
 				CEAD1B49207F464F008F1696 /* DinnerFrame.m in Sources */,
+				CEC78F4820A1822200E6DC17 /* TKDownLoadDataBase.m in Sources */,
 				CEAD1A35207DE4DF008F1696 /* ProjectAuditDetailViewController.m in Sources */,
 				CEF2DB44209CBD5700FAAE72 /* HGMenteeListModel.m in Sources */,
 				CEAD19AC207C9DA1008F1696 /* TabImageView.m in Sources */,
@@ -3506,7 +3635,9 @@
 				CEAD19A4207C9DA1008F1696 /* WeekDayCollectionViewCell.m in Sources */,
 				CE1E1F5B208DC39D0098B1E1 /* HGLeftTableViewCell.m in Sources */,
 				AD6BE23A206B7CBB00028673 /* HGTeacherHomeController.m in Sources */,
+				CEC78F6320A428A400E6DC17 /* HGDownloadTableViewCell.m in Sources */,
 				CEAD1AB6207DF418008F1696 /* Upparameters.m in Sources */,
+				CEC78F6920A53D0600E6DC17 /* HGDownloadedViewController.m in Sources */,
 				CEAD1A6B207DE5AD008F1696 /* StudentTableViewCell.m in Sources */,
 				CEAD1AB7207DF418008F1696 /* Account.m in Sources */,
 				CEF2DB47209D6C1400FAAE72 /* HGMenteeSelCell.m in Sources */,
@@ -3535,6 +3666,7 @@
 				CEAD1A8D207DF34C008F1696 /* Mentee.m in Sources */,
 				CEAD1B5C207F465A008F1696 /* RecTableViewCell.m in Sources */,
 				CEAD1A11207DE04F008F1696 /* ScoreView.m in Sources */,
+				CEC78F5520A29B2000E6DC17 /* HGMyDownLoadViewController.m in Sources */,
 				CE1E1F49208CD7C10098B1E1 /* HGCRCollectionReusableView.m in Sources */,
 				CEAD1A65207DE5AD008F1696 /* HeaderView.m in Sources */,
 				CEAD1AF9207DF44F008F1696 /* BlackLog.m in Sources */,
@@ -3707,7 +3839,7 @@
 				DEVELOPMENT_TEAM = MPD33YZFS3;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/HGGL/Other/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/HGGL/Other/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cn.sinsoft.www.HGGL;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3727,7 +3859,7 @@
 				DEVELOPMENT_TEAM = MPD33YZFS3;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/HGGL/Other/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/HGGL/Other/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cn.sinsoft.www.HGGL;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -17,7 +17,8 @@
 #import "HGItemCertController.h"
 #import "HGInfoChangeController.h"
 #import "EditViewController.h"
-
+#import "UMessage.h"
+#import "HGMyDownLoadViewController.h"
 @interface HGPersonalController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong) NSArray *listAry;
@@ -75,7 +76,19 @@
     if ([title isEqualToString:@"退出当前账号"]) {
         HGLoginController *vc = [[HGLoginController alloc]init];
         HGKeywindow.rootViewController = vc;
+        [UMessage removeAlias:[HGUserDefaults stringForKey:HGUserID] type:@"HGGL" response:^(id  _Nonnull responseObject, NSError * _Nonnull error) {
+            
+            if (!error) {
+                HGLog(@"解除成功");
+            }else
+            {
+                HGLog(@"解除失败");
+            }
+            HGLog(@"error:%@",error);
+            
+        }];
         [HGUserDefaults setBool:NO forKey:@"autoLogin"];
+        [HGUserDefaults removeObjectForKey:HGUserCookie];
         [HGUserDefaults synchronize];
     }
     if ([title isEqualToString:@"联系我们"]) {
@@ -108,6 +121,9 @@
         [self.navigationController pushViewController:vc animated:YES];
     }
     if ([title isEqualToString:@"我的下载"]) {
+        
+        HGMyDownLoadViewController *download = [[HGMyDownLoadViewController alloc]init];
+        [self.navigationController pushViewController:download animated:YES];
         
     }
 }

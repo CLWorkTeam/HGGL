@@ -8,7 +8,7 @@
 
 #import "HGPageViewController.h"
 
-@interface HGPageViewController ()<UIPageViewControllerDelegate, UIPageViewControllerDataSource>
+@interface HGPageViewController ()<UIPageViewControllerDelegate, UIPageViewControllerDataSource,UIScrollViewDelegate>
 @property (nonatomic,assign) NSInteger currentIndex;
 @end
 
@@ -62,17 +62,19 @@
 - (void)pageViewController:(UIPageViewController *)pageViewController willTransitionToViewControllers:(NSArray<UIViewController *> *)pendingViewControllers {
     
     UIViewController *nextVC = [pendingViewControllers firstObject];
-    
     NSInteger index = [self.controllerArray indexOfObject:nextVC];
     
     self.currentIndex = index;
+    
+    HGLog(@"---%ld",self.currentIndex);
+    
 }
 
 - (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray<UIViewController *> *)previousViewControllers transitionCompleted:(BOOL)completed {
     
     
     if (completed) {
-        
+    
 //        self.segmentView.selectedIndex = ld_currentIndex ;
         if (_indexChangeBlock) {
             _indexChangeBlock(self.currentIndex);
@@ -111,16 +113,35 @@
 }
 -(void)changeVCWithIndex:(NSInteger )index
 {
+    //为了修复在点击按钮的同时用手指停止了这个动画效果产生的 控制臂并没有跳转成功  但是所有的数据都已经变成了 目的控制器的BUG
+    
+    self.view.userInteractionEnabled = NO;
     UIViewController *vc = [self viewControllerAtIndex:index];
+    
+    
+    if ([vc isEqual:self.viewControllers.lastObject]) {
+        return;
+    }
+    
+    WeakSelf
     
     if (index > self.currentIndex) {
         
         [self setViewControllers:@[vc] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:^(BOOL finished) {
             
+            weakSelf.view.userInteractionEnabled = YES;
+            if (weakSelf.justChangeIndex) {
+                weakSelf.justChangeIndex(index);
+            }
         }];
     } else {
         
         [self setViewControllers:@[vc] direction:UIPageViewControllerNavigationDirectionReverse animated:YES completion:^(BOOL finished) {
+            
+            weakSelf.view.userInteractionEnabled = YES;
+            if (weakSelf.justChangeIndex) {
+                weakSelf.justChangeIndex(index);
+            }
             
         }];
     }

@@ -52,13 +52,23 @@
         web.UIDelegate = self;
         web.navigationDelegate = self;
 //        NSString *webStr = isTKProduction?@"":@"https://119.253.83.234:8181";
-        NSString *str = [self.url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        if ([self.url hasPrefix:@"http"]) {
+//            NSString *str = [self.url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            NSURL *url = [[NSURL alloc] initWithString:self.url];
+//            NSURLRequest *request = [NSURLRequest requestWithURL:url];
+            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url ];
+            NSString *cookie = [self readCurrentCookie];
+            [request addValue:cookie forHTTPHeaderField:HGUserCookie];
+            [web loadRequest:request];
+            
+           
+            
+        }else
+        {
+            NSURL *url = [NSURL fileURLWithPath:self.url];
+            [web loadFileURL:url allowingReadAccessToURL:url];
+        }
         
-        //        NSString *str = [[NSString stringWithFormat:@"%@?clientNum=%@&clientName=%@",webStr,@"411503199003285318",@"陈磊" ] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        //        NSString *str = @"https://www.baidu.com";
-        NSURL *url = [[NSURL alloc] initWithString:str];
-        NSURLRequest *request = [NSURLRequest requestWithURL:url];
-        [web loadRequest:request];
         
         [web addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:nil];
         
@@ -106,7 +116,31 @@
     [self.bar addSubview:leftBtn];
     
 }
-
+- (void)loadDataFile
+{
+    //    NSURL *fileURL = [NSURL fileURLWithPath:self.webStr];
+    //    NSURLRequest *request = [NSURLRequest requestWithURL:fileURL];
+    //    [self.web loadRequest:request];
+    // 最最常见的一种情况
+    // 打开IE,访问网站,提示你安装Flash插件
+    // 如果没有这个应用程序,是无法用UIWebView打开对应的文件的
+    
+    // 应用场景:加载从服务器上下载的文件,例如pdf,或者word,图片等等文件
+    NSURL *fileURL = [NSURL fileURLWithPath:self.url];
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:fileURL];
+    // 服务器的响应对象,服务器接收到请求返回给客户端的
+    NSURLResponse *respnose = nil;
+    
+    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&respnose error:NULL];
+    
+    NSLog(@"%@", respnose.MIMEType);
+    
+    // 在iOS开发中,如果不是特殊要求,所有的文本编码都是用UTF8
+    // 先用UTF8解释接收到的二进制数据流
+//    [self.WKWeb loadData:data MIMEType:respnose.MIMEType textEncodingName:@"UTF8" baseURL:nil];
+    [self.WKWeb loadData:data MIMEType:respnose characterEncodingName:@"UTF8" baseURL:nil];
+}
 - (void)backTo{
     
     [self.navigationController popViewControllerAnimated:YES];
@@ -207,7 +241,24 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+-(NSString *)readCurrentCookie{
+    
+    NSArray *cookies = [NSKeyedUnarchiver unarchiveObjectWithData:[HGUserDefaults objectForKey:HGUserCookie]];
+    NSMutableString *cookieString = [[NSMutableString alloc] init];
+    for (NSHTTPCookie*cookie in cookies) {
+       
+        [cookieString appendFormat:@"%@=%@;",cookie.name,cookie.value];
+        
+        
+    }
+    if (cookieString.length > 0) {
+        [cookieString deleteCharactersInRange:NSMakeRange(cookieString.length - 1, 1)];
+    }
+    
+    
+    return cookieString;
+    
+}
 /*
 #pragma mark - Navigation
 

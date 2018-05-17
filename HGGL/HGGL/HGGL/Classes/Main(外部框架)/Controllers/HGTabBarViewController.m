@@ -37,8 +37,7 @@
     };
     _tab = tabBar;
     [self.tabBar addSubview:tabBar];
-    //    NSTimer *timer = [NSTimer timerWithTimeInterval:30 target:self selector:@selector(loadUnreade) userInfo:nil repeats:YES];
-    //    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+
     [self setUpAllChildrenController];
 }
 
@@ -83,6 +82,7 @@
 
 -(void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
+//    self.tab.frame = self.tabBar.bounds;
     for (UIView *view in self.tabBar.subviews) {
         if (![view isKindOfClass:[HGTabbar class]]) {
             [view removeFromSuperview];

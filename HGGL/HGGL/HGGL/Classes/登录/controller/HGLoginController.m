@@ -10,7 +10,7 @@
 #import "HGTeacherHomeController.h"
 #import "HGNavigationController.h"
 #import "HGTabBarViewController.h"
-
+#import "UMessage.h"
 
 @interface HGLoginController ()
 @property (nonatomic,weak) UITextField *accountTextField;
@@ -134,7 +134,20 @@
         }
         [HGUserDefaults setObject:account forKey:HGUserAccount];
         [HGUserDefaults setObject:passWord forKey:HGUserPassWord];
+        NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
+        NSData *cookiesData = [NSKeyedArchiver archivedDataWithRootObject:cookies];
+        [HGUserDefaults setObject:cookiesData forKey:HGUserCookie];
         [HGUserDefaults synchronize];
+        [UMessage setAlias:[HGUserDefaults stringForKey:HGUserID] type:@"HGGL" response:^(id responseObject, NSError *error) {
+            if (!error) {
+                HGLog(@"绑定成功");
+            }else
+            {
+                HGLog(@"绑定失败");
+            }
+            HGLog(@"error:%@",error);
+        }];
+        
         if ([dict[@"user_type"] isEqualToString:@"1"]) {
             HGTeacherHomeController *vc =[[HGTeacherHomeController alloc]init];
             HGNavigationController *nav = [[HGNavigationController alloc]initWithRootViewController:vc];

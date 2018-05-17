@@ -30,7 +30,7 @@
 #define FONT_PT(pt) ceil(320 / (320*TKScreenScale) * ((pt)*TKScreenScale))
 #define HEIGHT_PT(pt) ceil(320 / (320*TKScreenScale) * ((pt)*TKScreenScale))
 #define WIDTH_PT(pt) ceil(320 / (320*TKScreenScale) * ((pt)*TKScreenScale))
-
+#define iOS10 ([[UIDevice currentDevice].systemVersion floatValue] >= 10.0)
 
 //获取userdefaults
 #define HGUserDefaults [NSUserDefaults standardUserDefaults]
@@ -47,8 +47,8 @@
 //#define HGURL @"http://118.190.203.109:8080/zghg/"
 #define HGURL @"http://47.95.235.187/zghg/"
 #define HGURLImage @"http://47.95.235.187/zghg"
-#define HGURL2 @"http://42.202.133.196:8089/gjjl"
-#define HGURL3 @"http://42.202.133.196:8089/gjjl"
+#define HGURL2 @"http://47.95.235.187/zghg"
+#define HGURL3 @"http://47.95.235.187/zghg"
 #define HGUserDefaults [NSUserDefaults standardUserDefaults]
 #define WeakSelf __weak typeof(self) weakSelf = self;
 //全局userdefaut宏定义相关
@@ -60,6 +60,7 @@
 #define HGUserTel @"user_tel"
 #define HGUserAccount @"account"
 #define HGUserPassWord @"passWord"
+#define HGUserCookie @"cookie"
 #endif
 //原来布局参数
 #define HGSpace 1
@@ -96,6 +97,7 @@
 #import "UIImageView+WebCache.h"
 #import "UIButton+WebCache.h"
 #import "HGNoDataView.h"
+#import "Reachability.h"
 #endif /* PrefixHeader_pch */
 
 

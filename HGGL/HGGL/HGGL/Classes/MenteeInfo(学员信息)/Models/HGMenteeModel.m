@@ -18,7 +18,7 @@
         self.mentee_tel = (dict[@"mentee_tel"]?dict[@"mentee_tel"]:@"");
         self.mentee_group = (dict[@"mentee_group"]?dict[@"mentee_group"]:@"");
         self.mentee_room = (dict[@"mentee_room"]?dict[@"mentee_room"]:@"");
-        self.mentee_district = (dict[@"mentee_workUnit"]?dict[@"mentee_workUnit"]:@"");
+        self.mentee_district = (dict[@"mentee_district"]?dict[@"mentee_district"]:@"");
         self.mentee_department = (dict[@"mentee_department"]?dict[@"mentee_department"]:@"");
     }
     

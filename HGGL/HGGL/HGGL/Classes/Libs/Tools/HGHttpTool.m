@@ -11,7 +11,7 @@
 @implementation HGHttpTool
 +(void)POSTWithURL:(NSString *)URLString parameters:(id)parameters success:(void (^)(id))success failure:(void (^)(NSError *))failure
 {
-    NSArray * cookies = [NSKeyedUnarchiver unarchiveObjectWithData: [HGUserDefaults objectForKey:@"cookie"]];
+    NSArray * cookies = [NSKeyedUnarchiver unarchiveObjectWithData: [HGUserDefaults objectForKey:HGUserCookie]];
     NSHTTPCookieStorage * cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
     for (NSHTTPCookie * cookie in cookies){
         [cookieStorage setCookie: cookie];

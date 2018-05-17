@@ -11,6 +11,7 @@
 #import "PersonInfoTableViewController.h"
 #import "EditViewController.h"
 #import "HGLoginController.h"
+#import "UMessage.h"
 @interface MoreTableViewController ()
 @property (nonatomic,strong) NSArray *titleArr;
 @property (nonatomic,strong) NSArray *imaArr;
@@ -118,8 +119,21 @@
         case 3:
         {
             HGLoginController *login  = [[HGLoginController alloc]init];
+            [UMessage removeAlias:[HGUserDefaults stringForKey:HGUserID] type:@"HGGL" response:^(id  _Nonnull responseObject, NSError * _Nonnull error) {
+                
+                if (!error) {
+                    HGLog(@"解除成功");
+                }else
+                {
+                    HGLog(@"解除失败");
+                }
+                HGLog(@"error:%@",error);
+                
+            }];
             [HGUserDefaults setObject:@"" forKey:@"account"];
             [HGUserDefaults setObject:@"" forKey:@"passWord"];
+            [HGUserDefaults removeObjectForKey:HGUserCookie];
+            
             HGKeywindow.rootViewController = login;
         }
             break;

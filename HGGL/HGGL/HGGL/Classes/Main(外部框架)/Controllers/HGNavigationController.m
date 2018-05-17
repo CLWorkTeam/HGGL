@@ -131,7 +131,7 @@
         UIButton *left = [UIButton buttonWithType:UIButtonTypeCustom];
         [left setImage:[UIImage imageNamed:@"return_normal"] forState:UIControlStateNormal];
         [left setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        left.frame = CGRectMake(0, 0, 50, HGNavgationBarH);
+        left.frame = CGRectMake(0, 0, 60, HGNavgationBarH);
         [left addTarget:self action:@selector(leftButClick:) forControlEvents:UIControlEventTouchUpInside];
         UIBarButtonItem *letfBut = [[UIBarButtonItem alloc]initWithCustomView:left];
         viewController.navigationItem.leftBarButtonItem = letfBut;
