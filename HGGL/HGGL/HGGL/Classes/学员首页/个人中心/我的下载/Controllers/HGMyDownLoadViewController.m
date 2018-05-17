@@ -282,7 +282,7 @@
     
     model.imageUrl = @"";
     
-    model.liveId = @"";
+    model.liveId = @"0";
     
     [manager addNewTaskWith:@[model]];
     // Do any additional setup after loading the view.

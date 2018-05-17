@@ -9,6 +9,8 @@
 #import "HGItemDataController.h"
 #import "HGItemDataCell.h"
 #import "HGItemDataModel.h"
+#import "TKDownLoadManager.h"
+#import "TKDownLoadModel.h"
 
 @interface HGItemDataController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -194,6 +196,50 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return .1f;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (self.courseAry.count && self.videoAry.count) {
+        if (indexPath.section==0) {
+            HGItemDataModel *model = self.courseAry[indexPath.row];
+            [self downLoadWithModel:model liveID:@"1"];
+        }else{
+            HGItemDataModel *model = self.videoAry[indexPath.row];
+            [self downLoadWithModel:model liveID:@"0"];
+        }
+    }
+    if (self.courseAry.count) {
+        HGItemDataModel *model = self.courseAry[indexPath.row];
+        [self downLoadWithModel:model liveID:@"1"];
+    }
+    if (self.videoAry.count) {
+        HGItemDataModel *model = self.videoAry[indexPath.row];
+        [self downLoadWithModel:model liveID:@"0"];
+    }
+}
+//类型：0：视频  1：课件  2：学员手册
+- (void)downLoadWithModel:(HGItemDataModel *)dataModel liveID:(NSString *)liveID{
+    
+    TKDownLoadManager *manager = [TKDownLoadManager share];
+    
+    manager.maxDownLoadTask = 1;
+    
+    manager.allowsCellular = YES;
+    
+    TKDownLoadModel *model = [[TKDownLoadModel alloc]init];
+    
+    model.url = [HGURL stringByAppendingFormat:@"%@",dataModel.downloadUrl];
+    
+    model.titleStr = dataModel.dataName;
+    
+    model.intro = @"";
+    
+    model.imageUrl = @"";
+    
+    model.liveId = liveID;
+    
+    [manager addNewTaskWith:@[model]];
 }
 
 - (void)didReceiveMemoryWarning {

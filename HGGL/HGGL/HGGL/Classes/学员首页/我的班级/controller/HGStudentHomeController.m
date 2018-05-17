@@ -21,6 +21,8 @@
 #import "HGSignOutPopView.h"
 #import "HGRASTableViewController.h"
 #import "HGStationInfoController.h"
+#import "TKDownLoadModel.h"
+#import "TKDownLoadManager.h"
 
 @interface HGStudentHomeController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -573,10 +575,30 @@
             [SVProgressHUD showErrorWithStatus:@"资源地址无效"];
             return;
         }
-        HGWebController *vc = [[HGWebController alloc]init];
-        vc.url = self.infoDic[@"project_manualUrl"];
-        vc.titleStr = [self.infoDic[@"project_manualName"] isNull]?@"学员手册":self.infoDic[@"project_manualName"];
-        [self.navigationController pushViewController:vc animated:YES];
+        TKDownLoadManager *manager = [TKDownLoadManager share];
+        
+        manager.maxDownLoadTask = 1;
+        
+        manager.allowsCellular = YES;
+        
+        TKDownLoadModel *model = [[TKDownLoadModel alloc]init];
+        
+        model.url = [HGURL stringByAppendingFormat:@"%@",self.infoDic[@"project_manualUrl"]];
+        
+        model.titleStr = @"学员手册";
+        
+        model.intro = @"";
+        
+        model.imageUrl = @"";
+        
+        model.liveId = @"2";
+        
+        [manager addNewTaskWith:@[model]];
+
+//        HGWebController *vc = [[HGWebController alloc]init];
+//        vc.url = self.infoDic[@"project_manualUrl"];
+//        vc.titleStr = [self.infoDic[@"project_manualName"] isNull]?@"学员手册":self.infoDic[@"project_manualName"];
+//        [self.navigationController pushViewController:vc animated:YES];
     }
     if ([sender.titleLabel.text isEqualToString:@"餐饮签退"]) {
         
