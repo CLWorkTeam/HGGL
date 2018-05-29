@@ -47,6 +47,7 @@
         self.window.rootViewController = vc;
     }
     [self.window makeKeyAndVisible];
+    
     [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleLightContent];
 }
 -(void)setSVProgress
@@ -128,7 +129,7 @@
 #pragma mark 友盟推送相关
 -(void)UMPushWithLaunchOptions:(NSDictionary *)launchOptions
 {
-    [UMConfigure initWithAppkey:@"Your Appkey" channel:@"App Store"];
+    [UMConfigure initWithAppkey:@"5afe9387b27b0a1ca6000147" channel:nil];
     
     
     // Push组件基本功能配置
