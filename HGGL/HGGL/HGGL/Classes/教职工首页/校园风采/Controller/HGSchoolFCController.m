@@ -9,6 +9,7 @@
 #import "HGSchoolFCController.h"
 #import "HGSchoolFCModel.h"
 #import "HGSchoolFCCell.h"
+#import "HGWebViewController.h"
 
 @interface HGSchoolFCController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -92,6 +93,15 @@
     }
     cell.model = self.dataAry[indexPath.row];
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    HGSchoolFCModel *model = self.dataAry[indexPath.row];
+    HGWebViewController *vc = [[HGWebViewController alloc]init];
+    vc.titleStr = self.name;
+    vc.url = [NSString stringWithFormat:@"%@Approve/approve_viewNoticeInfo.do?noticeId=%@",HGURL,model.noticeId];
+    [self.navigationController pushViewController:vc
+                                         animated:YES];
 }
 
 
