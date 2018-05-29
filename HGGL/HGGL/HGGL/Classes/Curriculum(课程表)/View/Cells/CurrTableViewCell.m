@@ -75,7 +75,8 @@
 //    }else{
     for (int i =0; i<j*2+1+1; i++) {
         CurrBut *but = [CurrBut buttonWithType:UIButtonTypeCustom];
-        but.titleLabel.numberOfLines = 4;
+        but.titleLabel.numberOfLines = 3;
+        but.layer.masksToBounds = YES;
         //[but setBackgroundColor:[UIColor redColor]];
         //[but setBackgroundColor:[UIColor redColor]];
         but.backgroundColor = [UIColor whiteColor];
