@@ -300,7 +300,7 @@
 }
 -(void)click2Sure:(UIButton *)but
 {
-    NSString *url = [HGURL stringByAppendingString:@"Research/doFinalApprove.do"];
+    NSString *url = [HGResearchUrl stringByAppendingString:@"Research/doFinalApprove.do"];
     
     NSString *user_id = [HGUserDefaults objectForKey:HGUserID];
     [HGHttpTool POSTWithURL:url parameters:@{@"research_id":self.research_id,@"researchCommitteeComment":self.unviesityV.text,@"researchExpertComment":self.ZJV.text,@"researchDepartmentComment":self.KYSV.text,@"researchIsVisible":[NSString stringWithFormat:@"%d",self.CS.selected],@"tokenval":user_id} success:^(id responseObject) {

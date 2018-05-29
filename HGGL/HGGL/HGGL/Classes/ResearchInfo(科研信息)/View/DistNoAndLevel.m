@@ -104,7 +104,7 @@
 -(void)clickSure:(UIButton *)but
 {
     
-    NSString *url = [HGURL stringByAppendingString:@"Research/doDistNoAndLevel.do"];
+    NSString *url = [HGResearchUrl stringByAppendingString:@"Research/doDistNoAndLevel.do"];
     NSString *str;
     if ([self.levelV.titleLabel.text isEqualToString:@"一般"]) {
         str = @"1";

@@ -2878,14 +2878,14 @@
 		CEAD1AE7207DF44E008F1696 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				CEAD1AFF207DF5FA008F1696 /* PMissonTableViewController.h */,
-				CEAD1B00207DF5FB008F1696 /* PMissonTableViewController.m */,
+				CEAD1AEA207DF44E008F1696 /* BlacklogTableViewController.h */,
+				CEAD1AE9207DF44E008F1696 /* BlacklogTableViewController.m */,
+				CEAD1AEB207DF44E008F1696 /* BlackLogViewController.h */,
+				CEAD1AE8207DF44E008F1696 /* BlackLogViewController.m */,
 				CEAD1AFD207DF5E3008F1696 /* PMissionViewController.h */,
 				CEAD1AFC207DF5E3008F1696 /* PMissionViewController.m */,
-				CEAD1AE8207DF44E008F1696 /* BlackLogViewController.m */,
-				CEAD1AE9207DF44E008F1696 /* BlacklogTableViewController.m */,
-				CEAD1AEA207DF44E008F1696 /* BlacklogTableViewController.h */,
-				CEAD1AEB207DF44E008F1696 /* BlackLogViewController.h */,
+				CEAD1AFF207DF5FA008F1696 /* PMissonTableViewController.h */,
+				CEAD1B00207DF5FB008F1696 /* PMissonTableViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";

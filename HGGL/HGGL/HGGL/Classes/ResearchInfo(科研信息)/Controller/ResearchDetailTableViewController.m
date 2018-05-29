@@ -51,7 +51,7 @@
     [super viewDidLoad];
     self.navigationItem.title =@"科研详情";
     [self reflash];
-//    NSString *url = [HGURL stringByAppendingString:@"Research/showResearchInfo.do"];
+//    NSString *url = [HGResearchUrl stringByAppendingString:@"Research/showResearchInfo.do"];
 //    NSDictionary *parameters = @{@"research_id":self.research_id};
 //    [HGHttpTool POSTWithURL:url parameters:parameters success:^(id responseObject) {
 //        NSString *status = [responseObject objectForKey:@"status"];
@@ -150,7 +150,7 @@
 -(void)reflash
 {
     HGLog(@"%@",self.research_id);
-    NSString *url = [HGURL stringByAppendingString:@"Research/showResearchInfo.do"];
+    NSString *url = [HGResearchUrl stringByAppendingString:@"Research/showResearchInfo.do"];
      NSString *user_id = [HGUserDefaults objectForKey:HGUserID];
     NSDictionary *parameters = @{@"research_id":self.research_id,@"tokenval":user_id};
     
@@ -247,7 +247,7 @@
 }
 -(void)reloadD
 {
-    NSString *url = [HGURL stringByAppendingString:@"Research/getResearchList.do"];
+    NSString *url = [HGResearchUrl stringByAppendingString:@"Research/getResearchList.do"];
     NSString *user_id = [HGUserDefaults objectForKey:HGUserID];
     [HGHttpTool POSTWithURL:url parameters:@{@"user_id":@"1",@"tokenval":user_id} success:^(id responseObject) {
         
@@ -384,7 +384,7 @@
         
     }else if([but.titleLabel.text isEqualToString:@"取消申报"])
     {
-        NSString *url = [HGURL stringByAppendingString:@"Research/doCancel.do"];
+        NSString *url = [HGResearchUrl stringByAppendingString:@"Research/doCancel.do"];
         NSDictionary *dict = @{@"research_id":self.RL.research_id};
         [self postWith:url dict:dict];
     }else if([but.titleLabel.text isEqualToString:@"学术委员会评审"])
@@ -459,13 +459,13 @@
         }
     }else if([but.titleLabel.text isEqualToString:@"终期申报"])
     {
-        NSString *url = [HGURL stringByAppendingString:@"Research/doFinalReport.do"];
+        NSString *url = [HGResearchUrl stringByAppendingString:@"Research/doFinalReport.do"];
         NSDictionary *dict = @{@"research_id":self.RL.research_id};
         [self postWith:url dict:dict];
         
     }else if([but.titleLabel.text isEqualToString:@"中期申报"])
     {
-        NSString *url = [HGURL stringByAppendingString:@"Research/doMiddleReport.do"];
+        NSString *url = [HGResearchUrl stringByAppendingString:@"Research/doMiddleReport.do"];
         NSDictionary *dict = @{@"research_id":self.RL.research_id};
         [self postWith:url dict:dict];
     }else if([but.titleLabel.text isEqualToString:@"归档"])
@@ -493,7 +493,7 @@
             CurrImageView *curr = [CurrImageView showInRect:CGRectMake(0, 64, HGScreenWidth, 265)];
             FinalApprove *report = [[FinalApprove alloc]init];
             curr.contentView = report;
-            NSString *url = [HGURL stringByAppendingString:@"Research/reviewApprove.do"];
+            NSString *url = [HGResearchUrl stringByAppendingString:@"Research/reviewApprove.do"];
             NSString *user_id = [HGUserDefaults objectForKey:HGUserID];
             [HGHttpTool POSTWithURL:url parameters:@{@"research_id":self.research_id,@"tokenval":user_id} success:^(id responseObject) {
                 NSString *status = [responseObject objectForKey:@"status"];
@@ -540,12 +540,12 @@
     if ([alertView.title isEqualToString:@"学术委员会评审"]) {
         if (buttonIndex == 0) {
             
-            NSString *url = [HGURL stringByAppendingString:@"Research/doUniversityApprove.do"];
+            NSString *url = [HGResearchUrl stringByAppendingString:@"Research/doUniversityApprove.do"];
             NSDictionary *dict = @{@"research_id":self.RL.research_id,@"isAgree":@"0"};
             [self postWith:url dict:dict];
         }else
         {
-            NSString *url = [HGURL stringByAppendingString:@"Research/doUniversityApprove.do"];
+            NSString *url = [HGResearchUrl stringByAppendingString:@"Research/doUniversityApprove.do"];
             NSDictionary *dict = @{@"research_id":self.RL.research_id,@"isAgree":@"1"};
             [self postWith:url dict:dict];
         }
@@ -553,12 +553,12 @@
     {
         if (buttonIndex == 0) {
             
-            NSString *url = [HGURL stringByAppendingString:@"Research/doDepartmentApprove.do"];
+            NSString *url = [HGResearchUrl stringByAppendingString:@"Research/doDepartmentApprove.do"];
             NSDictionary *dict = @{@"research_id":self.RL.research_id,@"isAgree":@"0"};
             [self postWith:url dict:dict];
         }else
         {
-            NSString *url = [HGURL stringByAppendingString:@"Research/doDepartmentApprove.do"];
+            NSString *url = [HGResearchUrl stringByAppendingString:@"Research/doDepartmentApprove.do"];
             NSDictionary *dict = @{@"research_id":self.RL.research_id,@"isAgree":@"1"};
             [self postWith:url dict:dict];
         }
@@ -569,7 +569,7 @@
 
         }else
         {
-            NSString *url = [HGURL stringByAppendingString:@"Research/doOver.do"];
+            NSString *url = [HGResearchUrl stringByAppendingString:@"Research/doOver.do"];
             NSDictionary *dict = @{@"research_id":self.RL.research_id};
             [self postWith:url dict:dict];
         }
@@ -577,12 +577,12 @@
     {
         if (buttonIndex == 0) {
             
-            NSString *url = [HGURL stringByAppendingString:@"Research/doCommitteeApprove.do"];
+            NSString *url = [HGResearchUrl stringByAppendingString:@"Research/doCommitteeApprove.do"];
             NSDictionary *dict = @{@"research_id":self.RL.research_id,@"isAgree":@"0"};
             [self postWith:url dict:dict];
         }else
         {
-            NSString *url = [HGURL stringByAppendingString:@"Research/doCommitteeApprove.do"];
+            NSString *url = [HGResearchUrl stringByAppendingString:@"Research/doCommitteeApprove.do"];
             NSDictionary *dict = @{@"research_id":self.RL.research_id,@"isAgree":@"1"};
             [self postWith:url dict:dict];
         }

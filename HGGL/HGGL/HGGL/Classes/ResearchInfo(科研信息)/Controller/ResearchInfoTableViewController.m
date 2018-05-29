@@ -57,7 +57,7 @@
     }
     _isRefreshing = YES;
     ResearchParama *parama = self.parama;
-    NSString *url = [HGURL stringByAppendingString:@"Research/getResearchList.do"];
+    NSString *url = [HGResearchUrl stringByAppendingString:@"Research/getResearchList.do"];
     HGLog(@"%@",[HGUserDefaults objectForKey:HGUserID]);
     NSString *user_id = [HGUserDefaults objectForKey:HGUserID];
     NSMutableDictionary *par =[NSMutableDictionary dictionaryWithDictionary:parama.keyValues];
@@ -97,7 +97,7 @@
     ResearchParama *parama = self.parama;
     _isRefreshing = YES;
     self.parama.page = @"1";
-    NSString *url = [HGURL stringByAppendingString:@"Research/getResearchList.do"];
+    NSString *url = [HGResearchUrl stringByAppendingString:@"Research/getResearchList.do"];
     HGLog(@"%@",[HGUserDefaults objectForKey:HGUserID]);
     
     NSMutableDictionary *par =[NSMutableDictionary dictionaryWithDictionary:parama.keyValues];
