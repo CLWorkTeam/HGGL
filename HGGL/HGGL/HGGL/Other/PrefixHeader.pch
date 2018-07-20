@@ -59,6 +59,7 @@
 #define HGUserType @"user_ type"
 #define HGUserName @"user_name"
 #define HGRealName @"real_name"
+#define HGOpenFun  @"openfun"
 #define HGProjectID @"project_id"
 #define HGUserTel @"user_tel"
 #define HGUserAccount @"account"

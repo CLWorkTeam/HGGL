@@ -119,7 +119,7 @@
         case 3:
         {
             HGLoginController *login  = [[HGLoginController alloc]init];
-            [UMessage removeAlias:[HGUserDefaults stringForKey:HGUserID] type:@"HGGL" response:^(id  _Nonnull responseObject, NSError * _Nonnull error) {
+            [UMessage removeAlias:[HGUserDefaults stringForKey:HGUserID] type:@"zghg" response:^(id  _Nonnull responseObject, NSError * _Nonnull error) {
                 
                 if (!error) {
                     HGLog(@"解除成功");

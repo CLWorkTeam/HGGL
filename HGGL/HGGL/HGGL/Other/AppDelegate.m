@@ -129,9 +129,10 @@
 #pragma mark 友盟推送相关
 -(void)UMPushWithLaunchOptions:(NSDictionary *)launchOptions
 {
-    [UMConfigure initWithAppkey:@"5afe9387b27b0a1ca6000147" channel:nil];
+    [UMConfigure initWithAppkey:@"5b3c83f5f43e487306000034" channel:@"App Store"];
+//    [UMConfigure initWithAppkey:@"5afe9387b27b0a1ca6000147" channel:@"App Store"];
     
-    
+    [UMConfigure setLogEnabled:YES];
     // Push组件基本功能配置
     UMessageRegisterEntity * entity = [[UMessageRegisterEntity alloc] init];
     //type是对推送的几个参数的选择，可以选择一个或者多个。默认是三个全部打开，即：声音，弹窗，角标
@@ -144,10 +145,10 @@
     }];
     if (launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey]) {
         NSDictionary *userInfo = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
-        [self pushToViewControllerWithTitl:userInfo[@"type"] andMessage:userInfo[@"aps"][@"alert"] with:userInfo[@"HGGL_url"] WithState:[UIApplication sharedApplication].applicationState];
+        [self pushToViewControllerWithTitl:userInfo[@"type"] andMessage:userInfo[@"aps"][@"alert"] with:userInfo[@"hg_url"] WithState:[UIApplication sharedApplication].applicationState];
     }
     
-    
+//    [self configUSharePlatforms];
 }
 //iOS10以下使用这两个方法接收通知
 -(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
@@ -159,7 +160,7 @@
             [UMessage didReceiveRemoteNotification:userInfo];
         }else
         {
-            [self pushToViewControllerWithTitl:userInfo[@"type"] andMessage:userInfo[@"aps"][@"alert"] with:userInfo[@"HGGL_url"] WithState:[UIApplication sharedApplication].applicationState];
+            [self pushToViewControllerWithTitl:userInfo[@"type"] andMessage:userInfo[@"aps"][@"alert"] with:userInfo[@"hg_url"] WithState:[UIApplication sharedApplication].applicationState];
         }
         
     }
@@ -170,7 +171,7 @@
 -(void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler{
     NSDictionary * userInfo = notification.request.content.userInfo;
     if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
-        [UMessage setAutoAlert:NO];
+        [UMessage setAutoAlert:YES];
         //应用处于前台时的远程推送接受
         //必须加这句代码
         
@@ -188,7 +189,7 @@
         //应用处于后台时的远程推送接受
         //必须加这句代码
 //        [UMessage didReceiveRemoteNotification:userInfo];
-        [self pushToViewControllerWithTitl:userInfo[@"type"] andMessage:userInfo[@"aps"][@"alert"] with:userInfo[@"HGGL_url"] WithState:[UIApplication sharedApplication].applicationState];
+        [self pushToViewControllerWithTitl:userInfo[@"type"] andMessage:userInfo[@"aps"][@"alert"] with:userInfo[@"hg_url"] WithState:[UIApplication sharedApplication].applicationState];
     }else{
         //应用处于后台时的本地推送接受
     }

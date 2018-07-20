@@ -158,20 +158,27 @@
         HGItemPlanController *vc = [[HGItemPlanController alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
     }else if ([title isEqualToString:@"行政办公"]){
-        [SVProgressHUD showWithStatus:@"请稍后..."];
-        NSString *url = @"http://10.93.1.190:8081/t9/mobile/act/T9PdaLogin/login.act";
-        [HGHttpTool POSTWithURL:url parameters:@{@"USERNAME":[HGUserDefaults objectForKey:HGUserName],@"PASSWORD":@""} success:^(id responseObject) {
-            if ([responseObject[@"status"] boolValue]){
-                HGWebController *vc = [[HGWebController alloc]init];
-                vc.titleStr = @"行政办公";
-                vc.url = @"http://10.93.1.190:8081/t9/mobile/workflow/act/T9PdaWorkflowIndexAct/index.act";
-                [self.navigationController pushViewController:vc animated:YES];
-            }else{
-                [SVProgressHUD showErrorWithStatus:@"行政办公暂时无法查看，请您检查登录的账号"];
-            }
-        } failure:^(NSError *error) {
-            [SVProgressHUD showErrorWithStatus:@"行政办公暂时无法查看，请您连接学院内网"];
-        }];
+        if ([[HGUserDefaults objectForKey:HGOpenFun] isEqualToString:@"1"]) {
+            [SVProgressHUD showWithStatus:@"请稍后..."];
+            NSString *url = @"http://10.93.1.190:8081/t9/mobile/act/T9PdaLogin/login.act";
+            [HGHttpTool POSTWithURL:url parameters:@{@"USERNAME":[HGUserDefaults objectForKey:HGUserName],@"PASSWORD":@""} success:^(id responseObject) {
+                if ([responseObject[@"status"] boolValue]){
+                    HGWebController *vc = [[HGWebController alloc]init];
+                    vc.titleStr = @"行政办公";
+                    vc.url = @"http://10.93.1.190:8081/t9/mobile/workflow/act/T9PdaWorkflowIndexAct/index.act";
+                    [self.navigationController pushViewController:vc animated:YES];
+                }else{
+                    [SVProgressHUD showErrorWithStatus:@"行政办公暂时无法查看，请您检查登录的账号"];
+                }
+            } failure:^(NSError *error) {
+                [SVProgressHUD showErrorWithStatus:@"行政办公暂时无法查看，请您连接学院内网"];
+            }];
+        }else
+        {
+            [SVProgressHUD showInfoWithStatus:@"该功能尚未开放，敬请期待"];
+            
+        }
+        
     }else if ([title isEqualToString:@"每周菜谱"]){
         HGWeekMenuController *vc = [[HGWeekMenuController alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
@@ -190,8 +197,15 @@
         
     }else if ([title isEqualToString:@"科研信息"])
     {
-        ResearchViewController *resa = [[ResearchViewController alloc]init];
-        [self.navigationController pushViewController:resa animated:YES];
+        if ([[HGUserDefaults objectForKey:HGOpenFun] isEqualToString:@"1"]) {
+            ResearchViewController *resa = [[ResearchViewController alloc]init];
+            [self.navigationController pushViewController:resa animated:YES];
+        }else
+        {
+            [SVProgressHUD showInfoWithStatus:@"该功能尚未开放，敬请期待"];
+            
+        }
+        
         
     }else if ([title isEqualToString:@"师资信息"])
     {

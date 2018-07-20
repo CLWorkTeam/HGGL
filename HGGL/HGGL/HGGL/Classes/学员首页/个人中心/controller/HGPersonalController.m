@@ -76,7 +76,7 @@
     if ([title isEqualToString:@"退出当前账号"]) {
         HGLoginController *vc = [[HGLoginController alloc]init];
         HGKeywindow.rootViewController = vc;
-        [UMessage removeAlias:[HGUserDefaults stringForKey:HGUserID] type:@"HGGL" response:^(id  _Nonnull responseObject, NSError * _Nonnull error) {
+        [UMessage removeAlias:[HGUserDefaults stringForKey:HGUserID] type:@"zghg" response:^(id  _Nonnull responseObject, NSError * _Nonnull error) {
             
             if (!error) {
                 HGLog(@"解除成功");

@@ -128,6 +128,7 @@
         [HGUserDefaults setObject:dict[@"user_name"] forKey:HGUserName];
         [HGUserDefaults setObject:dict[@"user_type"] forKey:HGUserType];
         [HGUserDefaults setObject:dict[@"real_name"] forKey:HGRealName];
+        [HGUserDefaults setObject:dict[@"openfun"] forKey:HGOpenFun];
         [HGUserDefaults setBool:self.autoBtn.isSelected forKey:@"autoLogin"];
         if (![dict[@"project_id"] isNull]) {
             [HGUserDefaults setObject:dict[@"project_id"] forKey:HGProjectID];
@@ -138,7 +139,7 @@
         NSData *cookiesData = [NSKeyedArchiver archivedDataWithRootObject:cookies];
         [HGUserDefaults setObject:cookiesData forKey:HGUserCookie];
         [HGUserDefaults synchronize];
-        [UMessage setAlias:[HGUserDefaults stringForKey:HGUserID] type:@"HGGL" response:^(id responseObject, NSError *error) {
+        [UMessage setAlias:[HGUserDefaults stringForKey:HGUserID] type:@"zghg" response:^(id responseObject, NSError *error) {
             if (!error) {
                 HGLog(@"绑定成功");
             }else
