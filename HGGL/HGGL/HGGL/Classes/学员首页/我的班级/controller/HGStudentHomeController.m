@@ -31,7 +31,7 @@
 @property (nonatomic,strong) NSArray *dataAry;
 @property (nonatomic,strong) NSDictionary *infoDic;
 
-
+@property (nonatomic,assign) CGFloat thirdHeight;
 
 
 @end
@@ -277,12 +277,6 @@
     titleV.backgroundColor = HGColor(249, 227, 249, 1);
     [contentV addSubview:titleV];
     
-    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:titleV.bounds byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:CGSizeMake(5, 5)];
-    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
-    maskLayer.frame = titleV.bounds;
-    maskLayer.path = maskPath.CGPath;
-    titleV.layer.mask = maskLayer;
-
     UILabel *titleLab = [[UILabel alloc]initWithFrame:CGRectMake(WIDTH_PT(10), 0, WIDTH_PT(100), HEIGHT_PT(10))];
     titleLab.font = [UIFont boldSystemFontOfSize:FONT_PT(16)];
     titleLab.text = @"基本信息";
@@ -297,7 +291,17 @@
     whiteV.layer.borderWidth = 1;
     [contentV addSubview:whiteV];
     
-    UILabel *classLab = [[UILabel alloc]initWithFrame:CGRectMake(WIDTH_PT(10), HEIGHT_PT(15), WIDTH_PT(100), HEIGHT_PT(10))];
+    UILabel *nameLab = [[UILabel alloc]initWithFrame:CGRectMake(WIDTH_PT(10), HEIGHT_PT(15), whiteV.width - 2*WIDTH_PT(10), HEIGHT_PT(10))];
+    nameLab.font = [UIFont boldSystemFontOfSize:FONT_PT(16)];
+    nameLab.numberOfLines = 0;
+    nameLab.text = @"班级简介:班级简介:班级简介:班级简介:班级简介:班级简介:班级简介:班级简介:班级简介:班级简介:班级简介:班级简介:班级简介:班级简介:";
+    nameLab.textColor = [UIColor blackColor];
+    CGFloat height = [TextFrame frameOfText:nameLab.text With:[UIFont boldSystemFontOfSize:FONT_PT(16)] Andwidth:whiteV.width - 2*WIDTH_PT(10)].height;
+    nameLab.height = height;
+    [whiteV addSubview:nameLab];
+
+    
+    UILabel *classLab = [[UILabel alloc]initWithFrame:CGRectMake(WIDTH_PT(10), HEIGHT_PT(15) +nameLab.maxY, WIDTH_PT(100), HEIGHT_PT(10))];
     classLab.font = [UIFont boldSystemFontOfSize:FONT_PT(16)];
     classLab.text = @"班级简介:";
     classLab.textColor = [UIColor blackColor];
@@ -369,12 +373,22 @@
     [dizhiLab sizeToFit];
     [whiteV addSubview:dizhiLab];
     
-    UILabel *dizhiDescLab = [[UILabel alloc]initWithFrame:CGRectMake(numDescLab.x , dizhiLab.y, WIDTH_PT(100), HEIGHT_PT(10))];
+    UILabel *dizhiDescLab = [[UILabel alloc]initWithFrame:CGRectMake(numDescLab.x , dizhiLab.y, whiteV.width - WIDTH_PT(10) -numDescLab.x, HEIGHT_PT(10))];
     dizhiDescLab.font = [UIFont systemFontOfSize:FONT_PT(16)];
-    dizhiDescLab.text = @"dsa jdnsaijdnasijdnasijndijasndjiasndjiasndijasndjiasndjiasnijdsnaijdnsaidjsnaijdas";//self.infoDic[@"project_manager"];
+    dizhiDescLab.numberOfLines = 0;
+    dizhiDescLab.text = @"dsajdnsaijdnasijdnasijndijasndjiasndjiasndijasndjiasndjiasnijdsnaijdnsaidjsnaijdas";//self.infoDic[@"project_manager"];
     dizhiDescLab.textColor = [UIColor colorWithHexString:@"#333333"];
-    [dizhiDescLab sizeToFit];
+    CGFloat h = [TextFrame frameOfText:dizhiDescLab.text With:[UIFont systemFontOfSize:FONT_PT(16)] Andwidth:whiteV.width - WIDTH_PT(10) -numDescLab.x].height;
+    dizhiDescLab.height = h;
     [whiteV addSubview:dizhiDescLab];
+    whiteV.height = dizhiDescLab.maxY + HEIGHT_PT(10);
+    self.thirdHeight = whiteV.height;
+
+    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:titleV.bounds byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:CGSizeMake(5, 5)];
+    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+    maskLayer.frame = titleV.bounds;
+    maskLayer.path = maskPath.CGPath;
+    titleV.layer.mask = maskLayer;
 
 
     return cell;
@@ -540,7 +554,7 @@
         }
         return HEIGHT_PT(140);
     }else if(indexPath.section==2){
-        return HEIGHT_PT(250);
+        return self.thirdHeight?self.thirdHeight:HEIGHT_PT(250);
     }else{
         return HEIGHT_PT(40) + HEIGHT_PT(90)*self.dataAry.count;
     }
