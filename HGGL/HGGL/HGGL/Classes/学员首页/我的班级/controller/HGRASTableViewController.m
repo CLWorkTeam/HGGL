@@ -66,6 +66,9 @@
             [self.valueArr addObjectsFromArray:self.model.arr];
             
         }
+        if (!self.valueArr.count) {
+            self.valueArr = [NSMutableArray arrayWithArray:@[@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@""]];
+        }
        [self.tableView reloadData];
     } failure:^(NSError *error) {
         [SVProgressHUD dismiss];
@@ -89,6 +92,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     HGRASTableViewCell *cell = [HGRASTableViewCell cellWithTabView:tableView];
     cell.name = self.keyArr[indexPath.row];
+    
     cell.nameV = self.valueArr[indexPath.row];
     
     return cell;

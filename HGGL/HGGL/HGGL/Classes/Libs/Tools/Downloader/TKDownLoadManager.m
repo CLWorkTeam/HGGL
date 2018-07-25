@@ -245,6 +245,11 @@ static  NSURLSession *session = nil;
     NSString *document = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     for (TKDownLoadModel *model in array) {
         
+        if ((!model.url)||([model.url isEqualToString:@""])) {
+            [SVProgressHUD showErrorWithStatus:@"资源地址无效"];
+            return;
+        }
+        
         TKDownLoadDataBaseModel *modle1 = [[TKDownLoadDataBase shareInstance] haveDownLoad:model.url];
         
         if (model.status == DownLoadStatusSuspended) {
