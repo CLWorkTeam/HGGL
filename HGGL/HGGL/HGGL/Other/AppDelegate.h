@@ -12,6 +12,6 @@
 
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic,assign) BOOL isFull;
-
+@property (nonatomic,copy) void(^presentBlock)();
 @end
 

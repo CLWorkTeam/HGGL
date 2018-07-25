@@ -170,7 +170,6 @@
             HGWebViewController *workF = [[HGWebViewController alloc] init];
             workF.title = @"工作流";
             
-           // NSString *str = @"http://10.168.152.76/t9/t9/mobile/act/T9PdaLogin/login.act?";
             NSString *str = [HGURL3 stringByAppendingString:@"/t9/t9/mobile/act/T9PdaLogin/login.act?"];
             NSString *USERNAME = [HGUserDefaults stringForKey:@"account1"];
             NSString *PASSWORD = [HGUserDefaults stringForKey:@"passWord1"];

@@ -21,6 +21,7 @@
 #import "MenteeListViewController.h"
 #import "ResearchViewController.h"
 #import "MessageListController.h"
+#import "AppDelegate.h"
 @interface HGTeacherHomeController ()
 
 @property (nonatomic,strong) NSArray *menuAry;
@@ -106,6 +107,21 @@
     
     self.navigationController.navigationBarHidden = YES;
 }
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    AppDelegate *del = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    
+    if (del.presentBlock) {
+        
+        del.presentBlock();
+        
+        del.presentBlock = nil;
+        
+    }
+}
+
 //点击个人中心
 - (void)clickPersion{
     

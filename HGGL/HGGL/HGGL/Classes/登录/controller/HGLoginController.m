@@ -139,6 +139,7 @@
         NSData *cookiesData = [NSKeyedArchiver archivedDataWithRootObject:cookies];
         [HGUserDefaults setObject:cookiesData forKey:HGUserCookie];
         [HGUserDefaults synchronize];
+        //
         [UMessage setAlias:[HGUserDefaults stringForKey:HGUserID] type:@"zghg" response:^(id responseObject, NSError *error) {
             if (!error) {
                 HGLog(@"绑定成功");

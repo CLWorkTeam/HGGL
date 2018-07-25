@@ -225,6 +225,7 @@
         [SVProgressHUD dismiss];
         _isRefreshing = NO;
 //        [self.collectionView.mj_header endRefreshing];
+        [self.collectionView.mj_header endRefreshing];
         
         HGLog(@"%@",error);
     }];

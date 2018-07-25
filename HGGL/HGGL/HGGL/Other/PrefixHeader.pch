@@ -46,6 +46,7 @@
 #define HGGrayGroundColor [UIColor colorWithHexString:@"f4f4f4"]
 //#define HGURL @"http://118.190.203.109:8080/zghg/"
 #define HGBaseUrl @"http://47.95.235.187"
+//#define HGBaseUrl @"http://59.46.185.19"
 #define HGURL [HGBaseUrl stringByAppendingString:@"/"]
 #define HGURLImage [HGBaseUrl stringByAppendingString:@""]
 #define HGURL2 [HGBaseUrl stringByAppendingString:@""]

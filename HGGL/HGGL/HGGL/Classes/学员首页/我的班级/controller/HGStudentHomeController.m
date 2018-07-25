@@ -23,7 +23,7 @@
 #import "HGStationInfoController.h"
 #import "TKDownLoadModel.h"
 #import "TKDownLoadManager.h"
-
+#import "AppDelegate.h"
 @interface HGStudentHomeController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong) UIImageView *imageV;
@@ -50,6 +50,20 @@
     [self.tableV.mj_header beginRefreshing];
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    AppDelegate *del = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    
+    if (del.presentBlock) {
+        
+        del.presentBlock();
+        
+        del.presentBlock = nil;
+        
+    }
+}
 - (void)requestData{
     
     NSString *projectId = [HGUserDefaults objectForKey:HGProjectID];

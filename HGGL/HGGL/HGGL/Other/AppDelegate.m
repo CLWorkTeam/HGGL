@@ -25,6 +25,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [self setSVProgress];
+    self.presentBlock = nil;
 //    [self test];
 //    return YES;
     [self setWindow];
@@ -145,7 +146,11 @@
     }];
     if (launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey]) {
         NSDictionary *userInfo = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
-        [self pushToViewControllerWithTitl:userInfo[@"type"] andMessage:userInfo[@"aps"][@"alert"] with:userInfo[@"hg_url"] WithState:[UIApplication sharedApplication].applicationState];
+        WeakSelf
+        self.presentBlock = ^{
+            [weakSelf pushToViewControllerWithTitl:userInfo[@"aps"][@"alert"][@"title"] andMessage:@"" with:userInfo[@"hg_url"] WithState:[UIApplication sharedApplication].applicationState];
+        };
+        
     }
     
 //    [self configUSharePlatforms];
@@ -160,7 +165,7 @@
             [UMessage didReceiveRemoteNotification:userInfo];
         }else
         {
-            [self pushToViewControllerWithTitl:userInfo[@"type"] andMessage:userInfo[@"aps"][@"alert"] with:userInfo[@"hg_url"] WithState:[UIApplication sharedApplication].applicationState];
+            [self pushToViewControllerWithTitl:userInfo[@"aps"][@"alert"][@"title"] andMessage:@"" with:userInfo[@"hg_url"] WithState:[UIApplication sharedApplication].applicationState];
         }
         
     }
@@ -179,6 +184,7 @@
     }else{
         //应用处于前台时的本地推送接受
     }
+    
     completionHandler(UNNotificationPresentationOptionSound|UNNotificationPresentationOptionAlert);
 }
 
@@ -189,7 +195,7 @@
         //应用处于后台时的远程推送接受
         //必须加这句代码
 //        [UMessage didReceiveRemoteNotification:userInfo];
-        [self pushToViewControllerWithTitl:userInfo[@"type"] andMessage:userInfo[@"aps"][@"alert"] with:userInfo[@"hg_url"] WithState:[UIApplication sharedApplication].applicationState];
+        [self pushToViewControllerWithTitl:userInfo[@"aps"][@"alert"][@"title"] andMessage:@"" with:userInfo[@"hg_url"] WithState:[UIApplication sharedApplication].applicationState];
     }else{
         //应用处于后台时的本地推送接受
     }
@@ -216,13 +222,21 @@
 //        }
     UIViewController *vc = [self topViewControllerWithRootViewController:self.window.rootViewController];
     
+    if ([vc isKindOfClass:(NSClassFromString(@"HGAutoLoginController"))]) {
+        return;
+    }
+    
     HGWebViewController *web = [[HGWebViewController alloc]init];
     
     web.titleStr = title;
     
+    web.title = title;
+    
     web.url = url;
     
-    [vc presentViewController:web animated:YES completion:nil];
+    HGNavigationController *nav = [[HGNavigationController alloc]initWithRootViewController:web];
+    
+    [vc presentViewController:nav animated:YES completion:nil];
     
     
 }
