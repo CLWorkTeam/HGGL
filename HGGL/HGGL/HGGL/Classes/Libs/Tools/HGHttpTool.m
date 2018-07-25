@@ -18,8 +18,13 @@
     }
     NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
     
-    config.timeoutIntervalForRequest = 20;
+    config.timeoutIntervalForRequest = 120;
     AFHTTPSessionManager *mgr = [[AFHTTPSessionManager alloc]initWithSessionConfiguration:config];
+//    mgr.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html", nil];
+//    if ([URLString containsString:@"Project/getProjectInfo.do"]) {
+//        mgr.responseSerializer = [AFHTTPResponseSerializer serializer];
+//    }
+
     NSString *url = [URLString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     [mgr POST:url parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
