@@ -13,7 +13,6 @@
 #import "HGMyPointController.h"
 #import "HGItemDataController.h"
 #import "HGMyDataViewController.h"
-#import "HGItemCertController.h"
 #import "HGContactUSViewController.h"
 #import "HGStudentItemModel.h"
 #import "HGClassDetailController.h"
@@ -31,7 +30,7 @@
 @property (nonatomic,strong) NSArray *dataAry;
 @property (nonatomic,strong) NSDictionary *infoDic;
 
-
+@property (nonatomic,assign) CGFloat thirdHeight;
 
 
 @end
@@ -67,8 +66,9 @@
 - (void)requestData{
     
     NSString *projectId = [HGUserDefaults objectForKey:HGProjectID];
+    NSString *userid = [HGUserDefaults objectForKey:HGUserID];
     NSString *url = [HGURL stringByAppendingString:@"Project/getProjectInfo.do"];
-    [HGHttpTool POSTWithURL:url parameters:@{@"project_id":self.project_id?self.project_id:projectId} success:^(id responseObject) {
+    [HGHttpTool POSTWithURL:url parameters:@{@"project_id":self.project_id?self.project_id:projectId,@"user_id":userid?userid:@"1"} success:^(id responseObject) {
         NSLog(@"%@---%@\n---\n%@",[self class],url,responseObject);
         [self.tableV.mj_header endRefreshing];
         if ([responseObject[@"status"] isEqualToString:@"1"]) {
@@ -80,7 +80,7 @@
     } failure:^(NSError *error) {
         [self.tableV.mj_header endRefreshing];
     }];
-
+    
 }
 
 -(void)schedule
@@ -268,7 +268,7 @@
         [subview removeFromSuperview];
     }
     
-    UIView *contentV = [[UIView alloc]initWithFrame:CGRectMake(WIDTH_PT(10),0, HGScreenWidth-WIDTH_PT(20), HEIGHT_PT(230))];
+    UIView *contentV = [[UIView alloc]initWithFrame:CGRectMake(WIDTH_PT(10),0, HGScreenWidth-WIDTH_PT(20), HEIGHT_PT(250))];
     contentV.backgroundColor = [UIColor whiteColor];
     [cell.contentView addSubview:contentV];
     
@@ -276,12 +276,6 @@
     titleV.backgroundColor = HGColor(249, 227, 249, 1);
     [contentV addSubview:titleV];
     
-    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:titleV.bounds byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:CGSizeMake(5, 5)];
-    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
-    maskLayer.frame = titleV.bounds;
-    maskLayer.path = maskPath.CGPath;
-    titleV.layer.mask = maskLayer;
-
     UILabel *titleLab = [[UILabel alloc]initWithFrame:CGRectMake(WIDTH_PT(10), 0, WIDTH_PT(100), HEIGHT_PT(10))];
     titleLab.font = [UIFont boldSystemFontOfSize:FONT_PT(16)];
     titleLab.text = @"基本信息";
@@ -290,13 +284,26 @@
     titleLab.centerY = titleV.centerY;
     [titleV addSubview:titleLab];
     
-    UIView *whiteV = [[UIView alloc]initWithFrame:CGRectMake(0, titleV.maxY, contentV.width, HEIGHT_PT(190))];
+    UIView *whiteV = [[UIView alloc]initWithFrame:CGRectMake(0, titleV.maxY, contentV.width, HEIGHT_PT(210))];
     whiteV.backgroundColor = [UIColor whiteColor];
     whiteV.layer.borderColor = HGColor(249, 202, 168, 1).CGColor;
     whiteV.layer.borderWidth = 1;
     [contentV addSubview:whiteV];
     
-    UILabel *classLab = [[UILabel alloc]initWithFrame:CGRectMake(WIDTH_PT(10), HEIGHT_PT(15), WIDTH_PT(100), HEIGHT_PT(10))];
+    UILabel *nameLab = [[UILabel alloc]initWithFrame:CGRectMake(WIDTH_PT(10), HEIGHT_PT(15), whiteV.width - 2*WIDTH_PT(10), HEIGHT_PT(10))];
+    nameLab.font = [UIFont boldSystemFontOfSize:FONT_PT(16)];
+    nameLab.numberOfLines = 0;
+    nameLab.text = self.infoDic[@"project_name"];
+    nameLab.textColor = [UIColor blackColor];
+    CGFloat height = 0;
+    if (nameLab.text) {
+       height = [TextFrame frameOfText:nameLab.text With:[UIFont boldSystemFontOfSize:FONT_PT(16)] Andwidth:whiteV.width - 2*WIDTH_PT(10)].height;
+    }
+    nameLab.height = height;
+    [whiteV addSubview:nameLab];
+
+    
+    UILabel *classLab = [[UILabel alloc]initWithFrame:CGRectMake(WIDTH_PT(10), HEIGHT_PT(15) +nameLab.maxY, WIDTH_PT(100), HEIGHT_PT(10))];
     classLab.font = [UIFont boldSystemFontOfSize:FONT_PT(16)];
     classLab.text = @"班级简介:";
     classLab.textColor = [UIColor blackColor];
@@ -360,6 +367,32 @@
     teacherPhoneLab.textColor = [UIColor colorWithHexString:@"#333333"];
     [teacherPhoneLab sizeToFit];
     [whiteV addSubview:teacherPhoneLab];
+
+    UILabel *dizhiLab = [[UILabel alloc]initWithFrame:CGRectMake(classLab.x, teacherLab.maxY+HEIGHT_PT(10), WIDTH_PT(100), HEIGHT_PT(10))];
+    dizhiLab.font = [UIFont boldSystemFontOfSize:FONT_PT(16)];
+    dizhiLab.text = @"住宿信息：";
+    dizhiLab.textColor = [UIColor blackColor];
+    [dizhiLab sizeToFit];
+    [whiteV addSubview:dizhiLab];
+    
+    UILabel *dizhiDescLab = [[UILabel alloc]initWithFrame:CGRectMake(numDescLab.x , dizhiLab.y, whiteV.width - WIDTH_PT(10) -numDescLab.x, HEIGHT_PT(10))];
+    dizhiDescLab.font = [UIFont systemFontOfSize:FONT_PT(16)];
+    dizhiDescLab.numberOfLines = 0;
+    dizhiDescLab.text = [NSString stringWithFormat:@"%@%@",self.infoDic[@"stay_floor"]?self.infoDic[@"stay_floor"]:@"",self.infoDic[@"stay_room"]?self.infoDic[@"stay_room"]:@""];
+    dizhiDescLab.textColor = [UIColor colorWithHexString:@"#333333"];
+    
+    CGFloat h = [TextFrame frameOfText:dizhiDescLab.text?dizhiDescLab.text:@"" With:[UIFont systemFontOfSize:FONT_PT(16)] Andwidth:whiteV.width - WIDTH_PT(10) -numDescLab.x].height;
+    dizhiDescLab.height = h;
+    [whiteV addSubview:dizhiDescLab];
+    whiteV.height = dizhiDescLab.maxY + HEIGHT_PT(10);
+    contentV.height = whiteV.maxY;
+    self.thirdHeight = contentV.height;
+
+    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:titleV.bounds byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:CGSizeMake(5, 5)];
+    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+    maskLayer.frame = titleV.bounds;
+    maskLayer.path = maskPath.CGPath;
+    titleV.layer.mask = maskLayer;
 
 
     return cell;
@@ -525,10 +558,14 @@
         }
         return HEIGHT_PT(140);
     }else if(indexPath.section==2){
-        return HEIGHT_PT(230);
+        return self.thirdHeight?self.thirdHeight:HEIGHT_PT(280);
     }else{
         return HEIGHT_PT(40) + HEIGHT_PT(90)*self.dataAry.count;
     }
+}
+
+-(CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return HEIGHT_PT(100);
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
@@ -590,6 +627,7 @@
             [SVProgressHUD showErrorWithStatus:@"资源地址无效"];
             return;
         }
+
         TKDownLoadManager *manager = [TKDownLoadManager share];
         
         manager.maxDownLoadTask = 1;

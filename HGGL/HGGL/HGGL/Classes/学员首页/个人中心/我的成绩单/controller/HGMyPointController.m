@@ -44,7 +44,8 @@
         [self addFooterView];   //学员才显示总成绩
     }
     [self addTableview];
-    [self.tableV.mj_header beginRefreshing];
+//    [self.tableV.mj_header beginRefreshing];
+    [self requestData];
 
 }
 - (void)addHeaderView{
@@ -135,9 +136,9 @@
     self.tableV = tableV;
     [self.contentView addSubview:tableV];
     
-    self.tableV.mj_header = [HGRefresh loadNewRefreshWithRefreshBlock:^{
-        [self requestData];
-    }];
+//    self.tableV.mj_header = [HGRefresh loadNewRefreshWithRefreshBlock:^{
+//        [self requestData];
+//    }];
 }
 -(void)viewWillLayoutSubviews
 {
@@ -149,35 +150,46 @@
     
 }
 - (void)requestData{
-
-    NSString *url = [HGURL stringByAppendingString:@"Notice/getLearningOnCampus.do"];
     
-    [HGHttpTool POSTWithURL:url parameters:@{@"user_id":self.user_id} success:^(id responseObject) {
-        
-        NSLog(@"%@---%@\n---\n%@",[self class],url,responseObject);
+    self.dataAry = @[];
+    [self.tableV reloadData];
+//    WeakSelf;
+    HGNoDataView *nodataView = [[HGNoDataView alloc]init];
+    nodataView.label.text = @"无数据";
+//    nodataView.block = ^{
+//        [weakSelf.tableV.mj_header beginRefreshing];
+//    };
+    self.tableV.backgroundView = nodataView;
 
-        [self.tableV.mj_header endRefreshing];
-        
-        if ([responseObject[@"status"] isEqualToString:@"0"]) {
-            self.dataAry = @[];
-            [self.tableV reloadData];
-            WeakSelf;
-            HGNoDataView *nodataView = [[HGNoDataView alloc]init];
-            nodataView.label.text = @"无数据";
-            nodataView.block = ^{
-                [weakSelf.tableV.mj_header beginRefreshing];
-            };
-            self.tableV.backgroundView = nodataView;
-        }else{
-            NSArray *tempAry = responseObject[@"data"];
-//                       NSArray *tempAry = @[@{@"project_id":@"1",@"project_name":@"问",@"project_score":@"98"},@{@"project_id":@"1",@"project_name":@"问问",@"project_score":@"20"},@{@"project_id":@"1",@"project_name":@"daqwe问问",@"project_score":@"2232"},@{@"project_id":@"1",@"project_name":@"weq",@"project_score":@"2012"}];
-            self.dataAry = [HGMyPointModel mj_objectArrayWithKeyValuesArray:tempAry];
-            [self.tableV reloadData];
-            self.tableV.backgroundView = nil;
-        }
-    } failure:^(NSError *error) {
-        [self.tableV.mj_header endRefreshing];
-    }];
+
+//    NSString *url = [HGURL stringByAppendingString:@"Notice/getLearningOnCampus.do"];
+    
+//    [HGHttpTool POSTWithURL:url parameters:@{@"user_id":self.user_id} success:^(id responseObject) {
+//
+//        NSLog(@"%@---%@\n---\n%@",[self class],url,responseObject);
+//
+//        [self.tableV.mj_header endRefreshing];
+//
+//        if ([responseObject[@"status"] isEqualToString:@"0"]) {
+//            self.dataAry = @[];
+//            [self.tableV reloadData];
+//            WeakSelf;
+//            HGNoDataView *nodataView = [[HGNoDataView alloc]init];
+//            nodataView.label.text = @"无数据";
+//            nodataView.block = ^{
+//                [weakSelf.tableV.mj_header beginRefreshing];
+//            };
+//            self.tableV.backgroundView = nodataView;
+//        }else{
+//            NSArray *tempAry = responseObject[@"data"];
+////                       NSArray *tempAry = @[@{@"project_id":@"1",@"project_name":@"问",@"project_score":@"98"},@{@"project_id":@"1",@"project_name":@"问问",@"project_score":@"20"},@{@"project_id":@"1",@"project_name":@"daqwe问问",@"project_score":@"2232"},@{@"project_id":@"1",@"project_name":@"weq",@"project_score":@"2012"}];
+//            self.dataAry = [HGMyPointModel mj_objectArrayWithKeyValuesArray:tempAry];
+//            [self.tableV reloadData];
+//            self.tableV.backgroundView = nil;
+//        }
+//    } failure:^(NSError *error) {
+//        [self.tableV.mj_header endRefreshing];
+//    }];
 }
 
 
