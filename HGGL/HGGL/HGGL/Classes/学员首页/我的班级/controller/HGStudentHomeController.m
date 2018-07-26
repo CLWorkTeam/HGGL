@@ -13,7 +13,6 @@
 #import "HGMyPointController.h"
 #import "HGItemDataController.h"
 #import "HGMyDataViewController.h"
-#import "HGItemCertController.h"
 #import "HGContactUSViewController.h"
 #import "HGStudentItemModel.h"
 #import "HGClassDetailController.h"
@@ -294,9 +293,12 @@
     UILabel *nameLab = [[UILabel alloc]initWithFrame:CGRectMake(WIDTH_PT(10), HEIGHT_PT(15), whiteV.width - 2*WIDTH_PT(10), HEIGHT_PT(10))];
     nameLab.font = [UIFont boldSystemFontOfSize:FONT_PT(16)];
     nameLab.numberOfLines = 0;
-    nameLab.text = @"班级简介:班级简介:班级简介:班级简介:班级简介:班级简介:班级简介:班级简介:班级简介:班级简介:班级简介:班级简介:班级简介:班级简介:";
+    nameLab.text = self.infoDic[@"project_name"];
     nameLab.textColor = [UIColor blackColor];
-    CGFloat height = [TextFrame frameOfText:nameLab.text With:[UIFont boldSystemFontOfSize:FONT_PT(16)] Andwidth:whiteV.width - 2*WIDTH_PT(10)].height;
+    CGFloat height = 0;
+    if (nameLab.text) {
+       height = [TextFrame frameOfText:nameLab.text With:[UIFont boldSystemFontOfSize:FONT_PT(16)] Andwidth:whiteV.width - 2*WIDTH_PT(10)].height;
+    }
     nameLab.height = height;
     [whiteV addSubview:nameLab];
 
@@ -376,13 +378,15 @@
     UILabel *dizhiDescLab = [[UILabel alloc]initWithFrame:CGRectMake(numDescLab.x , dizhiLab.y, whiteV.width - WIDTH_PT(10) -numDescLab.x, HEIGHT_PT(10))];
     dizhiDescLab.font = [UIFont systemFontOfSize:FONT_PT(16)];
     dizhiDescLab.numberOfLines = 0;
-    dizhiDescLab.text = @"dsajdnsaijdnasijdnasijndijasndjiasndjiasndijasndjiasndjiasnijdsnaijdnsaidjsnaijdas";//self.infoDic[@"project_manager"];
+    dizhiDescLab.text = [NSString stringWithFormat:@"%@%@",self.infoDic[@"stay_floor"]?self.infoDic[@"stay_floor"]:@"",self.infoDic[@"stay_room"]?self.infoDic[@"stay_room"]:@""];
     dizhiDescLab.textColor = [UIColor colorWithHexString:@"#333333"];
-    CGFloat h = [TextFrame frameOfText:dizhiDescLab.text With:[UIFont systemFontOfSize:FONT_PT(16)] Andwidth:whiteV.width - WIDTH_PT(10) -numDescLab.x].height;
+    
+    CGFloat h = [TextFrame frameOfText:dizhiDescLab.text?dizhiDescLab.text:@"" With:[UIFont systemFontOfSize:FONT_PT(16)] Andwidth:whiteV.width - WIDTH_PT(10) -numDescLab.x].height;
     dizhiDescLab.height = h;
     [whiteV addSubview:dizhiDescLab];
     whiteV.height = dizhiDescLab.maxY + HEIGHT_PT(10);
-    self.thirdHeight = whiteV.height;
+    contentV.height = whiteV.maxY;
+    self.thirdHeight = contentV.height;
 
     UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:titleV.bounds byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:CGSizeMake(5, 5)];
     CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
@@ -554,10 +558,14 @@
         }
         return HEIGHT_PT(140);
     }else if(indexPath.section==2){
-        return self.thirdHeight?self.thirdHeight:HEIGHT_PT(250);
+        return self.thirdHeight?self.thirdHeight:HEIGHT_PT(280);
     }else{
         return HEIGHT_PT(40) + HEIGHT_PT(90)*self.dataAry.count;
     }
+}
+
+-(CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return HEIGHT_PT(100);
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
