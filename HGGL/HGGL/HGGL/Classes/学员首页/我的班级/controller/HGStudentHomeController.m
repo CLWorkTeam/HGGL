@@ -586,10 +586,10 @@
     }
     if ([sender.titleLabel.text isEqualToString:@"学员手册"]) {
         
-//        if ([self.infoDic[@"project_manualUrl"] isNull]||(self.infoDic[@"project_manualUrl"] == nil)) {
-//            [SVProgressHUD showErrorWithStatus:@"资源地址无效"];
-//            return;
-//        }
+        if ([self.infoDic[@"project_manualUrl"] isNull]||(self.infoDic[@"project_manualUrl"] == nil)) {
+            [SVProgressHUD showErrorWithStatus:@"资源地址无效"];
+            return;
+        }
         TKDownLoadManager *manager = [TKDownLoadManager share];
         
         manager.maxDownLoadTask = 1;
