@@ -96,7 +96,7 @@
         }
         
     } failure:^(NSError *error) {
-        [SVProgressHUD dismiss];
+//        [SVProgressHUD dismiss];
         HGLog(@"%@",error);
     }];
 }
