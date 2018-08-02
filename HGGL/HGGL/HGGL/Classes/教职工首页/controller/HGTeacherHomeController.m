@@ -39,8 +39,15 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.menuAry=@[@"行政办公",@"项目计划",@"项目信息",@"信息共享",@"科研信息",@"师资信息",@"学员信息",@"每周菜谱",@"校园风采"];
+    self.menuAry=@[@"项目计划",@"项目信息",@"信息共享",@"师资信息",@"学员信息",@"每周菜谱",@"校园风采"];
+    self.colorAry=@[@"#9d76ec",@"#cbc31e",@"#dfb1dd",@"#a91f9e",@"#7cdaa1",@"#6ccbfb",@"#25f8ca"];
+
+    if ([[HGUserDefaults objectForKey:HGOpenFun] isEqualToString:@"1"]) {
+        
+        self.menuAry=@[@"行政办公",@"项目计划",@"项目信息",@"信息共享",@"科研信息",@"师资信息",@"学员信息",@"每周菜谱",@"校园风采"];
     self.colorAry=@[@"#80be1e",@"#9d76ec",@"#cbc31e",@"#dfb1dd",@"#f2936f",@"#a91f9e",@"#7cdaa1",@"#6ccbfb",@"#25f8ca"];
+
+    }
     
     UIView *backV = [[UIView alloc]initWithFrame:CGRectMake(0, 0, HGScreenWidth, 44+HGStautsBarH)];
     backV.backgroundColor = HGMainColor;
@@ -155,6 +162,11 @@
                 title = self.menuAry[j+3];
                 color = [UIColor colorWithHexString:self.colorAry[j+3]];
             }else{
+                if (![[HGUserDefaults objectForKey:HGOpenFun] isEqualToString:@"1"]) {
+                    if (j>0) {
+                        break;
+                    }
+                }
                 image = [self imageWithTitle:self.menuAry[j+6]];
                 title = self.menuAry[j+6];
                 color = [UIColor colorWithHexString:self.colorAry[j+6]];

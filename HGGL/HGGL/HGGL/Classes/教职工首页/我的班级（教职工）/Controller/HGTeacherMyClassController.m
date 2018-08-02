@@ -51,7 +51,7 @@
     
     NSString *url = [HGURL stringByAppendingString:@"Mentee/getMyClass.do"];
     NSString *userid = [HGUserDefaults objectForKey:HGUserID];
-    [HGHttpTool POSTWithURL:url parameters:@{@"user_id":userid} success:^(id responseObject) {
+    [HGHttpTool POSTWithURL:url parameters:@{@"userId":userid} success:^(id responseObject) {
         
         NSLog(@"%@---%@\n---\n%@",[self class],url,responseObject);
 
