@@ -22,12 +22,13 @@
 #import "ResearchViewController.h"
 #import "MessageListController.h"
 #import "AppDelegate.h"
+#import "TKBanner.h"
 @interface HGTeacherHomeController ()
 
 @property (nonatomic,strong) NSArray *menuAry;
 @property (nonatomic,strong) NSArray *colorAry;
-@property (nonatomic,strong) UIImageView *imageV;
-
+@property (nonatomic,weak) TKBanner *banner;
+@property (nonatomic,weak) UIImageView *imageV;
 
 @end
 
@@ -39,7 +40,7 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.menuAry=@[@"行政办公",@"项目计划",@"项目信息",@"信息共享",@"科研信息",@"师资信息",@"学员信息",@"每周菜谱",@"校园风采"];
+    self.menuAry=@[@"协同办公",@"项目计划",@"项目信息",@"信息共享",@"科研信息",@"师资信息",@"学员信息",@"每周菜谱",@"校园风采"];
     self.colorAry=@[@"#80be1e",@"#9d76ec",@"#cbc31e",@"#dfb1dd",@"#f2936f",@"#a91f9e",@"#7cdaa1",@"#6ccbfb",@"#25f8ca"];
     
     UIView *backV = [[UIView alloc]initWithFrame:CGRectMake(0, 0, HGScreenWidth, 44+HGStautsBarH)];
@@ -74,19 +75,37 @@
     self.imageV = imageV;
     [self.view addSubview:imageV];
     
+    
     NSString *url = [HGURL stringByAppendingString:@"Banner/getBannerInfo.do"];
     NSString *type = [HGUserDefaults objectForKey:HGUserType];
     [HGHttpTool POSTWithURL:url parameters:@{@"type":type} success:^(id responseObject) {
         NSLog(@"%@---%@\n---\n%@",[self class],url,responseObject);
-
+    
         if ([responseObject[@"status"] isEqualToString:@"1"]) {
-            NSString *resultUrl = [responseObject[@"data"] firstObject][@"imageUrl"];
-            NSString *imgUrl = [NSString stringWithFormat:@"%@%@",HGURL,resultUrl];
-            [imageV sd_setImageWithURL:[NSURL URLWithString:imgUrl] placeholderImage:[UIImage imageNamed:@"WechatIMG79.jpeg"]  completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-                if (error) {
-                    imageV.image = [UIImage imageNamed:@"WechatIMG79.jpeg"];
-                }
-            }];
+            NSMutableArray *bannerArr = [NSMutableArray array];
+            for (NSDictionary *dict1 in responseObject[@"data"]) {
+                NSString *resultUrl = dict1[@"imageUrl"];
+                NSString *imgUrl = [NSString stringWithFormat:@"%@%@",HGURL,resultUrl];
+//                [bannerArr addObject:imgUrl];
+                
+            }
+            
+            TKBanner *banner = [[TKBanner alloc]init];
+            self.banner = banner;
+            banner.needTimer = YES;
+            banner.needPageControl = YES;
+            banner.frame = self.imageV.frame;
+            [self.imageV removeFromSuperview];
+            self.banner = banner;
+            banner.imageArr = bannerArr;
+//            [self.view addSubview:banner];
+//            NSString *resultUrl = [responseObject[@"data"] firstObject][@"imageUrl"];
+//            NSString *imgUrl = [NSString stringWithFormat:@"%@%@",HGURL,resultUrl];
+//            [imageV sd_setImageWithURL:[NSURL URLWithString:imgUrl] placeholderImage:[UIImage imageNamed:@"WechatIMG79.jpeg"]  completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+//                if (error) {
+//                    imageV.image = [UIImage imageNamed:@"WechatIMG79.jpeg"];
+//                }
+//            }];
         }else{
             imageV.image = [UIImage imageNamed:@"WechatIMG79.jpeg"];
         }
@@ -173,21 +192,21 @@
     if ([title isEqualToString:@"项目计划"]) {
         HGItemPlanController *vc = [[HGItemPlanController alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
-    }else if ([title isEqualToString:@"行政办公"]){
+    }else if ([title isEqualToString:@"协同办公"]){
         if ([[HGUserDefaults objectForKey:HGOpenFun] isEqualToString:@"1"]) {
             [SVProgressHUD showWithStatus:@"请稍后..."];
             NSString *url = @"http://10.93.1.190:8081/t9/mobile/act/T9PdaLogin/login.act";
             [HGHttpTool POSTWithURL:url parameters:@{@"USERNAME":[HGUserDefaults objectForKey:HGUserName],@"PASSWORD":@""} success:^(id responseObject) {
                 if ([responseObject[@"status"] boolValue]){
                     HGWebController *vc = [[HGWebController alloc]init];
-                    vc.titleStr = @"行政办公";
+                    vc.titleStr = @"协同办公";
                     vc.url = @"http://10.93.1.190:8081/t9/mobile/workflow/act/T9PdaWorkflowIndexAct/index.act";
                     [self.navigationController pushViewController:vc animated:YES];
                 }else{
-                    [SVProgressHUD showErrorWithStatus:@"行政办公暂时无法查看，请您检查登录的账号"];
+                    [SVProgressHUD showErrorWithStatus:@"协同办公暂时无法查看，请您检查登录的账号"];
                 }
             } failure:^(NSError *error) {
-                [SVProgressHUD showErrorWithStatus:@"行政办公暂时无法查看，请您连接学院内网"];
+                [SVProgressHUD showErrorWithStatus:@"协同办公暂时无法查看，请您连接学院内网"];
             }];
         }else
         {
@@ -242,7 +261,7 @@
 
 - (UIImage *)imageWithTitle:(NSString *)title{
     UIImage *image = nil;
-    if ([title isEqualToString:@"行政办公"]) {
+    if ([title isEqualToString:@"协同办公"]) {
         image = [UIImage imageNamed:@"icon_administration"];
     }else if ([title isEqualToString:@"项目计划"]){
         image = [UIImage imageNamed:@"icon_new_plan"];

@@ -46,7 +46,7 @@
         config.userContentController =user;
         config.preferences = preferences;
         config.allowsInlineMediaPlayback = YES;
-        config.mediaPlaybackRequiresUserAction = false;
+//        config.mediaPlaybackRequiresUserAction = false;
         
         web = [[WKWebView alloc]initWithFrame:CGRectMake(0,self.bar.maxY , HGScreenWidth, HGScreenHeight-self.bar.maxY-HGSafeBottom) configuration:config];
         web.UIDelegate = self;
@@ -116,31 +116,31 @@
     [self.bar addSubview:leftBtn];
     
 }
-- (void)loadDataFile
-{
-    //    NSURL *fileURL = [NSURL fileURLWithPath:self.webStr];
-    //    NSURLRequest *request = [NSURLRequest requestWithURL:fileURL];
-    //    [self.web loadRequest:request];
-    // 最最常见的一种情况
-    // 打开IE,访问网站,提示你安装Flash插件
-    // 如果没有这个应用程序,是无法用UIWebView打开对应的文件的
-    
-    // 应用场景:加载从服务器上下载的文件,例如pdf,或者word,图片等等文件
-    NSURL *fileURL = [NSURL fileURLWithPath:self.url];
-    
-    NSURLRequest *request = [NSURLRequest requestWithURL:fileURL];
-    // 服务器的响应对象,服务器接收到请求返回给客户端的
-    NSURLResponse *respnose = nil;
-    
-    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&respnose error:NULL];
-    
-    NSLog(@"%@", respnose.MIMEType);
-    
-    // 在iOS开发中,如果不是特殊要求,所有的文本编码都是用UTF8
-    // 先用UTF8解释接收到的二进制数据流
-//    [self.WKWeb loadData:data MIMEType:respnose.MIMEType textEncodingName:@"UTF8" baseURL:nil];
-    [self.WKWeb loadData:data MIMEType:respnose characterEncodingName:@"UTF8" baseURL:nil];
-}
+//- (void)loadDataFile
+//{
+//    //    NSURL *fileURL = [NSURL fileURLWithPath:self.webStr];
+//    //    NSURLRequest *request = [NSURLRequest requestWithURL:fileURL];
+//    //    [self.web loadRequest:request];
+//    // 最最常见的一种情况
+//    // 打开IE,访问网站,提示你安装Flash插件
+//    // 如果没有这个应用程序,是无法用UIWebView打开对应的文件的
+//
+//    // 应用场景:加载从服务器上下载的文件,例如pdf,或者word,图片等等文件
+//    NSURL *fileURL = [NSURL fileURLWithPath:self.url];
+//
+//    NSURLRequest *request = [NSURLRequest requestWithURL:fileURL];
+//    // 服务器的响应对象,服务器接收到请求返回给客户端的
+//    NSURLResponse *respnose = nil;
+//
+//    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&respnose error:NULL];
+//
+//    NSLog(@"%@", respnose.MIMEType);
+//
+//    // 在iOS开发中,如果不是特殊要求,所有的文本编码都是用UTF8
+//    // 先用UTF8解释接收到的二进制数据流
+////    [self.WKWeb loadData:data MIMEType:respnose.MIMEType textEncodingName:@"UTF8" baseURL:nil];
+//    [self.WKWeb loadData:data MIMEType:respnose characterEncodingName:@"UTF8" baseURL:nil];
+//}
 - (void)backTo{
     
     [self.navigationController popViewControllerAnimated:YES];

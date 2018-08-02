@@ -73,17 +73,21 @@
     
     [SVProgressHUD showWithStatus:@"请稍后..."];
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
-    NSString *url = [HGURL stringByAppendingString:@"/Mentee/getMyClass.do"];
+    NSString *strss = [HGUserDefaults objectForKey:HGUserID];
+    NSLog(@"%@/%@",strss,@{@"userId":[HGUserDefaults objectForKey:HGUserID]});
+    NSString *url = [HGURL stringByAppendingString:@"Mentee/getMyClass.do"];
+//    NSString *url = @"http://47.95.235.187/Mentee/getMyClass.do";
     [HGHttpTool POSTWithURL:url parameters:@{@"user_id":[HGUserDefaults objectForKey:HGUserID]} success:^(id responseObject) {
         [SVProgressHUD dismiss];
         
         NSArray *array = [NSArray array];
-        array = [responseObject objectForKey:@"data"];
+        
         NSString *status = [responseObject objectForKey:@"status"];
         if([status isEqualToString:@"0"])
         {
             [SVProgressHUD showErrorWithStatus:[responseObject objectForKey:@"message"]];
         }else{
+            array = [responseObject objectForKey:@"data"];
             if (array.count) {
                 HGScheduleViewController *schedule = [[HGScheduleViewController alloc]init];
                 schedule.isTeacher = YES;

@@ -70,18 +70,18 @@
     parma.page = @"1";
     NSString *url = [HGURL stringByAppendingString:@"Reception/getReception.do"];
     NSString *user_id = [HGUserDefaults objectForKey:HGUserID];
-    NSMutableDictionary *par =[NSMutableDictionary dictionaryWithDictionary:parma.keyValues];
+    NSMutableDictionary *par =[NSMutableDictionary dictionaryWithDictionary:parma.mj_keyValues];
     [par setValue:user_id forKey:@"tokenval"];
     [HGHttpTool  POSTWithURL:url parameters:par success:^(id responseObject) {
         _isRefreshing = NO;
-        HGLog(@"%@",parma.keyValues);
+        HGLog(@"%@",parma.mj_keyValues);
         [self.tableView.mj_header endRefreshing];
         NSString *status = [responseObject objectForKey:@"status"];
         //HGLog(@"%@",[responseObject objectForKey:@"status"]);
         if ([status isEqualToString:@"1"]) {
              [self.arr removeAllObjects];
             NSArray *array = [responseObject objectForKey:@"data"];
-            //HGLog(@"222%@",parma.keyValues);
+            //HGLog(@"222%@",parma.mj_keyValues);
             for (NSDictionary *dict in array) {
                 History *his = [History initWithDict:dict];
                 [self.arr addObject:his];
@@ -105,19 +105,19 @@
     }
     _isRefreshing = YES;
     NSString *user_id = [HGUserDefaults objectForKey:HGUserID];
-    NSMutableDictionary *par =[NSMutableDictionary dictionaryWithDictionary:parama.keyValues];
+    NSMutableDictionary *par =[NSMutableDictionary dictionaryWithDictionary:parama.mj_keyValues];
     [par setValue:user_id forKey:@"tokenval"];
     NSString *url = [HGURL stringByAppendingString:@"Reception/getReception.do"];
     [HGHttpTool  POSTWithURL:url parameters:par success:^(id responseObject) {
         _isRefreshing = NO;
-        HGLog(@"%@",parama.keyValues);
+        HGLog(@"%@",parama.mj_keyValues);
         [self.tableView.mj_footer endRefreshing];
         NSString *status = [responseObject objectForKey:@"status"];
         //HGLog(@"%@",[responseObject objectForKey:@"status"]);
         if ([status isEqualToString:@"1"]) {
             
             NSArray *array = [responseObject objectForKey:@"data"];
-            //HGLog(@"222%@",parma.keyValues);
+            //HGLog(@"222%@",parma.mj_keyValues);
             for (NSDictionary *dict in array) {
                 History *his = [History initWithDict:dict];
                 [self.arr addObject:his];

@@ -239,6 +239,8 @@
 		CE86444B206F9675002FE9E7 /* MessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE864446206F9675002FE9E7 /* MessageTableViewCell.m */; };
 		CE86444E206FA2EA002FE9E7 /* HGLable.m in Sources */ = {isa = PBXBuildFile; fileRef = CE86444D206FA2EA002FE9E7 /* HGLable.m */; };
 		CE864455206FA992002FE9E7 /* HGCPWViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE864454206FA992002FE9E7 /* HGCPWViewController.m */; };
+		CE8E72B1210D893D00CF0452 /* TKBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8E72AF210D893C00CF0452 /* TKBanner.m */; };
+		CE8E72B4210D897700CF0452 /* TKPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8E72B3210D897600CF0452 /* TKPageControl.m */; };
 		CE91330F2089869C00780113 /* TKProfessionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE91330D2089869C00780113 /* TKProfessionTableViewCell.m */; };
 		CE9133152089BA8F00780113 /* HGPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9133142089BA8F00780113 /* HGPopView.m */; };
 		CE9133182089D22200780113 /* HGRSHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9133172089D22200780113 /* HGRSHeader.m */; };
@@ -307,7 +309,6 @@
 		CEAD1A3B207DE4DF008F1696 /* PCourseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAD1A2A207DE4DC008F1696 /* PCourseTableViewController.m */; };
 		CEAD1A3C207DE4DF008F1696 /* StudentTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAD1A2B207DE4DC008F1696 /* StudentTableViewController.m */; };
 		CEAD1A3D207DE4DF008F1696 /* ProjectCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAD1A2D207DE4DD008F1696 /* ProjectCollectionViewController.m */; };
-		CEAD1A3E207DE4DF008F1696 /* ConformViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAD1A31207DE4DF008F1696 /* ConformViewController.m */; };
 		CEAD1A4B207DE59D008F1696 /* ProjectAuditParama.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAD1A3F207DE59B008F1696 /* ProjectAuditParama.m */; };
 		CEAD1A4C207DE59D008F1696 /* ProjectList.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAD1A41207DE59C008F1696 /* ProjectList.m */; };
 		CEAD1A4D207DE59D008F1696 /* PBaseFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAD1A42207DE59C008F1696 /* PBaseFrame.m */; };
@@ -819,6 +820,10 @@
 		CE86444D206FA2EA002FE9E7 /* HGLable.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGLable.m; sourceTree = "<group>"; };
 		CE864453206FA992002FE9E7 /* HGCPWViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGCPWViewController.h; sourceTree = "<group>"; };
 		CE864454206FA992002FE9E7 /* HGCPWViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGCPWViewController.m; sourceTree = "<group>"; };
+		CE8E72AF210D893C00CF0452 /* TKBanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKBanner.m; sourceTree = "<group>"; };
+		CE8E72B0210D893D00CF0452 /* TKBanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKBanner.h; sourceTree = "<group>"; };
+		CE8E72B2210D897600CF0452 /* TKPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKPageControl.h; sourceTree = "<group>"; };
+		CE8E72B3210D897600CF0452 /* TKPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKPageControl.m; sourceTree = "<group>"; };
 		CE91330D2089869C00780113 /* TKProfessionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKProfessionTableViewCell.m; sourceTree = "<group>"; };
 		CE91330E2089869C00780113 /* TKProfessionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKProfessionTableViewCell.h; sourceTree = "<group>"; };
 		CE9133132089BA8F00780113 /* HGPopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGPopView.h; sourceTree = "<group>"; };
@@ -944,7 +949,6 @@
 		CEAD1A23207DE4DB008F1696 /* StudentTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentTableViewController.h; sourceTree = "<group>"; };
 		CEAD1A24207DE4DB008F1696 /* ProjectAuditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectAuditViewController.m; sourceTree = "<group>"; };
 		CEAD1A25207DE4DB008F1696 /* ProjectInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectInfoViewController.m; sourceTree = "<group>"; };
-		CEAD1A26207DE4DB008F1696 /* ConformViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConformViewController.h; sourceTree = "<group>"; };
 		CEAD1A27207DE4DC008F1696 /* BaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
 		CEAD1A28207DE4DC008F1696 /* ProjectListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectListViewController.m; sourceTree = "<group>"; };
 		CEAD1A29207DE4DC008F1696 /* ProjectListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectListViewController.h; sourceTree = "<group>"; };
@@ -955,7 +959,6 @@
 		CEAD1A2E207DE4DD008F1696 /* ProjectAuditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectAuditViewController.h; sourceTree = "<group>"; };
 		CEAD1A2F207DE4DD008F1696 /* ProjectInfoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectInfoTableViewController.h; sourceTree = "<group>"; };
 		CEAD1A30207DE4DE008F1696 /* ProjectInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectInfoViewController.h; sourceTree = "<group>"; };
-		CEAD1A31207DE4DF008F1696 /* ConformViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConformViewController.m; sourceTree = "<group>"; };
 		CEAD1A32207DE4DF008F1696 /* BaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
 		CEAD1A3F207DE59B008F1696 /* ProjectAuditParama.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectAuditParama.m; sourceTree = "<group>"; };
 		CEAD1A40207DE59C008F1696 /* ProjectListParama.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectListParama.h; sourceTree = "<group>"; };
@@ -2120,6 +2123,10 @@
 		CE769DDC206A354F000F931F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CE8E72B2210D897600CF0452 /* TKPageControl.h */,
+				CE8E72B3210D897600CF0452 /* TKPageControl.m */,
+				CE8E72B0210D893D00CF0452 /* TKBanner.h */,
+				CE8E72AF210D893C00CF0452 /* TKBanner.m */,
 				CE769E95206A5AF4000F931F /* HGTabbar.h */,
 				CE769E96206A5AF4000F931F /* HGTabbar.m */,
 				CE769E98206A5B68000F931F /* HGTabBarButton.h */,
@@ -2612,8 +2619,6 @@
 			children = (
 				CEAD1A32207DE4DF008F1696 /* BaseTableViewController.h */,
 				CEAD1A27207DE4DC008F1696 /* BaseTableViewController.m */,
-				CEAD1A26207DE4DB008F1696 /* ConformViewController.h */,
-				CEAD1A31207DE4DF008F1696 /* ConformViewController.m */,
 				CEAD1A1D207DE4DA008F1696 /* PCourseTableViewController.h */,
 				CEAD1A2A207DE4DC008F1696 /* PCourseTableViewController.m */,
 				CEAD1A1E207DE4DA008F1696 /* ProjectAuditDetailViewController.h */,
@@ -3402,6 +3407,7 @@
 				CEAD1AFB207DF44F008F1696 /* BlacklogTableViewCell.m in Sources */,
 				CE4CAD6F2085DFFB001F711F /* HGGuestRoomViewController.m in Sources */,
 				CEAD1AD9207DF42B008F1696 /* ResearchDetailTableViewController.m in Sources */,
+				CE8E72B1210D893D00CF0452 /* TKBanner.m in Sources */,
 				CEAD1A36207DE4DF008F1696 /* ProjectMainListViewController.m in Sources */,
 				CEAD1A6A207DE5AD008F1696 /* CollHeaderView.m in Sources */,
 				AD804BFE206B8F7B00299A08 /* UIColor+Hex.m in Sources */,
@@ -3465,7 +3471,6 @@
 				CEAD1A6C207DE5AD008F1696 /* PStudentTableViewCell.m in Sources */,
 				CEF2DB32209B219F00FAAE72 /* HGProjectBaseModel.m in Sources */,
 				CEAD19E3207DDE9A008F1696 /* CourseTableViewCell.m in Sources */,
-				CEAD1A3E207DE4DF008F1696 /* ConformViewController.m in Sources */,
 				CE9133182089D22200780113 /* HGRSHeader.m in Sources */,
 				CE4CAD5A208599F0001F711F /* HGSourceViewController.m in Sources */,
 				CE91331E2089D3A000780113 /* HGRSParama.m in Sources */,
@@ -3532,6 +3537,7 @@
 				CEAD1A12207DE04F008F1696 /* TeacherListTableViewCell.m in Sources */,
 				CE4CAD8D208724C9001F711F /* HGCourseInfoFrame.m in Sources */,
 				AD6944B320904E5A00B06531 /* HGTeacherMyClassModel.m in Sources */,
+				CE8E72B4210D897700CF0452 /* TKPageControl.m in Sources */,
 				CE4CAD462084A437001F711F /* Role.m in Sources */,
 				CEAD19A6207C9DA1008F1696 /* CurrView.m in Sources */,
 				CEC78F6620A47D0A00E6DC17 /* HGNoDataTableViewCell.m in Sources */,
@@ -3778,7 +3784,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -3827,7 +3833,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

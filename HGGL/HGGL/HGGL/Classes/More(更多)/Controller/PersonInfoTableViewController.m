@@ -15,7 +15,7 @@
 //#import "MBProgressHUD+Extend.h"
 #import "TextFrame.h"
 #define ZKRAccountFile [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0] stringByAppendingPathComponent:@"account.data"]
-@interface PersonInfoTableViewController ()<UIAlertViewDelegate>
+@interface PersonInfoTableViewController ()
 @property (nonatomic,strong) NSArray *arr;
 @property (nonatomic,strong) NSMutableArray *array;
 @property (nonatomic,strong) Account *acc;
@@ -141,111 +141,111 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *name = [[self.arr objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-    NSString *nameV = [[self.array objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-    if (indexPath.section == 0&&indexPath.row == 1) {
-        UIAlertView *alter1 = [[UIAlertView alloc]initWithTitle:name message:nil delegate:self cancelButtonTitle:@"男" otherButtonTitles:@"女", nil];
-        alter1.alertViewStyle = UIAlertViewStyleDefault;
-        [alter1 textFieldAtIndex:0].text = nameV;
-        alter1.delegate = self;
-        alter1.tag = 100*indexPath.section + indexPath.row;
-        [alter1 show];
-    }else
-    {
-        UIAlertView *alter = [[UIAlertView alloc]initWithTitle:name message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-        alter.alertViewStyle = UIAlertViewStylePlainTextInput;
-        [alter textFieldAtIndex:0].text = nameV;
-        alter.delegate = self;
-        alter.tag = 100*indexPath.section + indexPath.row;
-        [alter show];
-    }
+//    NSString *name = [[self.arr objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+//    NSString *nameV = [[self.array objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+//    if (indexPath.section == 0&&indexPath.row == 1) {
+//        UIAlertView *alter1 = [[UIAlertView alloc]initWithTitle:name message:nil delegate:self cancelButtonTitle:@"男" otherButtonTitles:@"女", nil];
+//        alter1.alertViewStyle = UIAlertViewStyleDefault;
+//        [alter1 textFieldAtIndex:0].text = nameV;
+//        alter1.delegate = self;
+//        alter1.tag = 100*indexPath.section + indexPath.row;
+//        [alter1 show];
+//    }else
+//    {
+//        UIAlertView *alter = [[UIAlertView alloc]initWithTitle:name message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+//        alter.alertViewStyle = UIAlertViewStylePlainTextInput;
+//        [alter textFieldAtIndex:0].text = nameV;
+//        alter.delegate = self;
+//        alter.tag = 100*indexPath.section + indexPath.row;
+//        [alter show];
+//    }
 
 
     
 }
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (alertView.alertViewStyle == UIAlertViewStyleDefault) {
-        if (buttonIndex == 0) {
-            self.U.user_sex = @"男";
-        }else
-        {
-            self.U.user_sex = @"女";
-        }
-    }else{
-        if (buttonIndex == 0) return;
-        NSInteger section = alertView.tag/100;
-        NSInteger row = alertView.tag%100;
-        NSString *str = [alertView textFieldAtIndex:0].text;
-        //NSString *mess = alertView.message;
-        //NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
-        //    NSMutableArray *a = [self.array objectAtIndex:section];
-        //    [a replaceObjectAtIndex:row withObject:str];
-        
-        //    NSDictionary *dict = [self.U keyValues];
-        //    NSMutableDictionary *dict1 = [NSMutableDictionary dictionary];
-        //    for (id key in dict) {
-        //
-        //        [dict1 setObject:[dict objectForKey:key] forKey:key];
-        //    }
-        if (section == 0&&row == 0) {
-            self.U.user_name = str;
-        }else if (section == 0&&row == 2)
-        {
-            self.U.user_idCard = str;
-        }else if (section == 0&&row==3)
-        {
-            self.U.user_duty = str;
-        }else if (section == 1&&row == 0)
-        {
-            self.U.user_tel = str;
-        }else if (section == 1&&row==1)
-        {
-            self.U.user_phone = str;
-        }else if (section == 1&&row == 2)
-        {
-            self.U.user_email = str;
-        }else if (section == 1&&row == 3)
-        {
-            self.U.user_note = str;
-        }
-    
-    }
-    NSString *user_id = [HGUserDefaults objectForKey:HGUserID];
-    NSString *url = [HGURL stringByAppendingString:@"User/infoChange.do"];
-    [HGHttpTool POSTWithURL:url parameters:@{@"user_duty":self.U.user_duty,@"user_email":self.U.user_email,@"user_id":self.U.user_id,@"user_idCard":self.U.user_idCard,@"user_name":self.U.user_name,@"user_note":self.U.user_note,@"user_phone":self.U.user_phone,@"user_sex":self.U.user_sex,@"user_tel":self.U.user_tel,@"tokenval":user_id} success:^(id responseObject) {
-         NSString *status = [responseObject objectForKey:@"status"];
-        
-        if ([status isEqualToString:@"1"]) {
-            [SVProgressHUD  showSuccessWithStatus:[responseObject objectForKey:@"message"]];
-        }else if ([status isEqualToString:@"-1"])
-        {
-            [SVProgressHUD showErrorWithStatus:[responseObject objectForKey:@"message"]];
-        }else if ([status isEqualToString:@"-2"])
-        {
-            [SVProgressHUD showErrorWithStatus:[responseObject objectForKey:@"message"]];
-        }
-        Account *acc = [[Account alloc]init];
-        acc.user = self.U;
-        self.acc = acc;
-        self.array = acc.baseArr;
-        //[NSKeyedArchiver archiveRootObject:user toFile:ZKRAccountFile];
-        [self.tableView reloadData];
-    } failure:^(NSError *error) {
-        HGLog(@"%@",error);
-        [SVProgressHUD showErrorWithStatus:@"请检查网络连接设置"];
-    }];
-    
-    Account *acc = [[Account alloc]init];
-    acc.user = self.U;
-    self.acc = acc;
-    self.array = acc.baseArr;
-    //[NSKeyedArchiver archiveRootObject:user toFile:ZKRAccountFile];
-    [self.tableView reloadData];
-   
-    
-    
-}
+//- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+//{
+//    if (alertView.alertViewStyle == UIAlertViewStyleDefault) {
+//        if (buttonIndex == 0) {
+//            self.U.user_sex = @"男";
+//        }else
+//        {
+//            self.U.user_sex = @"女";
+//        }
+//    }else{
+//        if (buttonIndex == 0) return;
+//        NSInteger section = alertView.tag/100;
+//        NSInteger row = alertView.tag%100;
+//        NSString *str = [alertView textFieldAtIndex:0].text;
+//        //NSString *mess = alertView.message;
+//        //NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+//        //    NSMutableArray *a = [self.array objectAtIndex:section];
+//        //    [a replaceObjectAtIndex:row withObject:str];
+//        
+//        //    NSDictionary *dict = [self.U keyValues];
+//        //    NSMutableDictionary *dict1 = [NSMutableDictionary dictionary];
+//        //    for (id key in dict) {
+//        //
+//        //        [dict1 setObject:[dict objectForKey:key] forKey:key];
+//        //    }
+//        if (section == 0&&row == 0) {
+//            self.U.user_name = str;
+//        }else if (section == 0&&row == 2)
+//        {
+//            self.U.user_idCard = str;
+//        }else if (section == 0&&row==3)
+//        {
+//            self.U.user_duty = str;
+//        }else if (section == 1&&row == 0)
+//        {
+//            self.U.user_tel = str;
+//        }else if (section == 1&&row==1)
+//        {
+//            self.U.user_phone = str;
+//        }else if (section == 1&&row == 2)
+//        {
+//            self.U.user_email = str;
+//        }else if (section == 1&&row == 3)
+//        {
+//            self.U.user_note = str;
+//        }
+//    
+//    }
+//    NSString *user_id = [HGUserDefaults objectForKey:HGUserID];
+//    NSString *url = [HGURL stringByAppendingString:@"User/infoChange.do"];
+//    [HGHttpTool POSTWithURL:url parameters:@{@"user_duty":self.U.user_duty,@"user_email":self.U.user_email,@"user_id":self.U.user_id,@"user_idCard":self.U.user_idCard,@"user_name":self.U.user_name,@"user_note":self.U.user_note,@"user_phone":self.U.user_phone,@"user_sex":self.U.user_sex,@"user_tel":self.U.user_tel,@"tokenval":user_id} success:^(id responseObject) {
+//         NSString *status = [responseObject objectForKey:@"status"];
+//        
+//        if ([status isEqualToString:@"1"]) {
+//            [SVProgressHUD  showSuccessWithStatus:[responseObject objectForKey:@"message"]];
+//        }else if ([status isEqualToString:@"-1"])
+//        {
+//            [SVProgressHUD showErrorWithStatus:[responseObject objectForKey:@"message"]];
+//        }else if ([status isEqualToString:@"-2"])
+//        {
+//            [SVProgressHUD showErrorWithStatus:[responseObject objectForKey:@"message"]];
+//        }
+//        Account *acc = [[Account alloc]init];
+//        acc.user = self.U;
+//        self.acc = acc;
+//        self.array = acc.baseArr;
+//        //[NSKeyedArchiver archiveRootObject:user toFile:ZKRAccountFile];
+//        [self.tableView reloadData];
+//    } failure:^(NSError *error) {
+//        HGLog(@"%@",error);
+//        [SVProgressHUD showErrorWithStatus:@"请检查网络连接设置"];
+//    }];
+//    
+//    Account *acc = [[Account alloc]init];
+//    acc.user = self.U;
+//    self.acc = acc;
+//    self.array = acc.baseArr;
+//    //[NSKeyedArchiver archiveRootObject:user toFile:ZKRAccountFile];
+//    [self.tableView reloadData];
+//   
+//    
+//    
+//}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

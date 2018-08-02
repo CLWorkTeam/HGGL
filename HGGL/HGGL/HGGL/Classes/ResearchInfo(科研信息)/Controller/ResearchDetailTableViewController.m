@@ -23,7 +23,7 @@
 #define margin 20
 #define H 30
 #define W 100
-@interface ResearchDetailTableViewController ()<UIAlertViewDelegate>
+@interface ResearchDetailTableViewController ()
 @property (nonatomic,strong) NSArray *arr;
 @property (nonatomic,strong) ResearchFrame *RF;
 @property (nonatomic,strong) NSArray *array;
@@ -389,19 +389,19 @@
         [self postWith:url dict:dict];
     }else if([but.titleLabel.text isEqualToString:@"学术委员会评审"])
     {
-        UIAlertView *alter1 = [[UIAlertView alloc]initWithTitle:but.titleLabel.text message:nil delegate:self cancelButtonTitle:@"不同意" otherButtonTitles:@"同意", nil];
-        alter1.alertViewStyle = UIAlertViewStyleDefault;
-        alter1.delegate = self;
-        alter1.tag = but.tag *100;
-        [alter1 show];
+//        UIAlertView *alter1 = [[UIAlertView alloc]initWithTitle:but.titleLabel.text message:nil delegate:self cancelButtonTitle:@"不同意" otherButtonTitles:@"同意", nil];
+//        alter1.alertViewStyle = UIAlertViewStyleDefault;
+//        alter1.delegate = self;
+//        alter1.tag = but.tag *100;
+//        [alter1 show];
 
     }else if([but.titleLabel.text isEqualToString:@"科室初审"])
     {
-        UIAlertView *alter1 = [[UIAlertView alloc]initWithTitle:but.titleLabel.text message:nil delegate:self cancelButtonTitle:@"不同意" otherButtonTitles:@"同意", nil];
-        alter1.alertViewStyle = UIAlertViewStyleDefault;
-        alter1.delegate = self;
-        alter1.tag = but.tag *100;
-        [alter1 show];
+//        UIAlertView *alter1 = [[UIAlertView alloc]initWithTitle:but.titleLabel.text message:nil delegate:self cancelButtonTitle:@"不同意" otherButtonTitles:@"同意", nil];
+//        alter1.alertViewStyle = UIAlertViewStyleDefault;
+//        alter1.delegate = self;
+//        alter1.tag = but.tag *100;
+//        [alter1 show];
         
     }else if([but.titleLabel.text isEqualToString:@"分配等级编号"])
     {
@@ -470,11 +470,11 @@
         [self postWith:url dict:dict];
     }else if([but.titleLabel.text isEqualToString:@"归档"])
     {
-        UIAlertView *alter1 = [[UIAlertView alloc]initWithTitle:but.titleLabel.text message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-        alter1.alertViewStyle = UIAlertViewStyleDefault;
-        alter1.delegate = self;
-        alter1.tag = but.tag *100;
-        [alter1 show];
+//        UIAlertView *alter1 = [[UIAlertView alloc]initWithTitle:but.titleLabel.text message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+//        alter1.alertViewStyle = UIAlertViewStyleDefault;
+//        alter1.delegate = self;
+//        alter1.tag = but.tag *100;
+//        [alter1 show];
         
     }else if([but.titleLabel.text isEqualToString:@"终验评审意见返现"])
     {
@@ -525,70 +525,70 @@
 
     }else if([but.titleLabel.text isEqualToString:@"校党委批复"])
     {
-        UIAlertView *alter1 = [[UIAlertView alloc]initWithTitle:but.titleLabel.text message:nil delegate:self cancelButtonTitle:@"不同意" otherButtonTitles:@"同意", nil];
-        alter1.alertViewStyle = UIAlertViewStyleDefault;
-        alter1.delegate = self;
-        alter1.tag = but.tag *100;
-        [alter1 show];
+//        UIAlertView *alter1 = [[UIAlertView alloc]initWithTitle:but.titleLabel.text message:nil delegate:self cancelButtonTitle:@"不同意" otherButtonTitles:@"同意", nil];
+//        alter1.alertViewStyle = UIAlertViewStyleDefault;
+//        alter1.delegate = self;
+//        alter1.tag = but.tag *100;
+//        [alter1 show];
     }
     
     
     
 }
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if ([alertView.title isEqualToString:@"学术委员会评审"]) {
-        if (buttonIndex == 0) {
-            
-            NSString *url = [HGResearchUrl stringByAppendingString:@"Research/doUniversityApprove.do"];
-            NSDictionary *dict = @{@"research_id":self.RL.research_id,@"isAgree":@"0"};
-            [self postWith:url dict:dict];
-        }else
-        {
-            NSString *url = [HGResearchUrl stringByAppendingString:@"Research/doUniversityApprove.do"];
-            NSDictionary *dict = @{@"research_id":self.RL.research_id,@"isAgree":@"1"};
-            [self postWith:url dict:dict];
-        }
-    }else if ([alertView.title isEqualToString:@"科室初审"])
-    {
-        if (buttonIndex == 0) {
-            
-            NSString *url = [HGResearchUrl stringByAppendingString:@"Research/doDepartmentApprove.do"];
-            NSDictionary *dict = @{@"research_id":self.RL.research_id,@"isAgree":@"0"};
-            [self postWith:url dict:dict];
-        }else
-        {
-            NSString *url = [HGResearchUrl stringByAppendingString:@"Research/doDepartmentApprove.do"];
-            NSDictionary *dict = @{@"research_id":self.RL.research_id,@"isAgree":@"1"};
-            [self postWith:url dict:dict];
-        }
-    }else if ([alertView.title isEqualToString:@"归档"])
-    {
-        if (buttonIndex == 0) {
-            
-
-        }else
-        {
-            NSString *url = [HGResearchUrl stringByAppendingString:@"Research/doOver.do"];
-            NSDictionary *dict = @{@"research_id":self.RL.research_id};
-            [self postWith:url dict:dict];
-        }
-    }else if ([alertView.title isEqualToString:@"校党委批复"])
-    {
-        if (buttonIndex == 0) {
-            
-            NSString *url = [HGResearchUrl stringByAppendingString:@"Research/doCommitteeApprove.do"];
-            NSDictionary *dict = @{@"research_id":self.RL.research_id,@"isAgree":@"0"};
-            [self postWith:url dict:dict];
-        }else
-        {
-            NSString *url = [HGResearchUrl stringByAppendingString:@"Research/doCommitteeApprove.do"];
-            NSDictionary *dict = @{@"research_id":self.RL.research_id,@"isAgree":@"1"};
-            [self postWith:url dict:dict];
-        }
-    }
-
-}
+//- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+//{
+//    if ([alertView.title isEqualToString:@"学术委员会评审"]) {
+//        if (buttonIndex == 0) {
+//
+//            NSString *url = [HGResearchUrl stringByAppendingString:@"Research/doUniversityApprove.do"];
+//            NSDictionary *dict = @{@"research_id":self.RL.research_id,@"isAgree":@"0"};
+//            [self postWith:url dict:dict];
+//        }else
+//        {
+//            NSString *url = [HGResearchUrl stringByAppendingString:@"Research/doUniversityApprove.do"];
+//            NSDictionary *dict = @{@"research_id":self.RL.research_id,@"isAgree":@"1"};
+//            [self postWith:url dict:dict];
+//        }
+//    }else if ([alertView.title isEqualToString:@"科室初审"])
+//    {
+//        if (buttonIndex == 0) {
+//
+//            NSString *url = [HGResearchUrl stringByAppendingString:@"Research/doDepartmentApprove.do"];
+//            NSDictionary *dict = @{@"research_id":self.RL.research_id,@"isAgree":@"0"};
+//            [self postWith:url dict:dict];
+//        }else
+//        {
+//            NSString *url = [HGResearchUrl stringByAppendingString:@"Research/doDepartmentApprove.do"];
+//            NSDictionary *dict = @{@"research_id":self.RL.research_id,@"isAgree":@"1"};
+//            [self postWith:url dict:dict];
+//        }
+//    }else if ([alertView.title isEqualToString:@"归档"])
+//    {
+//        if (buttonIndex == 0) {
+//
+//
+//        }else
+//        {
+//            NSString *url = [HGResearchUrl stringByAppendingString:@"Research/doOver.do"];
+//            NSDictionary *dict = @{@"research_id":self.RL.research_id};
+//            [self postWith:url dict:dict];
+//        }
+//    }else if ([alertView.title isEqualToString:@"校党委批复"])
+//    {
+//        if (buttonIndex == 0) {
+//
+//            NSString *url = [HGResearchUrl stringByAppendingString:@"Research/doCommitteeApprove.do"];
+//            NSDictionary *dict = @{@"research_id":self.RL.research_id,@"isAgree":@"0"};
+//            [self postWith:url dict:dict];
+//        }else
+//        {
+//            NSString *url = [HGResearchUrl stringByAppendingString:@"Research/doCommitteeApprove.do"];
+//            NSDictionary *dict = @{@"research_id":self.RL.research_id,@"isAgree":@"1"};
+//            [self postWith:url dict:dict];
+//        }
+//    }
+//
+//}
 -(void)postWith:(NSString *)url dict:(NSDictionary *)dict
 {
     NSString *user_id = [HGUserDefaults objectForKey:HGUserID];

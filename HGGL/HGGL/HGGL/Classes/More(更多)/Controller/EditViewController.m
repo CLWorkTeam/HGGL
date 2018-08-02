@@ -127,10 +127,7 @@
                     [SVProgressHUD  showSuccessWithStatus:[responseObject objectForKey:@"message"]];
                     HGLoginController *login = [[HGLoginController alloc]init];
                     [self presentViewController:login animated:YES completion:nil];
-                }else if ([status isEqualToString:@"-1"])
-                {
-                    [SVProgressHUD showErrorWithStatus:[responseObject objectForKey:@"message"]];
-                }else if ([status isEqualToString:@"-2"])
+                }else
                 {
                     [SVProgressHUD showErrorWithStatus:[responseObject objectForKey:@"message"]];
                 }

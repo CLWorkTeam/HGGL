@@ -9,23 +9,42 @@
 #import "MPPlayerViewController.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import <AVFoundation/AVFoundation.h>
+#import <AVKit/AVKit.h>
 #import "AppDelegate.h"
 @interface MPPlayerViewController ()
-@property (nonatomic,strong) MPMoviePlayerController *moviePlayer;//视频播放控制器
+@property (nonatomic,strong) AVPlayerViewController *moviePlayer;//视频播放控制器
 @end
 
 @implementation MPPlayerViewController
 
--(MPMoviePlayerController *)moviePlayer{
+-(AVPlayerViewController *)moviePlayer{
     if (!_moviePlayer) {
-//        NSString *urlStr = [@"http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8" stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-//        NSURL *url=[NSURL URLWithString:urlStr];
+
+//        _moviePlayer=[[MPMoviePlayerController alloc]init];
+//
+//        _moviePlayer.view.frame=CGRectMake(0, HGHeaderH, HGScreenWidth, HGScreenHeight-HGHeaderH);
+//        _moviePlayer.view.autoresizingMask=UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+//        [self.view addSubview:_moviePlayer.view];
         
-        _moviePlayer=[[MPMoviePlayerController alloc]init];
+        // player的控制器对象
+        AVPlayerViewController *playerViewController = [[AVPlayerViewController alloc] init];
+        // 控制器的player播放器
         
-        _moviePlayer.view.frame=CGRectMake(0, HGHeaderH, HGScreenWidth, HGScreenHeight-HGHeaderH);
-        _moviePlayer.view.autoresizingMask=UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-        [self.view addSubview:_moviePlayer.view];
+        // 试图的填充模式
+        playerViewController.videoGravity = AVLayerVideoGravityResizeAspect;
+        // 是否显示播放控制条
+        playerViewController.showsPlaybackControls = YES;
+        // 设置显示的Frame
+        playerViewController.view.frame = CGRectMake(0, HGHeaderH, HGScreenWidth, HGScreenHeight-HGHeaderH);
+        
+        _moviePlayer = playerViewController;
+        // 将播放器控制器添加到当前页面控制器中
+        [self addChildViewController:_moviePlayer];
+        // view一定要添加，否则将不显示
+        [self.view addSubview:playerViewController.view];
+        
+        
+        
     }
     return _moviePlayer;
 }
@@ -54,38 +73,28 @@
     [[AVAudioSession sharedInstance] setCategory: AVAudioSessionCategoryPlayback error: nil];
     if (self.isUrl) {
         
-        self.moviePlayer.contentURL = [self getNetWorkUrl];
-        [self.moviePlayer prepareToPlay];
-        [self.moviePlayer play];
+        
     }else
     {
 
         if (self.str) {
-            [[PHImageManager defaultManager] requestAVAssetForVideo:self.str options:nil resultHandler:^(AVAsset *  asset, AVAudioMix *  audioMix, NSDictionary *  info) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    AVURLAsset *urlAsset = (AVURLAsset *)asset;
-                    
-                    self.moviePlayer.contentURL = urlAsset.URL;
-                    [self.moviePlayer prepareToPlay];
-                    [self.moviePlayer play];
-                    
-                });
-            }];
             
-        }else
-        {
-            self.moviePlayer.contentURL = [self getFileUrl];
+            NSString *path  = self.url;
             
-            [self.moviePlayer prepareToPlay];
-            [self.moviePlayer play];
+            NSURL *url = [NSURL fileURLWithPath:path];
+            
+            AVPlayer *avPlayer= [AVPlayer playerWithURL:url];
+            
+            self.moviePlayer.player = avPlayer;
+            // 播放
+            [self.moviePlayer.player play];
         }
         
     }
 
     
     
-    [self addNotification];
-    //        HGBarBut *left = [HGBarBut initWithColor:nil andSelColor:nil andTColor:[UIColor whiteColor] andFont:[UIFont systemFontOfSize:10]];
+    
     UIButton *left = [UIButton buttonWithType:UIButtonTypeCustom];
     [left setImage:[UIImage imageNamed:@"return_normal"] forState:UIControlStateNormal];
     [left setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -108,39 +117,16 @@
 }
 -(void)dealloc
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerPlaybackStateDidChangeNotification object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
+    
     [self.moviePlayer.view removeFromSuperview];
     self.moviePlayer = nil;
-    [self.moviePlayer pause];
+    [self.moviePlayer.player pause];
 }
 
 
--(void)addNotification{
-    NSNotificationCenter *notificationCenter=[NSNotificationCenter defaultCenter];
-    [notificationCenter addObserver:self selector:@selector(mediaPlayerPlaybackStateChange:) name:MPMoviePlayerPlaybackStateDidChangeNotification object:nil];
-    [notificationCenter addObserver:self selector:@selector(mediaPlayerPlaybackFinished:) name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
-    
-}
--(void)mediaPlayerPlaybackStateChange:(NSNotification *)notification{
-//    switch (self.moviePlayer.playbackState) {
-//        case MPMoviePlaybackStatePlaying:
-//            NSLog(@"正在播放...");
-//            break;
-//        case MPMoviePlaybackStatePaused:
-//            NSLog(@"暂停播放.");
-//            break;
-//        case MPMoviePlaybackStateStopped:
-//            NSLog(@"停止播放.");
-//            break;
-//        default:
-//            NSLog(@"播放状态:%li",self.moviePlayer.playbackState);
-//            break;
-//    }
-}
--(void)mediaPlayerPlaybackFinished:(NSNotification *)notification{
-    [self.moviePlayer pause];
-}
+
+
+
 
 
 /*

@@ -13,17 +13,27 @@
 @interface HGClassController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong) UITableView *tableV;
-@property (nonatomic,strong) NSArray *dataAry;
-
+@property (nonatomic,strong) NSMutableArray *dataAry;
+@property (nonatomic,assign) BOOL isRefreshing;
+@property (nonatomic,copy) NSString *page;
+@property (nonatomic,copy) NSString *pageSize;
 
 @end
 
 @implementation HGClassController
-
+-(NSMutableArray *)dataAry
+{
+    if (_dataAry == nil) {
+        _dataAry = [NSMutableArray array];
+    }
+    return _dataAry;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.name = @"班级风采";
+    self.pageSize = @"10";
+    
     self.leftBtn.hidden = YES;
     [self addTableview];
     [self.tableV.mj_header beginRefreshing];
@@ -31,7 +41,7 @@
 
 - (void)addTableview{
     
-    UITableView *tableV = [[UITableView alloc]initWithFrame:CGRectMake(0,self.bar.maxY, HGScreenWidth, HGScreenHeight - self.bar.maxY - HGTabbarH) style:UITableViewStylePlain];
+    UITableView *tableV = [[UITableView alloc]initWithFrame:CGRectMake(0,self.bar.maxY, HGScreenWidth, HGScreenHeight - self.bar.maxY - HGTabbarH-HGSafeBottom) style:UITableViewStylePlain];
     tableV.separatorStyle = UITableViewCellSeparatorStyleNone;
     tableV.backgroundColor = [UIColor whiteColor];
     tableV.rowHeight = HEIGHT_PT(160);
@@ -39,25 +49,33 @@
     tableV.dataSource = self;
     self.tableV = tableV;
     [self.view addSubview:tableV];
-    
+    WeakSelf
     self.tableV.mj_header = [HGRefresh loadNewRefreshWithRefreshBlock:^{
-        [self requestData];
+        [weakSelf requestData];
+    }];
+    self.tableV.mj_footer = [HGRefresh loadMoreRefreshWithRefreshBlock:^{
+        
+        [weakSelf loadMoreData];
     }];
 }
 
 
 - (void)requestData{
-
+    if (_isRefreshing) {
+        return;
+    }
+    self.page = @"1";
+    _isRefreshing = YES;
     NSString *url = [HGURL stringByAppendingString:@"Notice/getLearningOnCampus.do"];
     NSString *userid = [HGUserDefaults objectForKey:HGProjectID];
-    [HGHttpTool POSTWithURL:url parameters:@{@"project_id":userid} success:^(id responseObject) {
-        
+    [HGHttpTool POSTWithURL:url parameters:@{@"project_id":userid,@"page":self.page,@"pageSize":self.pageSize} success:^(id responseObject) {
+        _isRefreshing = NO;
         NSLog(@"%@---%@\n---\n%@",[self class],url,responseObject);
 
         [self.tableV.mj_header endRefreshing];
-        
+        [self.dataAry removeAllObjects];
         if ([responseObject[@"status"] isEqualToString:@"0"]) {
-            self.dataAry = @[];
+//            self.dataAry = @[];
             
 //            NSDictionary *dict = @{@"noticeId":@"1",@"publisher":@"1",@"releaseTimeStr":@"1",@"noticeTitle":@"test",@"picUrl":[HGURL stringByAppendingString:@"/user_base/site/180331141456027.jpg"]};
 //            HGSchoolFCModel *model = [HGSchoolFCModel mj_objectWithKeyValues:dict];
@@ -74,15 +92,59 @@
         }else{
             NSArray *tempAry = responseObject[@"data"];
             //           NSArray *tempAry = @[@{@"noticeId":@"1",@"publisher":@"我问问",@"releaseTimeStr":@"2012-23-12",@"noticeTitle":@"测试"},@{@"noticeId":@"1",@"publisher":@"我问问",@"releaseTimeStr":@"2012-23-12",@"noticeTitle":@"测试"},@{@"noticeId":@"1",@"publisher":@"我问问",@"releaseTimeStr":@"2012-23-12",@"noticeTitle":@"测试"},@{@"noticeId":@"1",@"publisher":@"我问问",@"releaseTimeStr":@"2012-23-12",@"noticeTitle":@"测试"}];
-            self.dataAry = [HGSchoolFCModel mj_objectArrayWithKeyValuesArray:tempAry];
+//            self.dataAry = [HGSchoolFCModel mj_objectArrayWithKeyValuesArray:tempAry];
+            for (NSDictionary *dict in tempAry) {
+                HGSchoolFCModel *model = [HGSchoolFCModel initWithDict:dict];
+                [self.dataAry addObject:model];
+            }
             [self.tableV reloadData];
             self.tableV.backgroundView = nil;
         }
     } failure:^(NSError *error) {
+        _isRefreshing = NO;
         [self.tableV.mj_header endRefreshing];
     }];
 }
+-(void)loadMoreData
+{
+    if (_isRefreshing) {
+        return;
+    }
+    NSInteger i = [self.page integerValue ];
+    self.page = [NSString stringWithFormat:@"%ld",++i];
+    _isRefreshing = YES;
+    NSString *url = [HGURL stringByAppendingString:@"Notice/getLearningOnCampus.do"];
+    NSString *userid = [HGUserDefaults objectForKey:HGProjectID];
+    [HGHttpTool POSTWithURL:url parameters:@{@"project_id":userid,@"page":self.page,@"pageSize":self.pageSize} success:^(id responseObject) {
+        _isRefreshing = NO;
+        NSLog(@"%@---%@\n---\n%@",[self class],url,responseObject);
+        
+        [self.tableV.mj_footer endRefreshing];
+        
+        if ([responseObject[@"status"] isEqualToString:@"0"]) {
 
+            NSInteger i = [self.page integerValue ];
+            self.page = [NSString stringWithFormat:@"%ld",--i];
+        }else{
+            
+            NSArray *tempAry = responseObject[@"data"];
+            
+            for (NSDictionary *dict in tempAry) {
+                HGSchoolFCModel *model = [HGSchoolFCModel initWithDict:dict];
+                [self.dataAry addObject:model];
+            }
+            
+            [self.tableV reloadData];
+            self.tableV.backgroundView = nil;
+        }
+    } failure:^(NSError *error) {
+        _isRefreshing = NO;
+        NSInteger i = [self.page integerValue ];
+        self.page = [NSString stringWithFormat:@"%ld",--i];
+        [self.tableV.mj_footer endRefreshing];
+    }];
+    
+}
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.dataAry.count;
 }

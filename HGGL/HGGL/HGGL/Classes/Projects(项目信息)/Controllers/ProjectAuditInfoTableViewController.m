@@ -60,7 +60,7 @@
     
     self.tableView.mj_header = [HGRefresh loadNewRefreshWithRefreshBlock:^{
         [weakSelf postWithParama:weakSelf.parama];
-        HGLog(@"weakSelf.parama ==%@", weakSelf.parama.keyValues);
+        HGLog(@"weakSelf.parama ==%@", weakSelf.parama.mj_keyValues);
     }];
     [self.tableView.mj_header beginRefreshing];
     
@@ -81,7 +81,7 @@
     parama.page = @"1";
 
     NSString *user_id = [HGUserDefaults objectForKey:HGUserID];
-    NSMutableDictionary *par =[NSMutableDictionary dictionaryWithDictionary:parama.keyValues];
+    NSMutableDictionary *par =[NSMutableDictionary dictionaryWithDictionary:parama.mj_keyValues];
     [par setValue:user_id forKey:@"tokenval"];
     [HGHttpTool POSTWithURL:url parameters:par success:^(id responseObject) {
 
@@ -121,7 +121,7 @@
     _isRefreshing = YES;
     NSString *url = [HGURL stringByAppendingString:@"Project/getApproveProjects.do"];
     NSString *user_id = [HGUserDefaults objectForKey:HGUserID];
-    NSMutableDictionary *par =[NSMutableDictionary dictionaryWithDictionary:parama.keyValues];
+    NSMutableDictionary *par =[NSMutableDictionary dictionaryWithDictionary:parama.mj_keyValues];
     [par setValue:user_id forKey:@"tokenval"];
     [HGHttpTool POSTWithURL:url parameters:par success:^(id responseObject) {
         _isRefreshing = NO;

@@ -11,13 +11,7 @@
 
 @interface ProjectAuditInfoTableViewController : UITableViewController
 @property (nonatomic,copy) void (^projectListBlock) (id vc);
-//<<<<<<< .mine
-//@property (nonatomic,strong) ProjectListParama *parama;
-//@property (nonatomic,copy) NSString *account;
-//@property (nonatomic,copy) NSString *passWord;
-//-(void)postWithParama:(ProjectListParama *)parama;
-//=======
+
 @property (nonatomic,strong) ProjectAuditParama *parama;
 -(void)postWithParama:(ProjectAuditParama *)parama;
-//>>>>>>> .r488
 @end

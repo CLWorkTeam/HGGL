@@ -60,7 +60,7 @@
     NSString *url = [HGResearchUrl stringByAppendingString:@"Research/getResearchList.do"];
     HGLog(@"%@",[HGUserDefaults objectForKey:HGUserID]);
     NSString *user_id = [HGUserDefaults objectForKey:HGUserID];
-    NSMutableDictionary *par =[NSMutableDictionary dictionaryWithDictionary:parama.keyValues];
+    NSMutableDictionary *par =[NSMutableDictionary dictionaryWithDictionary:parama.mj_keyValues];
     [par setValue:user_id forKey:@"tokenval"];
     [HGHttpTool POSTWithURL:url parameters:par success:^(id responseObject) {
         _isRefreshing = NO;
@@ -100,7 +100,7 @@
     NSString *url = [HGResearchUrl stringByAppendingString:@"Research/getResearchList.do"];
     HGLog(@"%@",[HGUserDefaults objectForKey:HGUserID]);
     
-    NSMutableDictionary *par =[NSMutableDictionary dictionaryWithDictionary:parama.keyValues];
+    NSMutableDictionary *par =[NSMutableDictionary dictionaryWithDictionary:parama.mj_keyValues];
     
     [HGHttpTool POSTWithURL:url parameters:par success:^(id responseObject) {
         _isRefreshing = NO;

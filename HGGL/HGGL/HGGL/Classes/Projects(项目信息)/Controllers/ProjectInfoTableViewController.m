@@ -106,12 +106,12 @@
     _isRefreshing = YES;
     NSString *url = [HGURL stringByAppendingString:@"Project/getProjects.do"];
     NSString *user_id = [HGUserDefaults objectForKey:HGUserID];
-    NSMutableDictionary *par =[NSMutableDictionary dictionaryWithDictionary:parama.keyValues];
+    NSMutableDictionary *par =[NSMutableDictionary dictionaryWithDictionary:parama.mj_keyValues];
     [par setValue:user_id forKey:@"tokenval"];
     [HGHttpTool POSTWithURL:url parameters:par success:^(id responseObject) {
         _isRefreshing = NO;
         [self.tableView.mj_footer endRefreshing];
-//        HGLog(@"%@",parama.keyValues);
+//        HGLog(@"%@",parama.mj_keyValues);
         NSArray *array = [NSArray array];
         array = [responseObject objectForKey:@"data"];
         NSString *status = [responseObject objectForKey:@"status"];

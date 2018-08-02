@@ -97,7 +97,7 @@
             [SVProgressHUD showErrorWithStatus:[responseObject objectForKey:@"message"]];
         }else{
             
-            HGLog(@"%@",parama.keyValues);
+            HGLog(@"%@",parama.mj_keyValues);
             for (NSDictionary *dict in array) {
                 HGMenteeModel *mentee = [HGMenteeModel initWithDict:dict];
                 [self.arr addObject:mentee];
@@ -130,7 +130,7 @@
     [HGHttpTool POSTWithURL:url parameters:par success:^(id responseObject) {
         [self.tableView.mj_footer endRefreshing];
         _isrefreshing = NO;
-        HGLog(@"%@",parama.keyValues);
+        HGLog(@"%@",parama.mj_keyValues);
         NSArray *array = [NSArray array];
         array = [responseObject objectForKey:@"data"];
         NSString *status = [responseObject objectForKey:@"status"];

@@ -122,7 +122,7 @@
    // parama.page = @"1";
     NSString *url = [HGURL stringByAppendingString:@"MsgPush/getMessageList.do"];
     _isRefreshing = YES;
-    [HGHttpTool POSTWithURL:url parameters:self.parama.keyValues success:^(id responseObject) {
+    [HGHttpTool POSTWithURL:url parameters:self.parama.mj_keyValues success:^(id responseObject) {
         _isRefreshing = NO;
         [self.tableView.mj_footer endRefreshing];
         NSString *status = [responseObject objectForKey:@"status"];

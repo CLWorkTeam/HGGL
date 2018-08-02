@@ -64,7 +64,7 @@
 //    _isRefreshing = YES;
 //    [self.arr removeAllObjects];
 //    NSString *url = [HGURL stringByAppendingString:@"Project/getTaskList.do"];
-//    [HGHttpTool POSTWithURL:url parameters:parama.keyValues success:^(id responseObject) {
+//    [HGHttpTool POSTWithURL:url parameters:parama.mj_keyValues success:^(id responseObject) {
 //        _isRefreshing = NO;
 //        [self.tableView.mj_footer endRefreshing];
 //        NSString *status = [responseObject objectForKey:@"status"];
@@ -100,11 +100,11 @@
     
     NSString *url = [HGURL stringByAppendingString:@"Project/getTaskList.do"];
     NSString *user_id = [HGUserDefaults objectForKey:HGUserID];
-    NSMutableDictionary *par =[NSMutableDictionary dictionaryWithDictionary:parama.keyValues];
+    NSMutableDictionary *par =[NSMutableDictionary dictionaryWithDictionary:parama.mj_keyValues];
     [par setValue:user_id forKey:@"tokenval"];
     [HGHttpTool POSTWithURL:url parameters:par success:^(id responseObject) {
         _isRefreshing = NO;
-        HGLog(@"====%@",parama.keyValues);
+        HGLog(@"====%@",parama.mj_keyValues);
         [self.tableView.mj_header endRefreshing];
         NSString *status = [responseObject objectForKey:@"status"];
         if ([status isEqualToString:@"1"]) {

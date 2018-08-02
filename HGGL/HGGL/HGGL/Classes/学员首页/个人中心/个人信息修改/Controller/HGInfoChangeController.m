@@ -71,7 +71,7 @@
 - (void)requestData{
     
     [SVProgressHUD showWithStatus:@"加载中..."];
-    NSString *url = [HGURL stringByAppendingString:@"/User/getInfo.do?"];
+    NSString *url = [HGURL stringByAppendingString:@"User/getInfo.do?"];
     NSString *userid = [HGUserDefaults objectForKey:HGUserID];
     [HGHttpTool POSTWithURL:url parameters:@{@"user_id":userid} success:^(id responseObject) {
         
@@ -170,14 +170,15 @@
     [param setObject:self.dataDic[@"部门："] forKey:@"user_department"];
     [param setObject:self.dataDic[@"职位："] forKey:@"user_duty"];
 
-    NSString *url = [HGURL stringByAppendingString:@"/User/infoChange.do"];
+    NSString *url = [HGURL stringByAppendingString:@"User/infoChange.do"];
     [HGHttpTool POSTWithURL:url parameters:param success:^(id responseObject) {
         
         NSLog(@"%@---%@\n---\n%@",[self class],url,responseObject);
         
         if ([responseObject[@"status"] isEqualToString:@"1"]) {
-            [self.navigationController popViewControllerAnimated:YES];
             [SVProgressHUD showSuccessWithStatus:responseObject[@"message"]];
+            [self.navigationController popViewControllerAnimated:YES];
+            
         }else{
             [SVProgressHUD showErrorWithStatus:responseObject[@"message"]];
         }

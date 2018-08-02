@@ -16,5 +16,5 @@
 @property (nonatomic,copy) NSString *noticeTitle;
 @property (nonatomic,copy) NSString *picUrl;
 @property (nonatomic,copy) NSString *noticeContent;
-
++(instancetype)initWithDict:(NSDictionary *)dict;
 @end

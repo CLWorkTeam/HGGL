@@ -29,5 +29,9 @@
 @property (nonatomic,copy)NSString *user_email;
 //：用户备注
 @property (nonatomic,copy)NSString *user_note;
+/**
+ 用户真实姓名
+ */
+@property (nonatomic,copy) NSString *real_name;
 +(instancetype)initWithDict:(NSDictionary *)dict;
 @end

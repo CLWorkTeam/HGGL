@@ -115,7 +115,7 @@
             self.block(self.titleLab.text, self.selectBtn.titleLabel.text);
         }
     }else if (mark==5){
-        NSString *url = [HGURL stringByAppendingString:@"/Reception/getVehList.do"];
+        NSString *url = [HGURL stringByAppendingString:@"Reception/getVehList.do"];
         [HGHttpTool POSTWithURL:url parameters:@{} success:^(id responseObject) {
             NSLog(@"%@",responseObject);
             if ([responseObject[@"status"] isEqualToString:@"1"]) {

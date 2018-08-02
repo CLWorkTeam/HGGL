@@ -211,7 +211,7 @@
     
     [self endEditing:YES];
     self.parma.str = searchBar.text;
-    //HGLog(@"111%@",self.parma.keyValues);
+    //HGLog(@"111%@",self.parma.mj_keyValues);
     [self.history loadDWith:self.parma];
 }
 
@@ -244,7 +244,7 @@
             {
                 self.parma.type = @"3";
             }
-            //HGLog(@"%@",self.parma.keyValues);
+            //HGLog(@"%@",self.parma.mj_keyValues);
             self.history.parma = self.parma;
             [self.history loadDWith:self.parma];
             //self.parma.type = str;
@@ -276,7 +276,7 @@
             but.selected = NO;
             [but setTitle:@"来校时间" forState:UIControlStateNormal];
             weekSelf.parma.time_come = @"";
-            HGLog(@"%@",self.parma.keyValues);
+            HGLog(@"%@",self.parma.mj_keyValues);
             [weekSelf.history loadDWith:self.parma];
         };
         
@@ -287,7 +287,7 @@
             //parma.type = @"3";
             [but setTitle:time forState:UIControlStateNormal];
             weekSelf.parma.time_come = time;
-            //HGLog(@"%@",self.parma.keyValues);
+            //HGLog(@"%@",self.parma.mj_keyValues);
             [weekSelf.history loadDWith:weekSelf.parma];
             [CurrImageView dismiss];
             [ZKRCover dismiss];
@@ -331,7 +331,7 @@
             //HistoryParma *parma = [[HistoryParma alloc]init];
             //parma.type = @"3";
             self.parma.time_leave = time;
-            //HGLog(@"%@",self.parma.keyValues);
+            //HGLog(@"%@",self.parma.mj_keyValues);
             [weekSelf.history loadDWith:self.parma];
             [CurrImageView dismiss];
             [ZKRCover dismiss];

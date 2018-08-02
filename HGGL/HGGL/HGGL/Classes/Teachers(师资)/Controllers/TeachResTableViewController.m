@@ -81,7 +81,7 @@
         _isRefreshing = NO;
         [self.tableView.mj_header endRefreshing];
         [self.arr removeAllObjects];
-        HGLog(@"%@",parama.keyValues);
+        HGLog(@"%@",parama.mj_keyValues);
         NSArray *array = [NSArray array];
         array = [responseObject objectForKey:@"data"];
         NSString *status = [responseObject objectForKey:@"status"];
@@ -117,7 +117,7 @@
     [par setValue:user_id forKey:@"tokenval"];
     [HGHttpTool POSTWithURL:url parameters:par success:^(id responseObject) {
         _isRefreshing = NO;
-//        HGLog(@"%@",parama.keyValues);
+//        HGLog(@"%@",parama.mj_keyValues);
         [self.tableView.mj_footer endRefreshing];
         NSArray *array = [NSArray array];
         array = [responseObject objectForKey:@"data"];
