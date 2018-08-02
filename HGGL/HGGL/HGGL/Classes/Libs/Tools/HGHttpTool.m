@@ -21,7 +21,7 @@
     config.timeoutIntervalForRequest = 120;
     AFHTTPSessionManager *mgr = [[AFHTTPSessionManager alloc]initWithSessionConfiguration:config];
 //    mgr.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html", nil];
-//    if ([URLString containsString:@"Project/getProjectInfo.do"]) {
+//    if ([URLString containsString:@"Mentee/getMyClass.do"]) {
 //        mgr.responseSerializer = [AFHTTPResponseSerializer serializer];
 //    }
 
