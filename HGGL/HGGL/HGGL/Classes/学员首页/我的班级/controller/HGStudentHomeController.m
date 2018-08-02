@@ -23,6 +23,10 @@
 #import "TKDownLoadModel.h"
 #import "TKDownLoadManager.h"
 #import "AppDelegate.h"
+
+
+#import "MPPlayerViewController.h"
+#import "FullNavViewController.h"
 @interface HGStudentHomeController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong) UIImageView *imageV;
@@ -623,11 +627,16 @@
     }
     if ([sender.titleLabel.text isEqualToString:@"学员手册"]) {
         
+        
+        
         if ([self.infoDic[@"project_manualUrl"] isNull]||(self.infoDic[@"project_manualUrl"] == nil)) {
             [SVProgressHUD showErrorWithStatus:@"资源地址无效"];
             return;
         }
 
+        
+        
+        
         TKDownLoadManager *manager = [TKDownLoadManager share];
         
         manager.maxDownLoadTask = 1;
@@ -647,6 +656,8 @@
         model.liveId = @"2";
         
         [manager addNewTaskWith:@[model]];
+        
+        
 
 //        HGWebController *vc = [[HGWebController alloc]init];
 //        vc.url = self.infoDic[@"project_manualUrl"];
@@ -669,7 +680,19 @@
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
-
+-(void)test
+{
+    
+    //    HGMyDownLoadViewController *source = [[HGMyDownLoadViewController alloc]init];
+    MPPlayerViewController *player = [[MPPlayerViewController alloc]init];
+    player.title = @"测试";
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"1533186886121695" ofType:@".mp4"];
+    player.url = path;
+    FullNavViewController *nav = [[FullNavViewController alloc]initWithRootViewController:player];
+    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    app.isFull = YES;
+    [self.navigationController presentViewController:nav animated:YES completion:nil];
+}
 - (void)clickClass:(UITapGestureRecognizer *)ges{
     UIView *view = ges.view;
     HGStudentItemModel *model = self.dataAry[view.tag - 1000];

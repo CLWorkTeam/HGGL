@@ -77,7 +77,7 @@
     }else
     {
 
-        if (self.str) {
+        if (self.url) {
             
             NSString *path  = self.url;
             
@@ -107,21 +107,18 @@
 {
     AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     app.isFull = NO;
+    [_moviePlayer.player pause];
+    [_moviePlayer.view removeFromSuperview];
+    _moviePlayer = nil;
+    
     if (self.navigationController.topViewController.presentingViewController) {
         [self.navigationController.topViewController dismissViewControllerAnimated:YES completion:nil];
     } else {
         [self.navigationController.topViewController.navigationController popViewControllerAnimated:YES];
     }
     
-//    [self.moviePlayer pause];
 }
--(void)dealloc
-{
-    
-    [self.moviePlayer.view removeFromSuperview];
-    self.moviePlayer = nil;
-    [self.moviePlayer.player pause];
-}
+
 
 
 

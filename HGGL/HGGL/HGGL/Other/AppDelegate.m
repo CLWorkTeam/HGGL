@@ -16,6 +16,7 @@
 #import <UserNotifications/UserNotifications.h>
 #import "UMessage.h"
 #import "UMConfigure.h"
+
 @interface AppDelegate ()<UNUserNotificationCenterDelegate>
 @property(assign, nonatomic)UIBackgroundTaskIdentifier backIden;
 @end
@@ -59,21 +60,7 @@
     [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
 }
--(void)test
-{
-    self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
-//    HGMyDownLoadViewController *source = [[HGMyDownLoadViewController alloc]init];
-    HGWebViewController *web = [[HGWebViewController alloc]init];
-    
-    web.navigationItem.title = @"预览";
-    
-//    NSString *URL = [HGURL2 stringByAppendingString:model.localUrl];
-    NSString *path = [[NSBundle mainBundle]pathForResource:@"泰行销-微海报版块建设（2018-04-12）v0.0.3" ofType:@"docx"];
-    web.url = @"http://www.xianbear.com/downfile/%E5%85%B3%E4%BA%8E%E4%BD%93%E8%82%B2%E7%9B%B8%E5%85%B3%E8%AE%BA%E6%96%87%E8%8C%83%E6%96%87%E9%9B%86,%E4%B8%8E%E6%96%B0%E9%97%BB%E9%9B%86%E5%9B%A2%E6%94%B6%E8%B4%AD%E6%9B%BC%E8%81%94%E9%98%9F%E7%9A%84%E8%90%A5%E9%94%80%E5%AD%A6%E7%9B%B8%E5%85%B3%E6%AF%95%E4%B8%9A%E8%AE%BA%E6%96%87%E6%A0%BC%E5%BC%8F%E6%A8%A1%E6%9D%BF%E8%8C%83%E6%96%87.doc";
-    HGNavigationController *nav = [[HGNavigationController alloc]initWithRootViewController:web];
-    self.window.rootViewController = nav;
-    [self.window makeKeyAndVisible];
-}
+
 - (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window
 {
     if (_isFull) {

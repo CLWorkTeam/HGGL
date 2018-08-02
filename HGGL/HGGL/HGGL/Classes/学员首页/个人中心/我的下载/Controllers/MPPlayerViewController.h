@@ -11,6 +11,6 @@
 @interface MPPlayerViewController : UIViewController
 @property (nonatomic,copy) NSString *url;
 @property (nonatomic,assign) BOOL isUrl;
-@property (nonatomic,strong) PHAsset *str;
+
 @property (nonatomic,copy) void (^videoBlock)(id url,BOOL isUrl);
 @end
